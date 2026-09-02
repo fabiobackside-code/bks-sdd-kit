@@ -221,6 +221,66 @@ def test_invariants():
           'MediatR' in guard and 'IMediator' in guard)
 
 
+def test_profiles():
+    print('\nperfis de projeto')
+    files = [f for f in listdir('profiles')
+             if f.endswith('.md') and f != 'README.md']
+    check('ha perfis no repositorio', bool(files))
+
+    schema = json.loads(read('profiles', 'bks-profile.schema.json'))
+    declared = set(schema['properties']['profile']['enum'])
+    present = set(os.path.splitext(f)[0] for f in files)
+
+    check('todo perfil do schema tem arquivo', declared <= present,
+          'no schema mas sem arquivo: %s' % ', '.join(sorted(declared - present)))
+    check('todo arquivo de perfil esta no schema', present <= declared,
+          'com arquivo mas fora do schema: %s' % ', '.join(sorted(present - declared)))
+
+    readme = read('profiles', 'README.md')
+    for name in sorted(present):
+        text = read('profiles', '%s.md' % name)
+        check('%s: diz o que gera' % name, '## Gera' in text)
+        check('%s: declara as fases' % name, '## Fases' in text)
+        check('%s: declara os eixos' % name, '## Eixos' in text)
+        check('%s: declara as skills' % name, '## Skills' in text)
+        check('%s: listado no README de perfis' % name,
+              '(%s.md)' % name in readme)
+
+
+def test_renderers():
+    print('\nrenderers de arquitetura')
+    files = [f for f in listdir('profiles', 'architecture-renderers')
+             if f.endswith('.md') and f not in ('README.md', '_TEMPLATE.md')]
+    check('ha renderers no repositorio', bool(files))
+
+    defaults = []
+    for f in sorted(files):
+        text = read('profiles', 'architecture-renderers', f)
+        fm = frontmatter(text)
+        name = os.path.splitext(f)[0]
+        check('%s: tem frontmatter' % f, fm is not None)
+        if not fm:
+            continue
+        check('%s: renderer bate com o arquivo' % f,
+              field(fm, 'renderer') == name)
+        check('%s: declara o tipo' % f, field(fm, 'tipo') is not None)
+        check('%s: diz quando e a escolha certa' % f,
+              '## Quando e a escolha certa' in text)
+        check('%s: declara o limite' % f, '## Limite honesto' in text)
+        if field(fm, 'padrao') == 'true':
+            defaults.append(name)
+
+    check('ha exatamente um renderer padrao', len(defaults) == 1,
+          'padroes encontrados: %s' % (', '.join(defaults) or 'nenhum'))
+
+    schema = json.loads(read('profiles', 'bks-profile.schema.json'))
+    schema_default = schema['properties']['axes']['properties'][
+        'architecture_renderer'].get('default')
+    check('o padrao do schema tem arquivo',
+          schema_default in [os.path.splitext(f)[0] for f in files],
+          'schema diz %r' % schema_default)
+
+
 def test_evals():
     print('\nsuites de eval')
     cases = [d for d in listdir('evals')
@@ -297,7 +357,8 @@ def test_public_hygiene():
 def main():
     print('suite estrutural do bks-sdd-kit')
     for fn in (test_manifests, test_skills, test_commands, test_agents,
-               test_hooks, test_invariants, test_evals, test_public_hygiene):
+               test_hooks, test_invariants, test_profiles, test_renderers,
+               test_evals, test_public_hygiene):
         fn()
 
     print('\n%d verificacoes, %d falhas' % (checks, len(failures)))

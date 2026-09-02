@@ -26,6 +26,7 @@ operam o workbench e agentes com papeis separados.
 | `bks-create-plan-tasks` | Decomposicao de qualquer trabalho em tasks atomicas otimizadas para consumo de tokens |
 | `bks-tests` | Cobertura de testes em solution .NET: projeto xUnit unico em `src/`, 90%+ em linhas, branches e metodos, conformidade SonarQube |
 | `bks-standards` | Padroes de engenharia BKS: premissas de codificacao, dependencias .NET, calisthenics, politica de comentario, SEDA e TCP |
+| `bks-arch` | Notacao BKS de diagramas: paleta da marca, semantica de cor por tipo de no, convencao de linha — emite para Mermaid, archify, C4 ou TOGAF |
 
 ### Comandos
 
@@ -50,6 +51,29 @@ operam o workbench e agentes com papeis separados.
 | `builder` | Implementa sob LOOP-4, dentro dos limites da FEAT aprovada | Sonnet |
 | `reviewer` | Revisao de seguranca independente, read-only | Opus |
 | `scribe` | Registra apenas o que foi confirmado com evidencia | Haiku |
+
+## Perfis de projeto
+
+Um projeto declara **o que gera**, e o perfil determina quais fases se aplicam. Um projeto de
+documentacao nao recebe pergunta sobre banco de dados; uma biblioteca nao passa por design de tela.
+
+| Perfil | Para |
+|---|---|
+| `docs` | entrega documental — escopo, arquitetura, apresentacao |
+| `fullstack` | projeto completo faseado |
+| `frontend` | design, mocks, componentes |
+| `backend` | API, dominio, persistencia |
+| `component` | biblioteca, SDK, pacote |
+| `infra` | IaC, pipeline, observabilidade |
+| `data` | ETL, modelagem, BI |
+| `legacy-docs` | entender um legado sem altera-lo |
+| `reengineering` | documentar e reescrever um legado |
+
+Quatro eixos atravessam os perfis: formato de saida (`md`/`html`), renderer de arquitetura,
+alvo de frontend (`web`/`mobile`/`both`) e rigor (`producao`/`poc`).
+
+O `/new-project` grava a escolha em `.bks-profile.json`. Detalhes em
+[`profiles/`](profiles/README.md).
 
 ## Guardas
 
@@ -110,7 +134,7 @@ Os comandos de workbench (`/brain`, `/save`, `/new-project`, `/note`, `/canonize
 | `BKS_REPOS` | Onde ficam os repos dos projetos | `${BKS_VAULT}/repos` |
 
 As skills (`bks-sdd`, `bks-dotnet-solutions`, `bks-typescript-solutions`,
-`bks-create-plan-tasks`, `bks-tests`, `bks-standards`) funcionam sem nenhuma configuracao — operam sobre o diretorio de
+`bks-create-plan-tasks`, `bks-tests`, `bks-standards`, `bks-arch`) funcionam sem nenhuma configuracao — operam sobre o diretorio de
 trabalho atual.
 
 ## O ciclo, em uma passada
