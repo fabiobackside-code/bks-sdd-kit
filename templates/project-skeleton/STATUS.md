@@ -23,15 +23,35 @@
 
 {{O que impede o proximo passo. Se nada trava, escreva "Nada trava." e siga.}}
 
-Um bloqueio por linha, com o que ele espera:
+| Bloqueio | Espera | Quem destrava |
+|---|---|---|
+| {{o que esta parado}} | {{decisao, pessoa, evento}} | {{quem}} |
 
-- {{bloqueio}} — espera {{decisao, pessoa, ou evento}}
+Bloqueio resolvido sai daqui e vira entrada no `JOURNAL.md`. Este quadro mostra o que trava
+**agora**, nao o que ja travou.
 
 ---
 
 ## Proximo passo
 
 {{Uma acao concreta, executavel agora. Nao um tema, nao uma area — uma acao.}}
+
+{{Se ha varios caminhos possiveis, diga por onde comecar e por que. Ordem de construcao vale mais
+que lista de tarefas.}}
+
+---
+
+## Decisoes que valem
+
+{{O que ja foi decidido e nao se reabre sem motivo novo. Existe para que a proxima sessao nao
+gaste tempo rediscutindo o que ja esta fechado.}}
+
+| # | Decisao | Onde |
+|---|---|---|
+| 1 | {{a decisao, em uma linha}} | {{ADR-NNN ou documento}} |
+
+Toda linha aponta para onde a decisao esta registrada com contexto. Decisao sem referencia e
+memoria — e memoria nao sobrevive a duas semanas.
 
 ---
 
@@ -42,15 +62,20 @@ trabalho sai daqui.}}
 
 ---
 
-## Onde estao as coisas
+## Mapa dos documentos
 
-| O que | Onde |
+{{Onde cada coisa esta, para que a proxima sessao encontre sem procurar.}}
+
+| Documento | Para que |
 |---|---|
-| Fluxo de comandos | `WORKFLOW.md` |
-| Marcos e sessoes | `JOURNAL.md` |
-| Decisoes | `decisions/` |
-| Especificacoes | `specs/features/`, `specs/tests/`, `specs/tasks/` |
-| Contexto consolidado | `docs/canonical/` |
-| Material bruto | `docs/input/` |
-| Dominio do produto | `brain/domain/` |
-| Padroes tecnicos deste projeto | `brain/engineering/` |
+| este arquivo | onde parei, o que trava, proximo passo |
+| `WORKFLOW.md` | o fluxo de comandos deste projeto |
+| `JOURNAL.md` | marcos e sessoes, do mais recente ao mais antigo |
+| `decisions/` | as decisoes, com contexto e alternativas descartadas |
+| `specs/` | features, cenarios de teste, tasks |
+| `docs/canonical/` | contexto consolidado — a fonte apos o `/canonize` |
+| `docs/input/` | material bruto ainda nao consolidado |
+| `brain/domain/` | o que o produto e — regra de negocio, metodo, normativo |
+| `brain/engineering/` | como se constroi aqui — padrao tecnico deste projeto |
+
+{{Acrescente os documentos proprios do projeto que a proxima sessao precisa achar.}}

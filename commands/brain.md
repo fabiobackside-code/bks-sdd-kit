@@ -45,6 +45,10 @@ Percorra `repos/*/*/` e, para cada projeto, leia:
 - `STATUS.md` — a frase de estado, a fase, e o que trava
 - `JOURNAL.md` — a data da entrada mais recente
 
+**Pule `repos/old/`.** E arquivo morto: projeto encerrado ou substituido, guardado porque apagar
+seria irreversivel, nao porque ainda valha. Nao entra no panorama, nao entra na contagem, nao
+aparece como sugestao.
+
 Nao leia mais nada. Nao abra `specs/`, `decisions/` nem codigo — o panorama e calculado desses
 dois arquivos, e ler alem disso custa tokens sem mudar a resposta.
 
