@@ -16,10 +16,21 @@ porque eu pus nos outros três"). Dispara antes de aprovar entrega que toca áre
 manifesto (`{repo}/.claude/multiagente.md`).
 
 ## Pré-requisitos de contexto
-- `${BKS_BRAIN}/memory/bks-premises.md` e `dotnet-standards.md` (arquitetura esperada)
-- `{repo}/decisions/` (log de decisões DESTE projeto — não reportar de novo o que já foi decidido/aceito). `${BKS_BRAIN}/decisions/` só guarda decisões sobre o workbench em si.
+- `skills/bks-standards/references/bks-premises.md` e `dotnet-standards.md` (arquitetura esperada)
+- `{repo}/decisions/` (log de decisões DESTE projeto — não reportar de novo o que já foi decidido/aceito). `${BKS_VAULT}/workbench/decisions/` só guarda decisões sobre o próprio processo.
 - Seção "Invariantes do domínio" e "Áreas sensíveis" do manifesto do projeto
-- `${BKS_BRAIN}/references/checklist-revisao-critica.md` (checklist obrigatório)
+- `skills/bks-standards/references/checklist-revisao-critica.md` (checklist obrigatorio)
+- `{repo}/brain/engineering/` — padroes que valem so neste projeto e sobrepoem os do kit
+
+## Metodo
+
+Antes de abrir o codigo, leia `references/code-review-checklist.md` — ele diz o que olhar e em que
+ordem. Comportamento antes de estilo: correcao, regressao, autorizacao, vazamento de dado,
+contrato quebrado, caso de borda sem teste.
+
+Antes de fechar o achado, passe por `references/code-review-anti-patterns.md`. Ele existe para
+evitar os tres vicios da revisao automatica: apontar estilo como se fosse defeito, repetir o que
+o linter ja pega, e transformar preferencia em problema.
 
 ## Padrão de achado
 Cada item exige `arquivo:linha`. Revisão sem localização é opinião, não revisão.

@@ -19,8 +19,8 @@ nunca decide o que foi feito, só registra o que o builder/orquestrador já conf
 Descrição de comportamento exige evidência (saída de build/teste colada), não suposição.
 
 ## O que atualiza
-- `${BKS_BRAIN}/memory/hot.md` — progresso e próximo passo
-- `${BKS_BRAIN}/sessions/sessao-YYYY-MM-DD.md` — nota de sessão
+- `{repo}/STATUS.md` — onde o projeto esta agora; reescrito por inteiro
+- `{repo}/JOURNAL.md` — marco da sessao; acrescentado no topo, nunca reescrito
 - README/CHANGELOG do repo, se o projeto usar
 - Status de `FEAT-*.md`/`TASK-*.md` (marca concluído só com evidência anexada)
 

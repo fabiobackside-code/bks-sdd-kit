@@ -27,6 +27,13 @@ operam o workbench e agentes com papeis separados.
 | `bks-tests` | Cobertura de testes em solution .NET: projeto xUnit unico em `src/`, 90%+ em linhas, branches e metodos, conformidade SonarQube |
 | `bks-standards` | Padroes de engenharia BKS: premissas de codificacao, dependencias .NET, calisthenics, politica de comentario, SEDA e TCP |
 | `bks-arch` | Notacao BKS de diagramas: paleta da marca, semantica de cor por tipo de no, convencao de linha — emite para Mermaid, archify, C4 ou TOGAF |
+| `api-design` | Contrato de endpoint: semantica HTTP, versionamento, erro, paginacao, idempotencia |
+| `frontend-design` | Interface com identidade propria — estrutura de componente, hierarquia visual, consistencia |
+| `security-audit` | Revisao de seguranca: entrada, autorizacao, segredo, dado sensivel |
+| `debug-assistant` | Do sintoma a causa: reproduzir, capturar em teste, isolar a camada |
+| `refactor-guide` | Mudar estrutura sem mudar comportamento, com rede de teste antes |
+| `doc-writer` | Docstring, README e comentario — sob o teto de comentario do kit |
+| `pr-writer` | Titulo e descricao de PR a partir do diff real, nao da memoria da conversa |
 
 ### Comandos
 
@@ -85,7 +92,7 @@ razao volta no proprio bloqueio, para corrigir e repetir.
 | `no_dispatcher` | escrita em `.cs` | `MediatR`, `IMediator`, `ISender`, `IRequestHandler<>`, `AddMediatR` e equivalentes — a orquestracao BKS e explicita, via `PipelineOrchestrator` |
 | `comment_budget` | escrita em `.cs` | bloco de comentario acima de 5 linhas, e marca de severidade em comentario |
 | `dod_docs` | escrita em `.cs` que declara tipo publico | a escrita, enquanto `README.md` e `ARCHITECTURE.md` nao tiverem sido tocados na mesma leva |
-| `session_memory` | inicio de sessao | nada — carrega a memoria do workbench, se `BKS_BRAIN` estiver configurado |
+| `session_memory` | inicio de sessao | nada — carrega o `STATUS.md` do projeto, ou o perfil do usuario na raiz do vault |
 
 Os guardas ignoram arquivo de teste, arquivo fora de repositorio git e qualquer coisa que nao
 seja `.cs`. Falha interna de um guarda libera a escrita: regra que quebra o fluxo por bug proprio
@@ -129,12 +136,15 @@ Os comandos de workbench (`/brain`, `/save`, `/new-project`, `/note`, `/canonize
 
 | Variavel | Aponta para | Exemplo |
 |---|---|---|
-| `BKS_VAULT` | Raiz do vault | `D:/dev/meu-vault` |
-| `BKS_BRAIN` | Workbench: memoria, decisoes, templates, sessoes | `${BKS_VAULT}/brain/_bks-ai` |
-| `BKS_REPOS` | Onde ficam os repos dos projetos | `${BKS_VAULT}/repos` |
+| `BKS_VAULT` | Raiz do vault | `X:/2brains` |
+| `BKS_KNOWLEDGE` | Base de conhecimento transversal | `${BKS_VAULT}/knowledge` |
+
+Sao duas. Cada projeto guarda sua propria memoria, decisao e dominio — nao ha hub central a
+apontar.
 
 As skills (`bks-sdd`, `bks-dotnet-solutions`, `bks-typescript-solutions`,
-`bks-create-plan-tasks`, `bks-tests`, `bks-standards`, `bks-arch`) funcionam sem nenhuma configuracao — operam sobre o diretorio de
+`bks-create-plan-tasks`, `bks-tests`, `bks-standards`, `bks-arch`, e as sete importadas)
+funcionam sem nenhuma configuracao — operam sobre o diretorio de
 trabalho atual.
 
 ## O ciclo, em uma passada

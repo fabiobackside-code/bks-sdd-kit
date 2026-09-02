@@ -2005,7 +2005,7 @@ para comparar projetos meses depois.
 Ao gerar o `--cost-report`, alem do `COST-REPORT-[data].md` no workspace, gravar uma nota em:
 
 ```
-${BKS_BRAIN}/memory/custos/custo-[projeto]-[YYYY-MM-DD].md
+{repo}/outputs/custos/custo-[projeto]-[YYYY-MM-DD].md
 ```
 
 Formato da nota (PT-BR, com frontmatter para o Obsidian indexar e permitir Dataview):
@@ -2040,9 +2040,8 @@ as mais proximas em escopo para comparacao direta.
 Ledger de origem: `workspace-[nome]/.logs/cost-ledger.jsonl`
 ```
 
-Criar o folder `memory/custos/` se nao existir. Ao final, adicionar uma linha em
-`${BKS_BRAIN}/memory/hot.md` apontando para a nota, seguindo a
-convencao ja usada nesse arquivo.
+Criar o folder `outputs/custos/` se nao existir. Ao final, acrescentar uma entrada no
+`JOURNAL.md` do projeto apontando para a nota.
 
 Os wikilinks `[[...]]` sao o que permite, no Obsidian, abrir o grafo de custos e comparar
 projetos lado a lado sem nenhum agregador externo.
