@@ -66,9 +66,26 @@ Quatro agentes com ferramentas e modelos distintos, nao um agente generico:
 
 ### Regra precisa de guarda executavel
 
-Regra que vive so em texto de instrucao nao sobrevive a pressa. O diretorio `hooks/` existe para
-converter as regras de entrega em verificacao automatica no momento em que o trabalho e conferido,
-e nao em recomendacao lida no inicio da sessao.
+Regra que vive so em texto de instrucao nao sobrevive a pressa. Um SDK deste kit foi construido
+inteiro — quatro fases, vinte e uma tasks — sem `README.md` nem `ARCHITECTURE.md`, e com quase um
+terco do codigo em comentario. A regra existia havia uma semana. Vivia no lugar errado: era lida
+na abertura da sessao, e nao no ponto onde o trabalho e conferido.
+
+Os guardas em `hooks/` sao a resposta. Tres deles recusam a escrita, nao avisam:
+
+- `no_dispatcher` recusa `MediatR` e equivalentes em `.cs`. Dispatcher esconde a ordem dos passos
+  atras de uma convencao de tipo; nao da para ler o fluxo sem procurar o handler.
+- `comment_budget` recusa bloco acima de cinco linhas e marca de severidade. O que denuncia ensaio
+  nao e a proporcao de comentario no arquivo, e o bloco longo — decisao e trade-off pertencem a
+  este documento.
+- `dod_docs` recusa a declaracao de tipo publico enquanto `README.md` e `ARCHITECTURE.md` nao
+  tiverem sido tocados na mesma leva. Le o working tree do git, nao o conteudo dos documentos:
+  o guarda cobra que a documentacao entre na mesma passada, nao julga se ela ficou boa.
+
+Tres escolhas os mantem usaveis. Ignoram arquivo de teste, arquivo fora de repositorio git e o
+que nao e `.cs`. Falha interna libera a escrita — guarda que quebra o fluxo por bug proprio e
+desligado em uma semana, e a regra volta a ser intencao. E cada um tem teste em `hooks/tests/`,
+pela mesma razao que existe: guarda sem teste tambem e so intencao.
 
 ## Consumidores
 

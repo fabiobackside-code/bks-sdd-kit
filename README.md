@@ -50,6 +50,30 @@ operam o workbench e agentes com papeis separados.
 | `reviewer` | Revisao de seguranca independente, read-only | Opus |
 | `scribe` | Registra apenas o que foi confirmado com evidencia | Haiku |
 
+## Guardas
+
+O kit instala quatro hooks. Os tres primeiros **recusam a escrita** quando a regra e violada — a
+razao volta no proprio bloqueio, para corrigir e repetir.
+
+| Guarda | Quando dispara | O que recusa |
+|---|---|---|
+| `no_dispatcher` | escrita em `.cs` | `MediatR`, `IMediator`, `ISender`, `IRequestHandler<>`, `AddMediatR` e equivalentes — a orquestracao BKS e explicita, via `PipelineOrchestrator` |
+| `comment_budget` | escrita em `.cs` | bloco de comentario acima de 5 linhas, e marca de severidade em comentario |
+| `dod_docs` | escrita em `.cs` que declara tipo publico | a escrita, enquanto `README.md` e `ARCHITECTURE.md` nao tiverem sido tocados na mesma leva |
+| `session_memory` | inicio de sessao | nada — carrega a memoria do workbench, se `BKS_BRAIN` estiver configurado |
+
+Os guardas ignoram arquivo de teste, arquivo fora de repositorio git e qualquer coisa que nao
+seja `.cs`. Falha interna de um guarda libera a escrita: regra que quebra o fluxo por bug proprio
+deixa de ser usada em uma semana.
+
+Rodar os testes dos guardas:
+
+```
+bash hooks/tests/run.sh
+```
+
+Os guardas exigem `python` no PATH.
+
 ## Configuracao
 
 Os comandos de workbench (`/brain`, `/save`, `/new-project`, `/note`, `/canonize`, `/prd`,
