@@ -1,0 +1,17 @@
+{
+  "name": "bks-sdd-kit",
+  "owner": {
+    "name": "Fabio Magalhaes",
+    "url": "https://github.com/fabiobackside-code"
+  },
+  "plugins": [
+    {
+      "name": "bks-sdd-kit",
+      "source": "./",
+      "description": "Kit BKS de Spec-Driven Development: PRD, specs, tasks, execucao e arquitetura hexagonal.",
+      "version": "0.1.0",
+      "category": "development",
+      "keywords": ["sdd", "spec-driven-development", "hexagonal-architecture", "dotnet", "typescript"]
+    }
+  ]
+}
