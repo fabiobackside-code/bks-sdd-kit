@@ -62,6 +62,21 @@ Faca backup antes — estas pastas nao estavam versionadas.
 Skills que nao fazem parte do kit — as especificas de um cliente ou motor proprietario —
 permanecem locais em `~/.claude/skills/`.
 
+### 3b. Saber o que muda no dia a dia
+
+O plugin traz guardas que **recusam escrita** em `.cs`, coisa que a instalacao anterior nao tinha:
+
+- codigo com `MediatR` ou dispatcher equivalente e recusado
+- bloco de comentario acima de cinco linhas, ou com marca de severidade, e recusado
+- arquivo que declara tipo publico e recusado enquanto `README.md` e `ARCHITECTURE.md` nao
+  estiverem entre as mudancas pendentes do repositorio
+
+Em repositorio legado isso aparece na primeira edicao. Se a intencao for migrar aos poucos, o
+caminho e desabilitar o hook em `settings.json` do projeto ate a base estar em conformidade — nao
+contornar a regra arquivo a arquivo.
+
+Os guardas exigem `python` no PATH.
+
 ### 4. Verificar
 
 ```
