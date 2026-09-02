@@ -18,13 +18,23 @@ propor. Transforma escopo em `FEAT-*.md`/`TEST-*.md`/`TASK-*.md` (fluxo bks-sdd)
 2. Ler specs existentes do projeto como referência de formato.
 3. Ler `PLAN-{projeto}.md` para alinhamento de fase/prioridade.
 
+## Metodo
+
+Leia `references/planning-checklist.md` antes de escrever a primeira spec. Ele cobre o que precisa
+estar decidido antes de haver escopo: quem usa, o que muda para essa pessoa, o que fica de fora, e
+como se sabe que ficou pronto.
+
+Antes de entregar o plano, passe por `references/planning-anti-patterns.md` — plano que lista
+tarefa sem ordem, task que depende de contexto que ninguem tem, criterio que ninguem consegue
+testar.
+
 ## Regra de critério de aceite
 Verificável por teste real. "Deve ser rápido" não vale; "responde em 300ms no p95 com 1000
 registros" vale. Se não dá para escrever um teste que valida, o critério não está pronto.
 
 ## Regra de task
 Implementável só com: a spec, o código do módulo existente, e os arquivos de convenção
-(`user_profile.md`, `dotnet-standards.md`). Se precisa de mais contexto que isso, a task está
+(`skills/bks-standards/references/`, `{repo}/brain/engineering/`). Se precisa de mais contexto que isso, a task está
 grande demais ou mal definida — quebre de novo.
 Declara dependência entre tasks explicitamente (entidade → serviço que a usa impede paralelizar).
 

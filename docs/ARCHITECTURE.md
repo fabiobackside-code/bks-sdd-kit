@@ -46,9 +46,12 @@ de eval — refactor de skill validada em uso sem rede de teste e aposta, nao en
 Os comandos de workbench referenciavam caminhos absolutos de uma maquina. Num pacote publico isso
 nao funciona e vaza estrutura pessoal.
 
-As referencias passaram a `${BKS_VAULT}`, `${BKS_BRAIN}` e `${BKS_REPOS}`. As skills nao dependem
-de nenhuma delas — operam sobre o diretorio de trabalho atual, e por isso servem a qualquer
-projeto sem configuracao.
+As referencias passaram a `${BKS_VAULT}` e `${BKS_KNOWLEDGE}`. Sao duas, nao mais: cada projeto
+guarda sua propria memoria, decisao e dominio, e nao ha hub central a apontar.
+
+As skills nao dependem de nenhuma das duas — operam sobre o diretorio de trabalho atual, e por
+isso servem a qualquer projeto sem configuracao. So dois comandos precisam do vault: `/brain` no
+modo panorama, que percorre `repos/`, e `/new-project`, que cria dentro dele.
 
 ### Separacao de papeis entre agentes
 

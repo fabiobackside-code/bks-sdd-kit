@@ -8,7 +8,7 @@ Consolida o material de pesquisa (docs/input/ + docs/design/) de UM projeto em u
 canônico único — a fonte que vai alimentar o /prd e, depois, o /spec.
 
 Este comando pode rodar aberto na raiz do vault (pergunte QUAL projeto,
-${BKS_REPOS}/{categoria}/{projeto}) ou já dentro do repo do projeto (aí o projeto é óbvio, não
+${BKS_VAULT}/repos/{categoria}/{projeto}) ou já dentro do repo do projeto (aí o projeto é óbvio, não
 pergunte).
 
 Pré-requisito: o projeto existe (foi criado com /new-project) e tem algo em docs/input/ e/ou
