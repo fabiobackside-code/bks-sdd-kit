@@ -1,3 +1,4 @@
+schema_version: "1.0"
 name: dotnet-txc
 description: >
   A skill de .NET aplica o padrao TXC — transaction como parameter object

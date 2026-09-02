@@ -1,3 +1,4 @@
+schema_version: "1.0"
 name: plan-tasks-atomicas
 description: >
   A skill de plano decompoe em tasks atomicas e ordenadas, e para no plano
