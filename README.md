@@ -24,6 +24,7 @@ operam o workbench e agentes com papeis separados.
 | `bks-dotnet-solutions` | Geracao de solucoes .NET com Arquitetura Hexagonal e o padrao TXC (Transaction Context) |
 | `bks-typescript-solutions` | Backends Node.js + TypeScript: API REST, agente LangGraph, worker e consumer, tambem sob TXC |
 | `bks-create-plan-tasks` | Decomposicao de qualquer trabalho em tasks atomicas otimizadas para consumo de tokens |
+| `bks-tests` | Cobertura de testes em solution .NET: projeto xUnit unico em `src/`, 90%+ em linhas, branches e metodos, conformidade SonarQube |
 
 ### Comandos
 
@@ -61,7 +62,7 @@ Os comandos de workbench (`/brain`, `/save`, `/new-project`, `/note`, `/canonize
 | `BKS_REPOS` | Onde ficam os repos dos projetos | `${BKS_VAULT}/repos` |
 
 As skills (`bks-sdd`, `bks-dotnet-solutions`, `bks-typescript-solutions`,
-`bks-create-plan-tasks`) funcionam sem nenhuma configuracao — operam sobre o diretorio de
+`bks-create-plan-tasks`, `bks-tests`) funcionam sem nenhuma configuracao — operam sobre o diretorio de
 trabalho atual.
 
 ## O ciclo, em uma passada
