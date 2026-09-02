@@ -1,3 +1,4 @@
+schema_version: "1.0"
 name: dotnet-sem-dispatcher
 description: >
   A skill de .NET recusa MediatR e oferece o pipeline explicito no lugar,

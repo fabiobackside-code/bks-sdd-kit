@@ -1,3 +1,4 @@
+schema_version: "1.0"
 name: bks-sdd-fase-0
 description: >
   A fase 0 confirma antes de criar o workspace, e nao inventa nome nem

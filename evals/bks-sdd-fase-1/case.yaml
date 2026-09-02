@@ -1,3 +1,4 @@
+schema_version: "1.0"
 name: bks-sdd-fase-1
 description: >
   A fase de PRD esclarece o que esta ambiguo antes de escrever, em vez de

@@ -1,3 +1,4 @@
+schema_version: "1.0"
 name: ts-selecao-tipo
 description: >
   A skill de TypeScript identifica o tipo de projeto antes de gerar, e nao

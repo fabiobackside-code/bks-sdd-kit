@@ -1,3 +1,4 @@
+schema_version: "1.0"
 name: tests-local-projeto
 description: >
   A skill de testes cria o projeto de testes dentro de src/, com Unit,
