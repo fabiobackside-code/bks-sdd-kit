@@ -1,0 +1,21 @@
+{
+  "name": "bks-sdd-kit",
+  "version": "0.1.0",
+  "description": "Kit BKS de Spec-Driven Development para Claude Code: skills de SDD, arquitetura hexagonal .NET e TypeScript, comandos de workbench e agentes especializados.",
+  "author": {
+    "name": "Fabio Magalhaes",
+    "url": "https://github.com/fabiobackside-code"
+  },
+  "homepage": "https://github.com/fabiobackside-code/bks-sdd-kit",
+  "repository": "https://github.com/fabiobackside-code/bks-sdd-kit",
+  "license": "MIT",
+  "keywords": [
+    "sdd",
+    "spec-driven-development",
+    "hexagonal-architecture",
+    "ddd",
+    "dotnet",
+    "typescript",
+    "claude-code"
+  ]
+}
