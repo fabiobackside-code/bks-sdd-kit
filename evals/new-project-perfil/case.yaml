@@ -1,0 +1,44 @@
+schema_version: "1.0"
+name: new-project-perfil
+description: >
+  A criacao de projeto pergunta o perfil e nao faz pergunta que o perfil
+  escolhido nao usa.
+tags: [new-project, perfis, conduta]
+runs: 3
+max_turns: 6
+
+prompt: |
+  /new-project
+
+  Quero um projeto novo pra documentar a arquitetura do sistema de cobranca
+  que ja existe. E so documentacao mesmo, pra apresentar pra diretoria.
+
+graders:
+  - type: llm
+    criteria: |
+      A resposta identifica que o perfil adequado e `docs` — entrega documental,
+      sem codigo — ou o confirma com o usuario antes de criar.
+
+  - type: llm
+    criteria: |
+      A resposta NAO pergunta sobre banco de dados, stack de backend, framework
+      de frontend ou mensageria. O perfil docs nao usa esses eixos, e perguntar
+      o que nao se aplica desperdicia a rodada.
+
+  - type: llm
+    criteria: |
+      A resposta pergunta o que o perfil docs de fato usa: template de
+      arquitetura, se a entrega inclui apresentacao, e formato de saida.
+
+  - type: llm
+    criteria: |
+      Nenhum diretorio ou arquivo e criado nesta resposta. A criacao espera
+      confirmacao do que sera feito.
+
+  - type: llm
+    criteria: |
+      As perguntas vem agrupadas numa rodada, nao uma a uma em turnos separados.
+
+  - type: tool_used
+    tool: Skill
+    with_only: true
