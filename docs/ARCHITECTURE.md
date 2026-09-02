@@ -33,9 +33,13 @@ necessario.
 O motivo e custo: uma skill que carrega todas as suas fases a cada invocacao paga por instrucao
 que nao vai usar. `bks-sdd` tem sete fases; um comando de status nao precisa das outras seis.
 
-Estado atual: as `references/` existem, mas o `SKILL.md` de `bks-sdd` ainda concentra as fases.
-O adelgacamento esta planejado para depois das suites de eval — refactor de skill validada em uso
-sem rede de teste e aposta, nao engenharia.
+`bks-tests` nasceu ja neste formato: era um slash command de 2043 linhas que entrava inteiro no
+contexto a cada invocacao. Virou um `SKILL.md` de 93 linhas — regras inegociaveis, tabela de fases
+e ponteiros — com sete referencias abertas sob demanda.
+
+Estado atual: `bks-sdd`, `bks-dotnet-solutions` e `bks-typescript-solutions` tem `references/`,
+mas o `SKILL.md` ainda concentra as fases. O adelgacamento esta planejado para depois das suites
+de eval — refactor de skill validada em uso sem rede de teste e aposta, nao engenharia.
 
 ### Caminhos por variavel de ambiente
 

@@ -52,6 +52,9 @@ Faca backup antes — estas pastas nao estavam versionadas.
 # comandos globais
 ~/.claude/commands/{arch,brain,canonize,loop,new-project,note,prd,review,save,spec}.md
 
+# virou a skill bks-tests
+~/.claude/commands/CLAUDE-TESTS.md
+
 # comandos duplicados no vault
 <vault>/.claude/commands/{brain,canonize,new-project,prd,review}.md
 ```
