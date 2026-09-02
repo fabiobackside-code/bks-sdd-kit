@@ -1,0 +1,312 @@
+"""Suite estrutural do bks-sdd-kit.
+
+Verifica o que um refactor de skill pode quebrar sem que ninguem perceba:
+frontmatter integro, referencia citada que existe, referencia que existe sendo
+citada, comando documentado que esta no repositorio, e as invariantes de
+conteudo que dao identidade ao kit.
+
+Nao verifica comportamento — se a skill ainda decide certo e trabalho das suites
+em evals/, que rodam o agente de verdade. Esta aqui responde a outra pergunta:
+o arquivo continua integro depois que eu mexi nele.
+
+Uso: python tests/test_structure.py
+"""
+import ast
+import io
+import json
+import os
+import re
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BS = chr(92)
+
+failures = []
+checks = 0
+
+
+def check(name, condition, detail=''):
+    global checks
+    checks += 1
+    if condition:
+        print('  ok    %s' % name)
+    else:
+        print('  FALHA %s' % name)
+        if detail:
+            print('          %s' % detail)
+        failures.append(name)
+
+
+def read(*parts):
+    with io.open(os.path.join(ROOT, *parts), encoding='utf-8') as fh:
+        return fh.read()
+
+
+def listdir(*parts):
+    p = os.path.join(ROOT, *parts)
+    return sorted(os.listdir(p)) if os.path.isdir(p) else []
+
+
+def frontmatter(text):
+    m = re.match(r'^---\r?\n(.*?)\r?\n---', text, re.S)
+    return m.group(1) if m else None
+
+
+def field(fm, key):
+    m = re.search(r'^%s:\s*(.+?)$' % re.escape(key), fm, re.M)
+    return m.group(1).strip() if m else None
+
+
+def test_manifests():
+    print('\nmanifestos do plugin')
+    plugin = json.loads(read('.claude-plugin', 'plugin.json'))
+    market = json.loads(read('.claude-plugin', 'marketplace.json'))
+
+    for key in ('name', 'version', 'description', 'license'):
+        check('plugin.json tem %s' % key, key in plugin)
+
+    check('marketplace.json lista o plugin',
+          any(p.get('name') == plugin['name'] for p in market.get('plugins', [])))
+
+    versions = set()
+    for p in market.get('plugins', []):
+        if p.get('name') == plugin['name']:
+            versions.add(p.get('version'))
+    check('versao bate entre plugin.json e marketplace.json',
+          versions == {plugin['version']},
+          'plugin.json=%s marketplace=%s' % (plugin['version'], sorted(versions)))
+
+
+def test_skills():
+    print('\nskills')
+    skills = [d for d in listdir('skills')
+              if os.path.isdir(os.path.join(ROOT, 'skills', d))]
+    check('ha skills no repositorio', bool(skills))
+
+    for skill in skills:
+        text = read('skills', skill, 'SKILL.md')
+        fm = frontmatter(text)
+        check('%s: SKILL.md tem frontmatter' % skill, fm is not None)
+        if not fm:
+            continue
+
+        name = field(fm, 'name')
+        check('%s: name bate com o diretorio' % skill, name == skill,
+              'frontmatter diz %r' % name)
+        check('%s: tem description' % skill, 'description:' in fm)
+
+        if 'description:' in fm:
+            desc = fm[fm.index('description:'):]
+            check('%s: description tem substancia' % skill, len(desc) > 120,
+                  'description com %d chars — curta demais para o agente '
+                  'decidir quando usar a skill' % len(desc))
+
+        refs_dir = set(listdir('skills', skill, 'references'))
+
+        declared = set(re.findall(r'references/([a-z0-9-]+\.md)', text))
+        missing = declared - refs_dir
+        check('%s: toda referencia citada com caminho existe' % skill, not missing,
+              'citadas e ausentes: %s' % ', '.join(sorted(missing)))
+
+        if refs_dir:
+            mentioned = set(re.findall(r'([a-z0-9][a-z0-9-]*\.md)', text))
+            orphans = refs_dir - mentioned
+            check('%s: toda referencia e alcancavel pelo SKILL.md' % skill,
+                  not orphans,
+                  'nunca citadas: %s' % ', '.join(sorted(orphans)))
+
+            bare = (refs_dir & mentioned) - declared
+            check('%s: referencia citada com o caminho references/' % skill,
+                  not bare,
+                  'citadas so pelo nome: %s' % ', '.join(sorted(bare)))
+
+
+def test_commands():
+    print('\ncomandos')
+    files = [f for f in listdir('commands') if f.endswith('.md')]
+    check('ha comandos no repositorio', bool(files))
+
+    for f in files:
+        fm = frontmatter(read('commands', f))
+        check('%s: tem frontmatter com description' % f,
+              fm is not None and 'description:' in fm)
+
+    readme = read('README.md')
+    documented = set(re.findall(r'\|\s*`/([a-z-]+)`\s*\|', readme))
+    present = set(os.path.splitext(f)[0] for f in files)
+
+    check('todo comando documentado existe', documented <= present,
+          'no README mas nao no repositorio: %s'
+          % ', '.join(sorted(documented - present)))
+    check('todo comando esta documentado', present <= documented,
+          'no repositorio mas nao no README: %s'
+          % ', '.join(sorted(present - documented)))
+
+
+def test_agents():
+    print('\nagentes')
+    files = [f for f in listdir('agents') if f.endswith('.md')]
+    check('ha agentes no repositorio', bool(files))
+
+    for f in files:
+        fm = frontmatter(read('agents', f))
+        check('%s: tem frontmatter' % f, fm is not None)
+        if not fm:
+            continue
+        check('%s: name bate com o arquivo' % f,
+              field(fm, 'name') == os.path.splitext(f)[0])
+        for key in ('description', 'model', 'tools'):
+            check('%s: declara %s' % (f, key), field(fm, key) is not None)
+
+    readme = read('README.md')
+    documented = set(re.findall(
+        r'\|\s*`([a-z]+)`\s*\|[^|]*\|\s*(?:Sonnet|Opus|Haiku)\s*\|', readme))
+    present = set(os.path.splitext(f)[0] for f in files)
+    check('todo agente esta documentado no README', present <= documented,
+          'faltando: %s' % ', '.join(sorted(present - documented)))
+
+
+def test_hooks():
+    print('\nhooks')
+    cfg = json.loads(read('hooks', 'hooks.json'))
+    scripts_dir = set(listdir('hooks', 'scripts'))
+
+    declared = set()
+    for event in cfg.get('hooks', {}).values():
+        for matcher in event:
+            for hook in matcher.get('hooks', []):
+                cmd = hook.get('command', '')
+                for m in re.findall(r'scripts/([a-z_]+\.py)', cmd):
+                    declared.add(m)
+
+    check('hooks.json declara guardas', bool(declared))
+    check('todo guarda declarado existe', declared <= scripts_dir,
+          'declarados e ausentes: %s' % ', '.join(sorted(declared - scripts_dir)))
+
+    runnable = set(s for s in scripts_dir
+                   if s.endswith('.py') and not s.startswith('_'))
+    check('todo guarda do diretorio esta declarado', runnable <= declared,
+          'nunca declarados: %s' % ', '.join(sorted(runnable - declared)))
+
+    for s in sorted(scripts_dir):
+        if not s.endswith('.py'):
+            continue
+        try:
+            ast.parse(read('hooks', 'scripts', s))
+            check('%s: compila' % s, True)
+        except SyntaxError as exc:
+            check('%s: compila' % s, False, str(exc))
+
+
+def test_invariants():
+    print('\ninvariantes de conteudo')
+
+    tests_skill = read('skills', 'bks-tests', 'SKILL.md')
+    check('bks-tests proibe FluentAssertions',
+          'FluentAssertions' in tests_skill and 'Assert` nativo' in tests_skill)
+    check('bks-tests fixa o projeto de testes em src/',
+          'src/' in tests_skill and 'Nunca em `tests/`' in tests_skill)
+
+    dotnet = read('skills', 'bks-dotnet-solutions', 'SKILL.md')
+    check('bks-dotnet-solutions cita o padrao TXC', 'TXC' in dotnet)
+
+    sdd = read('skills', 'bks-sdd', 'SKILL.md')
+    phases = set(re.findall(r'^\|\s*\*{0,2}(\d(?:\.\d)?)\*{0,2}\s*\|', sdd, re.M))
+    expected = set(['0', '1', '2', '3', '4', '5', '6', '7'])
+    check('bks-sdd mapeia as fases 0 a 7', expected <= phases,
+          'encontradas: %s' % ', '.join(sorted(phases)))
+
+    guard = read('hooks', 'scripts', 'no_dispatcher.py')
+    check('o guarda de dispatcher cobre MediatR e IMediator',
+          'MediatR' in guard and 'IMediator' in guard)
+
+
+def test_evals():
+    print('\nsuites de eval')
+    cases = [d for d in listdir('evals')
+             if os.path.isfile(os.path.join(ROOT, 'evals', d, 'case.yaml'))]
+    check('ha casos de eval', bool(cases))
+
+    plugin = json.loads(read('.claude-plugin', 'plugin.json'))
+    declared = plugin.get('experimental', {}).get('evals')
+    check('plugin.json aponta o diretorio de evals',
+          declared is not None,
+          'sem experimental.evals — o comando cai no default evals/')
+
+    try:
+        import yaml
+    except ImportError:
+        print('  nota  pyyaml ausente: os case.yaml nao foram parseados')
+        return
+
+    for case in cases:
+        try:
+            data = yaml.safe_load(read('evals', case, 'case.yaml'))
+            ok = True
+        except Exception as exc:
+            check('%s: case.yaml e YAML valido' % case, False, str(exc))
+            continue
+        check('%s: case.yaml e YAML valido' % case, ok)
+
+        check('%s: name bate com o diretorio' % case,
+              data.get('name') == case,
+              'case.yaml diz %r' % data.get('name'))
+        check('%s: tem prompt' % case, bool(data.get('prompt')))
+
+        graders = data.get('graders') or []
+        check('%s: tem grader' % case, bool(graders))
+
+        scoring = [g for g in graders if not g.get('with_only')]
+        check('%s: tem grader que pontua' % case, bool(scoring),
+              'todos os graders sao with_only — o caso nao mede nada')
+
+
+def test_public_hygiene():
+    print('\nhigiene de repositorio publico')
+    leaks = {
+        'caminho absoluto de maquina':
+            re.compile(r'[A-Z]:' + BS + r'{1,2}[A-Za-z]|[A-Z]:/(?:Users|Fabio)'),
+        'endereco de e-mail pessoal':
+            re.compile(r'[\w.+-]+@(?:gmail|hotmail|outlook)\.com'),
+    }
+    found = dict((k, []) for k in leaks)
+
+    for base, dirs, files in os.walk(ROOT):
+        dirs[:] = [d for d in dirs if d not in ('.git', 'results', '__pycache__')]
+        for f in files:
+            if not f.endswith(('.md', '.json', '.py', '.yaml', '.yml')):
+                continue
+            path = os.path.join(base, f)
+            rel = os.path.relpath(path, ROOT).replace(BS, '/')
+            if rel.startswith('tests/'):
+                continue
+            try:
+                with io.open(path, encoding='utf-8') as fh:
+                    text = fh.read()
+            except Exception:
+                continue
+            for label, rx in leaks.items():
+                if rx.search(text):
+                    found[label].append(rel)
+
+    for label in sorted(leaks):
+        hits = found[label]
+        check('sem %s' % label, not hits, 'em: %s' % ', '.join(sorted(hits)))
+
+
+def main():
+    print('suite estrutural do bks-sdd-kit')
+    for fn in (test_manifests, test_skills, test_commands, test_agents,
+               test_hooks, test_invariants, test_evals, test_public_hygiene):
+        fn()
+
+    print('\n%d verificacoes, %d falhas' % (checks, len(failures)))
+    if failures:
+        print('\nfalharam:')
+        for f in failures:
+            print('  - %s' % f)
+    return 1 if failures else 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
