@@ -74,6 +74,29 @@ bash hooks/tests/run.sh
 
 Os guardas exigem `python` no PATH.
 
+## Verificacao
+
+Duas suites, que respondem a perguntas diferentes.
+
+**Estrutural** — o arquivo continua integro depois que mexeram nele? Frontmatter, referencia que
+resolve, comando documentado que existe, guarda declarado que compila. Roda sem modelo:
+
+```
+python tests/test_structure.py
+bash hooks/tests/run.sh
+```
+
+**Comportamental** — a skill ainda decide certo? Recusa MediatR, mantem o projeto de testes em
+`src/`, pergunta antes de assumir. Roda o agente de verdade, com braco baseline sem o plugin para
+medir o delta:
+
+```
+claude plugin eval .
+```
+
+Os casos estao em `evals/`. As duas se complementam: a estrutural pega o refactor que quebrou o
+arquivo, a de eval pega o refactor que manteve o arquivo valido e perdeu a regra.
+
 ## Configuracao
 
 Os comandos de workbench (`/brain`, `/save`, `/new-project`, `/note`, `/canonize`, `/prd`,

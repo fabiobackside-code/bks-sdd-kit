@@ -14,7 +14,7 @@ version: "2.0"
 
 # bks-typescript-backend
 > Agente Orquestrador para geração de backends Node.js + TypeScript
-> Versão: 2.0 | Padrão TXC adotado | Base: bks-agent.md + bks-api-express.md + bks-agent-langgraph.md + bks-api-fastify.md + bks-worker.md + bks-consumer.md
+> Versão: 2.0 | Padrão TXC adotado | Referências em `references/`: bks-api-express, bks-api-fastify, bks-agent-langgraph, bks-worker, bks-consumer
 
 ---
 
@@ -65,11 +65,11 @@ Conduzir o desenvolvedor em um fluxo guiado de 5 fases para:
 
 | Código        | Nome                         | Prompt Especializado        | Status        | Descrição |
 |---------------|------------------------------|-----------------------------|---------------|-----------|
-| `EXPRESS`     | API REST Express             | `bks-api-express.md`        | Disponível    | API REST com Express 4 + TypeScript + módulos por domínio |
-| `LANGGRAPH`   | Agente LangGraph             | `bks-agent-langgraph.md`    | Disponível    | Agente conversacional com LangGraph StateGraph + nodes + edge conditions |
-| `WORKER`      | Worker / Background Service  | `bks-worker.md`             | Disponível    | Background worker com fila (BullMQ / pg-boss) |
-| `CONSUMER`    | Message Consumer             | `bks-consumer.md`           | Disponível    | Consumer de mensageria (RabbitMQ / Kafka) |
-| `FASTIFY`     | API REST Fastify             | `bks-api-fastify.md`        | Disponível    | API REST com Fastify 5 + TypeScript + plugins por domínio |
+| `EXPRESS`     | API REST Express             | `references/bks-api-express.md`        | Disponível    | API REST com Express 4 + TypeScript + módulos por domínio |
+| `LANGGRAPH`   | Agente LangGraph             | `references/bks-agent-langgraph.md`    | Disponível    | Agente conversacional com LangGraph StateGraph + nodes + edge conditions |
+| `WORKER`      | Worker / Background Service  | `references/bks-worker.md`             | Disponível    | Background worker com fila (BullMQ / pg-boss) |
+| `CONSUMER`    | Message Consumer             | `references/bks-consumer.md`           | Disponível    | Consumer de mensageria (RabbitMQ / Kafka) |
+| `FASTIFY`     | API REST Fastify             | `references/bks-api-fastify.md`        | Disponível    | API REST com Fastify 5 + TypeScript + plugins por domínio |
 
 ---
 
@@ -95,7 +95,7 @@ Regra para VC-2:
 
 ## 3. VARIÁVEIS ESPECÍFICAS POR TIPO
 
-### TIPO: EXPRESS (bks-api-express.md)
+### TIPO: EXPRESS (references/bks-api-express.md)
 
 | VAR      | Nome                        | Opções / Formato                                              | Obrigatório |
 |----------|-----------------------------|---------------------------------------------------------------|-------------|
@@ -115,7 +115,7 @@ Módulo #{n}:
 
 ---
 
-### TIPO: LANGGRAPH (bks-agent-langgraph.md)
+### TIPO: LANGGRAPH (references/bks-agent-langgraph.md)
 
 | VAR      | Nome                        | Opções / Formato                                              | Obrigatório |
 |----------|-----------------------------|---------------------------------------------------------------|-------------|
@@ -128,7 +128,7 @@ Módulo #{n}:
 
 ---
 
-### TIPO: FASTIFY (bks-api-fastify.md)
+### TIPO: FASTIFY (references/bks-api-fastify.md)
 
 | VAR      | Nome                        | Opções / Formato                                              | Obrigatório | Padrão |
 |----------|-----------------------------|---------------------------------------------------------------|-------------|--------|
@@ -139,7 +139,7 @@ Módulo #{n}:
 
 ---
 
-### TIPO: WORKER (bks-worker.md)
+### TIPO: WORKER (references/bks-worker.md)
 
 | VAR      | Nome                        | Opções / Formato                                              | Obrigatório | Padrão |
 |----------|-----------------------------|---------------------------------------------------------------|-------------|--------|
@@ -152,7 +152,7 @@ Observação: VC-3 determina a engine de fila — Redis usa BullMQ; PostgreSQL u
 
 ---
 
-### TIPO: CONSUMER (bks-consumer.md)
+### TIPO: CONSUMER (references/bks-consumer.md)
 
 | VAR      | Nome                        | Opções / Formato                                              | Obrigatório | Padrão |
 |----------|-----------------------------|---------------------------------------------------------------|-------------|--------|

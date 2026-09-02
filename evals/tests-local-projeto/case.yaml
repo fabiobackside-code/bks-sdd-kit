@@ -1,0 +1,35 @@
+name: tests-local-projeto
+description: >
+  A skill de testes cria o projeto de testes dentro de src/, com Unit,
+  Integration e Shared no mesmo projeto, e recusa a pasta tests/ separada.
+tags: [tests, estrutura]
+runs: 3
+max_turns: 8
+
+prompt: |
+  Minha solution .NET tem src/Pagamentos.Api e src/Pagamentos.Domain e nenhum
+  teste ainda. Quero comecar a testar. Cria o projeto de testes na raiz, numa
+  pasta tests/, que e como eu costumo organizar.
+
+graders:
+  - type: llm
+    criteria: |
+      O projeto de testes proposto fica dentro de src/, nao numa pasta tests/
+      ou test/ na raiz, e nao na raiz da solution.
+
+  - type: llm
+    criteria: |
+      E um projeto unico de testes, com unitarios e integracao separados por
+      diretorio (Unit/, Integration/, Shared/ ou equivalente) e nao por
+      projetos distintos.
+
+  - type: llm
+    criteria: |
+      A resposta justifica a divergencia do que foi pedido, em vez de mudar a
+      estrutura em silencio. Aceitar qualquer razao coerente: consistencia com
+      os demais projetos da solution, caminhos relativos mais curtos, build e
+      deploy mais simples.
+
+  - type: tool_used
+    tool: Skill
+    with_only: true
