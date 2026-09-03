@@ -1,7 +1,7 @@
 # Manifesto multi-agente — template BKS
 
 Copie para `{repo}/.claude/multiagente.md` e preencha ao marcar um projeto como
-**Alto** ou **Crítico** (campo `criticidade` na ficha `_bks-ai/projects/{projeto}.md`).
+**Alto** ou **Crítico** (campo `criticidade` no `STATUS.md` do projeto).
 Sem manifesto preenchido, não paralelize — não delegue a `/review` obrigatória.
 Curto de propósito: é lido em toda delegação, cada linha inútil custa token em toda sessão futura.
 
@@ -26,8 +26,9 @@ Exclusivas do orquestrador — subagentes descrevem, não editam:
 | `Program.cs` (Composition Root) | Todo registro de feature/adapter passa aqui |
 | `{Feature}/{Operacao}/*Steps.cs` do Pipeline Orchestrator | Toda operação registra estágios aqui |
 | `db/migrations/NNN_*` | Numeração colide |
-| `decisions/ADR-NNN.md` (neste repo) | Numeração ADR-NNN colide |
-| `_bks-ai/specs/{cat}/{proj}/spec/tasks/` (índice de tasks) | Numeração TASK-NNN colide |
+| `decisions/ADR-NNN.md` | Numeração ADR-NNN colide |
+| `specs/tasks/` | Numeração TASK-NNN colide |
+| `STATUS.md` | Reescrito por inteiro pelo `/save` — dois agentes se sobrescrevem |
 | mocks/fixtures compartilhados de teste | Dois agentes editando a mesma struct |
 
 ## Recursos numerados compartilhados
@@ -35,13 +36,13 @@ Reservar ANTES de qualquer fan-out. A fonte da verdade é o repositório, não a
 ```bash
 ls db/migrations/ | tail -1
 ls decisions/ | tail -1
-ls _bks-ai/specs/{cat}/{proj}/spec/tasks/ | tail -1
+ls specs/tasks/ | tail -1
 ```
 
 ## Zonas paralelizáveis
 Dois agentes só ao mesmo tempo se cada um ficar inteiramente dentro de:
 - `Features/{ContextoA}/` vs `Features/{ContextoB}/` (bounded contexts distintos)
-- `FEAT-*.md`/`TEST-*.md` de features distintas em `_bks-ai/specs/`
+- `FEAT-*.md`/`TEST-*.md` de features distintas em `specs/`
 
 ## Áreas sensíveis — revisão independente obrigatória (`/review`)
 - Autenticação/autorização (`Identidade/`, JWT, RBAC)
@@ -54,21 +55,26 @@ Dois agentes só ao mesmo tempo se cada um ficar inteiramente dentro de:
 - Zero `float`/`double` em campo monetário — sempre `decimal`
 - Idempotência por CONSTRAINT de banco, nunca só checagem em código
 - Toda query filtra por `InquilinoId`/`tenant` — sem exceção, inclusive agregados/relatórios
-- TXC é lido, nunca mutado pela aplicação (ver `wiki/patterns/txc-transaction-context.md`)
+- TXC é lido, nunca mutado pela aplicação
 - `<invariantes específicas deste projeto>`
 
 ## Perfis disponíveis
-| Perfil | Arquivo | Modelo |
+Vêm do plugin `bks-sdd-kit`, invocados pelo nome:
+
+| Perfil | Invocação | Para que |
 |---|---|---|
-| builder | `_bks-ai/agents/builder.md` | Sonnet |
-| reviewer | `_bks-ai/agents/reviewer.md` | Opus |
-| planner | `_bks-ai/agents/planner.md` | Sonnet |
-| scribe | `_bks-ai/agents/scribe.md` | Haiku |
+| builder | `bks-sdd-kit:builder` | implementa sob LOOP-4 |
+| reviewer | `bks-sdd-kit:reviewer` | revisão read-only, invocação separada |
+| planner | `bks-sdd-kit:planner` | escopo → FEAT/TEST/TASK, nunca código |
+| scribe | `bks-sdd-kit:scribe` | sincroniza doc de trabalho já verificado |
 
 ## Convenções — aponte, não repita
-- Geral: `_bks-ai/memory/user_profile.md`, `_bks-ai/memory/bks-premises.md`
-- .NET: `_bks-ai/memory/dotnet-standards.md` · Qualidade: `_bks-ai/memory/calisthenics.md`
-- Domínio deste projeto: `{repo}/brain/`
+- Quem é o usuário: `workbench/profile.md`, no vault
+- Padrão técnico geral: skill `bks-standards` do kit
+- .NET: skill `bks-dotnet-solutions` · Testes: skill `bks-tests`
+- Padrões transversais (TXC e outros): `knowledge/wiki/patterns/`, no vault
+- Como se constrói NESTE projeto: `{repo}/brain/engineering/`
+- O que o produto É: `{repo}/brain/domain/`
 ```
 
 ## Como descobrir zonas de contenção (se ainda não souber)
