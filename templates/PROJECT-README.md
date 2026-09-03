@@ -1,7 +1,7 @@
 # {ProjectName}
 
 > Categoria: {category} · Criado em {date} · Status: pesquisa
-> Ficha no workbench: `brain/_bks-ai/projects/{project}.md`
+> Estado do projeto: `STATUS.md` (neste repo)
 
 Este README é o guia de uso DESTE projeto: onde entra material de apoio, como o contexto vira
 canônico, como o canônico vira PRD, e como o PRD vira código via SDD. Leia isto antes de jogar
@@ -97,25 +97,24 @@ skill de apresentação/documento disponível.)
 2. `/arch` — gera visão C4 (Mermaid) em `outputs/ARCH-{project}.md` a partir das specs
    aprovadas.
 3. `/loop` — implementa via protocolo LOOP-4 (máx. 4 tentativas, goals verificáveis) em `app/`.
-4. `/save` — fecha a sessão: ADR em `decisions/`, progresso no `hot.md` do workbench, nota de
-   sessão.
+4. `/save` — fecha a sessão: ADR em `decisions/`, estado no `STATUS.md`, marco no `JOURNAL.md`.
 
-Projeto marcado Alto/Crítico na ficha (`brain/_bks-ai/projects/{project}.md`): mudança em área
-sensível exige `/review` (na raiz do vault) antes de considerar a entrega pronta.
+Projeto marcado Alto/Crítico no `STATUS.md` deste repo: mudança em área
+sensível exige `/review` (neste repo) antes de considerar a entrega pronta.
 
 ## 6. Todos os comandos, num lugar só
 
 | Comando | Onde rodar | Faz |
 |---|---|---|
-| `/brain` | raiz do vault (`2b-projects`) | retoma a sessão |
+| `/brain` | raiz do vault (`X:brains`) | retoma a sessão |
 | `/new-project` | raiz do vault | cria um projeto novo |
-| `/canonize` | raiz do vault ou deste repo | consolida `docs/input/`+`docs/design/` → `docs/canonical/CONTEXT.md` |
-| `/prd` | raiz do vault ou deste repo | gera `docs/canonical/PRD-{project}.md` a partir do CONTEXT.md |
-| `/review` | raiz do vault | revisão de segurança (projeto Alto/Crítico) |
+| `/canonize` | **este repo** | consolida `docs/input/`+`docs/design/` → `docs/canonical/CONTEXT.md` |
+| `/prd` | **este repo** | gera `docs/canonical/PRD-{project}.md` a partir do CONTEXT.md |
+| `/review` | **este repo** | revisão de segurança (projeto Alto/Crítico) |
 | `/spec` | **este repo** | gera FEAT/TEST a partir do canônico |
 | `/arch` | **este repo** | gera visão C4 (Mermaid) |
 | `/loop` | **este repo** | implementa via LOOP-4 |
-| `/save` | **este repo** ou workbench | fecha a sessão, grava decisão/progresso |
+| `/save` | **este repo** | fecha a sessão: `STATUS.md`, `JOURNAL.md`, `decisions/` |
 
-Guia completo (conceito + passo a passo): `GUIA-OBSIDIAN-CLAUDE.md` na raiz do vault.
+Fluxo deste projeto: `WORKFLOW.md`, neste repo. Guia geral do vault: `docs/COMO-USAR.md`.
 Referência rápida de todo comando: `MANUAL-COMANDOS.md` na raiz do vault.
