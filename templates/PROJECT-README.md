@@ -28,15 +28,15 @@ antes de seguir.
 | Artigo, benchmark, pesquisa externa ainda não classificada | `docs/input/research/` | `docs/input/research/analise-concorrentes.pdf` |
 | Print, mockup, logo, imagem de referência | `docs/input/assets/` | `docs/input/assets/mockup-tela-login.png` |
 | Sua própria análise, notas de reunião, escopo em rascunho | `docs/design/` | `docs/design/notas-arquitetura.md` |
-| Conhecimento de domínio que o PRODUTO precisa saber (RAG) | `brain/knowledge/` | `brain/knowledge/normas-setor.pdf` |
+| Conhecimento de domínio que o PRODUTO precisa saber | `brain/domain/` | `brain/domain/normas-setor.md` |
 | Código ou protótipo de referência (não é a solução final) | `app/` | `app/poc-langgraph/` |
 
 `docs/input/` é sempre material bruto e imutável — não edite os arquivos lá dentro; se algo
 ficar superado, mova para `docs/history/`.
 
 > **Não é seu conhecimento técnico pessoal.** Hexagonal, DDD, TXC, .NET etc. moram só em
-> `brain/knowledge/wiki/` do workbench (fora deste repo) — aqui só entra conhecimento de
-> domínio DESTE produto.
+> `knowledge/` do vault (fora deste repo) — aqui só entra conhecimento de domínio DESTE
+> produto.
 
 ## 2. Exemplos de prompt — alimentar o contexto
 
@@ -106,7 +106,7 @@ sensível exige `/review` (neste repo) antes de considerar a entrega pronta.
 
 | Comando | Onde rodar | Faz |
 |---|---|---|
-| `/brain` | raiz do vault (`X:brains`) | retoma a sessão |
+| `/brain` | raiz do vault (`X:\2brains`) | retoma a sessão |
 | `/new-project` | raiz do vault | cria um projeto novo |
 | `/canonize` | **este repo** | consolida `docs/input/`+`docs/design/` → `docs/canonical/CONTEXT.md` |
 | `/prd` | **este repo** | gera `docs/canonical/PRD-{project}.md` a partir do CONTEXT.md |
@@ -117,4 +117,4 @@ sensível exige `/review` (neste repo) antes de considerar a entrega pronta.
 | `/save` | **este repo** | fecha a sessão: `STATUS.md`, `JOURNAL.md`, `decisions/` |
 
 Fluxo deste projeto: `WORKFLOW.md`, neste repo. Guia geral do vault: `docs/COMO-USAR.md`.
-Referência rápida de todo comando: `MANUAL-COMANDOS.md` na raiz do vault.
+Referência rápida de todo comando: `docs/MANUAL-COMANDOS.md`, no vault.

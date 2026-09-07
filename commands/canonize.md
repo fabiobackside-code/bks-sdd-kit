@@ -17,8 +17,8 @@ docs/design/. Se as duas pastas estiverem vazias, avise e pare — não invente 
 Faça, nesta ordem:
 
 1. Leia TUDO em docs/input/{scope,interviews,research,assets}/ e docs/design/ (arquivos .md,
-   .txt, .html; para PDF/docx, extraia o texto). NÃO leia brain/knowledge/ (isso é RAG de
-   domínio do produto, não escopo/contexto) nem app/ (isso é código/experimento).
+   .txt, .html; para PDF/docx, extraia o texto). NÃO leia brain/ (domínio do produto e
+   padrões técnicos, não escopo/contexto) nem app/ (isso é código/experimento).
 
 2. Monte um rascunho de docs/canonical/CONTEXT.md com, no mínimo, estas seções: Propósito do
    produto, Usuários/personas, Escopo (dentro/fora), Decisões já fixadas (com a fonte), Lacunas
