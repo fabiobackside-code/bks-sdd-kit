@@ -8,7 +8,7 @@ GOAL padrão (ajuste por task):
   G1. dotnet build sem erros e sem warnings novos
   G2. dotnet test 100% verde
   G3. todos os cenários do TEST-[feature].md cobertos
-  G4. código respeita user_profile.md (calisthenics + hexagonal)
+  G4. código respeita brain/engineering/ do projeto (calisthenics + hexagonal)
 
 PROTOCOLO:
   tentativa = 1
