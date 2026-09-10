@@ -55,7 +55,7 @@ escopo cortado.
 ## Skills
 
 `bks-sdd` · `bks-standards` · `bks-arch` · `bks-tests` · `refactor-guide` ·
-`bks-dotnet-solutions` ou `bks-typescript-solutions` · `security-audit`
+`bks-dotnet-solutions`, `bks-typescript-solutions` ou `bks-go-solutions` · `security-audit`
 
 ## O que perguntar na criação
 

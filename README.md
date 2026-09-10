@@ -23,9 +23,10 @@ operam o workbench e agentes com papéis separados.
 | `bks-sdd` | Ciclo SDD completo: workspace, PRD, projetos, plano macro, feature specs, cenários de teste, tasks e execução |
 | `bks-dotnet-solutions` | Geração de soluções .NET com Arquitetura Hexagonal e o padrão TXC (Transaction Context) |
 | `bks-typescript-solutions` | Backends Node.js + TypeScript: API REST, agente LangGraph, worker e consumer, também sob TXC |
+| `bks-go-solutions` | Soluções Go: API REST, worker, consumer, CLI e SDK — TXC na forma que Go admite, erro idiomático no lugar de `Result[T]` |
 | `bks-create-plan-tasks` | Decomposição de qualquer trabalho em tasks atomicas otimizadas para consumo de tokens |
 | `bks-tests` | Cobertura de testes em solution .NET: projeto xUnit único em `src/`, 90%+ em linhas, branches e métodos, conformidade SonarQube |
-| `bks-standards` | Padrões de engenharia BKS: premissas de codificação, dependências .NET, calisthenics, politica de comentario, SEDA e TCP |
+| `bks-standards` | Padrões de engenharia BKS: premissas de codificação, dependências .NET e Go, calisthenics, politica de comentario, SEDA e TCP |
 | `bks-arch` | Notação BKS de diagramas: paleta da marca, semantica de cor por tipo de no, convenção de linha — emite para Mermaid, archify, C4 ou TOGAF |
 | `api-design` | Contrato de endpoint: semantica HTTP, versionamento, erro, paginação, idempotência |
 | `frontend-design` | Interface com identidade própria — estrutura de componente, hierarquia visual, consistência |
@@ -142,7 +143,7 @@ Os comandos de workbench (`/brain`, `/save`, `/new-project`, `/note`, `/canonize
 São duas. Cada projeto guarda sua própria memória, decisão e domínio — não há hub central a
 apontar.
 
-As skills (`bks-sdd`, `bks-dotnet-solutions`, `bks-typescript-solutions`,
+As skills (`bks-sdd`, `bks-dotnet-solutions`, `bks-typescript-solutions`, `bks-go-solutions`,
 `bks-create-plan-tasks`, `bks-tests`, `bks-standards`, `bks-arch`, e as sete importadas)
 funcionam sem nenhuma configuração — operam sobre o diretório de
 trabalho atual.
