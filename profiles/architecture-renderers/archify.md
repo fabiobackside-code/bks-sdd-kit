@@ -2,31 +2,31 @@
 renderer: archify
 tipo: skill-externa
 skill: archify
-licenca: MIT
-padrao: false
+licença: MIT
+padrão: false
 fallback: mermaid
 ---
 
 # Archify
 
-Skill externa que gera HTML interativo — pan, zoom, foco, navegacao por camadas, export para PNG,
+Skill externa que gera HTML interativo — pan, zoom, foco, navegação por camadas, export para PNG,
 SVG e WebM.
 
 ## Dependencia
 
-Nao vem no kit. E skill de terceiro, com motor de renderizacao proprio, e evolui por conta
-propria. Copia-la aqui criaria um fork que precisaria de manutencao.
+Não vem no kit. E skill de terceiro, com motor de renderização próprio, e evolui por conta
+própria. Copia-la aqui criaria um fork que precisaria de manutenção.
 
-**Se nao estiver instalada**, avise e caia no `mermaid`. Nao falhe.
+**Se não estiver instalada**, avise e caia no `mermaid`. Não falhe.
 
 ## Quando e a escolha certa
 
 - diagrama de infraestrutura com logo e posicionamento controlado
-- entrega para apresentacao ou consulta, nao para diff
+- entrega para apresentação ou consulta, não para diff
 - sistema grande, onde navegar por camadas ajuda mais que ver tudo de uma vez
-- reconstrucao de arquitetura de legado, onde explorar importa
+- reconstrução de arquitetura de legado, onde explorar importa
 
-## O que suporta da notacao BKS
+## O que suporta da notação BKS
 
 | Elemento | Suporta |
 |---|---|
@@ -34,18 +34,18 @@ propria. Copia-la aqui criaria um fork que precisaria de manutencao.
 | linha continua e pontilhada | sim |
 | agrupamento por fronteira | sim |
 | logo de empresa | sim |
-| controle fino de posicao | sim |
+| controle fino de posição | sim |
 | tema claro e escuro | sim |
 
-## Como aplicar a notacao
+## Como aplicar a notação
 
-O `archify` aceita cor por no. Use os tokens de `skills/bks-arch/paleta.md` no lugar do padrao
-dele — sem isso, o diagrama sai no estilo da skill, nao no seu.
+O `archify` aceita cor por no. Use os tokens de `skills/bks-arch/paleta.md` no lugar do padrão
+dele — sem isso, o diagrama sai no estilo da skill, não no seu.
 
-Icones de infraestrutura: use os SVG genericos de `skills/bks-arch/icons/`. O kit nao distribui
+Ícones de infraestrutura: use os SVG genéricos de `skills/bks-arch/icons/`. O kit não distribui
 marca de terceiro.
 
 ## Limite honesto
 
-Saida em HTML, nao em texto. Um diagrama `archify` nao se revisa em diff — versione o arquivo de
-entrada, nao so o HTML gerado.
+Saída em HTML, não em texto. Um diagrama `archify` não se revisa em diff — versione o arquivo de
+entrada, não só o HTML gerado.

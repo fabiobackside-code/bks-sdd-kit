@@ -185,7 +185,7 @@ will drift. Push for specificity: who, what, why now.
 **Scope (§4):** The "out of scope" list is as valuable as the in-scope list. Explicitly
 bounding what is NOT included prevents AI agents from expanding implementation beyond intent.
 
-**Functional Requirements (§5):** Write these so they can become test assertions.
+**Functional Requirements (§5):** Write these só they can become test assertions.
 "The system should be fast" is not a requirement. "Search results load within 300ms for
 95% of queries" is.
 

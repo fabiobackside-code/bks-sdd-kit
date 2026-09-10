@@ -11,7 +11,7 @@ Uso:
 /ingest raw/papers/nome.pdf         → ingere um PDF específico (fonte externa: livro, artigo, paper)
 /ingest raw/articles/nome.md        → ingere um artigo já salvo em Markdown
 /ingest raw/articles/nome.html      → ingere uma página web salva localmente
-/ingest raw/videos/nome-transcricao.md   → ingere uma transcrição de vídeo
+/ingest raw/videos/nome-transcrição.md   → ingere uma transcrição de vídeo
 /ingest raw/notas-pessoais/nome.md  → arquiva uma nota pessoal (prospecção, linha de pensamento) — NÃO vira página wiki curada
 /ingest https://exemplo.com/artigo  → busca o link, salva cópia em raw/, ingere
 /ingest tools/batch-ingest.md       → processa a tabela de lote (várias fontes)
@@ -32,7 +32,7 @@ Esta base guarda dois tipos de material, com destino diferente:
 2. **Nota pessoal / prospecção** (linha de pensamento ainda em aberto, ideia para projeto futuro,
    reflexão não fechada — o rascunho antes de virar guideline) — vai para `raw/notas-pessoais/`.
    O `/ingest` NÃO resume nem reformula como se fosse fonte de terceiro: arquiva com frontmatter
-   próprio (`type: "prospeccao"` ou `type: "reflexao"`) em `wiki/prospeccoes/`, preservando a voz e
+   próprio (`type: "prospecção"` ou `type: "reflexao"`) em `wiki/prospecções/`, preservando a voz e
    a incerteza do autor. Nunca vira `## Definition` / `## Core principles` como se fosse conceito
    estabelecido — é pensamento em aberto, marcado como tal. Quando a ideia amadurecer e virar
    guideline formal, o destino muda para `raw/notes/` (fonte curada), não fica em
@@ -73,7 +73,7 @@ copiar/colar).
 
 **Link web ainda não salvo** (URL direta) — busque o conteúdo da URL. ANTES de
 curar para a wiki, salve uma cópia do conteúdo extraído em
-`raw/articles/<slug-do-titulo>.md`, com a URL original no topo do frontmatter —
+`raw/articles/<slug-do-título>.md`, com a URL original no topo do frontmatter —
 isso preserva a fonte mesmo se a página sair do ar depois. Só então gere/edite
 a página em `wiki/`.
 
@@ -85,8 +85,8 @@ transcrição (ex. Whisper) — nunca invente o conteúdo do vídeo a partir do
 nome do arquivo ou da descrição.
 
 **Nota pessoal** (`raw/notas-pessoais/*.md`) — leia o arquivo. NÃO resuma nem cure como fonte
-externa. Copie/organize para `wiki/prospeccoes/<slug>.md` com frontmatter
-`type: "prospeccao"` (ou `"reflexao"`), preservando o texto do autor essencialmente como está —
+externa. Copie/organize para `wiki/prospecções/<slug>.md` com frontmatter
+`type: "prospecção"` (ou `"reflexao"`), preservando o texto do autor essencialmente como está —
 apenas adicione frontmatter, uma seção `## Contexto` (quando/por que foi escrita) se não estiver
 óbvia, e `## Conecta com` linkando conceitos já existentes na wiki que se relacionam, SEM
 reescrever a ideia em prosa de terceiro. Se o autor já indicou incerteza, preserve `> [!uncertain]`

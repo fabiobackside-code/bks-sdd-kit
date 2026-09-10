@@ -45,7 +45,7 @@ desta regra existir precisa de uma passada dedicada:
    rodar "às cegas" em lote.
 
 Prompt-modelo pra rodar por módulo:
-> "Aplique `documentacao.md` neste módulo/pasta: reduza os comentários de bloco a resumo de
+> "Aplique `documentação.md` neste módulo/pasta: reduza os comentários de bloco a resumo de
 > 1 linha por classe/método público, mova decisão/trade-off pra `ARCHITECTURE.md`, e
 > atualize `README.md`/`ARCHITECTURE.md` com o que existe aqui hoje. Me mostre o diff antes
 > de aplicar."

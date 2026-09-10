@@ -54,7 +54,7 @@ A Transaction deve ter no máximo 5 campos de estado. Se precisar de mais, a fea
 
 ## SEÇÃO 2 — Árvore de Decisão TXC vs ALT
 
-Execute esta árvore para cada operação principal da feature. Documente o resultado no campo `Padrão de implementação:` do FEAT antes de escrever qualquer código.
+Execute está árvore para cada operação principal da feature. Documente o resultado no campo `Padrão de implementação:` do FEAT antes de escrever qualquer código.
 
 ```
 A operação transforma estado entre 2+ etapas (Entry → Domain → Infra)?

@@ -336,7 +336,7 @@ Sempre incluir `zod` e `@types/node` como devDependency.
 
 ### PASSO 5 — Entrypoint e testes
 
-12. `src/index.ts` — instancia serviços, constrói grafo, executa exemplo
+12. `src/index.ts` — instância serviços, constrói grafo, executa exemplo
 13. `tests/{nome}.e2e.test.ts` — teste de ponta a ponta usando Node.js test runner nativo
 
 ### PASSO 6 — LangGraph Studio (apenas se VT-L5 = Sim)

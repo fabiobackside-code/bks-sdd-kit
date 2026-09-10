@@ -428,10 +428,10 @@ public class {Entidade}Handler : I{Entidade}Handler
             return PipelineResult<{Entidade}Response>.Failure(inputError);
 
         // Fase 2 — DomainService: regras de negócio
-        var dependencia = await _dependenciaService.ValidarAsync(tx.Input.{Id}, ct).ConfigureAwait(false);
-        if (dependencia is null)
+        var dependência = await _dependenciaService.ValidarAsync(tx.Input.{Id}, ct).ConfigureAwait(false);
+        if (dependência is null)
             return PipelineResult<{Entidade}Response>.Failure("{Dependencia} não encontrada");
-        tx.Hydrate{Dependencia}(dependencia);
+        tx.Hydrate{Dependencia}(dependência);
 
         // Aplica regra de negócio (delegada ao domínio)
         tx.Apply{RegraDeNegocio}({calculo});
@@ -745,7 +745,7 @@ Quem desenhou o código o entende sem comentário; quem não desenhou lê o `ARC
 - [ ] **Nenhuma marca de severidade** (🔴 ⚠️ 🟡 ✅ 📌) em comentário — quem escreve 🔴 está
       argumentando, não descrevendo
 - [ ] **Nenhum bloco de comentário acima de 5 linhas.** O teto é por bloco, não por proporção: um
-      enum bem documentado é quase todo `summary` e está certo; o que denuncia ensaio é o bloco longo
+      enum bem documentado é quase todo `summary` e está certo; o que denúncia ensaio é o bloco longo
 - [ ] **Teste de arquitetura guardando as duas regras acima** — em `tests/.../Architecture/`, no
       mesmo lugar dos demais guardas estruturais
 
@@ -762,7 +762,7 @@ Esta skill é PRESCRITIVA mas remete aos guidelines para detalhe técnico:
 | Pergunta do agente | Consultar |
 |---|---|
 | "Como modelar este Aggregate?" | `GUIDELINE-DDD-v2.md` §3 |
-| "Onde fica esta Secondary Port — Domain ou Application?" | `GUIDELINE-HEXAGONAL-v2.md` §2 |
+| "Onde fica está Secondary Port — Domain ou Application?" | `GUIDELINE-HEXAGONAL-v2.md` §2 |
 | "Como nomear este Bounded Context?" | `GUIDELINE-CONTEXTOS-v2.md` Fase 3 |
 | "Single ou Multi Project para este sistema?" | `GUIDELINE-CONTEXTOS-v2.md` §6 |
 | "Como integrar com sistema externo?" | `GUIDELINE-HEXAGONAL-v2.md` §8 (ACL) |

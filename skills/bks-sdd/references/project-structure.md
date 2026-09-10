@@ -21,7 +21,7 @@ project-[nome]/
     ├── tests/                           ← test specs por feature (Fase 6)
     │   └── TEST-[nome].md
     ├── tasks/                           ← tasks de implementação (Fase 5, após TEST aprovado)
-    │   └── TASK-[id]-[descricao].md
+    │   └── TASK-[id]-[descrição].md
     └── output/                          ← artefatos gerados pela execução das specs
 ```
 
@@ -105,7 +105,7 @@ Cada `FEAT-[nome].md` aprovado gera um `TEST-[nome].md` correspondente aqui, via
 edge cases derivados do FEAT. O `--feature-task` só é desbloqueado após o TEST estar aprovado.
 
 Formato de nome: `TEST-[nome].md` — idêntico ao FEAT correspondente.
-Exemplo: `FEAT-validacao-autorizacao-transacao.md` → `TEST-validacao-autorizacao-transacao.md`
+Exemplo: `FEAT-validação-autorização-transação.md` → `TEST-validação-autorização-transação.md`
 
 *(Fase 6)*
 
@@ -114,8 +114,8 @@ Exemplo: `FEAT-validacao-autorizacao-transacao.md` → `TEST-validacao-autorizac
 **Papel:** Tasks atômicas de implementação, geradas após o TEST correspondente estar aprovado.
 Cada task é uma unidade de trabalho que um agente pode executar de forma independente.
 
-Formato de nome: `TASK-[id]-[descricao-curta].md`
-Exemplo: `TASK-001-criar-endpoint-autenticacao.md`
+Formato de nome: `TASK-[id]-[descrição-curta].md`
+Exemplo: `TASK-001-criar-endpoint-autenticação.md`
 
 *(Fase 5, desbloqueada pela Fase 6)*
 

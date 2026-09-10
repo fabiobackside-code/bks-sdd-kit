@@ -2,14 +2,14 @@
 
 ## Arquitetura
 
-**Responde:** do que o sistema e feito, e como as pecas se falam.
+**Responde:** do que o sistema e feito, e como as peças se falam.
 
-Nos sao pecas executaveis ou armazenamento: servico, banco, fila, gateway, biblioteca. Arestas sao
-dependencias — quem chama quem.
+Nos são peças executáveis ou armazenamento: serviço, banco, fila, gateway, biblioteca. Arestas são
+dependências — quem chama quem.
 
-**Nao mostra** ordem temporal. Se a pergunta e "o que acontece primeiro", o diagrama e outro.
+**Não mostra** ordem temporal. Se a pergunta e "o que acontece primeiro", o diagrama e outro.
 
-Agrupe por fronteira real: processo, container, rede, dominio. Agrupamento por semelhanca visual
+Agrupe por fronteira real: processo, container, rede, domínio. Agrupamento por semelhanca visual
 engana.
 
 ## Sequencia
@@ -19,50 +19,50 @@ engana.
 Participantes na horizontal, tempo descendo. Mensagem sincrona com linha continua e retorno
 explicito; assincrona com pontilhada e sem espera.
 
-**Marque o que pode falhar.** Uma sequencia que so mostra o caminho feliz esconde justamente o que
+**Marque o que pode falhar.** Uma sequência que só mostra o caminho feliz esconde justamente o que
 precisa ser projetado.
 
-Limite: cerca de sete participantes. Acima disso, fatie por cenario.
+Limite: cerca de sete participantes. Acima disso, fatie por cenário.
 
 ## Fluxo de dados
 
 **Responde:** por onde o dado passa, o que o transforma, onde repousa.
 
-Nos sao transformacoes e repositorios. Arestas sao o dado em movimento — rotule com **o que**
-trafega, nao com o verbo.
+Nos são transformações e repositórios. Arestas são o dado em movimento — rotule com **o que**
+trafega, não com o verbo.
 
 **Marque a fronteira de dado sensivel.** Onde dado pessoal ou regulado atravessa um limite, o
-diagrama mostra. E o que torna o diagrama util numa revisao de conformidade.
+diagrama mostra. E o que torna o diagrama util numa revisão de conformidade.
 
 ## Ciclo de vida
 
-**Responde:** que estados uma entidade atravessa, e o que dispara cada transicao.
+**Responde:** que estados uma entidade atravessa, e o que dispara cada transição.
 
-Nos sao estados; arestas sao eventos. Todo estado precisa de saida, menos o final. Estado sem
-saida que nao e final e bug de modelagem — mostre.
+Nos são estados; arestas são eventos. Todo estado precisa de saída, menos o final. Estado sem
+saída que não e final e bug de modelagem — mostre.
 
-**Inclua o caminho de erro.** Estado de falha, retentativa, expiracao. Sao os que causam incidente.
+**Inclua o caminho de erro.** Estado de falha, retentativa, expiração. São os que causam incidente.
 
 ## Workflow
 
 **Responde:** quem faz o que, e onde se decide.
 
-Raias por ator ou sistema. Losango para decisao, com as saidas rotuladas.
+Raias por ator ou sistema. Losango para decisão, com as saidas rotuladas.
 
-**Marque onde espera.** Aprovacao humana, lote noturno, timeout — o tempo de espera e o que
+**Marque onde espera.** Aprovação humana, lote noturno, timeout — o tempo de espera e o que
 explica por que o processo demora.
 
 ---
 
 ## Erros que aparecem sempre
 
-**Um diagrama para duas perguntas.** Arquitetura com numeracao de ordem tenta ser sequencia
-tambem, e falha nas duas.
+**Um diagrama para duas perguntas.** Arquitetura com numeração de ordem tenta ser sequência
+também, e falha nas duas.
 
-**Tudo no mesmo diagrama.** Completo nao e util. O que nao ajuda a responder a pergunta sai.
+**Tudo no mesmo diagrama.** Completo não e util. O que não ajuda a responder a pergunta sai.
 
-**Fronteira ausente.** Sem mostrar onde termina o que voce controla, ninguem sabe onde estao os
+**Fronteira ausente.** Sem mostrar onde termina o que você controla, ninguém sabe onde estão os
 riscos.
 
-**Aresta sem rotulo.** Uma seta sem rotulo diz que existe relacao, nao qual. Rotule com protocolo,
+**Aresta sem rótulo.** Uma seta sem rótulo diz que existe relação, não qual. Rotule com protocolo,
 dado ou evento.

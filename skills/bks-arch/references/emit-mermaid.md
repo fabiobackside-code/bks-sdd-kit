@@ -40,7 +40,7 @@ flowchart TB
     FILA -.-> BILLING
 ```
 
-Forma do no carrega tipo: cilindro para banco, subrotina para fila, retangulo para servico.
+Forma do no carrega tipo: cilindro para banco, subrotina para fila, retangulo para serviço.
 
 ## Sequencia
 
@@ -58,7 +58,7 @@ sequenceDiagram
     A--)F: pedido.criado
     A-->>C: 201 Created
 
-    Note over A,F: publicacao assincrona — o cliente nao espera
+    Note over A,F: publicação assincrona — o cliente não espera
 ```
 
 Setas: `->>` sincrono, `--)` assincrono, `-->>` retorno. Use `autonumber` para poder referenciar
@@ -72,14 +72,14 @@ stateDiagram-v2
     Criado --> Confirmado: pagamento aprovado
     Criado --> Cancelado: timeout 30min
     Confirmado --> Enviado: despacho
-    Enviado --> Entregue: confirmacao
+    Enviado --> Entregue: confirmação
     Enviado --> Extraviado: sem rastreio 15d
     Extraviado --> Enviado: reenvio
     Entregue --> [*]
     Cancelado --> [*]
 ```
 
-Inclua o caminho de erro: timeout, extravio, reenvio. Sao os que causam incidente, e os que quem
+Inclua o caminho de erro: timeout, extravio, reenvio. São os que causam incidente, e os que quem
 implementa esquece.
 
 ## Fluxo de dados
@@ -102,12 +102,12 @@ flowchart LR
     ETL --> LAKE
 ```
 
-Rotule a aresta com **o que** trafega, nao com o verbo. Marque a fronteira de dado sensivel com
-`subgraph` — e o que torna o diagrama util numa revisao de conformidade.
+Rotule a aresta com **o que** trafega, não com o verbo. Marque a fronteira de dado sensivel com
+`subgraph` — e o que torna o diagrama util numa revisão de conformidade.
 
 ## Limites
 
-Sem logo de empresa — use rotulo textual. Layout automatico: para posicionamento controlado, o
+Sem logo de empresa — use rótulo textual. Layout automático: para posicionamento controlado, o
 renderer e `archify`.
 
-Direcao: `TB` para hierarquia e camada, `LR` para fluxo e pipeline.
+Direção: `TB` para hierarquia e camada, `LR` para fluxo e pipeline.

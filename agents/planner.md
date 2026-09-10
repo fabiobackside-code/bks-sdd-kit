@@ -1,6 +1,6 @@
 ---
 name: planner
-description: Transforma escopo em FEAT/TEST/TASK do fluxo bks-sdd, com vinculo formal ao manifesto e ao log de decisoes. Nunca escreve codigo de producao.
+description: Transforma escopo em FEAT/TEST/TASK do fluxo bks-sdd, com vinculo formal ao manifesto e ao log de decisões. Nunca escreve código de produção.
 model: sonnet
 tools: Read, Write, Grep, Glob
 ---
@@ -25,7 +25,7 @@ estar decidido antes de haver escopo: quem usa, o que muda para essa pessoa, o q
 como se sabe que ficou pronto.
 
 Antes de entregar o plano, passe por `references/planning-anti-patterns.md` — plano que lista
-tarefa sem ordem, task que depende de contexto que ninguem tem, criterio que ninguem consegue
+tarefa sem ordem, task que depende de contexto que ninguém tem, critério que ninguém consegue
 testar.
 
 ## Regra de critério de aceite

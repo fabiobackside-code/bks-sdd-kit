@@ -1,5 +1,5 @@
 ---
-description: Dispara o agente reviewer em invocacao separada e read-only para revisao independente de seguranca e conformidade.
+description: Dispara o agente reviewer em invocação separada e read-only para revisão independente de segurança e conformidade.
 ---
 
 Dispare o agente `reviewer` em invocação SEPARADA da sessão
@@ -16,7 +16,7 @@ Pré-requisitos:
    não gaste Opus revisando mudança de documentação.
 
 Contexto obrigatório para o reviewer:
-- `skills/bks-standards/references/checklist-revisao-critica.md`
+- `skills/bks-standards/references/checklist-revisão-crítica.md`
 - Seção "Invariantes do domínio" e "Áreas sensíveis" do manifesto do projeto
 - {repo}/decisions/ (não repetir achado já decidido/aceito NESTE projeto)
 - Diff ou arquivos específicos da entrega (não o repo inteiro)

@@ -1,18 +1,18 @@
 # Perfil `frontend`
 
-Camada visual. Design, mocks, componentes, integracao com uma API que ja existe.
+Camada visual. Design, mocks, componentes, integração com uma API que já existe.
 
 ## Gera
 
 - design de telas e fluxos
 - mocks navegaveis
 - componentes
-- integracao com a API
+- integração com a API
 - testes de componente e de fluxo
 
-## Nao gera
+## Não gera
 
-API, dominio, banco. Se a API ainda nao existe, o projeto precisa de `fullstack` ou de um projeto
+API, domínio, banco. Se a API ainda não existe, o projeto precisa de `fullstack` ou de um projeto
 `backend` ao lado.
 
 ## Fases
@@ -20,35 +20,35 @@ API, dominio, banco. Se a API ainda nao existe, o projeto precisa de `fullstack`
 | Fase | Produz |
 |---|---|
 | entrada | `docs/input/` |
-| consolidacao | `docs/canonical/CONTEXT.md` |
+| consolidação | `docs/canonical/CONTEXT.md` |
 | produto | `outputs/PRD-{projeto}.md` |
 | design | telas, fluxos, sistema visual em `docs/design/` |
-| mocks | prototipo navegavel em `outputs/mocks/` |
-| especificacao | `specs/features/`, `specs/tests/` |
-| implementacao | `app/` — componentes e integracao |
-| revisao | independente |
+| mocks | protótipo navegavel em `outputs/mocks/` |
+| especificação | `specs/features/`, `specs/tests/` |
+| implementação | `app/` — componentes e integração |
+| revisão | independente |
 | fechamento | `STATUS.md`, `JOURNAL.md` |
 
 O design vem antes do componente. Componente escrito antes do sistema visual vira refactor.
 
 ## Eixos
 
-| Eixo | Vale | Padrao |
+| Eixo | Vale | Padrão |
 |---|---|---|
 | `output` | sim | `md` |
 | `architecture_renderer` | sim | `mermaid` |
 | `frontend_target` | **sim** | `web` |
-| `rigor` | sim | `producao` |
+| `rigor` | sim | `produção` |
 
-`frontend_target` decide o que se constroi: `web`, `mobile`, ou `both` com design compartilhado.
+`frontend_target` decide o que se constrói: `web`, `mobile`, ou `both` com design compartilhado.
 
 ## Skills
 
 `bks-sdd` · `frontend-design` · `bks-arch` · `bks-tests` · `api-design` (para consumir o contrato)
 
-## O que perguntar na criacao
+## O que perguntar na criação
 
 1. Web, mobile, ou ambos?
 2. Qual o framework — React, Vue, React Native, outro?
-3. A API ja existe? Onde esta o contrato?
-4. Ha sistema de design a seguir, ou vamos criar um?
+3. A API já existe? Onde está o contrato?
+4. Há sistema de design a seguir, ou vamos criar um?

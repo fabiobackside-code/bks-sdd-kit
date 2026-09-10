@@ -2,7 +2,7 @@
 
 ## Regras de dependência
 Core (Domain + Ports) <- Infrastructure (Adapters) <- API/Worker.
-Domain nunca referencia infraestrutura. Domain/Core/Common sem
+Domain nunca referência infraestrutura. Domain/Core/Common sem
 NuGet externo. Composition Root só em Program.cs.
 
 ## SingleProject (referência)
@@ -16,11 +16,11 @@ NuGet externo. Composition Root só em Program.cs.
 ## MultiProject
 {ServiceName}.Core / .Infrastructure / .API (ou .Worker)
 
-## Solution e assercao (ADR-010, 27/08)
-- Toda solution .NET 10 e `.slnx` (formato padrao do SDK 10). `.sln` classico
-  so quando alguma ferramenta exigir.
-- Assercao em teste: `Assert` nativo do xUnit. NUNCA FluentAssertions — a v8
-  passou a licenca comercial paga (Xceed); a v7.x e a ultima Apache 2.0.
+## Solution e asserção (ADR-010, 27/08)
+- Toda solution .NET 10 e `.slnx` (formato padrão do SDK 10). `.sln` classico
+  só quando alguma ferramenta exigir.
+- Asserção em teste: `Assert` nativo do xUnit. NUNCA FluentAssertions — a v8
+  passou a licença comercial paga (Xceed); a v7.x e a última Apache 2.0.
 
 ## Pipeline por complexidade
 Rico: Full (Validation+Pre+Processing+Post)

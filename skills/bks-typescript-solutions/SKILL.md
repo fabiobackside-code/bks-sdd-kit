@@ -585,7 +585,7 @@ Alterar o status para "Disponível" quando o prompt estiver criado e validado.
 Passo 2 — Definir as Variáveis Específicas (seção 3).
 Criar subseção TIPO: {CODIGO} com tabela de variáveis VT-{X}n e formato de coleta.
 
-Passo 3 — Criar o Prompt Especializado em references/bks-{codigo}.md com seções:
+Passo 3 — Criar o Prompt Especializado em references/bks-{código}.md com seções:
 system, context, input_schema, examples, task.
 
 </context>
@@ -663,11 +663,11 @@ tipo: EXPRESS
 project_name: bks-order-api
 banco: PostgreSQL
 porta: 3001
-modulos:
+módulos:
   - nome: Order
-    operacoes: [Create, GetById, List, Cancel]
-    validacao: Sim
-autenticacao: JWT
+    operações: [Create, GetById, List, Cancel]
+    validação: Sim
+autenticação: JWT
   </input>
   <output>
 Variáveis recebidas no modo pré-preenchido. Validando...

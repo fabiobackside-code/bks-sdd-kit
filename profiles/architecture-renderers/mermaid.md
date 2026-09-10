@@ -1,32 +1,32 @@
 ---
 renderer: mermaid
 tipo: nativo
-padrao: true
+padrão: true
 fallback: null
 ---
 
 # Mermaid
 
-Diagrama em texto, dentro do markdown. Renderiza sem dependencia — no GitHub, no Obsidian, em
+Diagrama em texto, dentro do markdown. Renderiza sem dependência — no GitHub, no Obsidian, em
 artefatos.
 
 ## Quando e a escolha certa
 
-- o diagrama precisa viver no repositorio e ser revisado em diff
-- a saida e markdown
-- ninguem vai instalar nada para ver
+- o diagrama precisa viver no repositório e ser revisado em diff
+- a saída e markdown
+- ninguém vai instalar nada para ver
 
-## O que suporta da notacao BKS
+## O que suporta da notação BKS
 
 | Elemento | Suporta |
 |---|---|
 | cor por tipo de no | sim, via `classDef` |
 | linha continua e pontilhada | sim |
 | agrupamento por fronteira | sim, via `subgraph` |
-| logo de empresa | **nao** — usa rotulo textual |
-| controle fino de posicao | limitado |
+| logo de empresa | **não** — usa rótulo textual |
+| controle fino de posição | limitado |
 
-## Como aplicar a notacao
+## Como aplicar a notação
 
 Declare as classes uma vez, no topo do diagrama, com a paleta de `skills/bks-arch/paleta.md`:
 
@@ -45,5 +45,5 @@ Linha continua (`-->`) para conexao direta. Linha pontilhada (`-.->`) para fluxo
 
 ## Limite honesto
 
-Sem logo de empresa e com layout automatico. Para diagrama de infraestrutura com marca visual e
+Sem logo de empresa e com layout automático. Para diagrama de infraestrutura com marca visual e
 posicionamento controlado, use `archify`.

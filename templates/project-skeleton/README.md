@@ -1,29 +1,29 @@
 # {{PROJETO}} — esqueleto de exemplo
 
-Esta pasta existe so para mostrar a **estrutura canonica** de um projeto. Esta vazia de
-proposito — sem escopo real, sem stack definida, sem specs preenchidas.
+Esta pasta existe só para mostrar a **estrutura canônica** de um projeto. Está vazia de
+propósito — sem escopo real, sem stack definida, sem specs preenchidas.
 
 ## Estrutura
 
 ```
 {{projeto}}/
-├── STATUS.md              onde parei, o que trava, proximo passo
+├── STATUS.md              onde parei, o que trava, próximo passo
 ├── WORKFLOW.md            o fluxo de comandos deste projeto
-├── JOURNAL.md             marcos e sessoes, do mais recente ao mais antigo
+├── JOURNAL.md             marcos e sessões, do mais recente ao mais antigo
 ├── README.md              o que e o projeto
 ├── CLAUDE.md              contexto que o agente carrega
 ├── .bks-profile.json      perfil, renderer, eixos
 │
 ├── brain/
-│   ├── domain/            o que o produto E — regra de negocio, metodo, normativo
-│   └── engineering/       como se constroi AQUI — padrao tecnico, skill local
+│   ├── domain/            o que o produto E — regra de negócio, método, normativo
+│   └── engineering/       como se constrói AQUI — padrão técnico, skill local
 │
 ├── docs/
 │   ├── input/             material bruto: notas, entrevistas, pesquisa, escopo
 │   ├── design/            bancada de trabalho
-│   ├── canonical/         contexto consolidado — a fonte apos o /canonize
+│   ├── canonical/         contexto consolidado — a fonte após o /canonize
 │   ├── history/           o que foi superado
-│   └── prompts/           registro de auditoria do proprio processo
+│   └── prompts/           registro de auditoria do próprio processo
 │
 ├── specs/
 │   ├── features/          FEAT-*.md
@@ -31,26 +31,26 @@ proposito — sem escopo real, sem stack definida, sem specs preenchidas.
 │   └── tasks/             TASK-*.md
 │
 ├── decisions/             ADR-NNN deste projeto
-├── outputs/               entregaveis gerados
-└── app/                   codigo
+├── outputs/               entregáveis gerados
+└── app/                   código
 ```
 
-## Os tres arquivos de estado
+## Os três arquivos de estado
 
 | Arquivo | Responde | Escrito por | Reescrito? |
 |---|---|---|---|
-| `STATUS.md` | onde o projeto esta **agora** | `/save` | sim, por inteiro |
-| `JOURNAL.md` | como chegou ate aqui | `/save` | nao, so acrescenta |
-| `WORKFLOW.md` | como se trabalha aqui | `/new-project` | so quando o fluxo muda |
+| `STATUS.md` | onde o projeto está **agora** | `/save` | sim, por inteiro |
+| `JOURNAL.md` | como chegou até aqui | `/save` | não, só acrescenta |
+| `WORKFLOW.md` | como se trabalha aqui | `/new-project` | só quando o fluxo muda |
 
-`STATUS.md` e o ponto de entrada. O `/brain` le ele.
+`STATUS.md` é o ponto de entrada. O `/brain` lê ele.
 
 ## Como usar de verdade
 
-Rode `/new-project {{nome}} {{categoria}}` com a sessao aberta na **raiz do vault** para gerar a
-sua versao preenchida. Depois traga material para `docs/input/` e siga o ciclo descrito no
+Rode `/new-project {{nome}} {{categoria}}` com a sessão aberta na **raiz do vault** para gerar a
+sua versão preenchida. Depois traga material para `docs/input/` e siga o ciclo descrito no
 `WORKFLOW.md` gerado: `/note` → `/canonize` → `/prd` → `/spec` → `/arch` → `/loop` → `/review` →
 `/save`.
 
-Todos os comandos de projeto rodam com a sessao aberta na raiz do repositorio do projeto — nao no
+Todos os comandos de projeto rodam com a sessão aberta na raiz do repositório do projeto — não no
 vault.

@@ -24,7 +24,7 @@ Exclusivas do orquestrador — subagentes descrevem, não editam:
 | Arquivo | Por quê |
 |---|---|
 | `Program.cs` (Composition Root) | Todo registro de feature/adapter passa aqui |
-| `{Feature}/{Operacao}/*Steps.cs` do Pipeline Orchestrator | Toda operação registra estágios aqui |
+| `{Feature}/{Operação}/*Steps.cs` do Pipeline Orchestrator | Toda operação registra estágios aqui |
 | `db/migrations/NNN_*` | Numeração colide |
 | `decisions/ADR-NNN.md` | Numeração ADR-NNN colide |
 | `specs/tasks/` | Numeração TASK-NNN colide |

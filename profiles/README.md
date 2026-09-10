@@ -3,8 +3,8 @@
 Um projeto declara **o que gera**. O perfil determina quais fases se aplicam, quais artefatos
 saem, e quais skills o agente carrega.
 
-Isso existe para que um projeto de documentacao nao receba pergunta sobre banco de dados, e um
-projeto de biblioteca nao passe por design de tela.
+Isso existe para que um projeto de documentação não receba pergunta sobre banco de dados, e um
+projeto de biblioteca não passe por design de tela.
 
 ## Como se declara
 
@@ -18,7 +18,7 @@ O `/new-project` grava `.bks-profile.json` na raiz do projeto:
     "output": "md",
     "architecture_renderer": "mermaid",
     "frontend_target": null,
-    "rigor": "producao"
+    "rigor": "produção"
   }
 }
 ```
@@ -27,26 +27,26 @@ As skills leem esse arquivo. Sem ele, perguntam.
 
 ## Os perfis
 
-| Perfil | Para | Nao gera |
+| Perfil | Para | Não gera |
 |---|---|---|
-| [`docs`](docs.md) | entrega documental | codigo |
+| [`docs`](docs.md) | entrega documental | código |
 | [`fullstack`](fullstack.md) | projeto completo faseado | — |
 | [`frontend`](frontend.md) | camada visual | backend, banco |
 | [`backend`](backend.md) | servidor e dados | interface |
-| [`component`](component.md) | biblioteca reusavel | aplicacao |
-| [`infra`](infra.md) | plataforma e entrega | aplicacao |
+| [`component`](component.md) | biblioteca reusável | aplicação |
+| [`infra`](infra.md) | plataforma e entrega | aplicação |
 | [`data`](data.md) | dados e analytics | interface |
-| [`legacy-docs`](legacy-docs.md) | entender um legado | codigo — nao altera nada |
+| [`legacy-docs`](legacy-docs.md) | entender um legado | código — não altera nada |
 | [`reengineering`](reengineering.md) | reescrever um legado | — |
 
-`reengineering` consome `legacy-docs` como primeira fase. Quem so quer entender o legado para no
+`reengineering` consome `legacy-docs` como primeira fase. Quem só quer entender o legado para no
 primeiro; quem vai reescrever passa pelos dois.
 
 ## Os eixos
 
-Valem para varios perfis e sao escolhidos junto com ele.
+Valem para vários perfis e são escolhidos junto com ele.
 
-### `output` — formato de saida
+### `output` — formato de saída
 
 | Valor | Gera |
 |---|---|
@@ -56,16 +56,16 @@ Valem para varios perfis e sao escolhidos junto com ele.
 ### `architecture_renderer` — como o diagrama e desenhado
 
 Registro extensivel em [`architecture-renderers/`](architecture-renderers/). Cada renderer e um
-arquivo; adicionar um novo e criar um arquivo, substituir e trocar o conteudo.
+arquivo; adicionar um novo e criar um arquivo, substituir e trocar o conteúdo.
 
 | Valor | E |
 |---|---|
-| `mermaid` | nativo, versionavel em texto — **padrao** |
+| `mermaid` | nativo, versionavel em texto — **padrão** |
 | `archify` | skill externa, HTML interativo com export |
 | `togaf` | template documental TOGAF |
 | `c4` | C4 model — Context, Container, Component |
 
-Todos aplicam a notacao BKS: paleta, semantica de cor e convencao de linha definidas em
+Todos aplicam a notação BKS: paleta, semantica de cor e convenção de linha definidas em
 `skills/bks-arch/`.
 
 ### `frontend_target` — o que a interface e
@@ -74,7 +74,7 @@ Vale para `frontend` e `fullstack`.
 
 | Valor | Gera |
 |---|---|
-| `web` | aplicacao web |
+| `web` | aplicação web |
 | `mobile` | aplicativo movel |
 | `both` | os dois, com design compartilhado |
 
@@ -82,33 +82,33 @@ Vale para `frontend` e `fullstack`.
 
 | Valor | Exige |
 |---|---|
-| `producao` | testes, documentacao, ADRs — **padrao** |
-| `poc` | prototipo descartavel: teste so no caminho critico, documentacao minima |
+| `produção` | testes, documentação, ADRs — **padrão** |
+| `poc` | protótipo descartável: teste só no caminho crítico, documentação mínima |
 
-`rigor: poc` afrouxa a exigencia; nao a elimina. Um POC sem nenhum teste e um POC que ninguem
+`rigor: poc` afrouxa a exigência; não a elimina. Um POC sem nenhum teste é um POC que ninguém
 consegue avaliar.
 
 ## Fases
 
-Cada perfil declara sua sequencia. As comuns:
+Cada perfil declara sua sequência. As comuns:
 
 | Fase | O que faz | Comando |
 |---|---|---|
 | entrada | material bruto entra | `/note` |
-| consolidacao | vira contexto canonico | `/canonize` |
+| consolidação | vira contexto canônico | `/canonize` |
 | produto | vira PRD | `/prd` |
-| especificacao | vira FEAT, TEST, TASK | `/spec` |
+| especificação | vira FEAT, TEST, TASK | `/spec` |
 | arquitetura | vira ARCH e README | `/arch` |
-| implementacao | vira codigo | `/loop` |
-| revisao | revisao independente | `/review` |
+| implementação | vira código | `/loop` |
+| revisão | revisão independente | `/review` |
 | fechamento | STATUS e JOURNAL | `/save` |
 
 Um perfil pode pular fases, acrescentar as suas, ou mudar o que uma fase produz. O que cada um faz
-esta no seu arquivo.
+está no seu arquivo.
 
 ## Acrescentar um perfil
 
-Crie o arquivo seguindo o formato dos existentes: o que gera, o que nao gera, as fases, os eixos
+Crie o arquivo seguindo o formato dos existentes: o que gera, o que não gera, as fases, os eixos
 que se aplicam, as skills que carrega, e o que o `/new-project` deve perguntar.
 
-Nenhuma skill tem a lista de perfis embutida — todas leem este diretorio.
+Nenhuma skill tem a lista de perfis embutida — todas leem este diretório.

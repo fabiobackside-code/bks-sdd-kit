@@ -1026,7 +1026,7 @@ Regras comuns (todos os padrões):
 - Tasks de teste e implementação são geradas em pares (RED → GREEN)
 - A task de implementação deve declarar dependência da task de teste correspondente
 
-Gerar os arquivos `TASK-[id]-[descricao-kebab-case].md` em `spec/tasks/` seguindo o
+Gerar os arquivos `TASK-[id]-[descrição-kebab-case].md` em `spec/tasks/` seguindo o
 template canônico. Para cada task, preencher:
 - Campo `**Test Spec:**` com `spec/tests/TEST-[nome].md`
 - Campo `**Feature:**` com `F[N] — [nome da feature]`
@@ -1039,7 +1039,7 @@ template canônico. Para cada task, preencher:
   - `[ ] Comentários seguem a convenção: contrato e guarda no código; decisão no ARCHITECTURE.md`
 
   > **Por que na geração da task, e não só na conferência:** a regra de documentação já existia em
-  > `memory/documentacao.md` quando o `nq-sec-sdk` foi construído — e as 21 tasks nasceram sem o
+  > `memory/documentação.md` quando o `nq-sec-sdk` foi construído — e as 21 tasks nasceram sem o
   > item, então nenhuma o cobrou. **Regra que não entra na DoD não é executada.**
 - Campo `**Agente:**` com o valor derivado do tipo de task:
   - Tasks de tipo `Teste` (RED) → `implementador`
@@ -1278,7 +1278,7 @@ Fase 6   — Implementação               → (a definir)
 > Os dois modos são complementares — as Fases 0–5.3 (especificação) são sempre via skill; a Fase 6 (execução) pode usar qualquer um dos dois.
 
 A Fase 6 é o ciclo de execução das tasks geradas na Fase 5.3. Diferente das fases anteriores,
-ela **executa e verifica** — não apenas especifica. A skill age como orquestrador de execução.
+ela **executa e verifica** — não apenas específica. A skill age como orquestrador de execução.
 
 **Pré-condições:**
 - Projeto com `PLAN-[nome].md` aprovado (Fase 4)
@@ -1312,7 +1312,7 @@ Cada task recebe o campo:
 **Agente:** implementador   ← valores: orquestrador | implementador | validador
 ```
 Mapeamento PBQ (framework Harness Engineering):
-- `orquestrador` — coordena, não implementa; gerencia dependências e ordem
+- `orquestrador` — coordena, não implementa; gerência dependências e ordem
 - `implementador` — escreve código e testes
 - `validador` — verifica critérios de aceite, roda checklist do TEST spec
 
@@ -1633,7 +1633,7 @@ Verificar, na raiz do projeto:
 
 Se algum estiver ausente ou desatualizado em relação ao que a task produziu: **gerar ou atualizar
 agora**, e só então prosseguir. Não perguntar ao usuário se deve fazer — é comportamento
-automático [`memory/documentacao.md`].
+automático [`memory/documentação.md`].
 
 **Verificar também a convenção de comentário** no código produzido:
 
@@ -1873,22 +1873,22 @@ Mede o consumo de tokens e o custo estimado do processo BKS-SDD, para comparar m
 comparar projetos e identificar as fases mais caras do fluxo.
 
 **Ferramenta:** `${CLAUDE_PLUGIN_ROOT}/scripts/session_cost.py`
-**Tabela de precos:** `${CLAUDE_PLUGIN_ROOT}/scripts/pricing.json` (USD por 1M tokens, editavel)
+**Tabela de preços:** `${CLAUDE_PLUGIN_ROOT}/scripts/pricing.json` (USD por 1M tokens, editavel)
 **Ledger do workspace:** `workspace-[nome]/.logs/cost-ledger.jsonl`
 
-O ledger e um arquivo JSONL append-only, uma entrada por (sessao x fase). Como o transcript
-de uma sessao e cumulativo, uma segunda gravacao da mesma sessao+fase **substitui** a anterior
+O ledger e um arquivo JSONL append-only, uma entrada por (sessão x fase). Como o transcript
+de uma sessão e cumulativo, uma segunda gravação da mesma sessão+fase **substitui** a anterior
 em vez de somar — o total nunca infla por gravar duas vezes.
 
 > **Sempre apresentar o custo como estimativa.** O valor vem dos tokens registrados no
-> transcript multiplicados pela tabela local de precos. Nao e a fatura oficial da Anthropic,
-> e planos de assinatura com valor fixo nao cobram por token.
+> transcript multiplicados pela tabela local de preços. Não e a fatura oficial da Anthropic,
+> e planos de assinatura com valor fixo não cobram por token.
 
 ---
 
-### Registro automatico de consumo
+### Registro automático de consumo
 
-Registrar no ledger **automaticamente**, sem o usuario pedir, ao concluir:
+Registrar no ledger **automaticamente**, sem o usuário pedir, ao concluir:
 
 | Gatilho | Rotulo de fase a usar |
 |---------|----------------------|
@@ -1906,103 +1906,103 @@ Comando (Bash):
 python "${CLAUDE_PLUGIN_ROOT}/scripts/session_cost.py" append \
   --ledger "workspace-[nome]/.logs/cost-ledger.jsonl" \
   --phase "Fase 5.1 — Feature Spec" \
-  --label "FEAT-autenticacao"
+  --label "FEAT-autenticação"
 ```
 
-Nesses gatilhos o registro e **silencioso**: nao exibir a tabela, apenas anexar uma linha
+Nesses gatilhos o registro e **silencioso**: não exibir a tabela, apenas anexar uma linha
 ao final da resposta:
 
 > _Consumo registrado no ledger — acumulado do processo: [N] tokens, [US$ X]._
 
 Obter o acumulado com `report --json` e ler `total.billable_tokens` e `total_cost_usd`.
 
-**Gatilhos que registram E exibem a tabela completa** — todo encerramento de sessao, porque
-e o momento em que o usuario quer ver o que a sessao custou:
+**Gatilhos que registram E exibem a tabela completa** — todo encerramento de sessão, porque
+e o momento em que o usuário quer ver o que a sessão custou:
 
-| Gatilho | Rotulo de fase | Exibicao |
+| Gatilho | Rotulo de fase | Exibição |
 |---------|----------------|----------|
-| `--tan` | fase corrente da sessao | tabela completa + acumulado |
-| `--clear` | fase corrente da sessao | tabela completa + acumulado |
-| `/save` | fase corrente da sessao | tabela completa + linha TOTAL GERAL |
+| `--tan` | fase corrente da sessão | tabela completa + acumulado |
+| `--clear` | fase corrente da sessão | tabela completa + acumulado |
+| `/save` | fase corrente da sessão | tabela completa + linha TOTAL GERAL |
 
-Ou seja: **qualquer comando que salve e encerre uma sessao traz o resumo de consumo junto**,
-sem o usuario precisar pedir.
+Ou seja: **qualquer comando que salve e encerre uma sessão traz o resumo de consumo junto**,
+sem o usuário precisar pedir.
 
-**Se o script falhar** (Python ausente, transcript nao encontrado, ledger sem permissao):
+**Se o script falhar** (Python ausente, transcript não encontrado, ledger sem permissão):
 informar em uma linha e prosseguir. A telemetria nunca bloqueia o fluxo SDD.
 
 ---
 
-### Comando `--cost` — Consumo da sessao atual
+### Comando `--cost` — Consumo da sessão atual
 
 **Trigger:** `/bks-sdd --cost`
 
-Mostra a tabela detalhada da sessao em curso, sem gravar no ledger:
+Mostra a tabela detalhada da sessão em curso, sem gravar no ledger:
 
 ```bash
 python "${CLAUDE_PLUGIN_ROOT}/scripts/session_cost.py" session
 ```
 
-Reproduzir a saida do script na integra.
+Reproduzir a saída do script na integra.
 
 ---
 
 ### Comando `--cost-report` — Consumo total do processo
 
-**Trigger:** `/bks-sdd --cost-report`, ou o convite automatico na conclusao do projeto
-(ver secao seguinte).
+**Trigger:** `/bks-sdd --cost-report`, ou o convite automático na conclusão do projeto
+(ver seção seguinte).
 
 ```bash
 python "${CLAUDE_PLUGIN_ROOT}/scripts/session_cost.py" report \
   --ledger "workspace-[nome]/.logs/cost-ledger.jsonl"
 ```
 
-Reproduzir a saida na integra (por modelo, por fase, total geral) e complementar com uma
+Reproduzir a saída na integra (por modelo, por fase, total geral) e complementar com uma
 leitura analitica curta:
 
-- Qual fase consumiu mais e por que (spec longa? muitas revisoes? implementacao com retry?)
-- Proporcao cache read vs input — read alto e bom sinal (contexto reaproveitado)
+- Qual fase consumiu mais e por que (spec longa? muitas revisões? implementação com retry?)
+- Proporção cache read vs input — read alto e bom sinal (contexto reaproveitado)
 - Output tokens por fase — proxy do volume de artefato gerado
 - Se houver mais de um modelo no ledger: custo por token entregue em cada um
 
 Ao final, gravar o relatorio consolidado em
-`workspace-[nome]/.logs/COST-REPORT-[YYYY-MM-DD].md` e informar o caminho ao usuario.
+`workspace-[nome]/.logs/COST-REPORT-[YYYY-MM-DD].md` e informar o caminho ao usuário.
 
 ---
 
-### Conclusao do projeto — ultima etapa obrigatoria
+### Conclusão do projeto — última etapa obrigatória
 
-Quando o processo BKS-SDD chega ao fim — a ultima task da ultima feature e marcada
-Concluida e nao restam features pendentes no `--status` — o relatorio de conclusao do
-projeto e apresentado normalmente. **A ultima etapa desse relatorio, sempre, e perguntar
-se o usuario quer o consolidado de consumo.**
+Quando o processo BKS-SDD chega ao fim — a última task da última feature e marcada
+Concluida e não restam features pendentes no `--status` — o relatorio de conclusão do
+projeto e apresentado normalmente. **A última etapa desse relatorio, sempre, e perguntar
+se o usuário quer o consolidado de consumo.**
 
-Nao gerar o consolidado automaticamente. Perguntar:
+Não gerar o consolidado automaticamente. Perguntar:
 
 > **Projeto concluido.** Deseja o resumo consolidado de consumo de tokens e custo de todo
 > o processo — por fase, por modelo e total geral?
 >
-> _Ja registrei [N] sessoes no ledger, somando **[T] tokens — [US$ X]**. O consolidado abre
+> _Ja registrei [N] sessões no ledger, somando **[T] tokens — [US$ X]**. O consolidado abre
 > essa soma por fase e por modelo, e fica salvo para comparar com outros projetos._
 
 Obter `[N]`, `[T]` e `[US$ X]` com `report --json` (campos `sessions`,
-`total.billable_tokens`, `total_cost_usd`) — assim a pergunta ja mostra a ordem de
-grandeza e o usuario decide informado.
+`total.billable_tokens`, `total_cost_usd`) — assim a pergunta já mostra a ordem de
+grandeza e o usuário decide informado.
 
 **Se aceitar:** executar o fluxo completo do `--cost-report` acima — leitura analitica,
-arquivo `COST-REPORT-[data].md` e nota no Obsidian (secao seguinte).
+arquivo `COST-REPORT-[data].md` e nota no Obsidian (seção seguinte).
 
 **Se recusar:** informar que o ledger continua gravado e que `/bks-sdd --cost-report` gera
-o consolidado a qualquer momento depois. Nao insistir.
+o consolidado a qualquer momento depois. Não insistir.
 
 ---
 
-### Integracao com o Obsidian (segundo cerebro)
+### Integração com o Obsidian (segundo cerebro)
 
 O workspace guarda o dado bruto; o vault guarda a leitura consolidada, que e o que serve
 para comparar projetos meses depois.
 
-Ao gerar o `--cost-report`, alem do `COST-REPORT-[data].md` no workspace, gravar uma nota em:
+Ao gerar o `--cost-report`, além do `COST-REPORT-[data].md` no workspace, gravar uma nota em:
 
 ```
 {repo}/outputs/custos/custo-[projeto]-[YYYY-MM-DD].md
@@ -2017,7 +2017,7 @@ projeto: [nome do projeto]
 workspace: workspace-[nome]
 data: YYYY-MM-DD
 modelo_principal: [modelo com maior custo no ledger]
-sessoes: [N]
+sessões: [N]
 tokens_total: [T]
 custo_usd: [X]
 ---
@@ -2030,33 +2030,33 @@ custo_usd: [X]
 
 ## Leitura
 
-[analise curta: fase mais cara e por que, proporcao cache read, comparacao entre modelos]
+[analise curta: fase mais cara e por que, proporção cache read, comparação entre modelos]
 
-## Comparacao
+## Comparação
 
 [[custo-outro-projeto-...]] — se houver notas anteriores em `memory/custos/`, referenciar
-as mais proximas em escopo para comparacao direta.
+as mais proximas em escopo para comparação direta.
 
 Ledger de origem: `workspace-[nome]/.logs/cost-ledger.jsonl`
 ```
 
-Criar o folder `outputs/custos/` se nao existir. Ao final, acrescentar uma entrada no
+Criar o folder `outputs/custos/` se não existir. Ao final, acrescentar uma entrada no
 `JOURNAL.md` do projeto apontando para a nota.
 
-Os wikilinks `[[...]]` sao o que permite, no Obsidian, abrir o grafo de custos e comparar
+Os wikilinks `[[...]]` são o que permite, no Obsidian, abrir o grafo de custos e comparar
 projetos lado a lado sem nenhum agregador externo.
 
 ---
 
-### Comparacao entre projetos
+### Comparação entre projetos
 
-Os ledgers sao arquivos independentes por workspace. Para comparar dois projetos, rodar
+Os ledgers são arquivos independentes por workspace. Para comparar dois projetos, rodar
 `report --json` em cada ledger e confrontar `total_cost_usd`, `total.billable_tokens` e a
-quebra `by_phase`. Nao existe agregador global — a comparacao e explicita e sob demanda.
+quebra `by_phase`. Não existe agregador global — a comparação e explicita e sob demanda.
 
-### Manutencao da tabela de precos
+### Manutenção da tabela de preços
 
-Quando os precos oficiais mudarem, editar `${CLAUDE_PLUGIN_ROOT}/scripts/pricing.json`
+Quando os preços oficiais mudarem, editar `${CLAUDE_PLUGIN_ROOT}/scripts/pricing.json`
 (valores em USD por 1.000.000 de tokens) e atualizar o campo `_updated`. Modelos ausentes
 da tabela aparecem no relatorio marcados com `(!)` e contam custo zero — sinal de que a
 tabela precisa de uma entrada nova.

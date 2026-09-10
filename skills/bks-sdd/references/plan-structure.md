@@ -99,7 +99,7 @@ Remover itens conforme forem resolvidos. Plano pronto para execução quando est
 ## Orientações campo a campo
 
 **Visão Geral (§1):** Uma frase deve responder "que abordagem vamos usar" (ex: "começamos pela
-autenticação para desbloquear todas as demais features") e outra deve responder "por que esta
+autenticação para desbloquear todas as demais features") e outra deve responder "por que está
 ordem" (ex: "as features de P0 são interdependentes, então a Fase 1 as agrupa para evitar
 retrabalho"). Evite repetir o Problem Statement do PRD.
 

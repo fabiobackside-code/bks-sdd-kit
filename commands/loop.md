@@ -1,5 +1,5 @@
 ---
-description: LOOP-4 — implementa uma task sob goals verificaveis (build limpo, testes verdes, cenarios cobertos) em no maximo 4 tentativas.
+description: LOOP-4 — implementa uma task sob goals verificáveis (build limpo, testes verdes, cenários cobertos) em no máximo 4 tentativas.
 ---
 
 # LOOP-4 — Implementação com Goals (máx 4 tentativas)

@@ -66,11 +66,11 @@ integração LLM opcional via SDK nativo, encapsulamento de plugins com `fastify
 │   │   ├── auth.plugin.ts                # @fastify/jwt + decorator `fastify.authenticate` (se VT-F4 = JWT)
 │   │   └── llm.plugin.ts                 # decorator `fastify.llm` com llmGenerate (se VC-2 != Nenhum)
 │   ├── modules/
-│   │   └── {modulo}/
-│   │       ├── {modulo}.schema.ts        # schemas Zod de request/response
-│   │       ├── {modulo}.service.ts       # lógica de negócio
-│   │       ├── {modulo}.repository.ts    # queries SQL (se VC-3 != Nenhum)
-│   │       └── {modulo}.routes.ts        # plugin Fastify com rotas do módulo
+│   │   └── {módulo}/
+│   │       ├── {módulo}.schema.ts        # schemas Zod de request/response
+│   │       ├── {módulo}.service.ts       # lógica de negócio
+│   │       ├── {módulo}.repository.ts    # queries SQL (se VC-3 != Nenhum)
+│   │       └── {módulo}.routes.ts        # plugin Fastify com rotas do módulo
 │   └── app.ts                            # cria instância Fastify + registra plugins + rotas
 ├── server.ts                             # bootstrap: module-alias + DB + fastify.listen()
 ├── docker-compose.yml                    # serviço de banco (se VC-3 != Nenhum)
@@ -106,7 +106,7 @@ export async function buildApp() {
   await app.register(import('@plugins/llm.plugin'));     // se VC-2 != Nenhum
 
   // Rotas por domínio (encapsuladas — sem fastify-plugin)
-  await app.register(import('@modules/{modulo}/{modulo}.routes'), { prefix: '/api/v1/{modulo}' });
+  await app.register(import('@modules/{módulo}/{módulo}.routes'), { prefix: '/api/v1/{módulo}' });
 
   app.get('/health', async () => ({ status: 'ok', ts: new Date().toISOString() }));
 
@@ -117,13 +117,13 @@ export async function buildApp() {
 ### Plugin de Rota de Domínio
 
 ```typescript
-// modules/{modulo}/{modulo}.routes.ts
+// modules/{módulo}/{módulo}.routes.ts
 import type { FastifyInstance } from 'fastify';
 import type { ZodTypeProvider } from 'fastify-type-provider-zod';
-import { Create{E}Schema, Create{E}ResponseSchema } from './{modulo}.schema.ts';
-import { {E}Service } from './{modulo}.service.ts';
+import { Create{E}Schema, Create{E}ResponseSchema } from './{módulo}.schema.ts';
+import { {E}Service } from './{módulo}.service.ts';
 
-export default async function {modulo}Routes(app: FastifyInstance): Promise<void> {
+export default async function {módulo}Routes(app: FastifyInstance): Promise<void> {
   const typedApp = app.withTypeProvider<ZodTypeProvider>();
   const service  = new {E}Service();
 
@@ -186,7 +186,7 @@ export default fp(async (app) => {
 ### Schemas Zod (por módulo)
 
 ```typescript
-// modules/{modulo}/{modulo}.schema.ts
+// modules/{módulo}/{módulo}.schema.ts
 import { z } from 'zod';
 
 export const Create{E}Schema = z.object({
@@ -246,7 +246,7 @@ volumes:
 |---|---|---|
 | Schema Zod Create | `Create{E}Schema` | `CreateOrderSchema` |
 | Schema Zod Response | `Create{E}ResponseSchema` | `CreateOrderResponseSchema` |
-| Plugin de rota | `{modulo}.routes.ts` | `order.routes.ts` |
+| Plugin de rota | `{módulo}.routes.ts` | `order.routes.ts` |
 | Plugin global | `{nome}.plugin.ts` | `auth.plugin.ts` |
 | Service | `{E}Service` | `OrderService` |
 | Repository | `{E}Repository` | `OrderRepository` |
@@ -294,10 +294,10 @@ volumes:
 9. `src/plugins/llm.plugin.ts` — decorator `fastify.llm` (se VC-2 != Nenhum)
 
 ### PASSO 3 — Módulos de domínio (repetir para cada módulo VT-F1)
-10. `src/modules/{modulo}/{modulo}.schema.ts` — schemas Zod de request e response
-11. `src/modules/{modulo}/{modulo}.repository.ts` — queries SQL (se VC-3 != Nenhum)
-12. `src/modules/{modulo}/{modulo}.service.ts` — lógica de negócio
-13. `src/modules/{modulo}/{modulo}.routes.ts` — plugin Fastify sem `fastify-plugin`
+10. `src/modules/{módulo}/{módulo}.schema.ts` — schemas Zod de request e response
+11. `src/modules/{módulo}/{módulo}.repository.ts` — queries SQL (se VC-3 != Nenhum)
+12. `src/modules/{módulo}/{módulo}.service.ts` — lógica de negócio
+13. `src/modules/{módulo}/{módulo}.routes.ts` — plugin Fastify sem `fastify-plugin`
 
 ### PASSO 4 — Bootstrap
 14. `src/app.ts` — buildApp(): instância Fastify + type-provider + plugins + rotas

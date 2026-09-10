@@ -128,9 +128,9 @@ mais preciso e completo será o PRD gerado.
 ```markdown
 # Links de Referência
 
-- https://exemplo.com/artigo-sobre-o-dominio
+- https://exemplo.com/artigo-sobre-o-domínio
 - https://concorrente.com
-- https://documentacao-tecnica.io/api
+- https://documentação-técnica.io/api
 ```
 
 A skill lê este arquivo, faz fetch de cada URL com WebFetch e extrai o conteúdo relevante

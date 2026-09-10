@@ -26,7 +26,7 @@ integração LLM com Anthropic SDK ou OpenRouter SDK (sem LangChain no backend p
 - **Variáveis de ambiente** centralizadas em `src/config/config.ts` — nunca acesse `process.env` diretamente fora deste arquivo
 - **`express-async-errors`** deve ser importado em `app.ts` para captura automática de exceções async
 - **Error handler global** deve distinguir três classes de erro: `ZodError` → 422 (validação); erros com `status: 401` → 401 (autenticação); outros erros → 500 (inesperado)
-- **Sem Controllers MVC** — rotas declaradas diretamente em arquivos `{modulo}.routes.ts`
+- **Sem Controllers MVC** — rotas declaradas diretamente em arquivos `{módulo}.routes.ts`
 - **Nunca use `any` explícito** — tipar todas as requisições, respostas e payloads
 - **`package.json` deve ter `_moduleAliases`** com os mesmos aliases do `tsconfig.json`
 - **Cada arquivo gerado começa com o conteúdo real** — nunca com fence markdown como primeira linha
@@ -62,15 +62,15 @@ integração LLM com Anthropic SDK ou OpenRouter SDK (sem LangChain no backend p
 │   ├── types/
 │   │   └── {domain}.types.ts             # interfaces e tipos de domínio
 │   ├── modules/
-│   │   ├── {modulo}/
-│   │   │   ├── {modulo}.service.ts       # lógica de negócio do módulo
-│   │   │   ├── {modulo}.repository.ts    # acesso a dados (se banco configurado)
-│   │   │   └── {modulo}.validator.ts     # schemas Zod do módulo
+│   │   ├── {módulo}/
+│   │   │   ├── {módulo}.service.ts       # lógica de negócio do módulo
+│   │   │   ├── {módulo}.repository.ts    # acesso a dados (se banco configurado)
+│   │   │   └── {módulo}.validator.ts     # schemas Zod do módulo
 │   │   └── llm/                          # apenas se VC-2 != Nenhum
 │   │       ├── llm.service.ts            # Anthropic SDK ou OpenRouter SDK
 │   │       └── prompt.loader.ts          # leitura + cache + hot-reload de .md
 │   └── routes/
-│       └── {modulo}.routes.ts            # rotas Express do módulo
+│       └── {módulo}.routes.ts            # rotas Express do módulo
 ├── prompts/                              # arquivos .md (apenas se VC-2 != Nenhum)
 ├── db/
 │   └── schema.sql                        # DDL idempotente (apenas se VC-3 != Nenhum)
@@ -84,19 +84,19 @@ integração LLM com Anthropic SDK ou OpenRouter SDK (sem LangChain no backend p
 ### Padrão de Módulos
 
 Cada módulo de domínio (`VT-E1`) tem:
-- `{modulo}.service.ts` — lógica de negócio, orquestra repository + LLM se necessário
-- `{modulo}.repository.ts` — queries SQL com `pg` diretamente (sem ORM) — apenas se `VC-3 != Nenhum`
-- `{modulo}.validator.ts` — schemas Zod para cada operação (`Create{E}Schema`, `Update{E}Schema`)
-- `{modulo}.routes.ts` — rotas Express, injeta service via parâmetro ou instância
+- `{módulo}.service.ts` — lógica de negócio, orquestra repository + LLM se necessário
+- `{módulo}.repository.ts` — queries SQL com `pg` diretamente (sem ORM) — apenas se `VC-3 != Nenhum`
+- `{módulo}.validator.ts` — schemas Zod para cada operação (`Create{E}Schema`, `Update{E}Schema`)
+- `{módulo}.routes.ts` — rotas Express, injeta service via parâmetro ou instância
 
 ### Padrão de Rota
 
 ```typescript
-// routes/{modulo}.routes.ts
+// routes/{módulo}.routes.ts
 import { Router, Request, Response } from 'express';
 import { z, ZodError } from 'zod';
-import { {Modulo}Service } from '@modules/{modulo}/{modulo}.service';
-import { Create{E}Schema } from '@modules/{modulo}/{modulo}.validator';
+import { {Modulo}Service } from '@modules/{módulo}/{módulo}.service';
+import { Create{E}Schema } from '@modules/{módulo}/{módulo}.validator';
 
 const router = Router();
 const service = new {Modulo}Service();
@@ -339,9 +339,9 @@ volumes:
 
 | Elemento | Padrão | Exemplo |
 |---|---|---|
-| Arquivo de módulo | `{modulo}.service.ts` | `order.service.ts` |
-| Arquivo de rotas | `{modulo}.routes.ts` | `order.routes.ts` |
-| Arquivo de validação | `{modulo}.validator.ts` | `order.validator.ts` |
+| Arquivo de módulo | `{módulo}.service.ts` | `order.service.ts` |
+| Arquivo de rotas | `{módulo}.routes.ts` | `order.routes.ts` |
+| Arquivo de validação | `{módulo}.validator.ts` | `order.validator.ts` |
 | Schema Zod Create | `Create{E}Schema` | `CreateOrderSchema` |
 | Schema Zod Update | `Update{E}Schema` | `UpdateOrderSchema` |
 | Tipo inferido | `Create{E}Input` | `CreateOrderInput` |
@@ -403,10 +403,10 @@ volumes:
 
 ### PASSO 4 — Gerar módulos de domínio (repetir para cada módulo VT-E1)
 
-10. `src/modules/{modulo}/{modulo}.validator.ts` — schemas Zod (apenas se VT-E3 = Sim)
-11. `src/modules/{modulo}/{modulo}.repository.ts` — queries SQL (apenas se VC-3 != Nenhum)
-12. `src/modules/{modulo}/{modulo}.service.ts` — lógica de negócio
-13. `src/routes/{modulo}.routes.ts` — rotas Express
+10. `src/modules/{módulo}/{módulo}.validator.ts` — schemas Zod (apenas se VT-E3 = Sim)
+11. `src/modules/{módulo}/{módulo}.repository.ts` — queries SQL (apenas se VC-3 != Nenhum)
+12. `src/modules/{módulo}/{módulo}.service.ts` — lógica de negócio
+13. `src/routes/{módulo}.routes.ts` — rotas Express
 
 ### PASSO 5 — Gerar autenticação (apenas se VT-E4 != Nenhuma)
 

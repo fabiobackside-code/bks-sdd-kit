@@ -1,55 +1,55 @@
 # Perfil `fullstack`
 
-Projeto completo, faseado. Documentacao, design, front, back, banco, infraestrutura e componentes
+Projeto completo, faseado. Documentação, design, front, back, banco, infraestrutura e componentes
 — tudo com testes.
 
 ## Gera
 
-Tudo o que os perfis `frontend`, `backend`, `infra` e `component` geram, sob um plano unico e
+Tudo o que os perfis `frontend`, `backend`, `infra` e `component` geram, sob um plano único e
 faseado.
 
-## Nao gera
+## Não gera
 
-Nada fica de fora. O que muda e a ordem: este perfil existe para faseamento, nao para ampliacao de
-escopo. Fase que nao esta no plano nao entra sozinha.
+Nada fica de fora. O que muda é a ordem: este perfil existe para faseamento, não para ampliação de
+escopo. Fase que não está no plano não entra sozinha.
 
 ## Fases
 
 | Fase | Produz |
 |---|---|
 | entrada | `docs/input/` |
-| consolidacao | `docs/canonical/CONTEXT.md` |
+| consolidação | `docs/canonical/CONTEXT.md` |
 | produto | `outputs/PRD-{projeto}.md` |
 | plano macro | `outputs/PLAN-{projeto}.md` — o faseamento |
 | arquitetura | `outputs/ARCH-{projeto}.md` |
-| modelagem | dominio, dados, DDL |
+| modelagem | domínio, dados, DDL |
 | design | telas, fluxos, sistema visual |
-| especificacao | `specs/features/`, `specs/tests/`, `specs/tasks/` — por fase |
-| implementacao | `app/` — backend, frontend, componentes |
+| especificação | `specs/features/`, `specs/tests/`, `specs/tasks/` — por fase |
+| implementação | `app/` — backend, frontend, componentes |
 | infraestrutura | IaC, pipeline, observabilidade |
-| revisao | independente, por fase |
+| revisão | independente, por fase |
 | fechamento | `STATUS.md`, `JOURNAL.md` |
 
-O plano macro e obrigatorio aqui. Sem ele, um projeto deste tamanho vira lista de tarefas sem
+O plano macro é obrigatório aqui. Sem ele, um projeto deste tamanho vira lista de tarefas sem
 ordem, e a primeira fase nunca fecha.
 
 ## Eixos
 
-| Eixo | Vale | Padrao |
+| Eixo | Vale | Padrão |
 |---|---|---|
 | `output` | sim | `md` |
 | `architecture_renderer` | sim | `mermaid` |
 | `frontend_target` | **sim** | `web` |
-| `rigor` | sim | `producao` |
+| `rigor` | sim | `produção` |
 
 ## Skills
 
 Todas. `bks-sdd` conduz; as demais entram conforme a fase.
 
-## O que perguntar na criacao
+## O que perguntar na criação
 
 1. Web, mobile, ou ambos?
 2. Qual a stack de backend, e qual a de frontend?
-3. Qual o banco? Ha mensageria?
+3. Qual o banco? Há mensageria?
 4. Onde roda — nuvem, on-premise, container?
-5. Ha prazo ou marco que force o faseamento?
+5. Há prazo ou marco que force o faseamento?

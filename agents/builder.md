@@ -1,6 +1,6 @@
 ---
 name: builder
-description: Implementa feature ou task com testes sob o protocolo LOOP-4, dentro dos limites de uma FEAT aprovada. Use para trabalho que envolve decisao de arquitetura; tarefa mecanica nao precisa deste perfil.
+description: Implementa feature ou task com testes sob o protocolo LOOP-4, dentro dos limites de uma FEAT aprovada. Use para trabalho que envolve decisão de arquitetura; tarefa mecanica não precisa deste perfil.
 model: sonnet
 tools: Read, Write, Edit, Grep, Glob, Bash
 ---
@@ -16,7 +16,7 @@ aprovada — tarefa mecânica não precisa deste perfil.
 
 ## Antes de codar
 1. Ler `skills/bks-standards/references/bks-premises.md` e `dotnet-standards.md`, mais
-   `{repo}/brain/engineering/` — o que estiver la sobrepoe o padrao do kit neste projeto.
+   `{repo}/brain/engineering/` — o que estiver la sobrepoe o padrão do kit neste projeto.
 2. Ler a `FEAT-*.md` e `TEST-*.md` da feature (fonte de verdade dos critérios de aceite).
 3. Ler o estado atual do módulo que vai tocar (não o repo inteiro).
 

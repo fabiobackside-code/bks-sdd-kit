@@ -23,7 +23,7 @@ ser considerada completa — ele precede e orienta a implementação.
 
 ## 1. Objetivo
 
-[1–2 frases. Descreve o que esta test spec valida e por que esses cenários foram escolhidos.
+[1–2 frases. Descreve o que está test spec valida e por que esses cenários foram escolhidos.
 Não repetir a descrição da feature — focar no ângulo de verificação.]
 
 ## 2. Cenários Principais (Happy Path)
@@ -138,7 +138,7 @@ pelo agente como parte das tasks, indicar isso explicitamente.
 Formato: `TEST-[nome-kebab-case].md`
 
 O nome deve ser **idêntico** ao nome do `FEAT-[nome].md` correspondente:
-- `FEAT-validacao-autorizacao-transacao.md` → `TEST-validacao-autorizacao-transacao.md`
+- `FEAT-validação-autorização-transação.md` → `TEST-validação-autorização-transação.md`
 - `FEAT-registro-atomico-debito-credito.md` → `TEST-registro-atomico-debito-credito.md`
 
 Isso garante rastreabilidade imediata: dado qualquer FEAT, o TEST correspondente é encontrado
@@ -172,8 +172,8 @@ TEST-[nome].md (Fase 6) ← este documento
     ↓ aprovação → desbloqueia /bks-sdd --feature-task
     ↓ §2 e §3   → referenciados nos critérios de aceite das TASKs
 
-TASK-[id]-[descricao].md (Fase 5, gerada após aprovação do TEST)
-    ↑ campo "Test Spec:" → referencia este arquivo
+TASK-[id]-[descrição].md (Fase 5, gerada após aprovação do TEST)
+    ↑ campo "Test Spec:" → referência este arquivo
     ↑ "Definição de pronto" → inclui "cenários do TEST-[nome].md passando"
 ```
 

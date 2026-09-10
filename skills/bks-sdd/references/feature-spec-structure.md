@@ -158,14 +158,14 @@ Não preencher manualmente — a skill cria o arquivo e atualiza o status nesta 
 Formato: `FEAT-[nome-kebab-case].md`
 
 Exemplos corretos:
-- `FEAT-validacao-autorizacao-transacao.md`
+- `FEAT-validação-autorização-transação.md`
 - `FEAT-registro-atomico-debito-credito.md`
 - `FEAT-consulta-saldo-em-tempo-real.md`
 
 Exemplos incorretos:
 - `FEAT-F1.md` (não usar só o ID)
-- `FEAT-ValidacaoAutorizacao.md` (não usar camelCase)
-- `feat-validacao.md` (FEAT deve ser maiúsculo)
+- `FEAT-ValidacaoAutorização.md` (não usar camelCase)
+- `feat-validação.md` (FEAT deve ser maiúsculo)
 
 ---
 
@@ -179,10 +179,10 @@ FEAT-[nome].md (Fase 5) ← este documento
     ↓ §2 Critérios de Aceite  → alimenta cenários principais do TEST-[nome].md
     ↓ §3 Comportamentos de Borda → alimenta edge cases do TEST-[nome].md
     ↓ §5 Contratos de Dados (Transaction Map) → alimenta §4 Contratos do TEST-[nome].md
-    ↓ §8 Test Spec            → referencia TEST-[nome].md (gerado pela Fase 6)
+    ↓ §8 Test Spec            → referência TEST-[nome].md (gerado pela Fase 6)
 
 TEST-[nome].md (Fase 6)
     ↓ aprovação → desbloqueia --feature-task
 
-TASK-[id]-[descricao].md (Fase 5, gerada após TEST aprovado)
+TASK-[id]-[descrição].md (Fase 5, gerada após TEST aprovado)
     ↑ 

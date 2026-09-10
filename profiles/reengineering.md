@@ -6,11 +6,11 @@ Reescrever um legado. Entende primeiro, decide o alvo, migra com paridade compro
 
 Tudo o que `legacy-docs` gera, e mais:
 
-- decisao do alvo: stack, arquitetura, fronteiras
-- estrategia de migracao: de uma vez, por fatia, ou lado a lado
+- decisão do alvo: stack, arquitetura, fronteiras
+- estrategia de migração: de uma vez, por fatia, ou lado a lado
 - mapa de paridade: cada regra do legado apontando para onde ela vive no novo
-- testes de caracterizacao — o comportamento antigo capturado antes de qualquer reescrita
-- codigo novo
+- testes de caracterização — o comportamento antigo capturado antes de qualquer reescrita
+- código novo
 - plano de corte e de retorno
 
 ## Fases
@@ -20,48 +20,48 @@ Tudo o que `legacy-docs` gera, e mais:
 | **entendimento** | tudo do perfil `legacy-docs` |
 | alvo | `decisions/ADR-*.md` — stack, arquitetura, o que sai de escopo |
 | estrategia | `outputs/MIGRACAO-{projeto}.md` — como se atravessa |
-| caracterizacao | testes que capturam o comportamento atual |
+| caracterização | testes que capturam o comportamento atual |
 | paridade | `outputs/PARIDADE-{projeto}.md` — regra do legado por destino no novo |
-| especificacao | `specs/features/`, `specs/tests/`, `specs/tasks/` |
+| especificação | `specs/features/`, `specs/tests/`, `specs/tasks/` |
 | arquitetura | `outputs/ARCH-{projeto}.md` — o sistema novo |
-| implementacao | `app/` |
+| implementação | `app/` |
 | corte | plano de virada e de retorno |
-| revisao | independente |
+| revisão | independente |
 | fechamento | `STATUS.md`, `JOURNAL.md` |
 
-A fase de entendimento nao se pula. Reescrever o que nao se entendeu produz um sistema novo com os
-bugs antigos e sem as correcoes que ninguem sabia que existiam.
+A fase de entendimento não se pula. Reescrever o que não se entendeu produz um sistema novo com os
+bugs antigos e sem as correções que ninguém sabia que existiam.
 
 ## Regras
 
-**Teste de caracterizacao antes do codigo novo.** O comportamento atual — inclusive o errado —
-precisa estar capturado antes de a reescrita comecar. Sem isso nao ha como provar paridade.
+**Teste de caracterização antes do código novo.** O comportamento atual — inclusive o errado —
+precisa estar capturado antes de a reescrita começar. Sem isso não há como provar paridade.
 
-**Comportamento errado que alguem depende continua sendo comportamento.** Ao encontrar um bug no
-legado, registre e pergunte: corrigir na migracao muda o contrato de quem consome.
+**Comportamento errado que alguém depende continua sendo comportamento.** Ao encontrar um bug no
+legado, registre e pergunte: corrigir na migração muda o contrato de quem consome.
 
-**O mapa de paridade e a evidencia de conclusao.** Regra sem destino no novo e escopo perdido, nao
+**O mapa de paridade é a evidência de conclusão.** Regra sem destino no novo é escopo perdido, não
 escopo cortado.
 
 ## Eixos
 
-| Eixo | Vale | Padrao |
+| Eixo | Vale | Padrão |
 |---|---|---|
 | `output` | sim | `md` |
 | `architecture_renderer` | sim | `mermaid` |
 | `frontend_target` | sim, se houver interface | `web` |
-| `rigor` | sim | `producao` |
+| `rigor` | sim | `produção` |
 
 ## Skills
 
 `bks-sdd` · `bks-standards` · `bks-arch` · `bks-tests` · `refactor-guide` ·
 `bks-dotnet-solutions` ou `bks-typescript-solutions` · `security-audit`
 
-## O que perguntar na criacao
+## O que perguntar na criação
 
-1. Onde esta o legado, e ha ambiente que rode?
+1. Onde está o legado, e há ambiente que rode?
 2. Qual a stack alvo?
-3. Migracao de uma vez, por fatia, ou os dois sistemas lado a lado por um periodo?
-4. Ha consumidores externos cujo contrato precisa ser preservado?
-5. Ha janela de corte, ou a virada e gradual?
-6. O que explicitamente **nao** vai ser migrado?
+3. Migração de uma vez, por fatia, ou os dois sistemas lado a lado por um periodo?
+4. Há consumidores externos cujo contrato precisa ser preservado?
+5. Há janela de corte, ou a virada e gradual?
+6. O que explicitamente **não** vai ser migrado?

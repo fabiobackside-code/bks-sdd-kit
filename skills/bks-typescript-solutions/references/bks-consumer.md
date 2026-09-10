@@ -61,7 +61,7 @@ graceful shutdown, health check HTTP, retry com dead-letter, integração LLM op
 │   ├── handlers/
 │   │   └── {messageType}.handler.ts        # um handler por message type (VT-C3)
 │   ├── consumers/
-│   │   └── {topicOrQueue}.consumer.ts      # instancia consumer para cada tópico/fila
+│   │   └── {topicOrQueue}.consumer.ts      # instância consumer para cada tópico/fila
 │   ├── modules/
 │   │   └── llm/                            # apenas se VC-2 != Nenhum
 │   │       └── llm.service.ts

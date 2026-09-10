@@ -1,8 +1,8 @@
 ---
-description: Gera o PRD inicial de um projeto a partir do contexto canonico ja consolidado. Ponte entre /canonize e /spec.
+description: Gera o PRD inicial de um projeto a partir do contexto canônico já consolidado. Ponte entre /canonize e /spec.
 ---
 
-NOTA (versao global): este comando opera sobre o vault em ${BKS_VAULT}/. Todos os caminhos abaixo sao absolutos de proposito — funciona rodando de qualquer cwd. Se voce nao estiver dentro do repo do projeto alvo, PERGUNTE qual projeto antes de agir.
+NOTA (versão global): este comando opera sobre o vault em ${BKS_VAULT}/. Todos os caminhos abaixo são absolutos de propósito — funciona rodando de qualquer cwd. Se você não estiver dentro do repo do projeto alvo, PERGUNTE qual projeto antes de agir.
 
 Gera um PRD inicial a partir do contexto canônico já consolidado — é a ponte entre /canonize e
 /spec.

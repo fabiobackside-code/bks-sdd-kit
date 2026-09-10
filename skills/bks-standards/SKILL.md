@@ -1,44 +1,44 @@
 ---
 name: bks-standards
 description: >
-  Padroes de engenharia BKS: premissas de codificacao, regras de dependencia .NET,
-  Object Calisthenics, politica de documentacao e comentario, SEDA e TCP sockets,
-  e o checklist de revisao critica. Use quando precisar decidir COMO construir —
-  camadas, dependencias, imutabilidade, tratamento de erro, comentario, ou quando
-  revisar codigo contra os padroes da casa. Trigger: padrao BKS, premissa de
-  codificacao, regra de dependencia, calisthenics, comentario no codigo, SEDA,
-  socket TCP, checklist de revisao.
+  Padrões de engenharia BKS: premissas de codificação, regras de dependência .NET,
+  Object Calisthenics, politica de documentação e comentario, SEDA e TCP sockets,
+  e o checklist de revisão crítica. Use quando precisar decidir COMO construir —
+  camadas, dependências, imutabilidade, tratamento de erro, comentario, ou quando
+  revisar código contra os padrões da casa. Trigger: padrão BKS, premissa de
+  codificação, regra de dependência, calisthenics, comentario no código, SEDA,
+  socket TCP, checklist de revisão.
 ---
 
-# BKS-STANDARDS — padroes de engenharia
+# BKS-STANDARDS — padrões de engenharia
 
-Estes padroes governam **como** o codigo e gerado, em qualquer projeto. Sao metodo, nao decisao de
-um produto — por isso vivem no kit e nao no vault.
+Estes padrões governam **como** o código e gerado, em qualquer projeto. São método, não decisão de
+um produto — por isso vivem no kit e não no vault.
 
 Um projeto pode sobrescrever qualquer um deles em `brain/engineering/`. Onde houver conflito, o
 projeto vence.
 
 ## Referencias
 
-Abra a que a tarefa exige, nao todas.
+Abra a que a tarefa exige, não todas.
 
 | Referencia | Quando abrir |
 |---|---|
-| `references/bks-premises.md` | antes de gerar codigo novo — e a fonte de verdade do metodo |
-| `references/dotnet-standards.md` | projeto .NET: camadas, dependencias, composition root |
-| `references/calisthenics.md` | ao decidir forma de classe e metodo |
-| `references/documentacao.md` | ao escrever comentario, README ou ARCHITECTURE |
+| `references/bks-premises.md` | antes de gerar código novo — e a fonte de verdade do método |
+| `references/dotnet-standards.md` | projeto .NET: camadas, dependências, composition root |
+| `references/calisthenics.md` | ao decidir forma de classe e método |
+| `references/documentação.md` | ao escrever comentario, README ou ARCHITECTURE |
 | `references/seda-tcp.md` | pipeline por estagios, socket, backpressure |
-| `references/checklist-revisao-critica.md` | ao revisar codigo de area sensivel |
+| `references/checklist-revisão-crítica.md` | ao revisar código de area sensivel |
 
-## As tres que nao se negociam
+## As três que não se negociam
 
-**Dominio agnostico.** `Domain/Core/Common` usa apenas `System.*`. Sem ORM, sem driver, sem
-cliente de mensageria. Precisa de infraestrutura no dominio? A dependencia entra invertida, por uma
+**Domínio agnostico.** `Domain/Core/Common` usa apenas `System.*`. Sem ORM, sem driver, sem
+cliente de mensageria. Precisa de infraestrutura no domínio? A dependência entra invertida, por uma
 porta.
 
-**Orquestracao explicita.** Sem MediatR, sem dispatcher. O use case e chamado direto pela porta, e
-os passos ficam ordenados no pipeline. Ha um guarda que recusa a escrita — ver `hooks/`.
+**Orquestração explicita.** Sem MediatR, sem dispatcher. O use case e chamado direto pela porta, e
+os passos ficam ordenados no pipeline. Há um guarda que recusa a escrita — ver `hooks/`.
 
-**Erro de negocio nao e excecao.** Use case devolve resultado tipado. Excecao fica para o que e
+**Erro de negócio não e exceção.** Use case devolve resultado tipado. Exceção fica para o que e
 excepcional de verdade.
