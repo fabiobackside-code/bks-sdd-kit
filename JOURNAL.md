@@ -20,6 +20,19 @@ Fecha a lacuna aberta pela mudança de lugar: o kit agora é um projeto igual ao
 
 ---
 
+### Consumo da sessão
+
+| Modelo | Input | Output | Cache write | Cache read | Total | Custo |
+|---|---:|---:|---:|---:|---:|---:|
+| claude-opus-5 | 214 | 52.831 | 150.171 | 13.791.044 | 13.994.260 | US$ 9,7191 |
+| **TOTAL** | **214** | **52.831** | **150.171** | **13.791.044** | **13.994.260** | **US$ 9,7191** |
+
+Acumulado do processo: **13.994.260 tokens — US$ 9,7191**.
+
+Estimativa por token contra `~/.claude/scripts/pricing.json`, não a fatura real.
+
+---
+
 ## 2026-09-10 · O kit saiu da raiz do vault
 
 `bks-sdd-kit` morava em `X:/2brains/kit`, fora de `repos/`. Passou a
