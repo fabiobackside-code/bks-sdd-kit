@@ -1,0 +1,14 @@
+{
+  "profile": "component",
+  "category": "backside",
+  "axes": {
+    "output": "md",
+    "architecture_renderer": "mermaid",
+    "frontend_target": null,
+    "rigor": "producao"
+  },
+  "stack": {
+    "backend": "plugin Claude Code (markdown, Python nos testes e scripts)"
+  },
+  "architecture_template": "proprio"
+}
