@@ -5,6 +5,52 @@
 
 ---
 
+## 2026-09-10 · Go entrou como terceira stack de backend
+
+O kit gerava .NET e TypeScript. Go entrou com a skill `bks-go-solutions` — cinco tipos (API com
+chi, worker, consumer, CLI, SDK), 224 linhas de entrada contra 856 do .NET e 716 do TypeScript,
+já no formato de progressive disclosure que as outras três ainda devem alcançar.
+
+Go é a primeira linguagem do kit que **contradiz** o padrão-base, e isso forçou uma distinção que
+estava implícita: premissa é método e vive em `bks-standards`; a skill geradora produz estrutura e
+aponta para lá. O delta ficou em dois arquivos novos — `go-standards.md`, com tabela de tradução
+.NET → Go e as nove seções onde a tradução literal falha, e `go-review-checklist.md`, que faltava
+(o checklist existente é escrito em termos de .NET).
+
+Três fontes externas foram lidas; uma foi descartada por ser trilha de iniciante. Das outras duas
+saiu uma contradição real: a prática comum manda campo exportado sem getter, mas no TXC o getter é
+o mecanismo de imutabilidade. A exceção é do TXC, não da linguagem, e ficou registrada nos dois
+lados para não ser redescoberta.
+
+A skill também lê e alimenta uma base de aprendizado em `${BKS_KNOWLEDGE}/wiki/go/` — a primeira
+do kit que escreve fora do projeto. O caso com nomes reais fica em `brain/engineering/` do
+projeto; a wiki recebe a lição anonimizada, porque os projetos de origem são de domínio bancário.
+
+Uma das quatro falhas conhecidas do `test_structure.py` caiu no caminho: era acento —
+`documentação.md` citado na tabela, `documentacao.md` em disco. Restam três.
+
+O plugin foi para `0.2.0` e o cache atualizado: a `bks-go-solutions` já aparece na sessão. Sem o
+bump a skill não chegaria, porque o plugin instalado é cópia congelada por versão.
+
+**Verificado:** `python tests/test_structure.py` → 720 verificações, 3 falhas (as conhecidas).
+`ls ~/.claude/plugins/cache/bks-sdd-kit/bks-sdd-kit/0.2.0/skills/` → 15 skills, com
+`bks-go-solutions`. A skill **não** foi exercitada numa geração real — é o próximo passo.
+
+Commits: `550fb72` (Go), `607d5e1` (acento), `c7cc7aa` (0.2.0); `2bc217e` no vault.
+
+### Consumo da sessão
+
+| Modelo | Input | Output | Cache write | Cache read | Total | Custo |
+|---|---:|---:|---:|---:|---:|---:|
+| claude-opus-5 | 216 | 74.219 | 217.696 | 17.159.714 | 17.451.845 | US$ 12,6134 |
+| **TOTAL** | **216** | **74.219** | **217.696** | **17.159.714** | **17.451.845** | **US$ 12,6134** |
+
+Acumulado do processo: **31.446.105 tokens — US$ 22,3324** (2 checkpoints, fase `manutencao`).
+
+Estimativa por token contra `~/.claude/scripts/pricing.json`, não a fatura real.
+
+---
+
 ## 2026-09-10 · O kit ganhou os artefatos de projeto
 
 Estava em `repos/` sem `STATUS.md`, `WORKFLOW.md`, `JOURNAL.md`, `CLAUDE.md` nem
