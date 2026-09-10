@@ -5,8 +5,9 @@ compartilhado entre todos os projetos. Nunca deve citar decisão ou nome real
 de um projeto como parte da regra em si; exemplos de projeto real (quando
 ajudam a ilustrar) vêm só ao final de cada ponto, entre parênteses.
 Autoridade, nesta ordem:
-1. Skills BKS globais: `bks-dotnet-solutions`, `bks-sdd`, `bks-c4-diagrams`,
-   `bks-typescript-backend` (prescritivas, conduzem entrevista antes de gerar).
+1. Skills BKS globais: `bks-dotnet-solutions`, `bks-go-solutions`, `bks-sdd`,
+   `bks-c4-diagrams`, `bks-typescript-backend` (prescritivas, conduzem entrevista
+   antes de gerar).
 2. Exemplares reais de aplicação — cada projeto guarda os seus em
    `repos/{cat}/{proj}/brain/methodology/` (ex.: `repos/w3/nquantic/brain/methodology/`
    tem as skills de domínio bancário aplicadas). Consulte o do projeto atual.
@@ -33,6 +34,13 @@ barato que navegar abstração que tentou adivinhar o futuro (YAGNI).
   que o projeto definir — ex.: `NqResultado<T>` no NQuantic); exceptions de
   negócio não escapam da pipeline.
 - Observabilidade embutida nos estágios (spans automáticos, sem `Activity` à mão).
+
+> **O padrão-base é o mesmo em toda linguagem; a forma que ele assume, não.** O texto acima está
+> redigido na forma .NET. Em Go, cinco pontos mudam — erro é `error` idiomático (não `Result[T]`),
+> imutabilidade é disciplina (não `record`), a interface se declara no consumidor, o composition
+> root é wiring manual e parte do Calisthenics se inverte. O delta está em `go-standards.md`, e é
+> leitura obrigatória antes de gerar Go. Traduzir o .NET linha a linha produz código que compila e
+> que nenhum programador Go mantém.
 
 ## DDD e Object Calisthenics: por julgamento, não por ritual
 Aplicar quando o domínio justifica (regras ricas, invariantes reais), não

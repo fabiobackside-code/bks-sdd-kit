@@ -39,12 +39,12 @@ Interface, design, mock de tela. Consumidor da API é outro projeto ou outro per
 
 ## Skills
 
-`bks-sdd` · `bks-standards` · `bks-dotnet-solutions` ou `bks-typescript-solutions` · `bks-tests`
-· `bks-arch` · `api-design` · `security-audit`
+`bks-sdd` · `bks-standards` · `bks-dotnet-solutions`, `bks-typescript-solutions` ou
+`bks-go-solutions` · `bks-tests` · `bks-arch` · `api-design` · `security-audit`
 
 ## O que perguntar na criação
 
-1. Qual a stack — .NET, TypeScript, outra?
+1. Qual a stack — .NET, TypeScript, Go, outra?
 2. Qual o banco — SQL Server, PostgreSQL, outro?
 3. Há mensageria — Kafka, RabbitMQ, nenhuma?
 4. Como se autentica — JWT próprio, provedor externo, nenhuma?

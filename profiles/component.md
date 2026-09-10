@@ -43,11 +43,11 @@ usa.
 
 ## Skills
 
-`bks-sdd` · `bks-standards` · `bks-dotnet-solutions` ou `bks-typescript-solutions` · `bks-tests`
-· `bks-arch` · `api-design`
+`bks-sdd` · `bks-standards` · `bks-dotnet-solutions`, `bks-typescript-solutions` ou
+`bks-go-solutions` · `bks-tests` · `bks-arch` · `api-design`
 
 ## O que perguntar na criação
 
-1. Qual a stack — .NET, TypeScript, outra?
-2. Onde a biblioteca sera publicada — NuGet, npm, registro interno?
+1. Qual a stack — .NET, TypeScript, Go, outra?
+2. Onde a biblioteca sera publicada — NuGet, npm, módulo Go, registro interno?
 3. Há compatibilidade a manter com uma versão anterior?

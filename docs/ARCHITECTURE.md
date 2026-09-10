@@ -41,6 +41,51 @@ Estado atual: `bks-sdd`, `bks-dotnet-solutions` e `bks-typescript-solutions` tem
 mas o `SKILL.md` ainda concentra as fases. O adelgacamento está planejado para depois das suites
 de eval — refactor de skill validada em uso sem rede de teste e aposta, não engenharia.
 
+`bks-go-solutions` nasceu no formato alvo: 222 linhas de entrada — registro de tipos, variáveis,
+fluxo, base de aprendizado e checklist — contra 856 do .NET e 716 do TypeScript, com os cinco
+prompts especializados em `references/`, abertos um por vez. É a referência de como as outras três
+devem ficar.
+
+### O delta de linguagem mora em `bks-standards`, não na skill geradora
+
+As premissas (TXC, pipeline explícito, Result, calisthenics, pragmatismo token-aware) são método,
+não linguagem, e vivem em `bks-standards/references/bks-premises.md`. As skills geradoras
+produzem estrutura e apontam para lá.
+
+Go forçou a distinção a ficar explícita, porque é a primeira linguagem do kit que **contradiz** o
+padrão-base em pontos concretos: `error` idiomático no lugar de `Result[T]`, imutabilidade por
+disciplina sem `record`, interface declarada no consumidor e não no provedor, wiring manual sem
+container, e metade do Object Calisthenics chegando por early return em vez de polimorfismo.
+
+Esse delta ficou em `bks-standards/references/go-standards.md`, simétrico ao `dotnet-standards.md`
+que já existia — não dentro de `bks-go-solutions`. A alternativa (skill autossuficiente) duplicaria
+premissa em duas casas, e premissa duplicada diverge na primeira mudança. `bks-premises.md` ganhou
+um aviso no ponto onde o padrão-base é descrito em termos de C#, porque quem lê aquele parágrafo e
+gera Go direto produz código que compila e que nenhum programador Go mantém.
+
+### A skill de Go alimenta e consome uma base de aprendizado
+
+`bks-go-solutions` é a primeira skill do kit que **escreve fora do projeto**: a cada geração,
+consulta `${BKS_KNOWLEDGE}/wiki/go/` antes e registra depois. As demais só leem referência
+estática.
+
+A razão é que Go entrou como stack nova, sem os anos de prática que .NET e TypeScript já têm. O que
+se aprende nos primeiros projetos é justamente o que não está em nenhuma referência — e sem
+registro, se perde entre uma sessão e outra.
+
+O registro é em duas casas, com papéis distintos, e é o que resolve a confidencialidade: o caso
+completo com nomes reais fica em `brain/engineering/` do projeto (repositório fechado, contexto
+ligado ao código); a wiki recebe a lição destilada e **anonimizada**. Os projetos de origem são de
+domínio bancário — a lição é transversal, o caso não é. A regra de anonimização está no `index.md`
+da base e repetida na skill, porque regra que vive num lugar só não sobrevive à pressa.
+
+Quatro classes: padrão, armadilha, trecho e decisão Go vs .NET. A quarta existe para que a escolha
+de stack seja revisitável com evidência, e não por impressão.
+
+O risco conhecido é a base encher de trivialidade — página que repete o Effective Go. A contenção
+é instrução explícita de só registrar o que custou tempo, e `status: draft` até a lição se repetir
+em outro projeto. Se não bastar, o passo seguinte é uma guarda executável, não mais texto.
+
 ### Caminhos por variavel de ambiente
 
 Os comandos de workbench referenciavam caminhos absolutos de uma maquina. Num pacote público isso
