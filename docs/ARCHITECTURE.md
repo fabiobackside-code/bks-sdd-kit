@@ -18,7 +18,7 @@ commands/           slash commands
 agents/             subagentes com papel e modelo declarados
 scripts/            utilitarios chamados pelas skills (medição de custo)
 hooks/              guardas executáveis de regra
-evals/              suites de eval das skills, um diretorio por caso
+evals/              suites de eval das skills, um diretório por caso
 docs/               está documentação
 ```
 
@@ -93,23 +93,23 @@ pela mesma razão que existe: guarda sem teste também e só intenção.
 ### Schema dos casos de eval
 
 Os casos vivem em `evals/<caso>/case.yaml` e o `plugin.json` os declara em
-`experimental.evals`. O schema e do `claude plugin eval`, não nosso: fora dele o caso não carrega
+`experimental.evals`. O schema é do `claude plugin eval`, não nosso: fora dele o caso não carrega
 e não roda.
 
 O schema `1.1` difere do `1.0` em quatro pontos: `prompt` e `max_turns` vivem dentro de
-`execution`; todo grader tem `name`; `with_only` não existe mais — `tool_used: Skill` já e tratado
+`execution`; todo grader tem `name`; `with_only` não existe mais — `tool_used: Skill` já é tratado
 como indicador de disparo, fora da pontuação; e `runs` fica no topo.
 
 Os 18 casos passaram semanas escritos em `1.0` sem carregar. `test_evals` checava se o YAML
-parseava e se o `name` batia com o diretorio — nada disso falha quando o schema muda. A suite
-passava verde enquanto a suite de eval estava inteira fora do ar.
+parseava e se o `name` batia com o diretório — nada disso falha quando o schema muda. A suíte
+passava verde enquanto a suíte de eval estava inteira fora do ar.
 
 Por isso `test_evals` valida contra o schema, e não contra o parser. A regra que só o CLI conhece
-precisa de guarda deste lado; senão a próxima mudança de schema volta a passar despercebida ate
-alguem gastar credito para descobrir.
+precisa de guarda deste lado; senão a próxima mudança de schema volta a passar despercebida até
+alguém gastar crédito para descobrir.
 
-Os nomes dos graders são derivados do criterio — `sem-mediatr`, `verifica-propriedade` — e não
-posicionais. O relatorio do CLI os imprime a cada run, e `g1 falhou` não diz o que quebrou.
+Os nomes dos graders são derivados do critério — `sem-mediatr`, `verifica-propriedade` — e não
+posicionais. O relatório do CLI os imprime a cada run, e `g1 falhou` não diz o que quebrou.
 
 ## Consumidores
 
