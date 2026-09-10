@@ -311,14 +311,46 @@ def test_evals():
         check('%s: name bate com o diretorio' % case,
               data.get('name') == case,
               'case.yaml diz %r' % data.get('name'))
-        check('%s: tem prompt' % case, bool(data.get('prompt')))
+
+        # O schema do CLI: `claude plugin eval` recusa a carga fora dele, e o
+        # caso nao roda. Ver ARCHITECTURE.md, "Schema dos casos de eval".
+        check('%s: schema_version e 1.1' % case,
+              data.get('schema_version') == '1.1',
+              'diz %r — 1.0 nao carrega mais' % data.get('schema_version'))
+
+        execution = data.get('execution')
+        check('%s: tem bloco execution' % case, isinstance(execution, dict),
+              'prompt e max_turns vivem dentro de execution no schema 1.1')
+        if isinstance(execution, dict):
+            check('%s: execution.prompt preenchido' % case,
+                  bool(execution.get('prompt')))
+            check('%s: execution.max_turns definido' % case,
+                  bool(execution.get('max_turns')))
+
+        check('%s: prompt nao ficou no topo' % case, 'prompt' not in data,
+              'prompt no topo e schema 1.0 — mover para execution')
 
         graders = data.get('graders') or []
         check('%s: tem grader' % case, bool(graders))
 
-        scoring = [g for g in graders if not g.get('with_only')]
+        vistos = set()
+        for i, grader in enumerate(graders):
+            nome = grader.get('name')
+            check('%s: grader %d tem name' % (case, i), bool(nome),
+                  'name e obrigatorio em cada grader')
+            check('%s: grader %r nao repete' % (case, nome),
+                  nome not in vistos)
+            vistos.add(nome)
+            check('%s: grader %r sem with_only' % (case, nome),
+                  'with_only' not in grader,
+                  'with_only saiu do schema — tool_used: Skill ja e indicador')
+            if grader.get('type') == 'llm':
+                check('%s: grader %r tem criteria' % (case, nome),
+                      bool(grader.get('criteria')))
+
+        scoring = [g for g in graders if g.get('type') != 'tool_used']
         check('%s: tem grader que pontua' % case, bool(scoring),
-              'todos os graders sao with_only — o caso nao mede nada')
+              'so indicadores with-only — o caso nao mede nada')
 
 
 def test_public_hygiene():
