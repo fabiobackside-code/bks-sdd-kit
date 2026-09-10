@@ -8,10 +8,10 @@
     {
       "name": "bks-sdd-kit",
       "source": "./",
-      "description": "Kit BKS de Spec-Driven Development: PRD, specs, tasks, execucao e arquitetura hexagonal.",
-      "version": "0.1.0",
+      "description": "Kit BKS de Spec-Driven Development: PRD, specs, tasks, execucao e arquitetura hexagonal em .NET, TypeScript e Go.",
+      "version": "0.2.0",
       "category": "development",
-      "keywords": ["sdd", "spec-driven-development", "hexagonal-architecture", "dotnet", "typescript"]
+      "keywords": ["sdd", "spec-driven-development", "hexagonal-architecture", "dotnet", "typescript", "go"]
     }
   ]
 }
