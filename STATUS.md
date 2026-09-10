@@ -9,8 +9,9 @@
 
 ## Em uma frase
 
-O kit está completo e instalado como plugin em uso diário, mas nunca foi medido: a suíte de eval
-carrega desde hoje — antes nem isso — e espera crédito para produzir a primeira baseline.
+O kit ganhou Go como terceira stack de backend e está instalado como `0.2.0` em uso diário, mas
+segue sem medição: a suíte de eval carrega e espera crédito para a primeira baseline — agora com
+uma lacuna a mais, porque Go entrou sem caso de eval.
 
 ---
 
@@ -27,13 +28,17 @@ casos com o delta `with` × `without` medido.
 | Bloqueio | Espera | Quem destrava |
 |---|---|---|
 | Baseline dos 18 casos de eval | saldo de crédito da conta | Fabio |
+| Caso de eval para Go | a baseline acima | — |
 | Adelgaçar o `bks-sdd` (2062 linhas) | a baseline acima | — |
 | Publicar o repositório | aval do Fabio | Fabio |
 
-O bloqueio do eval eram dois em série, e o de cima escondia o de baixo. O primeiro — os 18 casos
-escritos num schema que o CLI não carrega mais — foi corrigido hoje (`b836be1`). Resta o crédito,
-agora isolado e confirmado com casos válidos: `Ablation: 2 arms × 18 cases` carrega, e todo grader
-devolve `judge call failed: Credit balance is too low`.
+O crédito segue sendo o bloqueio de cabeça, isolado e confirmado com casos válidos:
+`Ablation: 2 arms × 18 cases` carrega, e todo grader devolve
+`judge call failed: Credit balance is too low`.
+
+Go entrou sem caso de eval — os 18 cobrem .NET, TypeScript e os comandos. Escrever caso de Go
+antes da baseline seria escrever no escuro: sem saber o delta que os casos existentes produzem,
+não há como calibrar o novo.
 
 O adelgaçamento do `bks-sdd` depende da baseline por ordem, não por capricho: refatorar skill
 validada em uso sem rede de teste é aposta.
@@ -41,6 +46,10 @@ validada em uso sem rede de teste é aposta.
 ---
 
 ## Próximo passo
+
+Exercitar a `bks-go-solutions` numa geração real — é o único passo que não espera crédito. Ela
+está instalada (`0.2.0`) e nunca gerou projeto; a entrevista, o registro na base de aprendizado e
+a anonimização são caminhos escritos e não percorridos. Um worker ou CLI pequeno basta.
 
 Com crédito disponível, rodar um caso só antes de gastar a suíte:
 
@@ -61,14 +70,14 @@ próprio contexto.
 
 | Peça | Quantidade |
 |---|---|
-| Skills | 14 |
+| Skills | 15 |
 | Slash commands | 11 |
 | Subagentes | 5 |
 | Perfis de projeto | 9 |
 | Guardas executáveis | 4, todos com teste em `hooks/tests/` |
 | Casos de eval | 18, com 85 graders |
 
-`python tests/test_structure.py` → 713 verificações, 4 falhas conhecidas (abaixo).
+`python tests/test_structure.py` → 720 verificações, 3 falhas conhecidas (abaixo).
 
 ---
 
@@ -85,14 +94,19 @@ próprio contexto.
 | 7 | `archify` fica externo — 4.436 linhas de terceiro não viram fork | `profiles/architecture-renderers/archify.md` |
 | 8 | Casos de eval seguem o schema do CLI, com guarda no `test_evals` | `docs/ARCHITECTURE.md` |
 | 9 | O kit é um projeto em `repos/`, não um caso à parte na raiz do vault | `JOURNAL.md`, 2026-09-10 |
+| 10 | Delta de linguagem vive em `bks-standards`, não na skill geradora | `docs/ARCHITECTURE.md` |
+| 11 | A skill de Go lê e alimenta base de aprendizado fora do projeto, anonimizada | `docs/ARCHITECTURE.md` |
 
 ---
 
 ## Aberto
 
-- Quatro falhas conhecidas no `test_structure.py`, todas anteriores a esta sessão e não
-  diagnosticadas: referência inalcançável pelo `SKILL.md` em `bks-arch` e `bks-standards`, comando
-  não documentado, e mais de um renderer marcado como padrão
+- Três falhas conhecidas no `test_structure.py`, não diagnosticadas: referência inalcançável pelo
+  `SKILL.md` em `bks-arch`, comando não documentado, e mais de um renderer marcado como padrão. A
+  quarta era acento — `documentação.md` citado, `documentacao.md` em disco (`607d5e1`)
+- Nenhum caso de eval cobre Go; os 18 existentes são de .NET, TypeScript e comandos
+- A base de aprendizado em `${BKS_KNOWLEDGE}/wiki/go/` está criada e vazia, e não é versionada:
+  `knowledge/**` está no `.gitignore` do vault, logo ela existe só nesta máquina
 - Ícones genéricos de infraestrutura declarados em `skills/bks-arch/icons/` mas não desenhados
 - `bks-sdd` com 2062 linhas num `SKILL.md` único — o adelgaçamento está planejado, não iniciado
 - O repositório não tem `brain/domain/` nem `brain/engineering/`; o conhecimento está todo em
