@@ -1,13 +1,13 @@
 ---
 name: bks-standards
 description: >
-  Padrões de engenharia BKS: premissas de codificação, regras de dependência .NET,
+  Padrões de engenharia BKS: premissas de codificação, regras de dependência .NET e Go,
   Object Calisthenics, politica de documentação e comentario, SEDA e TCP sockets,
   e o checklist de revisão crítica. Use quando precisar decidir COMO construir —
   camadas, dependências, imutabilidade, tratamento de erro, comentario, ou quando
   revisar código contra os padrões da casa. Trigger: padrão BKS, premissa de
   codificação, regra de dependência, calisthenics, comentario no código, SEDA,
-  socket TCP, checklist de revisão.
+  socket TCP, checklist de revisão, padrão Go, erro idiomático em Go.
 ---
 
 # BKS-STANDARDS — padrões de engenharia
@@ -26,10 +26,12 @@ Abra a que a tarefa exige, não todas.
 |---|---|
 | `references/bks-premises.md` | antes de gerar código novo — e a fonte de verdade do método |
 | `references/dotnet-standards.md` | projeto .NET: camadas, dependências, composition root |
+| `references/go-standards.md` | projeto Go: onde a linguagem contradiz o padrão-base |
+| `references/go-review-checklist.md` | ao revisar código Go — erro, concorrência, interface |
 | `references/calisthenics.md` | ao decidir forma de classe e método |
-| `references/documentação.md` | ao escrever comentario, README ou ARCHITECTURE |
+| `references/documentacao.md` | ao escrever comentario, README ou ARCHITECTURE |
 | `references/seda-tcp.md` | pipeline por estagios, socket, backpressure |
-| `references/checklist-revisão-crítica.md` | ao revisar código de area sensivel |
+| `references/checklist-revisao-critica.md` | ao revisar código de area sensivel |
 
 ## As três que não se negociam
 
