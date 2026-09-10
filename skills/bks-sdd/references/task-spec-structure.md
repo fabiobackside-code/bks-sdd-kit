@@ -1,6 +1,6 @@
 # Task Spec Structure — BKS-SDD Reference
 
-Este documento define o template canônico do `TASK-[id]-[descricao].md` gerado pela Fase 5
+Este documento define o template canônico do `TASK-[id]-[descrição].md` gerado pela Fase 5
 da skill BKS-SDD. Cada task é a unidade atômica de execução — o que um agente de
 implementação executa de forma independente, sem precisar ler o projeto inteiro.
 
@@ -93,8 +93,8 @@ critério, está mal definida.
 
 **Test Spec:** Campo obrigatório a partir da Fase 6. Referencia o `TEST-[nome].md` que define
 os cenários que esta task deve fazer passar. O nome do arquivo TEST corresponde ao nome do
-FEAT de origem — ex: task gerada de `FEAT-validacao-autorizacao-transacao.md` referencia
-`spec/tests/TEST-validacao-autorizacao-transacao.md`.
+FEAT de origem — ex: task gerada de `FEAT-validação-autorização-transação.md` referência
+`spec/tests/TEST-validação-autorização-transação.md`.
 
 **Definição de pronto (§5):** Checklist padrão — não alterar. O agente marca cada item
 conforme conclui. O item "Cenários do TEST-[nome].md passando" é o gatilho TDD: a task
@@ -105,7 +105,7 @@ verificados.
 
 ## Nome do arquivo
 
-Formato: `TASK-[id]-[descricao-kebab-case].md`
+Formato: `TASK-[id]-[descrição-kebab-case].md`
 
 - ID com zero-padding de 3 dígitos: `001`, `002`, ..., `099`
 - Descrição: máximo 5 palavras em kebab-case, suficiente para identificar sem abrir o arquivo
@@ -154,7 +154,7 @@ TEST-[nome].md (Fase 6)
     ↓ §2 Cenários Principais → referenciados no campo "Test Spec:" desta task
     ↓ §3 Edge Cases          → cobertos pelos testes implementados nas tasks
 
-TASK-[id]-[descricao].md (Fase 5, gerada após TEST aprovado) ← este documento
-    ↑ referencia a feature pelo campo "Feature: F[N]"
-    ↑ referencia o test spec pelo campo "Test Spec:"
+TASK-[id]-[descrição].md (Fase 5, gerada após TEST aprovado) ← este documento
+    ↑ referência a feature pelo campo "Feature: F[N]"
+    ↑ referência o test spec pelo campo "Test Spec:"
     → spec/output/ ← resultado da 

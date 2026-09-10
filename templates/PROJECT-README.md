@@ -70,13 +70,13 @@ foram fechadas. Rode /prd focando primeiro nas features de autenticação e onbo
 ## 4. Exemplos de prompt — documentos e apresentações (a partir do canônico)
 
 ```
-Gere um documento executivo em outputs/apresentacao-executiva.md a partir de
+Gere um documento executivo em outputs/apresentação-executiva.md a partir de
 docs/canonical/CONTEXT.md e docs/canonical/PRD-{project}.md — foco em problema, proposta de
 valor, cronograma macro e investimento. Público: diretoria do cliente, não-técnico.
 ```
 
 ```
-Gere um documento técnico de arquitetura em outputs/arquitetura-tecnica.md a partir de
+Gere um documento técnico de arquitetura em outputs/arquitetura-técnica.md a partir de
 docs/canonical/ e specs/features/ já aprovadas — inclua diagrama C4 de contexto (Mermaid) e as
 decisões já fixadas em decisions/.
 ```

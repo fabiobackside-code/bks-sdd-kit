@@ -323,7 +323,7 @@ Fluxo de uma requisição (Primary Adapter → Primary Port → Domain → Secon
        │
        ▼ (implementações fora do hexágono)
   [Secondary Adapter: PedidoRepositoryEfCore] ─── persiste
-  [Secondary Adapter: SendGridNotificacao]    ─── envia email
+  [Secondary Adapter: SendGridNotificação]    ─── envia email
        │
        ▼ (resultado volta através da porta)
   [Primary Adapter: PedidoController]
@@ -400,7 +400,7 @@ src/
     │       ├── Messaging/
     │       │   └── RabbitMqPublisher.cs
     │       ├── Email/
-    │       │   └── SendGridNotificacao.cs    (implementa INotificacaoService)
+    │       │   └── SendGridNotificação.cs    (implementa INotificacaoService)
     │       └── ExternalApis/
     │           └── CorreiosFreteAdapter.cs   (implementa ICalculadoraDeFrete + ACL)
     │
@@ -654,7 +654,7 @@ Uso correto:
   2. Output = documento em /docs/architecture/decisions/ (ADR ou TDD)
   3. O documento é revisado e aprovado ANTES do código
   4. Specs existentes (guidelines, DDD, etc.) não são modificadas
-  5. O TDD referencia este guideline como base arquitetural
+  5. O TDD referência este guideline como base arquitetural
 
 Não use para:
   ❌ Sobrescrever ou atualizar este arquivo de guidelines

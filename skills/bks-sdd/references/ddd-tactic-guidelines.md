@@ -138,7 +138,7 @@ Exemplo — Pedido de E-commerce:
 ```
 
 ### Anti-Padrões
-- Aggregate que referencia outro aggregate por objeto (em vez de ID).
+- Aggregate que referência outro aggregate por objeto (em vez de ID).
 - Uma transação que modifica múltiplos aggregates diretamente.
 - Aggregate "deus" que contém todo o modelo do sistema.
 - Aggregate Root que expõe coleções internas para modificação direta.
@@ -175,14 +175,14 @@ Opção B — MediatR/Message Bus (domínios distribuídos):
 
 Fluxo correto:
   1. pedido.Confirmar() → adiciona PedidoConfirmado à lista interna
-  2. repositorio.Salvar(pedido) → persiste
+  2. repositório.Salvar(pedido) → persiste
   3. dispatcher.Publicar(pedido.Eventos) → notifica outros contextos
   4. pedido.LimparEventos()
 ```
 
 ### Anti-Padrões
 - Evento no presente: `ConfirmarPedido`, `ProcessarPagamento` — isso é comando, não evento.
-- Evento que referencia objetos complexos mutáveis em vez de dados primitivos/VOs.
+- Evento que referência objetos complexos mutáveis em vez de dados primitivos/VOs.
 - Despachar evento ANTES de persistir (estado inconsistente).
 
 ---

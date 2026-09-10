@@ -40,16 +40,16 @@ echo ""
 echo "📋 REGRA: Projeto de testes DEVE estar em src/[SolutionName].Tests/"
 ```
 
-### **Passo 1.1b: Marcar projetos de infraestrutura para exclusao**
+### **Passo 1.1b: Marcar projetos de infraestrutura para exclusão**
 
-Pergunte ao usuario se a solution tem projeto de infraestrutura sem logica de negocio propria
+Pergunte ao usuário se a solution tem projeto de infraestrutura sem logica de negócio própria
 (wrapper de transporte, adaptador de socket, biblioteca gerada) que deva ficar fora da cobertura
-e da analise. Se houver, ele informa o padrao de nome — referido aqui como `<PADRAO>`.
+e da analise. Se houver, ele informa o padrão de nome — referido aqui como `<PADRAO>`.
 
-Com o padrao em maos:
+Com o padrão em maos:
 
 ```bash
-echo "Buscando projetos de infraestrutura para exclusao..."
+echo "Buscando projetos de infraestrutura para exclusão..."
 INFRA_PROJECTS=$(find . -name "*.csproj" | grep -i "<PADRAO>")
 INFRA_DIRS=$(find . -type d -iname "*<PADRAO>*")
 
@@ -64,17 +64,17 @@ sonar.exclusions=**/<PADRAO>*/**
 sonar.coverage.exclusions=**/<PADRAO>*/**
 sonar.cpd.exclusions=**/<PADRAO>*/**
 EOF
-        echo "sonar-project.properties criado com as exclusoes"
+        echo "sonar-project.properties criado com as exclusões"
     else
-        echo "sonar-project.properties ja existe - conferir se as exclusoes estao presentes:"
-        grep -i "exclusions" sonar-project.properties || echo "Adicionar as exclusoes manualmente"
+        echo "sonar-project.properties já existe - conferir se as exclusões estão presentes:"
+        grep -i "exclusions" sonar-project.properties || echo "Adicionar as exclusões manualmente"
     fi
 else
     echo "Nenhum projeto de infraestrutura a excluir"
 fi
 ```
 
-Sem padrao informado, pule este passo — nao aplique exclusao por conta propria.
+Sem padrão informado, pule este passo — não aplique exclusão por conta própria.
 
 ### **Passo 1.2: Analisar Projetos Principais**
 

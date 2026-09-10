@@ -1,28 +1,28 @@
 ## 🔴 CONFORMIDADE SONARQUBE - LEIA ANTES DE GERAR QUALQUER TESTE
 
-### **Exclusao de projetos de infraestrutura**
+### **Exclusão de projetos de infraestrutura**
 
-Alguma solution tem projeto de infraestrutura sem logica de negocio propria — wrapper de
-transporte, adaptador de socket, biblioteca gerada. Cobrir esse codigo com teste unitario nao
+Alguma solution tem projeto de infraestrutura sem logica de negócio própria — wrapper de
+transporte, adaptador de socket, biblioteca gerada. Cobrir esse código com teste unitário não
 mede nada util e derruba o percentual da solution inteira.
 
-Antes de gerar teste, **pergunte ao usuario** se existe algum projeto assim, e qual o padrao de
-nome. Se ele indicar um padrao — chamado aqui de `<PADRAO>` — aplique a exclusao nos tres lugares
-abaixo. Se nao houver nenhum, siga sem exclusao; nao invente um padrao.
+Antes de gerar teste, **pergunte ao usuário** se existe algum projeto assim, e qual o padrão de
+nome. Se ele indicar um padrão — chamado aqui de `<PADRAO>` — aplique a exclusão nos três lugares
+abaixo. Se não houver nenhum, siga sem exclusão; não invente um padrão.
 
 **Identificar os projetos:**
 ```bash
 find . -name "*.csproj" | grep -i "<PADRAO>" || find . -type d -iname "*<PADRAO>*"
 ```
 
-**Excluir no `sonar-project.properties` (criar na raiz se nao existir):**
+**Excluir no `sonar-project.properties` (criar na raiz se não existir):**
 ```properties
 sonar.exclusions=**/<PADRAO>*/**
 sonar.coverage.exclusions=**/<PADRAO>*/**
 sonar.cpd.exclusions=**/<PADRAO>*/**
 ```
 
-A exclusao equivalente no `.csproj` do projeto de testes esta em
+A exclusão equivalente no `.csproj` do projeto de testes está em
 `references/test-project-setup.md`.
 
 ### **Issues SonarQube a EVITAR nos Testes Gerados**
@@ -277,7 +277,7 @@ private static SqlException CreateSqlException(int errorNumber = 547)
 // ✅ CORRETO - usar objeto real ou nullable explícito
 _mockService
     .Setup(x => x.BuscarActivity(It.IsAny<string>()))
-    .ReturnsAsync(new Activity("operacao-teste"));   // Objeto válido - preferível
+    .ReturnsAsync(new Activity("operação-teste"));   // Objeto válido - preferível
 
 // Se precisar retornar null (apenas para reference types):
 Activity? activityNula = null;

@@ -100,7 +100,7 @@ Aplicar estas práticas em todos os prompts de task gerados:
 - **Instruções negativas antes de positivas:** listar o que NÃO fazer antes do que fazer, evitando correções tardias
 - **Critério binário:** cada checklist deve ter resposta SIM/NÃO, sem ambiguidade
 - **Contexto mínimo suficiente:** o prompt da task deve ter o contexto mínimo para execução correta, não máximo
-- **Sem contexto repetido entre tasks:** cada task referencia apenas o que precisa, não copia o contexto geral
+- **Sem contexto repetido entre tasks:** cada task referência apenas o que precisa, não copia o contexto geral
 - **Artefato de saída explícito:** especificar exatamente o arquivo ou resultado esperado
 
 ---
@@ -120,7 +120,7 @@ Após gerar o plano:
 
 Se o usuário confirmar e pedir para salvar:
 
-- Caminho padrão: `planos/PLAN-[titulo-kebab-case]-[YYYY-MM-DD].md`
+- Caminho padrão: `planos/PLAN-[título-kebab-case]-[YYYY-MM-DD].md`
 - Usar o template completo de `references/plan-structure.md`
 - Confirmar o caminho antes de salvar
 

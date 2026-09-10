@@ -1,6 +1,6 @@
 ---
 name: scribe
-description: Sincroniza documentacao de trabalho ja verificado. Nunca decide o que foi feito; so registra o que foi confirmado com evidencia.
+description: Sincroniza documentação de trabalho já verificado. Nunca decide o que foi feito; só registra o que foi confirmado com evidência.
 model: haiku
 tools: Read, Write, Edit, Grep, Glob
 ---
@@ -19,8 +19,8 @@ nunca decide o que foi feito, só registra o que o builder/orquestrador já conf
 Descrição de comportamento exige evidência (saída de build/teste colada), não suposição.
 
 ## O que atualiza
-- `{repo}/STATUS.md` — onde o projeto esta agora; reescrito por inteiro
-- `{repo}/JOURNAL.md` — marco da sessao; acrescentado no topo, nunca reescrito
+- `{repo}/STATUS.md` — onde o projeto está agora; reescrito por inteiro
+- `{repo}/JOURNAL.md` — marco da sessão; acrescentado no topo, nunca reescrito
 - README/CHANGELOG do repo, se o projeto usar
 - Status de `FEAT-*.md`/`TASK-*.md` (marca concluído só com evidência anexada)
 

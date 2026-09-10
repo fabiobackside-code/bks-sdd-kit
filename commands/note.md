@@ -2,14 +2,14 @@
 description: Escreve ou atualiza uma nota viva em docs/input/notas/ do projeto atual — material bruto para alimentar o /canonize.
 ---
 
-NOTA (versao global): este comando opera sobre docs/input/notas/ do repo do projeto ONDE a
-sessao esta aberta — nao sobre o vault. Se a sessao nao estiver dentro do repo de um projeto
+NOTA (versão global): este comando opera sobre docs/input/notas/ do repo do projeto ONDE a
+sessão está aberta — não sobre o vault. Se a sessão não estiver dentro do repo de um projeto
 (cwd fora de ${BKS_VAULT}/repos/{categoria}/{projeto}), PERGUNTE qual projeto antes de
 agir e resolva os caminhos abaixo contra ${BKS_VAULT}/repos/{categoria}/{projeto}.
 
 `/note <assunto> [--pasta <subpasta>]`
 
-Escreve ou atualiza UMA nota viva em `docs/input/notas/` do projeto atual, no padrao já
+Escreve ou atualiza UMA nota viva em `docs/input/notas/` do projeto atual, no padrão já
 consolidado nos projetos do vault: material bruto do autor para alimentar o `/canonize` —
 nunca decisão fechada. Diferente de `docs/input/research/` (material de terceiros).
 

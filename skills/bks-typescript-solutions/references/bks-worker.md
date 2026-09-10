@@ -61,9 +61,9 @@ graceful shutdown, health check HTTP, integração LLM opcional via SDK nativo.
 │   ├── processors/
 │   │   └── {jobType}.processor.ts          # um processor por job type (VT-W2)
 │   ├── workers/
-│   │   └── {fila}.worker.ts                # instancia Worker do BullMQ/pg-boss para cada fila
+│   │   └── {fila}.worker.ts                # instância Worker do BullMQ/pg-boss para cada fila
 │   ├── queues/
-│   │   └── {fila}.queue.ts                 # instancia Queue/Producer (para enfileirar jobs)
+│   │   └── {fila}.queue.ts                 # instância Queue/Producer (para enfileirar jobs)
 │   ├── modules/
 │   │   └── llm/                            # apenas se VC-2 != Nenhum
 │   │       └── llm.service.ts

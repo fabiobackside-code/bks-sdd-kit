@@ -1,50 +1,50 @@
 # Perfil `backend`
 
-Servidor e dados. API, dominio, persistencia — sem interface.
+Servidor e dados. API, domínio, persistência — sem interface.
 
 ## Gera
 
 - API e contratos
-- dominio, sob arquitetura hexagonal e padrao TXC
+- domínio, sob arquitetura hexagonal e padrão TXC
 - modelo de dados e scripts SQL
-- testes unitarios e de integracao
+- testes unitários e de integração
 - README e ARCHITECTURE
 
-## Nao gera
+## Não gera
 
-Interface, design, mock de tela. Consumidor da API e outro projeto ou outro perfil.
+Interface, design, mock de tela. Consumidor da API é outro projeto ou outro perfil.
 
 ## Fases
 
 | Fase | Produz |
 |---|---|
 | entrada | `docs/input/` |
-| consolidacao | `docs/canonical/CONTEXT.md` |
+| consolidação | `docs/canonical/CONTEXT.md` |
 | produto | `outputs/PRD-{projeto}.md` |
-| modelagem | modelo de dominio e de dados; DDL em `app/db/` |
-| especificacao | `specs/features/`, `specs/tests/`, `specs/tasks/` |
+| modelagem | modelo de domínio e de dados; DDL em `app/db/` |
+| especificação | `specs/features/`, `specs/tests/`, `specs/tasks/` |
 | arquitetura | `outputs/ARCH-{projeto}.md` |
-| implementacao | `app/` — dominio, portas, adapters |
-| revisao | independente |
+| implementação | `app/` — domínio, portas, adapters |
+| revisão | independente |
 | fechamento | `STATUS.md`, `JOURNAL.md` |
 
 ## Eixos
 
-| Eixo | Vale | Padrao |
+| Eixo | Vale | Padrão |
 |---|---|---|
 | `output` | sim | `md` |
 | `architecture_renderer` | sim | `mermaid` |
-| `frontend_target` | nao | — |
-| `rigor` | sim | `producao` |
+| `frontend_target` | não | — |
+| `rigor` | sim | `produção` |
 
 ## Skills
 
 `bks-sdd` · `bks-standards` · `bks-dotnet-solutions` ou `bks-typescript-solutions` · `bks-tests`
 · `bks-arch` · `api-design` · `security-audit`
 
-## O que perguntar na criacao
+## O que perguntar na criação
 
 1. Qual a stack — .NET, TypeScript, outra?
 2. Qual o banco — SQL Server, PostgreSQL, outro?
-3. Ha mensageria — Kafka, RabbitMQ, nenhuma?
-4. Como se autentica — JWT proprio, provedor externo, nenhuma?
+3. Há mensageria — Kafka, RabbitMQ, nenhuma?
+4. Como se autentica — JWT próprio, provedor externo, nenhuma?

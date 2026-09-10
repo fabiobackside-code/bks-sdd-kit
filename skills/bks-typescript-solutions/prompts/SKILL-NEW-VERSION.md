@@ -64,7 +64,7 @@ No bks-api-express.md, adicionar restrição:
 ### Alterar estrutura de pastas gerada
 ```
 No tipo EXPRESS, mover os validators para dentro de cada rota ao invés de arquivo separado.
-Novo caminho: src/routes/{modulo}/{modulo}.routes.ts (validator inline no mesmo arquivo)
+Novo caminho: src/routes/{módulo}/{módulo}.routes.ts (validator inline no mesmo arquivo)
 ```
 
 ### Adicionar feature transversal

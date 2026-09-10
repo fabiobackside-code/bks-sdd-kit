@@ -1,5 +1,5 @@
 ---
-description: Gera ARCH-[projeto].md (visao C4 em Mermaid, bounded contexts, decisoes de pipeline) e o README do repo a partir das specs. Rode na raiz do repo do projeto.
+description: Gera ARCH-[projeto].md (visão C4 em Mermaid, bounded contexts, decisões de pipeline) e o README do repo a partir das specs. Rode na raiz do repo do projeto.
 ---
 
 Rode com o Claude Code aberto na RAIZ DO REPO do projeto. A partir

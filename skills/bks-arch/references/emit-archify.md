@@ -1,15 +1,15 @@
 # Emitir em archify
 
-## Antes de comecar
+## Antes de começar
 
-O `archify` e skill externa e nao vem no kit. Verifique se esta instalada.
+O `archify` e skill externa e não vem no kit. Verifique se está instalada.
 
-**Se nao estiver:** avise em uma linha e gere em Mermaid. Nao falhe, e nao peca ao usuario para
+**Se não estiver:** avise em uma linha e gere em Mermaid. Não falhe, e não peça ao usuário para
 instalar no meio do trabalho.
 
 ## Aplicar a paleta BKS
 
-O `archify` tem estilo proprio. Sem sobrepor as cores, o diagrama sai no estilo dele — nao no seu.
+O `archify` tem estilo próprio. Sem sobrepor as cores, o diagrama sai no estilo dele — não no seu.
 
 Defina a cor de cada no pelo papel semantico:
 
@@ -23,35 +23,35 @@ Defina a cor de cada no pelo papel semantico:
 | externo | `#6B7280` | `#4B5563` | `#FFFFFF` |
 | destaque | `#98CBFF` | `#336698` | `#1A1A1A` |
 
-Tema escuro: os tokens de fundo e texto estao em `paleta.md`. O `archify` suporta os dois temas —
+Tema escuro: os tokens de fundo e texto estão em `paleta.md`. O `archify` suporta os dois temas —
 verifique o contraste nos dois antes de entregar.
 
 ## Linhas
 
-Continua para sincrono, tracejada para assincrono. A convencao e a mesma do Mermaid; muda so a
+Continua para sincrono, tracejada para assincrono. A convenção e a mesma do Mermaid; muda só a
 sintaxe do motor.
 
-## Icones de infraestrutura
+## Ícones de infraestrutura
 
-Use os SVG genericos de `../icons/`. O kit nao distribui marca de terceiro — logo oficial de AWS,
-Azure ou Kafka tem licenca de uso de marca, e redistribuir num pacote MIT criaria um problema que
-nao e nosso.
+Use os SVG genéricos de `../icons/`. O kit não distribui marca de terceiro — logo oficial de AWS,
+Azure ou Kafka tem licença de uso de marca, e redistribuir num pacote MIT criaria um problema que
+não e nosso.
 
-Nos seus proprios diagramas, use o que quiser. A restricao vale para o que o kit distribui.
+Nos seus próprios diagramas, use o que quiser. A restrição vale para o que o kit distribui.
 
 ## Versionamento
 
-O `archify` gera HTML, e um HTML de centenas de kilobytes nao se revisa em diff.
+O `archify` gera HTML, e um HTML de centenas de kilobytes não se revisa em diff.
 
-**Versione o arquivo de entrada** — o JSON ou a descricao que gerou o diagrama. O HTML e saida,
+**Versione o arquivo de entrada** — o JSON ou a descrição que gerou o diagrama. O HTML e saída,
 como binario compilado: vai para `outputs/`, e o `.gitignore` do projeto decide se acompanha o
-repositorio.
+repositório.
 
 ## Quando vale a pena
 
 - infraestrutura com logo e posicionamento controlado
-- entrega para apresentacao ou consulta, nao para revisao em diff
+- entrega para apresentação ou consulta, não para revisão em diff
 - sistema grande, onde navegar por camadas ajuda mais que ver tudo de uma vez
-- reconstrucao de arquitetura de legado, onde explorar importa mais que versionar
+- reconstrução de arquitetura de legado, onde explorar importa mais que versionar
 
-Fora disso, Mermaid entrega o mesmo com menos dependencia.
+Fora disso, Mermaid entrega o mesmo com menos dependência.

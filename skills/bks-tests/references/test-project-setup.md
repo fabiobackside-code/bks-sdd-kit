@@ -211,7 +211,7 @@ Adicionar ao arquivo `src/[SolutionName].Tests/[SolutionName].Tests.csproj`:
     <CollectCoverage>true</CollectCoverage>
     <CoverletOutputFormat>cobertura,json,lcov,opencover</CoverletOutputFormat>
     <CoverletOutput>./TestResults/</CoverletOutput>
-    <!-- Excluir o proprio projeto de testes e, se houver, os projetos de infraestrutura (<PADRAO>) -->
+    <!-- Excluir o próprio projeto de testes e, se houver, os projetos de infraestrutura (<PADRAO>) -->
     <Exclude>[*.Tests]*,[*<PADRAO>*]*</Exclude>
     <ExcludeByAttribute>Obsolete,GeneratedCode,CompilerGenerated,ExcludeFromCodeCoverage</ExcludeByAttribute>
     <ExcludeByFile>**/*.Designer.cs,**/*.g.cs,**/*.g.i.cs,**/<PADRAO>*/**</ExcludeByFile>

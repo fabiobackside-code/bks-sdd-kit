@@ -1,18 +1,18 @@
-# Icones
+# Ícones
 
-SVG genericos para diagramas de infraestrutura. Sem marca de terceiro.
+SVG genéricos para diagramas de infraestrutura. Sem marca de terceiro.
 
-O kit nao distribui logo oficial de AWS, Azure, Kafka ou equivalente: sao marcas registradas, com
-licenca de uso propria, e redistribui-las num pacote MIT criaria um problema que nao e nosso.
+O kit não distribui logo oficial de AWS, Azure, Kafka ou equivalente: são marcas registradas, com
+licença de uso própria, e redistribui-las num pacote MIT criaria um problema que não e nosso.
 
-Estes icones representam a **funcao** — banco, fila, container, balanceador, gateway — e seguem a
+Estes ícones representam a **função** — banco, fila, container, balanceador, gateway — e seguem a
 paleta de `../references/paleta.md`.
 
-Nos seus proprios diagramas, use o logo que quiser. A restricao vale para o que o kit distribui.
+Nos seus próprios diagramas, use o logo que quiser. A restrição vale para o que o kit distribui.
 
-## Convencao
+## Convenção
 
-Um arquivo por funcao, nomeado pelo que representa, nao pelo produto:
+Um arquivo por função, nomeado pelo que representa, não pelo produto:
 
 ```
 database.svg        queue.svg          container.svg
@@ -20,4 +20,4 @@ cache.svg           topic.svg          load-balancer.svg
 object-storage.svg  gateway.svg        scheduler.svg
 ```
 
-`database.svg`, nao `postgres.svg`. O icone diz o papel; o rotulo do no diz o produto.
+`database.svg`, não `postgres.svg`. O icone diz o papel; o rótulo do no diz o produto.

@@ -1,53 +1,53 @@
 # Perfil `infra`
 
-Plataforma e entrega. Infraestrutura como codigo, pipeline, observabilidade.
+Plataforma e entrega. Infraestrutura como código, pipeline, observabilidade.
 
 ## Gera
 
-- infraestrutura como codigo (Terraform, Bicep, manifests)
+- infraestrutura como código (Terraform, Bicep, manifests)
 - pipeline de build e deploy
 - observabilidade: metricas, logs, tracing, alertas
 - politica de acesso e segredo
-- runbook de operacao
+- runbook de operação
 - testes de infraestrutura, onde a ferramenta permitir
 
-## Nao gera
+## Não gera
 
-Aplicacao. Este perfil entrega a plataforma onde outra coisa roda.
+Aplicação. Este perfil entrega a plataforma onde outra coisa roda.
 
 ## Fases
 
 | Fase | Produz |
 |---|---|
-| entrada | `docs/input/` — requisitos de plataforma, restricoes, custo |
-| consolidacao | `docs/canonical/CONTEXT.md` |
+| entrada | `docs/input/` — requisitos de plataforma, restrições, custo |
+| consolidação | `docs/canonical/CONTEXT.md` |
 | topologia | `outputs/ARCH-{projeto}.md` — ambientes, rede, fronteiras |
-| especificacao | `specs/features/`, `specs/tests/` |
-| implementacao | `app/` — IaC e pipeline |
+| especificação | `specs/features/`, `specs/tests/` |
+| implementação | `app/` — IaC e pipeline |
 | observabilidade | dashboards, alertas, SLO |
 | runbook | `outputs/RUNBOOK-{projeto}.md` |
-| revisao | independente, com foco em acesso e exposicao |
+| revisão | independente, com foco em acesso e exposição |
 | fechamento | `STATUS.md`, `JOURNAL.md` |
 
-A topologia vem antes do codigo. IaC escrito sem topologia decidida vira recurso orfao.
+A topologia vem antes do código. IaC escrito sem topologia decidida vira recurso órfão.
 
 ## Eixos
 
-| Eixo | Vale | Padrao |
+| Eixo | Vale | Padrão |
 |---|---|---|
 | `output` | sim | `md` |
 | `architecture_renderer` | sim | `mermaid` |
-| `frontend_target` | nao | — |
-| `rigor` | sim | `producao` |
+| `frontend_target` | não | — |
+| `rigor` | sim | `produção` |
 
 ## Skills
 
 `bks-sdd` · `bks-arch` · `security-audit` · `bks-standards`
 
-## O que perguntar na criacao
+## O que perguntar na criação
 
 1. Onde roda — qual nuvem, ou on-premise?
-2. Quais ambientes — desenvolvimento, homologacao, producao?
+2. Quais ambientes — desenvolvimento, homologação, produção?
 3. Kubernetes, serverless, maquina virtual?
-4. Ha politica de seguranca ou conformidade a atender?
+4. Há politica de segurança ou conformidade a atender?
 5. Quem opera depois de entregue?

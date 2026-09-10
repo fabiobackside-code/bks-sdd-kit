@@ -145,7 +145,7 @@ Especificar o formato do artefato esperado reduz iterações de correção.
 ```
 
 ### 4. Sem contexto repetido entre tasks
-Cada task referencia apenas o que precisa. O contexto geral do projeto não é copiado de task para task.
+Cada task referência apenas o que precisa. O contexto geral do projeto não é copiado de task para task.
 
 ### 5. Critério de parada explícito
 Toda task termina com: *"Ao concluir, mostre o artefato gerado e aguarde instrução."*

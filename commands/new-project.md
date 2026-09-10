@@ -1,37 +1,37 @@
 ---
-description: Cria um projeto novo com a estrutura canonica e o perfil escolhido. Unico ponto de entrada para comecar um projeto. Roda na raiz do vault.
+description: Cria um projeto novo com a estrutura canônica e o perfil escolhido. Único ponto de entrada para começar um projeto. Roda na raiz do vault.
 ---
 
-Crie um projeto novo. Rode com a sessao aberta na **raiz do vault** — o diretorio que contem
+Crie um projeto novo. Rode com a sessão aberta na **raiz do vault** — o diretório que contém
 `repos/`.
 
-Se `BKS_VAULT` estiver definido e o diretorio atual for outro, diga qual voce vai usar antes de
+Se `BKS_VAULT` estiver definido e o diretório atual for outro, diga qual você vai usar antes de
 criar qualquer coisa.
 
 ## Passo 1 — o que perguntar
 
-Colete, numa unica rodada de perguntas:
+Colete, numa única rodada de perguntas:
 
-1. **Nome** do projeto — vira o diretorio, em kebab-case
-2. **Categoria** — as que existem em `repos/`; se o usuario disser uma que nao existe, confirme
+1. **Nome** do projeto — vira o diretório, em kebab-case
+2. **Categoria** — as que existem em `repos/`; se o usuário disser uma que não existe, confirme
    antes de criar a pasta
 3. **Perfil** — o que o projeto gera
 
-Apresente os perfis com uma linha cada, para o usuario poder escolher:
+Apresente os perfis com uma linha cada, para o usuário poder escolher:
 
 | Perfil | Gera |
 |---|---|
-| `docs` | escopo, arquitetura, apresentacao — sem codigo |
+| `docs` | escopo, arquitetura, apresentação — sem código |
 | `fullstack` | projeto completo faseado: docs, design, front, back, banco, infra |
-| `frontend` | design, mocks, componentes, integracao |
-| `backend` | API, dominio, persistencia, scripts |
+| `frontend` | design, mocks, componentes, integração |
+| `backend` | API, domínio, persistência, scripts |
 | `component` | biblioteca, SDK, pacote |
 | `infra` | IaC, pipeline, observabilidade |
 | `data` | ETL, modelagem, BI |
-| `legacy-docs` | documentar um legado, sem altera-lo |
+| `legacy-docs` | documentar um legado, sem alterá-lo |
 | `reengineering` | documentar e reescrever um legado |
 
-A lista canonica esta em `${CLAUDE_PLUGIN_ROOT}/profiles/`. Leia o diretorio — nao confie nesta
+A lista canônica está em `${CLAUDE_PLUGIN_ROOT}/profiles/`. Leia o diretório — não confie nesta
 tabela se ela divergir dos arquivos.
 
 ## Passo 2 — os eixos
@@ -41,21 +41,21 @@ perguntar.
 
 Pergunte apenas os eixos que o perfil usa:
 
-| Eixo | Valores | Padrao |
+| Eixo | Valores | Padrão |
 |---|---|---|
 | `output` | `md`, `html` | `md` |
 | `architecture_renderer` | ver `profiles/architecture-renderers/` | `mermaid` |
-| `frontend_target` | `web`, `mobile`, `both` | `web` — so em `frontend` e `fullstack` |
-| `rigor` | `producao`, `poc` | `producao` |
+| `frontend_target` | `web`, `mobile`, `both` | `web` — só em `frontend` e `fullstack` |
+| `rigor` | `produção`, `poc` | `produção` |
 
-Mais as perguntas especificas que o arquivo do perfil lista em "O que perguntar na criacao".
+Mais as perguntas específicas que o arquivo do perfil lista em "O que perguntar na criação".
 
-**Nao pergunte o que o perfil nao usa.** Um projeto `docs` nao ouve pergunta sobre banco de dados,
-e um `component` nao ouve pergunta sobre alvo de frontend.
+**Não pergunte o que o perfil não usa.** Um projeto `docs` não ouve pergunta sobre banco de dados,
+e um `component` não ouve pergunta sobre alvo de frontend.
 
 ## Passo 3 — confirmar
 
-Mostre o que vai ser criado — caminho, perfil, eixos — e espere. Nao crie nada antes do aceite.
+Mostre o que vai ser criado — caminho, perfil, eixos — e espere. Não crie nada antes do aceite.
 
 ## Passo 4 — criar
 
@@ -73,47 +73,47 @@ Copie `${CLAUDE_PLUGIN_ROOT}/templates/project-skeleton/` para
     "output": "md",
     "architecture_renderer": "mermaid",
     "frontend_target": null,
-    "rigor": "producao"
+    "rigor": "produção"
   }
 }
 ```
 
 Acrescente `stack` e `architecture_template` quando a conversa os tiver definido.
 
-**`STATUS.md`** — o estado inicial. Fase: levantamento. Proximo passo: a primeira acao concreta do
-perfil escolhido, que costuma ser `/note` ou reunir o material de entrada. Nao escreva "definir o
-projeto" — isso nao e acao.
+**`STATUS.md`** — o estado inicial. Fase: levantamento. Próximo passo: a primeira ação concreta do
+perfil escolhido, que costuma ser `/note` ou reunir o material de entrada. Não escreva "definir o
+projeto" — isso não é ação.
 
-**`WORKFLOW.md`** — a partir das fases do perfil. Remova as secoes de fases que o perfil nao usa.
+**`WORKFLOW.md`** — a partir das fases do perfil. Remova as seções de fases que o perfil não usa.
 
 **`JOURNAL.md`** — uma entrada: a data de hoje, "Projeto criado", perfil e escopo inicial em duas
 linhas.
 
 **`README.md`** — do template `PROJECT-README.md`, resolvido nesta ordem:
-`${BKS_VAULT}/workbench/templates/`, senao `${CLAUDE_PLUGIN_ROOT}/templates/`.
+`${BKS_VAULT}/workbench/templates/`, senão `${CLAUDE_PLUGIN_ROOT}/templates/`.
 
-**`CLAUDE.md`** — do template `REPO-CLAUDE.md`, mesma precedencia. Declare as skills que o perfil
+**`CLAUDE.md`** — do template `REPO-CLAUDE.md`, mesma precedência. Declare as skills que o perfil
 carrega e aponte `brain/domain/` e `brain/engineering/`.
 
 **`git init`** — todo projeto nasce versionado. Primeiro commit com a estrutura.
 
 ## Passo 5 — informar
 
-Em ate cinco linhas: onde foi criado, qual perfil, e o primeiro comando a rodar.
+Em até cinco linhas: onde foi criado, qual perfil, e o primeiro comando a rodar.
 
-Diga que o trabalho acontece com a sessao aberta **na pasta do projeto**, nao aqui. Os comandos de
-projeto escrevem onde a sessao esta; rodar da raiz gravaria no lugar errado.
+Diga que o trabalho acontece com a sessão aberta **na pasta do projeto**, não aqui. Os comandos de
+projeto escrevem onde a sessão está; rodar da raiz gravaria no lugar errado.
 
-Nao ofereca continuar o trabalho do projeto a partir do vault.
+Não ofereça continuar o trabalho do projeto a partir do vault.
 
 ## Regras
 
-**Um projeto por vez.** Se o usuario pedir varios, crie o primeiro e pergunte se segue.
+**Um projeto por vez.** Se o usuário pedir vários, crie o primeiro e pergunte se segue.
 
-**Nome que ja existe nao e sobrescrito.** Avise e pergunte se e para usar outro nome ou abrir o
+**Nome que já existe não é sobrescrito.** Avise e pergunte se é para usar outro nome ou abrir o
 que existe.
 
-**Perfil errado custa caro depois.** Se a descricao do usuario nao casar com o perfil que ele
-escolheu, diga em uma linha antes de criar. A escolha e dele; o alerta e seu.
+**Perfil errado custa caro depois.** Se a descrição do usuário não casar com o perfil que ele
+escolheu, diga em uma linha antes de criar. A escolha é dele; o alerta é seu.
 
-Responda em portugues do Brasil.
+Responda em português do Brasil.

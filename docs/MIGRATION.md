@@ -1,15 +1,15 @@
-# Migracao — de instalacao solta para o plugin
+# Migração — de instalação solta para o plugin
 
-## Situacao anterior
+## Situação anterior
 
-As pecas do kit viviam em tres lugares:
+As peças do kit viviam em três lugares:
 
 - skills em `~/.claude/skills/bks-*`
 - comandos em `~/.claude/commands/`, com cinco deles duplicados byte-a-byte no `.claude/commands/`
   do vault
-- agentes em `brain/_bks-ai/agents/`, invocados por caminho — invisiveis ao seletor de subagentes
+- agentes em `brain/_bks-ai/agents/`, invocados por caminho — invisíveis ao seletor de subagentes
 
-Nenhum dos tres era versionado. Editar um comando deixava a copia gemea desatualizada em silencio.
+Nenhum dos três era versionado. Editar um comando deixava a copia gemea desatualizada em silencio.
 
 ## Depois
 
@@ -40,7 +40,7 @@ Em `~/.claude/settings.json`, no bloco `env`:
 
 ### 3. Remover as copias antigas
 
-Faca backup antes — estas pastas nao estavam versionadas.
+Faca backup antes — estas pastas não estavam versionadas.
 
 ```
 # skills globais
@@ -59,20 +59,20 @@ Faca backup antes — estas pastas nao estavam versionadas.
 <vault>/.claude/commands/{brain,canonize,new-project,prd,review}.md
 ```
 
-Skills que nao fazem parte do kit — as especificas de um cliente ou motor proprietario —
+Skills que não fazem parte do kit — as específicas de um cliente ou motor proprietario —
 permanecem locais em `~/.claude/skills/`.
 
 ### 3b. Saber o que muda no dia a dia
 
-O plugin traz guardas que **recusam escrita** em `.cs`, coisa que a instalacao anterior nao tinha:
+O plugin traz guardas que **recusam escrita** em `.cs`, coisa que a instalação anterior não tinha:
 
-- codigo com `MediatR` ou dispatcher equivalente e recusado
+- código com `MediatR` ou dispatcher equivalente e recusado
 - bloco de comentario acima de cinco linhas, ou com marca de severidade, e recusado
-- arquivo que declara tipo publico e recusado enquanto `README.md` e `ARCHITECTURE.md` nao
-  estiverem entre as mudancas pendentes do repositorio
+- arquivo que declara tipo público e recusado enquanto `README.md` e `ARCHITECTURE.md` não
+  estiverem entre as mudanças pendentes do repositório
 
-Em repositorio legado isso aparece na primeira edicao. Se a intencao for migrar aos poucos, o
-caminho e desabilitar o hook em `settings.json` do projeto ate a base estar em conformidade — nao
+Em repositório legado isso aparece na primeira edição. Se a intenção for migrar aos poucos, o
+caminho e desabilitar o hook em `settings.json` do projeto até a base estar em conformidade — não
 contornar a regra arquivo a arquivo.
 
 Os guardas exigem `python` no PATH.

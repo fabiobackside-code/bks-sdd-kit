@@ -2,8 +2,8 @@
 renderer: {{nome}}
 tipo: {{nativo | skill-externa | template | template-documental}}
 skill: {{nome da skill, se externa}}
-licenca: {{se externa}}
-padrao: false
+licença: {{se externa}}
+padrão: false
 fallback: mermaid
 ---
 
@@ -13,15 +13,15 @@ fallback: mermaid
 
 ## Dependencia
 
-{{Se for skill externa: o que precisa estar instalado, e o que fazer quando nao esta. Se for
-nativo ou template: diga que nao ha dependencia.}}
+{{Se for skill externa: o que precisa estar instalado, e o que fazer quando não está. Se for
+nativo ou template: diga que não há dependência.}}
 
 ## Quando e a escolha certa
 
-{{Tres a cinco situacoes concretas. Nao "quando voce quer um diagrama bonito" — quando o formato
-resolve um problema que os outros nao resolvem.}}
+{{Três a cinco situações concretas. Não "quando você quer um diagrama bonito" — quando o formato
+resolve um problema que os outros não resolvem.}}
 
-## O que suporta da notacao BKS
+## O que suporta da notação BKS
 
 | Elemento | Suporta |
 |---|---|
@@ -29,12 +29,12 @@ resolve um problema que os outros nao resolvem.}}
 | linha continua e pontilhada | |
 | agrupamento por fronteira | |
 | logo de empresa | |
-| controle fino de posicao | |
+| controle fino de posição | |
 
-## Como aplicar a notacao
+## Como aplicar a notação
 
-{{Como os tokens de skills/bks-arch/paleta.md entram neste renderer. Codigo, nao descricao.}}
+{{Como os tokens de skills/bks-arch/paleta.md entram neste renderer. Código, não descrição.}}
 
 ## Limite honesto
 
-{{O que este renderer nao faz bem. Sem isso, quem escolhe descobre tarde.}}
+{{O que este renderer não faz bem. Sem isso, quem escolhe descobre tarde.}}

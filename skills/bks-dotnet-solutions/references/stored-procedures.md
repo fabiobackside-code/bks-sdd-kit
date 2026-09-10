@@ -69,7 +69,7 @@ public async Task<TResponse> ExecuteAsync(TInput input, CancellationToken ct)
 - `size: -1` em parâmetros `varchar(max)` de saída — nunca omitir
 - Validar `mensagem_out` antes de desserializar
 - `JsonSerializerOptions` configurado na DI com `CamelCase` e `IgnoreNullValues` — **nunca** instanciar por chamada (alocação desnecessária)
-- Se o contrato da SP inclui envelope de status (`codigo`/`mensagem`), desserializar para tipo intermediário de erro antes de mapear
+- Se o contrato da SP inclui envelope de status (`código`/`mensagem`), desserializar para tipo intermediário de erro antes de mapear
 
 ---
 

@@ -2,23 +2,23 @@
 
 Registro extensivel. Cada arquivo declara um jeito de desenhar diagrama.
 
-**Adicionar** e criar um arquivo. **Substituir** e trocar o conteudo de um. Nenhuma skill do kit
-tem renderer embutido — todas leem este diretorio.
+**Adicionar** e criar um arquivo. **Substituir** e trocar o conteúdo de um. Nenhuma skill do kit
+tem renderer embutido — todas leem este diretório.
 
-A notacao — paleta, semantica de cor, convencao de linha — e a mesma para todos, e vive em
-`skills/bks-arch/`. O renderer decide **como desenhar**; a notacao decide **o que cada cor e cada
+A notação — paleta, semantica de cor, convenção de linha — e a mesma para todos, e vive em
+`skills/bks-arch/`. O renderer decide **como desenhar**; a notação decide **o que cada cor e cada
 linha significam**.
 
 ## Disponiveis
 
-| Renderer | Tipo | Notacao | Logo de infra |
+| Renderer | Tipo | Notação | Logo de infra |
 |---|---|---|---|
-| [`mermaid`](mermaid.md) | nativo | completa | nao |
+| [`mermaid`](mermaid.md) | nativo | completa | não |
 | [`archify`](archify.md) | skill externa | completa | sim |
-| [`c4`](c4.md) | template + mermaid | completa | nao |
-| [`togaf`](togaf.md) | template documental | parcial | nao |
+| [`c4`](c4.md) | template + mermaid | completa | não |
+| [`togaf`](togaf.md) | template documental | parcial | não |
 
-`mermaid` e o padrao: nativo, versionavel em texto, sem dependencia.
+`mermaid` e o padrão: nativo, versionavel em texto, sem dependência.
 
 ## Formato
 

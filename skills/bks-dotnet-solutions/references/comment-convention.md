@@ -44,7 +44,7 @@ Comentário que explica código que **não está ali**. Nenhum leitor infere do 
 escrito. Teto de 2 linhas.
 
 ```csharp
-// Nao rebusca em kid desconhecido: viraria DoS contra o proprio IdP [E4].
+// Não rebusca em kid desconhecido: viraria DoS contra o próprio IdP [E4].
 return Reject("kid: chave desconhecida");
 ```
 

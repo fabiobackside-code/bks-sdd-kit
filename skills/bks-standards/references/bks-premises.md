@@ -21,7 +21,7 @@ só entra quando paga o próprio preço. Refatorar código simples com IA é mai
 barato que navegar abstração que tentou adivinhar o futuro (YAGNI).
 
 ## Padrão-base: Hexagonal + Pipeline + TXC + Result
-- **Hexagonal real, não ritualística:** domínio referencia só `System.*`;
+- **Hexagonal real, não ritualística:** domínio referência só `System.*`;
   infra entra por Porta. Sem camadas/arquivos que não carregam valor.
 - **TXC (Transaction Context):** estado transacional em um `record` imutável
   que flui pela pipeline; a aplicação lê, não muta. Conceito geral em
@@ -89,7 +89,7 @@ Comentário no código é exceção, não regra: resumo de 1 linha em classe/mé
 (`/// <summary>`, JSDoc, docstring) — nunca bloco explicando decisão ou histórico. Decisão
 arquitetural, trade-off e dicionário de classes/funções vivem em `README.md` (visão geral)
 e `ARCHITECTURE.md` (dicionário técnico + ADRs), gerados/atualizados a cada tarefa de
-código — com ou sem bks-sdd. Detalhe em `documentacao.md`.
+código — com ou sem bks-sdd. Detalhe em `documentação.md`.
 
 ## Antes de gerar
 Rodar a entrevista da skill BKS aplicável; consultar a wiki e CITAR a página;
