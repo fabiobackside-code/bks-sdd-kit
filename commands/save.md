@@ -15,6 +15,7 @@ Se não houver `STATUS.md` na raiz, pergunte se é para criar a partir do templa
 | Spec nova ou alterada | `specs/features/`, `specs/tests/`, `specs/tasks/` |
 | Onde o projeto parou | `STATUS.md` — reescrito |
 | Marco da sessão | `JOURNAL.md` — acrescentado no topo |
+| Canônico defasado pela spec ou pelo ADR | `STATUS.md` — seção do que trava, para o `/canonize` |
 | Entregável gerado | `outputs/` |
 | Conhecimento de domínio que surgiu | `brain/domain/` |
 | Padrão técnico que se firmou | `brain/engineering/` |
@@ -36,6 +37,11 @@ Sessão que não produziu nada não vira entrada — não invente marco para jus
 **ADR só para decisão fechada.** Discussão em aberto fica no `STATUS.md`, na seção do que trava.
 Um ADR que registra hesitação polui o log de decisões.
 
+**Spec aprovada envelhece o canônico.** O `docs/canonical/CONTEXT.md` foi consolidado antes da
+spec existir; decisão fechada depois dele não chega lá sozinha. O `/save` acusa a defasagem, não
+a corrige — quem reconsolida é o `/canonize`, em sessão que possa responder às perguntas que ele
+levanta.
+
 ## Passos
 
 1. **Levante o que mudou.** `git status` e `git diff --stat`, mais o que a sessão decidiu sem
@@ -44,13 +50,33 @@ Um ADR que registra hesitação polui o log de decisões.
 2. **Classifique** cada item pela tabela acima. Item que não se encaixa: pergunte, não invente
    destino.
 
-3. **Escreva os arquivos.** ADR numerado em sequência a partir do maior existente. Spec no formato
-   do kit. `STATUS.md` reescrito por inteiro.
+3. **Escreva as decisões e as specs.** ADR numerado em sequência a partir do maior existente.
+   Spec no formato do kit. O `STATUS.md` ainda não — ele fecha no passo 5, depois da verificação
+   do canônico.
 
-4. **Acrescente ao `JOURNAL.md`** uma entrada: data, título curto do marco, duas a quatro linhas
+4. **Verifique o canônico.** Só se existir `docs/canonical/CONTEXT.md` — sem ele o projeto não
+   usa o fluxo canônico e não há nada a alertar. Rode a verificação **depois** de gravar as specs
+   e os ADRs do passo 3, senão o que esta sessão acabou de decidir não entra na conta:
+
+   ```
+   find specs decisions -name '*.md' -newer docs/canonical/CONTEXT.md
+   ```
+
+   Lista vazia: siga em frente sem comentar. Lista com arquivos: o canônico está defasado — leve
+   para o passo 5 uma linha nomeando a versão atual do canônico e os arquivos mais novos que ele.
+
+   Não rode `/canonize` e não escreva nota de síntese em `docs/input/` para compensar — o
+   `/canonize` lê `specs/` e `decisions/` direto, e nota intermediária só afasta a afirmação da
+   fonte.
+
+5. **Reescreva o `STATUS.md` por inteiro.** Se o passo 4 acusou defasagem, a linha entra na seção
+   do que trava, com o `/canonize` como quem destrava.
+
+6. **Acrescente ao `JOURNAL.md`** uma entrada: data, título curto do marco, duas a quatro linhas
    do que mudou e do que isso libera ou trava.
 
-5. **Confirme em até cinco linhas** o que foi gravado e onde. Uma linha por arquivo. Não repita o
-   conteúdo que acabou de escrever.
+7. **Confirme em até cinco linhas** o que foi gravado e onde. Uma linha por arquivo. Não repita o
+   conteúdo que acabou de escrever. Se o canônico estiver defasado, feche com a instrução de rodar
+   `/canonize`.
 
 Responda em português do Brasil.
