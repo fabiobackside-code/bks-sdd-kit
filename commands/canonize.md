@@ -20,10 +20,20 @@ Faça, nesta ordem:
    .txt, .html; para PDF/docx, extraia o texto). NÃO leia brain/ (domínio do produto e
    padrões técnicos, não escopo/contexto) nem app/ (isso é código/experimento).
 
+   Leia também specs/features/, specs/tests/ e decisions/, se existirem. Spec aprovada e ADR
+   fechado são fonte canônica tanto quanto entrevista — depois da primeira entrega, são a parte
+   mais atual do que o projeto decidiu. Trate cada um como fonte citável
+   (ex.: "[decisions/ADR-004.md]"), não como material bruto a reinterpretar.
+
 2. Monte um rascunho de docs/canonical/CONTEXT.md com, no mínimo, estas seções: Propósito do
    produto, Usuários/personas, Escopo (dentro/fora), Decisões já fixadas (com a fonte), Lacunas
    e perguntas em aberto, Glossário. Cite a fonte de cada afirmação relevante (ex.:
    "[docs/input/interviews/entrevista-01.md]").
+
+   Em "Decisões já fixadas", o que vem de decisions/ e specs/ tem precedência sobre o material de
+   docs/input/. Onde os dois se contradizem, a decisão fechada venceu a intenção original — não é
+   divergência a marcar como incerta. Registre a mudança sob "## O que mudou desde v{N}", com as
+   duas fontes.
 
 3. Onde o material diverge ou é ambíguo, NÃO decida sozinho — marque
    `> [!uncertain] <pergunta objetiva>` no lugar e liste todas essas perguntas no fim, sob
@@ -39,7 +49,7 @@ Faça, nesta ordem:
    version: N
    status: rascunho | revisado
    atualizado: YYYY-MM-DD
-   fontes: [lista dos arquivos de docs/input/ e docs/design/ usados]
+   fontes: [lista dos arquivos de docs/input/, docs/design/, specs/ e decisions/ usados]
    ---
 
 6. Registre o critério usado nesta consolidação em docs/prompts/prompt-canonize-{YYYY-MM-DD}.md
