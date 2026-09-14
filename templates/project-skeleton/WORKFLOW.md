@@ -33,6 +33,11 @@ Material de terceiros (artigo, entrevista, norma) vai para `docs/input/research/
 
 Rode quando as notas pararem de mudar, não antes.
 
+O comando é re-executável e versionado: a cada rodada a versão anterior vai para `docs/history/`
+e o `CONTEXT.md` novo abre com o que mudou. Depois da fase 4, ele passa a ler também `specs/` e
+`decisions/` — spec aprovada e ADR fechado são a parte mais atual do que o projeto decidiu, e o
+canônico que os ignora alimenta o `/prd` seguinte com informação vencida.
+
 ### 3 · Produto
 
 `/prd` — do `CONTEXT.md` sai o PRD. O que o produto é, para quem, e o que conta como pronto.
@@ -70,6 +75,11 @@ própria segurança.
 | Onde o projeto parou | `STATUS.md` |
 | Marco da sessão | `JOURNAL.md` |
 | Entregável | `outputs/` |
+
+Antes de fechar o `STATUS.md`, o `/save` compara a data do `CONTEXT.md` com a de `specs/` e
+`decisions/`. Se o canônico ficou para trás, a pendência entra na seção do que trava — quem
+destrava é o `/canonize`, na fase 2, numa sessão que possa responder às perguntas que ele levanta.
+É aqui que o ciclo deixa de ser linear.
 
 ---
 

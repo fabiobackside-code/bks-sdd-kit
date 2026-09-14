@@ -156,6 +156,43 @@ alguém gastar crédito para descobrir.
 Os nomes dos graders são derivados do critério — `sem-mediatr`, `verifica-propriedade` — e não
 posicionais. O relatório do CLI os imprime a cada run, e `g1 falhou` não diz o que quebrou.
 
+### O canônico é realimentado pela spec, e a divergência é detectada no `/save`
+
+O fluxo documental do kit foi desenhado em mão única: `/canonize` consolida `docs/input/` e
+`docs/design/` em `docs/canonical/CONTEXT.md`, o `/prd` transforma isso em requisito e o `/spec`
+em FEAT e TEST. Na prática o sentido se inverte depois da primeira entrega: a FEAT aprovada e o
+ADR fechado passam a ser a verdade do projeto, e o canônico envelhece sem que nada sinalize.
+
+A correção tem duas metades, e cada uma resolve um problema diferente.
+
+O `/canonize` passou a ler `specs/` e `decisions/` como fonte, ao lado de `docs/input/` e
+`docs/design/`. Sem isso, reconsolidar não recupera o que foi aprovado — o comando releria o
+mesmo material de pesquisa e produziria a mesma versão. A alternativa considerada era uma nota
+ponte em `docs/input/notas/`, escrita por quem fechasse a sessão: foi descartada porque a nota é
+síntese de segunda mão, e o comando proíbe promover ao canônico o que não tem fonte. Spec
+aprovada já é fonte, com caminho e data — não precisa de intermediário.
+
+O `/save` detecta a divergência por data de modificação: arquivo em `specs/` ou `decisions/` mais
+recente que o `CONTEXT.md` significa canônico defasado. O alerta vai para a seção do que trava no
+`STATUS.md`, não só para o relatório da sessão, porque é o `STATUS.md` que o `/brain` lê na sessão
+seguinte — aviso que morre no fim da sessão não é aviso, é ruído.
+
+O `/save` não roda `/canonize` sozinho, e esse limite é deliberado. O `/canonize` pergunta quando
+encontra ambiguidade, e travar o fechamento de sessão numa pergunta de consolidação troca um
+débito visível por uma sessão que não fecha. Projeto sem `docs/canonical/CONTEXT.md` não recebe
+alerta nenhum: nem todo projeto usa o fluxo canônico, e alertar sobre ausência de um arquivo
+opcional treina o leitor a ignorar o aviso.
+
+A revisão foi considerada como lugar da detecção e descartada. O `/review` dispensa mudança que
+não toca área sensível — documentação, justamente — e o agente `reviewer` é read-only, em
+invocação separada, sem o estado da sessão que aprovou a FEAT. Divergência de canônico também não
+é achado de segurança em `arquivo:linha`, e diluir o contrato do agente enfraquece o que ele já
+faz bem.
+
+A detecção por `mtime` é grosseira de propósito — acusa divergência quando a spec mudou só de
+formatação. O falso positivo custa uma reconsolidação; o falso negativo custa um canônico errado
+alimentando o próximo `/prd`.
+
 ## Consumidores
 
 O kit foi extraido de um vault em uso. Os projetos que o consomem continuam sendo a fonte de
