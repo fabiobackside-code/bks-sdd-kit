@@ -133,7 +133,7 @@ def test_commands():
 
     readme = read('README.md')
     # o README cita o comando namespaceado (`/bks:save`); ver docs/ARCHITECTURE.md
-    documented = set(re.findall(r'\|\s*`/(?:bks:)?([a-z-]+)`\s*\|', readme))
+    documented = set(re.findall(r'\|\s*`/bks:([a-z-]+)`\s*\|', readme))
     present = set(os.path.splitext(f)[0] for f in files)
 
     check('todo comando documentado existe', documented <= present,
