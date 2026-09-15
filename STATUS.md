@@ -10,9 +10,9 @@
 ## Em uma frase
 
 Os onze comandos deixaram de existir em duas cópias: a instalação global morreu e o plugin é a
-única origem. O `/save` unificado — ciclo do canônico mais medição de consumo — está escrito e não
-exercitado, e o plugin instalado ainda é o `0.2.1`, anterior a ele. A medição de eval segue parada
-esperando crédito.
+única origem. O `/save` unificado está instalado como `0.3.0` e rodou pela primeira vez, aqui, pelo
+caminho do silêncio — o comando certo, desta vez. Falta o caminho do alerta. A medição de eval
+segue parada esperando crédito.
 
 ---
 
@@ -28,20 +28,22 @@ casos com o delta `with` × `without` medido.
 
 | Bloqueio | Espera | Quem destrava |
 |---|---|---|
-| Testar o `/save` unificado, nos dois caminhos | reinstalar o plugin e árvore limpa no alvo | Fabio |
-| Publicar a versão nova do kit | revisão desta sessão | Fabio |
+| Testar o `/save` 0.3.0 no caminho do alerta | árvore limpa no `dash-scheduller` | Fabio |
+| Empurrar os 15 commits da `main` | aval do Fabio | Fabio |
 | Baseline dos 18 casos de eval | saldo de crédito da conta | Fabio |
 | Caso de eval para Go | a baseline acima | — |
 | Adelgaçar o `bks-sdd` (2062 linhas) | a baseline acima | — |
 | Publicar o repositório | aval do Fabio | Fabio |
 
-A validação registrada mais cedo nesta data não vale: rodou a cópia global do `/save`, que não tem
-a verificação do canônico. O silêncio observado não provava nada. O `JOURNAL.md` traz a retificação
-na entrada do dia.
+O `/save` de `0.3.0` rodou nesta sessão, depois do `claude plugin update`, e o passo 4 ficou em
+silêncio como previsto: não existe `docs/canonical/CONTEXT.md` aqui, e nenhuma linha de defasagem
+foi acrescentada. Desta vez o comando exercitado é o certo — o prompt trouxe os passos 4 e 7, que
+só a `0.3.0` tem. O falso positivo mais caro, alertar projeto sem canônico, está descartado por
+execução.
 
-Os dois caminhos seguem sem teste, e agora o comando a testar é outro — o unificado, que junta o
-ciclo do canônico à medição de consumo. Testá-lo exige reinstalar o plugin: a cópia em cache é a
-`0.2.1`, anterior a estas mudanças.
+Falta o caminho do alerta: o `dash-scheduller`, com a árvore dele limpa antes. O `/save` reescreve
+o `STATUS.md` por inteiro, e rodar sobre trabalho inacabado misturaria a classificação dele com a
+do teste.
 
 O alvo escolhido foi o `dash-scheduller`, e ele estava com dez arquivos modificados sem commit,
 incluindo o próprio `STATUS.md` e o `CONTEXT.md`. O `/save` reescreve o `STATUS.md` por inteiro —
@@ -62,12 +64,13 @@ validada em uso sem rede de teste é aposta.
 
 ## Próximo passo
 
-Subir a versão do kit e reinstalar o plugin — sem isso a sessão seguinte continua rodando o
-`0.2.1`, que é o erro que esta sessão diagnosticou.
+O caminho do alerta, no `dash-scheduller`. Commitar ou descartar os dez arquivos modificados dele
+primeiro. O esperado é uma linha na seção do que trava nomeando o `CONTEXT.md` v6 e os dois ADRs
+mais novos que ele.
 
-Depois, testar o `/save` unificado nos dois caminhos: aqui, onde não há canônico e ele deve calar;
-e no `dash-scheduller`, onde há defasagem e ele deve falar. A árvore do `dash-scheduller` precisa
-estar limpa antes — o `/save` reescreve o `STATUS.md` por inteiro.
+Decidir se os comandos passam a responder sem prefixo. Hoje são `bks-sdd-kit:save` e afins, porque
+o frontmatter não traz `name:`. Acrescentá-lo aos onze devolveria `/save` puro — muda o contrato de
+nome de todos, e não foi decidido.
 
 Decidir o que fazer com a citação a `agents/INSTALL-AGENTS.md` e `agents/USE-AGENTS-STEPBYSTEP.md`
 no `bks-sdd`: pipeline Node.js externo que nunca foi versionado aqui. Está marcado como exceção
@@ -140,7 +143,7 @@ próprio contexto.
 - `bks-sdd` com 2062 linhas num `SKILL.md` único — o adelgaçamento está planejado, não iniciado
 - O repositório não tem `brain/domain/` nem `brain/engineering/`; o conhecimento está todo em
   `docs/ARCHITECTURE.md` e nas próprias skills
-- O `/save` unificado não foi exercitado em nenhum caminho; o plugin em cache é anterior a ele
+- O `/save` de `0.3.0` foi exercitado só no caminho do silêncio; o do alerta segue sem prova
 - `skills/bks-sdd/SKILL.md` cita dois arquivos de um pipeline Node.js que não existe no repositório,
   marcados como exceção conhecida em `tests/test_structure.py`
 - A regra nova não tem guarda executável, e o kit exige que tenha. A guarda cairia no projeto
@@ -149,7 +152,7 @@ próprio contexto.
 - A detecção usa `mtime`, então spec mexida só na formatação acusa divergência. Escolha consciente,
   registrada no `ARCHITECTURE.md`: o falso positivo custa uma reconsolidação, o falso negativo
   custa um canônico errado alimentando o `/prd`
-- Treze commits sem push na `main`
+- Quinze commits sem push na `main`
 - Doze decisões fora do canônico em três projetos consumidores, achado desta sessão e não
   endereçado: `layan` v2 com sete ADRs posteriores, `nquantic` v6 com uma FEAT, um TEST e o
   ADR-024, `dash-scheduller` v6 com ADR-003 e ADR-004. O `layan` é o pior caso

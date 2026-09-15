@@ -5,6 +5,31 @@
 
 ---
 
+## 2026-09-15 · O `/save` certo, enfim, sabe calar
+
+O `claude plugin update` subiu o kit para `0.3.0` e a sessão reiniciou com o comando unificado. O
+`/save` rodou aqui pelo caminho do silêncio, e desta vez o comando exercitado foi o certo: o prompt
+trouxe o passo 4, da verificação do canônico, e o passo 7, da medição — os dois só existem na
+`0.3.0`.
+
+Sem `docs/canonical/CONTEXT.md` neste repositório, o passo 4 não disse nada, como previsto. O falso
+positivo mais caro, alertar projeto que não tem canônico, está descartado por execução — a prova
+que a entrada anterior desta data alegava ter e não tinha.
+
+Falta o caminho do alerta, no `dash-scheduller`. E fica registrado que os comandos hoje respondem
+com namespace (`bks-sdd-kit:save`), porque o frontmatter não traz `name:` — devolver o `/save` puro
+é decisão que muda o contrato dos onze e não foi tomada.
+
+### Consumo da sessão
+
+| Modelo | Input | Output | Cache write | Cache read | Total | Custo |
+|---|---:|---:|---:|---:|---:|---:|
+| claude-opus-5 | 282 | 61.941 | 149.830 | 18.520.535 | 18.732.588 | US$ 12,3085 |
+| **TOTAL** | **282** | **61.941** | **149.830** | **18.520.535** | **18.732.588** | **US$ 12,3085** |
+
+Acumulado do processo: **55.817.671 tokens — US$ 40,6077**. Estimativa por token contra o
+`pricing.json` do kit, não fatura.
+
 ## 2026-09-15 · Os comandos passam a existir só no plugin
 
 A entrada abaixo, desta mesma data, está errada no ponto que mais importa: o `/save` exercitado não
