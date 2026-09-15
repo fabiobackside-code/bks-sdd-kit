@@ -152,17 +152,117 @@ trabalho atual.
 ## O ciclo, em uma passada
 
 ```
-/new-project      cria a estrutura
-/note             material bruto entra
-/canonize         vira contexto canônico
-/prd              vira PRD
-/spec             vira FEAT + TEST
-                  (ou /bks-sdd para o ciclo completo com workspace e plano macro)
-/loop             implementa task sob goals
-/review           revisão independente
-/save             registra decisões e progresso
-/arch             consolida a visão de arquitetura
+/bks:new-project   cria a estrutura
+/bks:note          material bruto entra
+/bks:canonize      vira contexto canônico
+/bks:prd           vira PRD
+/bks:spec          vira FEAT + TEST
+                   (ou a skill bks-sdd, para o ciclo com workspace e plano macro)
+/bks:loop          implementa task sob goals
+/bks:review        revisão independente
+/bks:arch          consolida a visão de arquitetura
+/bks:save          registra decisões e progresso
 ```
+
+## `/bks:spec` ou a skill `bks-sdd`?
+
+Os dois especificam, em escalas diferentes.
+
+**`/bks:spec`** vai direto ao FEAT e ao TEST, dentro do repositório. É o caminho padrão para uma
+feature que você já entende, num projeto que já existe.
+
+**A skill `bks-sdd`** é o ciclo completo, com PRD, plano macro e decomposição em tasks, mantendo
+estado entre sessões num `workspace-*/`. Vale quando o produto é novo e grande, ou quando o
+escopo é incerto e precisa de decomposição formal.
+
+| Flag | Para que |
+|---|---|
+| `/bks-sdd` | cria o `workspace-[nome]/` |
+| `--prd` | gera o PRD a partir do que está em `research/` |
+| `--project` / `--project-prd` / `--project-plan` | projeto interno, seu PRD e seu plano de fases |
+| `--feature` / `--feature-tests` / `--feature-task` | FEAT, depois TEST, depois as tasks |
+| `--feature-list` / `--task-list` / `--status` | o que existe e onde parou |
+| `--impl-init` / `--task-done` | executa e fecha task |
+| `--continue` / `--tan` / `--clear` | retoma, ou encerra salvando o estado |
+| `--cost` / `--cost-report` | consumo da sessão e do ciclo |
+
+As etapas não se pulam: `--feature-tests` só roda com FEAT aprovado, `--feature-task` só com TEST
+aprovado. É a mesma regra do `/bks:spec`, aplicada a um ciclo maior.
+
+## Arquitetura de agentes
+
+Os quatro agentes não são o mesmo trabalhador com nomes diferentes. Cada um tem **as ferramentas
+do seu papel, e só elas** — a restrição é o desenho, não uma economia.
+
+| Agente | Modelo | Ferramentas | O que a restrição impede |
+|---|---|---|---|
+| `planner` | Sonnet | leitura + escrita, sem `Bash` | não executa nada; escopo vira FEAT/TEST/TASK, nunca código |
+| `builder` | Sonnet | leitura + escrita + `Bash` | implementa sob LOOP-4, dentro dos limites de uma FEAT aprovada |
+| `reviewer` | Opus | **só leitura** | não conserta o que julga — achado vira relato, não commit |
+| `scribe` | Haiku | leitura + escrita | registra o que foi confirmado; não decide o que foi feito |
+
+Três consequências desse arranjo:
+
+**A revisão é independente porque não pode agir.** O `reviewer` sem `Write` não tem como
+transformar um achado em correção silenciosa. Quem revisa não conserta; quem conserta não aprova
+o próprio conserto.
+
+**O modelo acompanha o julgamento exigido.** Opus onde se julga segurança, Haiku onde se
+transcreve evidência. Pagar Opus para registrar o que já foi decidido é desperdício; pagar Haiku
+para julgar risco é imprudência.
+
+**O papel é invocado, não assumido.** O `reviewer` roda em invocação separada de quem
+implementou, sem o estado da sessão que produziu o código. Um agente que revisa o próprio
+trabalho na mesma sessão carrega as premissas que o levaram ao defeito.
+
+Invoque pelo nome: `bks:reviewer`, `bks:planner`, `bks:builder`, `bks:scribe`. O `/bks:review`
+dispara o `reviewer` com o contexto certo.
+
+## Kit e vault, juntos
+
+O kit funciona sozinho — skills, comandos e guardas não leem nada de fora. O que o
+[vault](https://github.com/fabiobackside-code/bks-2brains) acrescenta é **memória entre
+projetos**, e é daí que vem o ganho maior.
+
+| | Sem vault | Com vault |
+|---|---|---|
+| Padrão de código | o que o modelo lembra do treinamento | `workbench/` diz como *você* trabalha |
+| Decisão técnica | recomeça a cada projeto | `knowledge/wiki/` guarda o que você já concluiu |
+| Erro conhecido | repete até doer de novo | registrado, com o sinal que teria avisado |
+| Contexto de sessão | o que couber no prompt | `STATUS.md` do projeto, lido pelo `/bks:brain` |
+
+### Por que consome menos
+
+Não é promessa, é mecânica — e é medível no próprio kit:
+
+**Progressive disclosure.** As skills somam 4.584 linhas de entrada e 12.455 em `references/` —
+razão de 2,7×. A referência só entra no contexto quando a tarefa a exige. A `bks-tests` carrega
+93 linhas e mantém 1.847 disponíveis.
+
+**Estado fora da sessão.** `STATUS.md` e `JOURNAL.md` guardam onde o projeto parou. Retomar custa
+a leitura de um arquivo, não a reconstrução do histórico a cada abertura.
+
+**Conhecimento sob demanda.** O acervo do vault é consultado quando a pergunta o exige. Cinquenta
+páginas curadas custam menos que quinhentas linhas de instrução carregadas sempre.
+
+### Por que alucina menos
+
+**A resposta cita fonte que existe.** Quando o agente consulta `knowledge/wiki/`, a afirmação tem
+origem conferível em `knowledge/raw/`. O que ele "lembra" do treinamento não tem.
+
+**Os guardas recusam, não avisam.** Um hook que bloqueia a escrita errada não depende de o agente
+ter lido a regra. Aviso é sugestão; recusa é garantia.
+
+**A spec precede o código.** FEAT e TEST aprovados antes de implementar dão critério de aceite
+verificável. Sem isso, "pronto" é opinião.
+
+O que isto **não** resolve: se a sua wiki estiver errada, o agente erra com confiança e com
+citação. Por isso `raw/` é imutável e a página curada tem estado — para dar como conferir de onde
+a conclusão veio.
+
+> Os 18 casos de eval do kit medem se cada skill muda a decisão do agente. A baseline com o delta
+> entre os braços `with` e `without` ainda não rodou; até lá, o que está escrito aqui é mecanismo,
+> não número medido.
 
 ## Idioma
 
