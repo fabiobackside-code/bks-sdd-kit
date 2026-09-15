@@ -2,8 +2,6 @@
 description: Gera o PRD inicial de um projeto a partir do contexto canônico já consolidado. Ponte entre /bks:canonize e /bks:spec.
 ---
 
-NOTA (versão global): este comando opera sobre o vault em ${BKS_VAULT}/. Todos os caminhos abaixo são absolutos de propósito — funciona rodando de qualquer cwd. Se você não estiver dentro do repo do projeto alvo, PERGUNTE qual projeto antes de agir.
-
 Gera um PRD inicial a partir do contexto canônico já consolidado — é a ponte entre /bks:canonize e
 /bks:spec.
 

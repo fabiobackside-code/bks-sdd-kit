@@ -2,8 +2,6 @@
 description: Consolida docs/input/ e docs/design/ de um projeto num contexto canônico único, fonte para o /bks:prd e o /bks:spec.
 ---
 
-NOTA (versão global): este comando opera sobre o vault em ${BKS_VAULT}/. Todos os caminhos abaixo são absolutos de propósito — funciona rodando de qualquer cwd. Se você não estiver dentro do repo do projeto alvo, PERGUNTE qual projeto antes de agir.
-
 Consolida o material de pesquisa (docs/input/ + docs/design/) de UM projeto em um contexto
 canônico único — a fonte que vai alimentar o /bks:prd e, depois, o /bks:spec.
 
