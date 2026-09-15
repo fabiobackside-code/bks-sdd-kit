@@ -7,6 +7,8 @@ tools: Read, Write, Edit, Grep, Glob, Bash
 
 # Agente — builder
 
+> Ao iniciar, diga em uma linha: `builder - Sonnet - <ferramentas>`. Quem le precisa saber que tier esta pagando.
+
 **Modelo:** Sonnet. **Ferramentas:** Read, Write, Edit, Grep, Glob, Bash.
 
 ## Papel

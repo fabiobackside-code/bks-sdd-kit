@@ -34,6 +34,7 @@ casos com o delta `with` × `without` medido.
 | Caso de eval para Go | a baseline acima | — |
 | Adelgaçar o `bks-sdd` (2062 linhas) | a baseline acima | — |
 | Publicar o repositório | aval do Fabio | Fabio |
+| Decidir se o `planner` fica em Opus | dez FEATs medidas contra as dez anteriores | Fabio |
 
 O `/bks:save` de `0.3.0` rodou nesta sessão, depois do `claude plugin update`, e o passo 4 ficou em
 silêncio como previsto: não existe `docs/canonical/CONTEXT.md` aqui, e nenhuma linha de defasagem

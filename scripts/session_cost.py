@@ -21,6 +21,7 @@ Saida humana em PT-BR; --json para consumo programatico.
 import argparse
 import json
 import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -195,6 +196,68 @@ def parse_transcript(path):
     return by_model, meta
 
 
+AGENT_MODEL_DEFAULT = {
+    "planner": "opus",
+    "builder": "sonnet",
+    "reviewer": "opus",
+    "scribe": "haiku",
+}
+
+
+def parse_subagents(path):
+    """Uso por invocacao de subagente, que nao aparece no bloco usage do transcript.
+
+    O consumo do subagente vive na notificacao de conclusao (<subagent_tokens>),
+    e o tipo dele na chamada da tool Agent. Os dois se ligam pelo tool-use-id.
+    Ver docs/ARCHITECTURE.md.
+    """
+    chamadas = {}
+    notif = {}
+
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                rec = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if not isinstance(rec, dict):
+                continue
+
+            msg = rec.get("message")
+            if isinstance(msg, dict):
+                for blk in (msg.get("content") or []):
+                    if not isinstance(blk, dict):
+                        continue
+                    if blk.get("type") == "tool_use" and blk.get("name") == "Agent":
+                        inp = blk.get("input") or {}
+                        chamadas[blk.get("id")] = {
+                            "tipo": inp.get("subagent_type") or "geral",
+                            "descricao": inp.get("description") or "",
+                            "model_override": inp.get("model"),
+                        }
+
+            if "subagent_tokens" not in line:
+                continue
+            tid = re.search(r"<tool-use-id>([^<]+)</tool-use-id>", line)
+            tok = re.search(r"<subagent_tokens>(\d+)</subagent_tokens>", line)
+            if tid and tok:
+                notif[tid.group(1)] = int(tok.group(1))
+
+    por_agente = {}
+    for tool_id, tokens in notif.items():
+        info = chamadas.get(tool_id, {"tipo": "desconhecido", "model_override": None})
+        tipo = info["tipo"]
+        modelo = info.get("model_override") or AGENT_MODEL_DEFAULT.get(tipo, "?")
+        chave = (tipo, modelo)
+        acc = por_agente.setdefault(chave, {"invocacoes": 0, "tokens": 0})
+        acc["invocacoes"] += 1
+        acc["tokens"] += tokens
+    return por_agente
+
+
 def summarize(by_model, pricing):
     """Consolida em estrutura de relatorio."""
     models = []
@@ -284,6 +347,24 @@ def render_session(summary, meta, title="Consumo desta sessao"):
         out.append("(!) Modelo sem preco em `pricing.json` (custo contado como 0): "
                    + ", ".join(summary["unknown_models"])
                    + ". Atualize `%s`." % PRICING_PATH)
+    agentes = summary.get("agentes") or {}
+    if agentes:
+        out.append("")
+        out.append("**Subagentes** (tokens fora do thread principal):")
+        out.append("")
+        out.append("| Agente | Modelo | Invocacoes | Tokens |")
+        out.append("|---|---|---:|---:|")
+        tot_inv = tot_tok = 0
+        for (tipo, modelo), d in sorted(agentes.items(), key=lambda x: -x[1]["tokens"]):
+            out.append("| `%s` | %s | %d | %s |"
+                       % (tipo, modelo, d["invocacoes"], fmt_int(d["tokens"])))
+            tot_inv += d["invocacoes"]
+            tot_tok += d["tokens"]
+        out.append("| **TOTAL** | | **%d** | **%s** |" % (tot_inv, fmt_int(tot_tok)))
+        out.append("")
+        out.append("_Tokens de subagente vem da notificacao de conclusao, que nao traz o tier: "
+                   "o modelo e o declarado no agente. Nao entram no custo acima._")
+
     out.append("")
     out.append(DISCLAIMER)
     return "\n".join(out)
@@ -299,7 +380,9 @@ def _load_session(args):
     if not files:
         return None, None, None
     by_model, meta = parse_transcript(files[0])
-    return summarize(by_model, pricing), meta, pricing
+    summary = summarize(by_model, pricing)
+    summary["agentes"] = parse_subagents(files[0])
+    return summary, meta, pricing
 
 
 def cmd_session(args):

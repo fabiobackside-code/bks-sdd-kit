@@ -74,6 +74,21 @@ subtitulo `### Consumo da sessao`, junto com o acumulado do processo. Se a entra
 essa secao (segundo `/bks:save` no mesmo dia), **substitua** a tabela em vez de acrescentar outra — o
 snapshot e cumulativo, duas tabelas confundiriam.
 
+**Passo 7 — sintese de modelos.** Se o relatorio trouxe a tabela de subagentes, reproduza-a na
+entrada do `JOURNAL.md`, sob o subtitulo `### Modelos usados`, junto com uma linha do que os
+agentes fizeram nesta sessao. Sem subagente na sessao, pule sem comentar.
+
+A tabela responde onde cada tier foi gasto. Ela existe para calibrar a escolha do modelo com dado,
+nao com opiniao: agente que consome muito e entrega pouco e candidato a baixar de tier; agente
+barato que gera retrabalho e candidato a subir. Ver `docs/ARCHITECTURE.md`.
+
+Dois limites a respeitar ao ler:
+
+- O tier vem do que o agente **declara**, nao do que a plataforma reportou — a notificacao de
+  conclusao traz tokens, nao modelo.
+- Os tokens do subagente **nao entram no custo** da tabela principal, que so ve o thread da
+  sessao. Somar os dois por fora seria inventar preco para token cujo tier e inferido.
+
 **Se o script ou o passo 5 falharem** (Python ausente, transcript nao encontrado, `custo-tokens.md`
 ilegivel): informe o erro em uma linha e siga — a falha da medicao nunca bloqueia o `/bks:save`.
 
