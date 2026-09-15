@@ -1,16 +1,16 @@
 ---
-description: Gera o PRD inicial de um projeto a partir do contexto canônico já consolidado. Ponte entre /canonize e /spec.
+description: Gera o PRD inicial de um projeto a partir do contexto canônico já consolidado. Ponte entre /bks:canonize e /bks:spec.
 ---
 
 NOTA (versão global): este comando opera sobre o vault em ${BKS_VAULT}/. Todos os caminhos abaixo são absolutos de propósito — funciona rodando de qualquer cwd. Se você não estiver dentro do repo do projeto alvo, PERGUNTE qual projeto antes de agir.
 
-Gera um PRD inicial a partir do contexto canônico já consolidado — é a ponte entre /canonize e
-/spec.
+Gera um PRD inicial a partir do contexto canônico já consolidado — é a ponte entre /bks:canonize e
+/bks:spec.
 
 Pode rodar na raiz do vault (pergunte QUAL projeto) ou já dentro do repo do projeto.
 
 Pré-requisito: docs/canonical/CONTEXT.md existe e está pelo menos com status "rascunho" no
-frontmatter. Se não existir, PARE e oriente a rodar /canonize primeiro — nunca gere PRD direto
+frontmatter. Se não existir, PARE e oriente a rodar /bks:canonize primeiro — nunca gere PRD direto
 de docs/input/ ou docs/design/.
 
 Faça, nesta ordem:
@@ -40,9 +40,9 @@ Faça, nesta ordem:
    docs/history/PRD-v{N}-{YYYY-MM-DD}.md antes de sobrescrever.)
 
 5. Reporte o PRD gerado e o próximo passo: "revise o PRD, feche o que ainda está em aberto, e
-   rode /spec (na raiz deste repo) para a primeira feature — a partir de agora, /spec só deve
+   rode /bks:spec (na raiz deste repo) para a primeira feature — a partir de agora, /bks:spec só deve
    citar docs/canonical/ (CONTEXT.md e PRD-*.md), nunca docs/input/ ou docs/design/ direto."
 
-O PRD e o CONTEXT.md em docs/canonical/ são, a partir deste ponto, a ÚNICA fonte que o /spec
-deve usar. Se um /spec futuro citar algo de docs/input/ ou docs/design/ diretamente, isso é
-sinal de que o canônico ficou incompleto — rode /canonize de novo antes de seguir.
+O PRD e o CONTEXT.md em docs/canonical/ são, a partir deste ponto, a ÚNICA fonte que o /bks:spec
+deve usar. Se um /bks:spec futuro citar algo de docs/input/ ou docs/design/ diretamente, isso é
+sinal de que o canônico ficou incompleto — rode /bks:canonize de novo antes de seguir.

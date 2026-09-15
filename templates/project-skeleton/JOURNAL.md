@@ -1,6 +1,6 @@
 # JOURNAL — {{PROJETO}}
 
-> Marcos e sessões, do mais recente para o mais antigo. Acrescentado pelo `/save`; nunca
+> Marcos e sessões, do mais recente para o mais antigo. Acrescentado pelo `/bks:save`; nunca
 > reescrito. O `STATUS.md` diz onde o projeto está agora; este arquivo diz como chegou até aqui.
 >
 > Uma entrada por sessão que produziu algo. Sessão que não mudou nada não vira entrada.

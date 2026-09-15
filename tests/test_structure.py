@@ -132,7 +132,8 @@ def test_commands():
               fm is not None and 'description:' in fm)
 
     readme = read('README.md')
-    documented = set(re.findall(r'\|\s*`/([a-z-]+)`\s*\|', readme))
+    # o README cita o comando namespaceado (`/bks:save`); ver docs/ARCHITECTURE.md
+    documented = set(re.findall(r'\|\s*`/(?:bks:)?([a-z-]+)`\s*\|', readme))
     present = set(os.path.splitext(f)[0] for f in files)
 
     check('todo comando documentado existe', documented <= present,

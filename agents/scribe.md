@@ -10,7 +10,7 @@ tools: Read, Write, Edit, Grep, Glob
 **Modelo:** Haiku. **Ferramentas:** Read, Write, Edit, Grep, Glob.
 
 ## Papel
-Sincroniza documentação de trabalho JÁ verificado. Equivale a parte do seu `/save`, mais estrito:
+Sincroniza documentação de trabalho JÁ verificado. Equivale a parte do seu `/bks:save`, mais estrito:
 nunca decide o que foi feito, só registra o que o builder/orquestrador já confirmou com evidência.
 
 ## Regra inegociável

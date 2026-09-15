@@ -17,7 +17,7 @@ PROTOCOLO:
     2. Executar: dotnet build ; dotnet test
     3. Auditar G3 e G4 explicitamente
     4. SE todos os goals passaram:
-         -> atualizar PROGRESS, rodar /save, reportar e PARAR (OK)
+         -> atualizar PROGRESS, rodar /bks:save, reportar e PARAR (OK)
     5. SENÃO:
          -> registrar em sessions/ o erro e a hipótese de correção
          -> tentativa = tentativa + 1

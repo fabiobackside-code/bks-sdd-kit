@@ -65,7 +65,7 @@ claude plugin eval . --output-dir evals/results
 
 ### 4 · Fechar
 
-`/save` — roteia o resultado da sessão:
+`/bks:save` — roteia o resultado da sessão:
 
 | O que | Para onde |
 |---|---|
@@ -80,7 +80,7 @@ claude plugin eval . --output-dir evals/results
 
 O kit está registrado como marketplace de diretório apontando para este repositório
 (`~/.claude/settings.json`, `extraKnownMarketplaces`). O que executa, porém, é a cópia em
-`~/.claude/plugins/cache/bks-sdd-kit/bks-sdd-kit/<versão>/` — `${CLAUDE_PLUGIN_ROOT}` aponta para
+`~/.claude/plugins/cache/bks-sdd-kit/bks/<versão>/` — `${CLAUDE_PLUGIN_ROOT}` aponta para
 lá, não para cá.
 
 Consequência prática: **editar aqui não muda o que roda**. É preciso reinstalar ou atualizar o
@@ -101,5 +101,5 @@ plugin para a mudança valer. E mover este repositório exige reapontar o caminh
 
 ## Retomando
 
-Abra a sessão na raiz deste repositório e rode `/brain`. Ele lê o `STATUS.md` e diz onde você
+Abra a sessão na raiz deste repositório e rode `/bks:brain`. Ele lê o `STATUS.md` e diz onde você
 parou, o que trava e qual o próximo passo.

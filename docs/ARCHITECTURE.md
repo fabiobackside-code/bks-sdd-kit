@@ -95,8 +95,8 @@ As referências passaram a `${BKS_VAULT}` e `${BKS_KNOWLEDGE}`. São duas, não 
 guarda sua própria memória, decisão e domínio, e não há hub central a apontar.
 
 As skills não dependem de nenhuma das duas — operam sobre o diretório de trabalho atual, e por
-isso servem a qualquer projeto sem configuração. Só dois comandos precisam do vault: `/brain` no
-modo panorama, que percorre `repos/`, e `/new-project`, que cria dentro dele.
+isso servem a qualquer projeto sem configuração. Só dois comandos precisam do vault: `/bks:brain` no
+modo panorama, que percorre `repos/`, e `/bks:new-project`, que cria dentro dele.
 
 ### Separação de papéis entre agentes
 
@@ -156,34 +156,34 @@ alguém gastar crédito para descobrir.
 Os nomes dos graders são derivados do critério — `sem-mediatr`, `verifica-propriedade` — e não
 posicionais. O relatório do CLI os imprime a cada run, e `g1 falhou` não diz o que quebrou.
 
-### O canônico é realimentado pela spec, e a divergência é detectada no `/save`
+### O canônico é realimentado pela spec, e a divergência é detectada no `/bks:save`
 
-O fluxo documental do kit foi desenhado em mão única: `/canonize` consolida `docs/input/` e
-`docs/design/` em `docs/canonical/CONTEXT.md`, o `/prd` transforma isso em requisito e o `/spec`
+O fluxo documental do kit foi desenhado em mão única: `/bks:canonize` consolida `docs/input/` e
+`docs/design/` em `docs/canonical/CONTEXT.md`, o `/bks:prd` transforma isso em requisito e o `/bks:spec`
 em FEAT e TEST. Na prática o sentido se inverte depois da primeira entrega: a FEAT aprovada e o
 ADR fechado passam a ser a verdade do projeto, e o canônico envelhece sem que nada sinalize.
 
 A correção tem duas metades, e cada uma resolve um problema diferente.
 
-O `/canonize` passou a ler `specs/` e `decisions/` como fonte, ao lado de `docs/input/` e
+O `/bks:canonize` passou a ler `specs/` e `decisions/` como fonte, ao lado de `docs/input/` e
 `docs/design/`. Sem isso, reconsolidar não recupera o que foi aprovado — o comando releria o
 mesmo material de pesquisa e produziria a mesma versão. A alternativa considerada era uma nota
 ponte em `docs/input/notas/`, escrita por quem fechasse a sessão: foi descartada porque a nota é
 síntese de segunda mão, e o comando proíbe promover ao canônico o que não tem fonte. Spec
 aprovada já é fonte, com caminho e data — não precisa de intermediário.
 
-O `/save` detecta a divergência por data de modificação: arquivo em `specs/` ou `decisions/` mais
+O `/bks:save` detecta a divergência por data de modificação: arquivo em `specs/` ou `decisions/` mais
 recente que o `CONTEXT.md` significa canônico defasado. O alerta vai para a seção do que trava no
-`STATUS.md`, não só para o relatório da sessão, porque é o `STATUS.md` que o `/brain` lê na sessão
+`STATUS.md`, não só para o relatório da sessão, porque é o `STATUS.md` que o `/bks:brain` lê na sessão
 seguinte — aviso que morre no fim da sessão não é aviso, é ruído.
 
-O `/save` não roda `/canonize` sozinho, e esse limite é deliberado. O `/canonize` pergunta quando
+O `/bks:save` não roda `/bks:canonize` sozinho, e esse limite é deliberado. O `/bks:canonize` pergunta quando
 encontra ambiguidade, e travar o fechamento de sessão numa pergunta de consolidação troca um
 débito visível por uma sessão que não fecha. Projeto sem `docs/canonical/CONTEXT.md` não recebe
 alerta nenhum: nem todo projeto usa o fluxo canônico, e alertar sobre ausência de um arquivo
 opcional treina o leitor a ignorar o aviso.
 
-A revisão foi considerada como lugar da detecção e descartada. O `/review` dispensa mudança que
+A revisão foi considerada como lugar da detecção e descartada. O `/bks:review` dispensa mudança que
 não toca área sensível — documentação, justamente — e o agente `reviewer` é read-only, em
 invocação separada, sem o estado da sessão que aprovou a FEAT. Divergência de canônico também não
 é achado de segurança em `arquivo:linha`, e diluir o contrato do agente enfraquece o que ele já
@@ -191,15 +191,15 @@ faz bem.
 
 A detecção por `mtime` é grosseira de propósito — acusa divergência quando a spec mudou só de
 formatação. O falso positivo custa uma reconsolidação; o falso negativo custa um canônico errado
-alimentando o próximo `/prd`.
+alimentando o próximo `/bks:prd`.
 
 ### Os comandos existem só no plugin
 
-`/brain`, `/save` e os outros nove viviam em duas cópias: `commands/` deste repositório e
+`/bks:brain`, `/bks:save` e os outros nove viviam em duas cópias: `commands/` deste repositório e
 `~/.claude/commands/`, instalada à mão. A cópia global venceu a do plugin na resolução de nome, o
 que tornava o repositório origem de um comando que não era o executado.
 
-O custo apareceu quando a validação do `/save` 0.2.1 rodou contra a cópia errada: o comando
+O custo apareceu quando a validação do `/bks:save` 0.2.1 rodou contra a cópia errada: o comando
 exercitado não tinha a verificação do canônico que a sessão pretendia testar, e a prova registrada
 no `JOURNAL.md` não valia.
 
@@ -213,7 +213,7 @@ comando do método passa a existir só onde o plugin está instalado. A alternat
 com um script de sincronização — foi descartada: sincronizador é peça que alguém tem que lembrar
 de rodar, e a duplicação já tinha produzido defeito exatamente por ninguém lembrar.
 
-A medição de consumo saiu do corpo do `/save` para `commands/references/medicao-consumo.md`, e o
+A medição de consumo saiu do corpo do `/bks:save` para `commands/references/medicao-consumo.md`, e o
 `session_cost.py` resolve o `pricing.json` ao lado de si — validado rodando da cópia instalada
 depois de apagada a global.
 
@@ -227,6 +227,24 @@ A suíte passou a verificar todo caminho entre crases que aponte para dentro do 
 projeto consumidor (`docs/canonical/`, `decisions/`) e molde com placeholder ficam de fora: não
 existem neste repositório por definição. Seis ponteiros quebrados apareceram na primeira execução,
 incluindo uma das três falhas que a suíte já acusava sem diagnóstico.
+
+### O plugin chama-se `bks`, e o prefixo é assumido
+
+Comando vindo de plugin é sempre namespaceado: a documentação do Claude Code diz que o prefixo
+existe para evitar colisão entre plugins e que nenhuma chave de frontmatter o remove. `name:` no
+arquivo do comando controla o sufixo, não o prefixo.
+
+Descobriu-se isso depois de apagar a instalação global, quando os comandos passaram a responder
+como `bks-sdd-kit:save`. A mesma documentação explica por que a cópia global vencia antes: a
+precedência é enterprise > personal > project > plugin, e `~/.claude/commands/` é personal.
+
+Três saídas foram pesadas. Reescrever a documentação para `bks-sdd-kit:` mantinha um prefixo de
+dezessete caracteres. Restaurar a cópia pessoal devolvia `/save` puro e com ele a duplicação que
+esta sessão eliminou. A escolhida foi encurtar o namespace: o plugin passou a chamar-se `bks`, e
+os comandos respondem como `/bks:save`.
+
+O `name` do marketplace continua `bks-sdd-kit`, assim como o repositório — só o nome do plugin
+mudou, porque é dele que sai o prefixo. A instalação passa a ser `bks@bks-sdd-kit`.
 
 ## Consumidores
 
