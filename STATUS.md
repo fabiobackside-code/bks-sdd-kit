@@ -9,10 +9,10 @@
 
 ## Em uma frase
 
-Os onze comandos deixaram de existir em duas cópias: a instalação global morreu e o plugin é a
-única origem. O `/bks:save` unificado está instalado como `0.3.0` e rodou pela primeira vez, aqui, pelo
-caminho do silêncio — o comando certo, desta vez. Falta o caminho do alerta. A medição de eval
-segue parada esperando crédito.
+O plugin é a única origem dos comandos, que agora respondem como `/bks:*`, e o tier de cada agente
+deixou de ser invisível: o `session_cost.py` passou a enxergar o consumo de subagente, que nenhum
+relatório via. Está publicado como `0.5.0`. Falta o caminho do alerta do `/bks:save` e a baseline
+de eval, parada por crédito.
 
 ---
 
@@ -28,58 +28,49 @@ casos com o delta `with` × `without` medido.
 
 | Bloqueio | Espera | Quem destrava |
 |---|---|---|
-| Testar o `/bks:save` 0.3.0 no caminho do alerta | árvore limpa no `dash-scheduller` | Fabio |
-| Empurrar os 15 commits da `main` | aval do Fabio | Fabio |
+| Testar o `/bks:save` no caminho do alerta | árvore limpa no `dash-scheduller` | Fabio |
+| Decidir se o `planner` fica em Opus | dez FEATs medidas contra as dez anteriores | Fabio |
 | Baseline dos 18 casos de eval | saldo de crédito da conta | Fabio |
 | Caso de eval para Go | a baseline acima | — |
 | Adelgaçar o `bks-sdd` (2062 linhas) | a baseline acima | — |
-| Publicar o repositório | aval do Fabio | Fabio |
-| Decidir se o `planner` fica em Opus | dez FEATs medidas contra as dez anteriores | Fabio |
 
-O `/bks:save` de `0.3.0` rodou nesta sessão, depois do `claude plugin update`, e o passo 4 ficou em
-silêncio como previsto: não existe `docs/canonical/CONTEXT.md` aqui, e nenhuma linha de defasagem
-foi acrescentada. Desta vez o comando exercitado é o certo — o prompt trouxe os passos 4 e 7, que
-só a `0.3.0` tem. O falso positivo mais caro, alertar projeto sem canônico, está descartado por
-execução.
+O `/bks:save` rodou duas vezes nesta data pelo caminho do silêncio, e a segunda valeu: o prompt
+trouxe os passos 4 e 7, que só a versão unificada tem. O falso positivo mais caro — alertar
+projeto sem canônico — está descartado por execução.
 
-Falta o caminho do alerta: o `dash-scheduller`, com a árvore dele limpa antes. O `/bks:save` reescreve
-o `STATUS.md` por inteiro, e rodar sobre trabalho inacabado misturaria a classificação dele com a
-do teste.
+O caminho do alerta segue sem prova. A detecção foi verificada isolada no `dash-scheduller`, onde
+o `find` do passo 4 devolve `decisions/ADR-003.md` e `decisions/ADR-004.md`, mais novos que o
+`CONTEXT.md`. Falta o comando inteiro, e ele espera a árvore daquele projeto: 17 arquivos
+modificados de uma sessão de `/canonize` inacabada, incluindo o `STATUS.md` que o comando
+reescreveria por inteiro.
 
-O alvo escolhido foi o `dash-scheduller`, e ele estava com dez arquivos modificados sem commit,
-incluindo o próprio `STATUS.md` e o `CONTEXT.md`. O `/bks:save` reescreve o `STATUS.md` por inteiro —
-rodar sobre trabalho alheio inacabado misturaria a classificação dele com a do teste.
+O `planner` subiu para Opus nesta sessão, para medição. A comparação não se faz lendo duas specs —
+o método está no `ARCHITECTURE.md`: tentativas do LOOP-4, achados do `reviewer` e retrabalho de
+FEAT aprovada, medidos sobre dez specs contra as dez anteriores.
 
-O crédito segue sendo o bloqueio de cabeça, isolado e confirmado com casos válidos:
+O crédito segue sendo o bloqueio de cabeça da eval, isolado e confirmado com casos válidos:
 `Ablation: 2 arms × 18 cases` carrega, e todo grader devolve
 `judge call failed: Credit balance is too low`.
 
 Go entrou sem caso de eval — os 18 cobrem .NET, TypeScript e os comandos. Escrever caso de Go
-antes da baseline seria escrever no escuro: sem saber o delta que os casos existentes produzem,
-não há como calibrar o novo.
-
-O adelgaçamento do `bks-sdd` depende da baseline por ordem, não por capricho: refatorar skill
-validada em uso sem rede de teste é aposta.
+antes da baseline seria escrever no escuro. O adelgaçamento do `bks-sdd` depende da baseline pela
+mesma razão: refatorar skill validada em uso sem rede de teste é aposta.
 
 ---
 
 ## Próximo passo
 
-O caminho do alerta, no `dash-scheduller`. Commitar ou descartar os dez arquivos modificados dele
-primeiro. O esperado é uma linha na seção do que trava nomeando o `CONTEXT.md` v6 e os dois ADRs
-mais novos que ele.
+O caminho do alerta, no `dash-scheduller`. Commitar ou descartar os 17 arquivos dele primeiro — o
+`/bks:save` reescreve o `STATUS.md` por inteiro, e rodar sobre trabalho inacabado misturaria a
+classificação dele com a do teste. O esperado é uma linha na seção do que trava nomeando o
+`CONTEXT.md` e os dois ADRs mais novos que ele.
 
-Atualizar a documentação do vault, que está defasada em duas camadas: cita `/save` sem prefixo e
-descreve comandos vindos de `.claude/commands/` num vault em `D:\Fabiob-projects`. São 7
-arquivos, 2.357 linhas, e é sessão aberta no vault, não aqui.
-
-Decidir o que fazer com a citação a `agents/INSTALL-AGENTS.md` e `agents/USE-AGENTS-STEPBYSTEP.md`
-no `bks-sdd`: pipeline Node.js externo que nunca foi versionado aqui. Está marcado como exceção
-conhecida na suíte, o que é dívida, não solução.
+Acumular dez FEATs com o `planner` em Opus e comparar contra as dez anteriores, pelos três sinais
+do `ARCHITECTURE.md`. Sem isso, a escolha de tier volta a ser opinião.
 
 Segue valendo, e não espera crédito: exercitar a `bks-go-solutions` numa geração real. Ela nunca
 gerou projeto; a entrevista, o registro na base de aprendizado e a anonimização são caminhos
-escritos e não percorridos. Um worker ou CLI pequeno basta.
+escritos e não percorridos.
 
 Com crédito disponível, rodar um caso só antes de gastar a suíte:
 
@@ -88,11 +79,8 @@ cd ${BKS_VAULT}/repos/backside/prj-bks-kit
 claude plugin eval . --case dotnet-sem-dispatcher --runs 1
 ```
 
-Se passar, rodar a suíte inteira com `--output-dir evals/results`.
-
 Ao ler o resultado, o número que importa não é o score: é o **delta** entre o braço `with` e o
-`without`. Score alto sem delta significa que o modelo já acertava sozinho, e a skill não paga o
-próprio contexto.
+`without`. Score alto sem delta significa que o modelo já acertava sozinho.
 
 ---
 
@@ -104,6 +92,7 @@ próprio contexto.
 | Slash commands | 11 |
 | Subagentes | 5 |
 | Perfis de projeto | 9 |
+| Versão publicada | `0.5.0` |
 | Guardas executáveis | 4, todos com teste em `hooks/tests/` |
 | Casos de eval | 18, com 85 graders |
 
@@ -129,6 +118,9 @@ próprio contexto.
 | 12 | O canônico é realimentado pela spec; o `/bks:save` acusa, o `/bks:canonize` corrige | `docs/ARCHITECTURE.md` |
 | 13 | Comando do método existe só no plugin; a instalação global morreu | `docs/ARCHITECTURE.md` |
 | 14 | Ponteiro para arquivo do kit é verificado pela suíte, acento incluído | `docs/ARCHITECTURE.md` |
+| 15 | O namespace é `bks`; comando de plugin sempre tem prefixo | `docs/ARCHITECTURE.md` |
+| 16 | O tier do agente é anunciado, e o subagente entra na medição | `docs/ARCHITECTURE.md` |
+| 17 | `planner` em Opus: spec errada contamina toda task abaixo | `docs/ARCHITECTURE.md` |
 
 ---
 
@@ -144,7 +136,7 @@ próprio contexto.
 - `bks-sdd` com 2062 linhas num `SKILL.md` único — o adelgaçamento está planejado, não iniciado
 - O repositório não tem `brain/domain/` nem `brain/engineering/`; o conhecimento está todo em
   `docs/ARCHITECTURE.md` e nas próprias skills
-- O `/bks:save` de `0.3.0` foi exercitado só no caminho do silêncio; o do alerta segue sem prova
+- O `/bks:save` foi exercitado só no caminho do silêncio; o do alerta segue sem prova
 - `skills/bks-sdd/SKILL.md` cita dois arquivos de um pipeline Node.js que não existe no repositório,
   marcados como exceção conhecida em `tests/test_structure.py`
 - A regra nova não tem guarda executável, e o kit exige que tenha. A guarda cairia no projeto
@@ -153,7 +145,6 @@ próprio contexto.
 - A detecção usa `mtime`, então spec mexida só na formatação acusa divergência. Escolha consciente,
   registrada no `ARCHITECTURE.md`: o falso positivo custa uma reconsolidação, o falso negativo
   custa um canônico errado alimentando o `/bks:prd`
-- Quinze commits sem push na `main`
 - Doze decisões fora do canônico em três projetos consumidores, achado desta sessão e não
   endereçado: `layan` v2 com sete ADRs posteriores, `nquantic` v6 com uma FEAT, um TEST e o
   ADR-024, `dash-scheduller` v6 com ADR-003 e ADR-004. O `layan` é o pior caso
