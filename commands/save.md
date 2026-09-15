@@ -15,7 +15,7 @@ Se não houver `STATUS.md` na raiz, pergunte se é para criar a partir do templa
 | Spec nova ou alterada | `specs/features/`, `specs/tests/`, `specs/tasks/` |
 | Onde o projeto parou | `STATUS.md` — reescrito |
 | Marco da sessão | `JOURNAL.md` — acrescentado no topo |
-| Canônico defasado pela spec ou pelo ADR | `STATUS.md` — seção do que trava, para o `/canonize` |
+| Canônico defasado pela spec ou pelo ADR | `STATUS.md` — seção do que trava, para o `/bks:canonize` |
 | Entregável gerado | `outputs/` |
 | Conhecimento de domínio que surgiu | `brain/domain/` |
 | Padrão técnico que se firmou | `brain/engineering/` |
@@ -38,8 +38,8 @@ Sessão que não produziu nada não vira entrada — não invente marco para jus
 Um ADR que registra hesitação polui o log de decisões.
 
 **Spec aprovada envelhece o canônico.** O `docs/canonical/CONTEXT.md` foi consolidado antes da
-spec existir; decisão fechada depois dele não chega lá sozinha. O `/save` acusa a defasagem, não
-a corrige — quem reconsolida é o `/canonize`, em sessão que possa responder às perguntas que ele
+spec existir; decisão fechada depois dele não chega lá sozinha. O `/bks:save` acusa a defasagem, não
+a corrige — quem reconsolida é o `/bks:canonize`, em sessão que possa responder às perguntas que ele
 levanta.
 
 ## Passos
@@ -65,22 +65,22 @@ levanta.
    Lista vazia: siga em frente sem comentar. Lista com arquivos: o canônico está defasado — leve
    para o passo 5 uma linha nomeando a versão atual do canônico e os arquivos mais novos que ele.
 
-   Não rode `/canonize` e não escreva nota de síntese em `docs/input/` para compensar — o
-   `/canonize` lê `specs/` e `decisions/` direto, e nota intermediária só afasta a afirmação da
+   Não rode `/bks:canonize` e não escreva nota de síntese em `docs/input/` para compensar — o
+   `/bks:canonize` lê `specs/` e `decisions/` direto, e nota intermediária só afasta a afirmação da
    fonte.
 
 5. **Reescreva o `STATUS.md` por inteiro.** Se o passo 4 acusou defasagem, a linha entra na seção
-   do que trava, com o `/canonize` como quem destrava.
+   do que trava, com o `/bks:canonize` como quem destrava.
 
 6. **Acrescente ao `JOURNAL.md`** uma entrada: data, título curto do marco, duas a quatro linhas
    do que mudou e do que isso libera ou trava.
 
 7. **Meça o consumo da sessão.** Siga `references/medicao-consumo.md`: ledger, painel
    `custo-tokens.md` e a tabela na entrada do `JOURNAL.md`. Se o script não existir, uma linha
-   dizendo que pulou — a medição nunca bloqueia o `/save`.
+   dizendo que pulou — a medição nunca bloqueia o `/bks:save`.
 
 8. **Confirme em até cinco linhas** o que foi gravado e onde. Uma linha por arquivo. Não repita o
    conteúdo que acabou de escrever. Se o canônico estiver defasado, feche com a instrução de rodar
-   `/canonize`.
+   `/bks:canonize`.
 
 Responda em português do Brasil.

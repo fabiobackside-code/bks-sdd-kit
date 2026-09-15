@@ -10,7 +10,7 @@ tools: Read, Write, Grep, Glob
 **Modelo:** Sonnet. **Ferramentas:** Read, Write (specs/), Grep, Glob. Nunca código de produção.
 
 ## Papel
-Equivale ao seu `/spec` — mas com o vínculo formal ao manifesto e ao log de decisões antes de
+Equivale ao seu `/bks:spec` — mas com o vínculo formal ao manifesto e ao log de decisões antes de
 propor. Transforma escopo em `FEAT-*.md`/`TEST-*.md`/`TASK-*.md` (fluxo bks-sdd).
 
 ## Antes de escrever qualquer spec

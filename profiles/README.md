@@ -8,7 +8,7 @@ projeto de biblioteca não passe por design de tela.
 
 ## Como se declara
 
-O `/new-project` grava `.bks-profile.json` na raiz do projeto:
+O `/bks:new-project` grava `.bks-profile.json` na raiz do projeto:
 
 ```json
 {
@@ -94,14 +94,14 @@ Cada perfil declara sua sequência. As comuns:
 
 | Fase | O que faz | Comando |
 |---|---|---|
-| entrada | material bruto entra | `/note` |
-| consolidação | vira contexto canônico | `/canonize` |
-| produto | vira PRD | `/prd` |
-| especificação | vira FEAT, TEST, TASK | `/spec` |
-| arquitetura | vira ARCH e README | `/arch` |
-| implementação | vira código | `/loop` |
-| revisão | revisão independente | `/review` |
-| fechamento | STATUS e JOURNAL | `/save` |
+| entrada | material bruto entra | `/bks:note` |
+| consolidação | vira contexto canônico | `/bks:canonize` |
+| produto | vira PRD | `/bks:prd` |
+| especificação | vira FEAT, TEST, TASK | `/bks:spec` |
+| arquitetura | vira ARCH e README | `/bks:arch` |
+| implementação | vira código | `/bks:loop` |
+| revisão | revisão independente | `/bks:review` |
+| fechamento | STATUS e JOURNAL | `/bks:save` |
 
 Um perfil pode pular fases, acrescentar as suas, ou mudar o que uma fase produz. O que cada um faz
 está no seu arquivo.
@@ -109,6 +109,6 @@ está no seu arquivo.
 ## Acrescentar um perfil
 
 Crie o arquivo seguindo o formato dos existentes: o que gera, o que não gera, as fases, os eixos
-que se aplicam, as skills que carrega, e o que o `/new-project` deve perguntar.
+que se aplicam, as skills que carrega, e o que o `/bks:new-project` deve perguntar.
 
 Nenhuma skill tem a lista de perfis embutida — todas leem este diretório.

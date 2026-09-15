@@ -39,18 +39,18 @@ propósito — sem escopo real, sem stack definida, sem specs preenchidas.
 
 | Arquivo | Responde | Escrito por | Reescrito? |
 |---|---|---|---|
-| `STATUS.md` | onde o projeto está **agora** | `/save` | sim, por inteiro |
-| `JOURNAL.md` | como chegou até aqui | `/save` | não, só acrescenta |
-| `WORKFLOW.md` | como se trabalha aqui | `/new-project` | só quando o fluxo muda |
+| `STATUS.md` | onde o projeto está **agora** | `/bks:save` | sim, por inteiro |
+| `JOURNAL.md` | como chegou até aqui | `/bks:save` | não, só acrescenta |
+| `WORKFLOW.md` | como se trabalha aqui | `/bks:new-project` | só quando o fluxo muda |
 
-`STATUS.md` é o ponto de entrada. O `/brain` lê ele.
+`STATUS.md` é o ponto de entrada. O `/bks:brain` lê ele.
 
 ## Como usar de verdade
 
 Rode `/new-project {{nome}} {{categoria}}` com a sessão aberta na **raiz do vault** para gerar a
 sua versão preenchida. Depois traga material para `docs/input/` e siga o ciclo descrito no
-`WORKFLOW.md` gerado: `/note` → `/canonize` → `/prd` → `/spec` → `/arch` → `/loop` → `/review` →
-`/save`.
+`WORKFLOW.md` gerado: `/bks:note` → `/bks:canonize` → `/bks:prd` → `/bks:spec` → `/bks:arch` → `/bks:loop` → `/bks:review` →
+`/bks:save`.
 
 Todos os comandos de projeto rodam com a sessão aberta na raiz do repositório do projeto — não no
 vault.

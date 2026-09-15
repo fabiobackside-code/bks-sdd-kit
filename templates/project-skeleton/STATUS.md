@@ -1,7 +1,7 @@
 # STATUS — {{PROJETO}}
 
 > Ponto de entrada do projeto. Leia só este arquivo para saber onde as coisas estão e o que fazer
-> a seguir. Atualizado pelo `/save` ao fim de cada sessão; lido pelo `/brain`.
+> a seguir. Atualizado pelo `/bks:save` ao fim de cada sessão; lido pelo `/bks:brain`.
 >
 > Última atualização: {{DATA}}
 
@@ -73,7 +73,7 @@ trabalho sai daqui.}}
 | `JOURNAL.md` | marcos e sessões, do mais recente ao mais antigo |
 | `decisions/` | as decisões, com contexto e alternativas descartadas |
 | `specs/` | features, cenários de teste, tasks |
-| `docs/canonical/` | contexto consolidado — a fonte após o `/canonize` |
+| `docs/canonical/` | contexto consolidado — a fonte após o `/bks:canonize` |
 | `docs/input/` | material bruto ainda não consolidado |
 | `brain/domain/` | o que o produto é — regra de negócio, método, normativo |
 | `brain/engineering/` | como se constrói aqui — padrão técnico deste projeto |

@@ -25,7 +25,7 @@ questão aberta e siga — mudar de perfil é decisão do usuário, não do agen
 | apresentação | `outputs/APRESENTACAO-{projeto}.{md,html}` — se pedida |
 | fechamento | `STATUS.md`, `JOURNAL.md` |
 
-Sem `/spec`, sem `/loop`. Não há FEAT nem TASK: o artefato é o documento.
+Sem `/bks:spec`, sem `/bks:loop`. Não há FEAT nem TASK: o artefato é o documento.
 
 ## Eixos
 

@@ -1,5 +1,5 @@
 ---
-description: Escreve ou atualiza uma nota viva em docs/input/notas/ do projeto atual — material bruto para alimentar o /canonize.
+description: Escreve ou atualiza uma nota viva em docs/input/notas/ do projeto atual — material bruto para alimentar o /bks:canonize.
 ---
 
 NOTA (versão global): este comando opera sobre docs/input/notas/ do repo do projeto ONDE a
@@ -10,7 +10,7 @@ agir e resolva os caminhos abaixo contra ${BKS_VAULT}/repos/{categoria}/{projeto
 `/note <assunto> [--pasta <subpasta>]`
 
 Escreve ou atualiza UMA nota viva em `docs/input/notas/` do projeto atual, no padrão já
-consolidado nos projetos do vault: material bruto do autor para alimentar o `/canonize` —
+consolidado nos projetos do vault: material bruto do autor para alimentar o `/bks:canonize` —
 nunca decisão fechada. Diferente de `docs/input/research/` (material de terceiros).
 
 Argumentos:
@@ -31,7 +31,7 @@ Faça, nesta ordem:
      num projeto regulado, normativo do órgão > POC > cânone interno). Se ele não souber ainda, deixe a seção como `[EM ABERTO]` — não
      invente uma hierarquia.
    - Crie `docs/input/notas/LEIA-ME.md` com esta estrutura fixa (adaptando ao projeto):
-     - **O que é esta pasta** — material bruto do autor para o `/canonize`; diferente de
+     - **O que é esta pasta** — material bruto do autor para o `/bks:canonize`; diferente de
        `docs/input/research/`. Status: entrada crua, nada aqui é decisão fechada — a parte
        definitiva mora em `docs/canonical/`.
      - **Exceção à imutabilidade de `docs/input/`** — se o `CLAUDE.md` do repo trata
@@ -48,18 +48,18 @@ Faça, nesta ordem:
        técnica; `[INFERIDO]` leitura nossa, precisa de validação; `[EM ABERTO]` lacuna
        reconhecida.
      - **Hierarquia de fontes** — o que o usuário respondeu no passo anterior.
-     - **Índice** — tabela vazia (`Nota | Assunto`), preenchida a cada `/note`.
+     - **Índice** — tabela vazia (`Nota | Assunto`), preenchida a cada `/bks:note`.
      - **Fluxo** — diagrama fixo:
        ```
        docs/input/notas/  +  docs/input/research/  +  docs/design/
                │
-               ▼  /canonize
+               ▼  /bks:canonize
        docs/canonical/CONTEXT.md
                │
-               ▼  /prd
+               ▼  /bks:prd
        docs/canonical/PRD-{projeto}.md
                │
-               ▼  /spec
+               ▼  /bks:spec
        specs/features/ · specs/tasks/ · specs/tests/
        ```
    - Avise que a pasta foi criada e continue para o passo 1 com a primeira nota.
@@ -84,9 +84,9 @@ Faça, nesta ordem:
 
 5. Reporte: o que foi criado/alterado (arquivo e seção), se algum conflito com
    `docs/canonical/` foi sinalizado, e o próximo passo ("quando tiver notas suficientes sobre
-   este assunto, rode `/canonize`" — ou, se a hierarquia de fontes ainda estiver
+   este assunto, rode `/bks:canonize`" — ou, se a hierarquia de fontes ainda estiver
    `[EM ABERTO]`, lembre disso).
 
-Nunca escreva como decisão fechada o que é rascunho — é o mesmo erro que o `/canonize` evita do
+Nunca escreva como decisão fechada o que é rascunho — é o mesmo erro que o `/bks:canonize` evita do
 lado de lá. `docs/input/notas/` é a exceção à imutabilidade normal de `docs/input/`: aqui, o
-`/note` pode e deve editar o que já existe.
+`/bks:note` pode e deve editar o que já existe.

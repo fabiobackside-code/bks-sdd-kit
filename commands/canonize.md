@@ -1,17 +1,17 @@
 ---
-description: Consolida docs/input/ e docs/design/ de um projeto num contexto canônico único, fonte para o /prd e o /spec.
+description: Consolida docs/input/ e docs/design/ de um projeto num contexto canônico único, fonte para o /bks:prd e o /bks:spec.
 ---
 
 NOTA (versão global): este comando opera sobre o vault em ${BKS_VAULT}/. Todos os caminhos abaixo são absolutos de propósito — funciona rodando de qualquer cwd. Se você não estiver dentro do repo do projeto alvo, PERGUNTE qual projeto antes de agir.
 
 Consolida o material de pesquisa (docs/input/ + docs/design/) de UM projeto em um contexto
-canônico único — a fonte que vai alimentar o /prd e, depois, o /spec.
+canônico único — a fonte que vai alimentar o /bks:prd e, depois, o /bks:spec.
 
 Este comando pode rodar aberto na raiz do vault (pergunte QUAL projeto,
 ${BKS_VAULT}/repos/{categoria}/{projeto}) ou já dentro do repo do projeto (aí o projeto é óbvio, não
 pergunte).
 
-Pré-requisito: o projeto existe (foi criado com /new-project) e tem algo em docs/input/ e/ou
+Pré-requisito: o projeto existe (foi criado com /bks:new-project) e tem algo em docs/input/ e/ou
 docs/design/. Se as duas pastas estiverem vazias, avise e pare — não invente contexto.
 
 Faça, nesta ordem:
@@ -57,7 +57,7 @@ Faça, nesta ordem:
 
 7. Reporte: o que entrou no canônico, quantas perguntas ficaram em aberto, e o próximo passo
    ("revise docs/canonical/CONTEXT.md, responda as perguntas em aberto se quiser fechar tudo, e
-   rode /prd quando o contexto estiver bom o suficiente para virar requisito").
+   rode /bks:prd quando o contexto estiver bom o suficiente para virar requisito").
 
 Nunca promova para canônico algo que você mesmo inventou para preencher lacuna — isso é
 alucinação disfarçada de síntese. Marque como incerto e pergunte.

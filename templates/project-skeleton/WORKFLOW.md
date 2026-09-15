@@ -28,7 +28,7 @@ Material de terceiros (artigo, entrevista, norma) vai para `docs/input/research/
 
 ### 2 · Consolidação
 
-`/canonize` — lê `docs/input/` e `docs/design/` e escreve `docs/canonical/CONTEXT.md`. É a fonte
+`/bks:canonize` — lê `docs/input/` e `docs/design/` e escreve `docs/canonical/CONTEXT.md`. É a fonte
 única a partir daqui; o material bruto deixa de ser lido pelos comandos seguintes.
 
 Rode quando as notas pararem de mudar, não antes.
@@ -36,37 +36,37 @@ Rode quando as notas pararem de mudar, não antes.
 O comando é re-executável e versionado: a cada rodada a versão anterior vai para `docs/history/`
 e o `CONTEXT.md` novo abre com o que mudou. Depois da fase 4, ele passa a ler também `specs/` e
 `decisions/` — spec aprovada e ADR fechado são a parte mais atual do que o projeto decidiu, e o
-canônico que os ignora alimenta o `/prd` seguinte com informação vencida.
+canônico que os ignora alimenta o `/bks:prd` seguinte com informação vencida.
 
 ### 3 · Produto
 
-`/prd` — do `CONTEXT.md` sai o PRD. O que o produto é, para quem, e o que conta como pronto.
+`/bks:prd` — do `CONTEXT.md` sai o PRD. O que o produto é, para quem, e o que conta como pronto.
 
 ### 4 · Especificação
 
-`/spec` — entrevista por bounded context e gera `specs/features/FEAT-*.md`. Depois de aprovado,
+`/bks:spec` — entrevista por bounded context e gera `specs/features/FEAT-*.md`. Depois de aprovado,
 `specs/tests/TEST-*.md`. Depois de aprovado, `specs/tasks/TASK-*.md`.
 
 Não pule a aprovação entre os três. Spec aprovada sem teste vira código sem critério.
 
 ### 5 · Arquitetura
 
-`/arch` — gera `outputs/ARCH-{{projeto}}.md` e atualiza o `README.md`. Diagramas seguem a notação
+`/bks:arch` — gera `outputs/ARCH-{{projeto}}.md` e atualiza o `README.md`. Diagramas seguem a notação
 BKS; o renderer está no `.bks-profile.json`.
 
 ### 6 · Implementação
 
-`/loop` — implementa uma task sob LOOP-4: no máximo quatro tentativas contra goals verificáveis
+`/bks:loop` — implementa uma task sob LOOP-4: no máximo quatro tentativas contra goals verificáveis
 (build limpo, testes verdes, cenários da `TEST` cobertos).
 
 ### 7 · Revisão
 
-`/review` — revisão independente, read-only, em invocação separada. Quem escreveu não revisa a
+`/bks:review` — revisão independente, read-only, em invocação separada. Quem escreveu não revisa a
 própria segurança.
 
 ### 8 · Fechamento
 
-`/save` — roteia o resultado da sessão:
+`/bks:save` — roteia o resultado da sessão:
 
 | O que | Para onde |
 |---|---|
@@ -76,9 +76,9 @@ própria segurança.
 | Marco da sessão | `JOURNAL.md` |
 | Entregável | `outputs/` |
 
-Antes de fechar o `STATUS.md`, o `/save` compara a data do `CONTEXT.md` com a de `specs/` e
+Antes de fechar o `STATUS.md`, o `/bks:save` compara a data do `CONTEXT.md` com a de `specs/` e
 `decisions/`. Se o canônico ficou para trás, a pendência entra na seção do que trava — quem
-destrava é o `/canonize`, na fase 2, numa sessão que possa responder às perguntas que ele levanta.
+destrava é o `/bks:canonize`, na fase 2, numa sessão que possa responder às perguntas que ele levanta.
 É aqui que o ciclo deixa de ser linear.
 
 ---
@@ -96,5 +96,5 @@ Skill em `brain/engineering/` sobrescreve a equivalente do kit para este projeto
 
 ## Retomando
 
-Abra a sessão na raiz deste repositório e rode `/brain`. Ele lê o `STATUS.md` e diz onde você
+Abra a sessão na raiz deste repositório e rode `/bks:brain`. Ele lê o `STATUS.md` e diz onde você
 parou, o que trava e qual o próximo passo.

@@ -1,7 +1,7 @@
 # STATUS — prj-bks-kit
 
 > Ponto de entrada do projeto. Leia só este arquivo para saber onde as coisas estão e o que fazer
-> a seguir. Atualizado pelo `/save` ao fim de cada sessão; lido pelo `/brain`.
+> a seguir. Atualizado pelo `/bks:save` ao fim de cada sessão; lido pelo `/bks:brain`.
 >
 > Última atualização: 2026-09-15
 
@@ -10,7 +10,7 @@
 ## Em uma frase
 
 Os onze comandos deixaram de existir em duas cópias: a instalação global morreu e o plugin é a
-única origem. O `/save` unificado está instalado como `0.3.0` e rodou pela primeira vez, aqui, pelo
+única origem. O `/bks:save` unificado está instalado como `0.3.0` e rodou pela primeira vez, aqui, pelo
 caminho do silêncio — o comando certo, desta vez. Falta o caminho do alerta. A medição de eval
 segue parada esperando crédito.
 
@@ -28,25 +28,25 @@ casos com o delta `with` × `without` medido.
 
 | Bloqueio | Espera | Quem destrava |
 |---|---|---|
-| Testar o `/save` 0.3.0 no caminho do alerta | árvore limpa no `dash-scheduller` | Fabio |
+| Testar o `/bks:save` 0.3.0 no caminho do alerta | árvore limpa no `dash-scheduller` | Fabio |
 | Empurrar os 15 commits da `main` | aval do Fabio | Fabio |
 | Baseline dos 18 casos de eval | saldo de crédito da conta | Fabio |
 | Caso de eval para Go | a baseline acima | — |
 | Adelgaçar o `bks-sdd` (2062 linhas) | a baseline acima | — |
 | Publicar o repositório | aval do Fabio | Fabio |
 
-O `/save` de `0.3.0` rodou nesta sessão, depois do `claude plugin update`, e o passo 4 ficou em
+O `/bks:save` de `0.3.0` rodou nesta sessão, depois do `claude plugin update`, e o passo 4 ficou em
 silêncio como previsto: não existe `docs/canonical/CONTEXT.md` aqui, e nenhuma linha de defasagem
 foi acrescentada. Desta vez o comando exercitado é o certo — o prompt trouxe os passos 4 e 7, que
 só a `0.3.0` tem. O falso positivo mais caro, alertar projeto sem canônico, está descartado por
 execução.
 
-Falta o caminho do alerta: o `dash-scheduller`, com a árvore dele limpa antes. O `/save` reescreve
+Falta o caminho do alerta: o `dash-scheduller`, com a árvore dele limpa antes. O `/bks:save` reescreve
 o `STATUS.md` por inteiro, e rodar sobre trabalho inacabado misturaria a classificação dele com a
 do teste.
 
 O alvo escolhido foi o `dash-scheduller`, e ele estava com dez arquivos modificados sem commit,
-incluindo o próprio `STATUS.md` e o `CONTEXT.md`. O `/save` reescreve o `STATUS.md` por inteiro —
+incluindo o próprio `STATUS.md` e o `CONTEXT.md`. O `/bks:save` reescreve o `STATUS.md` por inteiro —
 rodar sobre trabalho alheio inacabado misturaria a classificação dele com a do teste.
 
 O crédito segue sendo o bloqueio de cabeça, isolado e confirmado com casos válidos:
@@ -68,9 +68,9 @@ O caminho do alerta, no `dash-scheduller`. Commitar ou descartar os dez arquivos
 primeiro. O esperado é uma linha na seção do que trava nomeando o `CONTEXT.md` v6 e os dois ADRs
 mais novos que ele.
 
-Decidir se os comandos passam a responder sem prefixo. Hoje são `bks-sdd-kit:save` e afins, porque
-o frontmatter não traz `name:`. Acrescentá-lo aos onze devolveria `/save` puro — muda o contrato de
-nome de todos, e não foi decidido.
+Atualizar a documentação do vault, que está defasada em duas camadas: cita `/save` sem prefixo e
+descreve comandos vindos de `.claude/commands/` num vault em `D:\Fabiob-projects`. São 7
+arquivos, 2.357 linhas, e é sessão aberta no vault, não aqui.
 
 Decidir o que fazer com a citação a `agents/INSTALL-AGENTS.md` e `agents/USE-AGENTS-STEPBYSTEP.md`
 no `bks-sdd`: pipeline Node.js externo que nunca foi versionado aqui. Está marcado como exceção
@@ -125,7 +125,7 @@ próprio contexto.
 | 9 | O kit é um projeto em `repos/`, não um caso à parte na raiz do vault | `JOURNAL.md`, 2026-09-10 |
 | 10 | Delta de linguagem vive em `bks-standards`, não na skill geradora | `docs/ARCHITECTURE.md` |
 | 11 | A skill de Go lê e alimenta base de aprendizado fora do projeto, anonimizada | `docs/ARCHITECTURE.md` |
-| 12 | O canônico é realimentado pela spec; o `/save` acusa, o `/canonize` corrige | `docs/ARCHITECTURE.md` |
+| 12 | O canônico é realimentado pela spec; o `/bks:save` acusa, o `/bks:canonize` corrige | `docs/ARCHITECTURE.md` |
 | 13 | Comando do método existe só no plugin; a instalação global morreu | `docs/ARCHITECTURE.md` |
 | 14 | Ponteiro para arquivo do kit é verificado pela suíte, acento incluído | `docs/ARCHITECTURE.md` |
 
@@ -143,7 +143,7 @@ próprio contexto.
 - `bks-sdd` com 2062 linhas num `SKILL.md` único — o adelgaçamento está planejado, não iniciado
 - O repositório não tem `brain/domain/` nem `brain/engineering/`; o conhecimento está todo em
   `docs/ARCHITECTURE.md` e nas próprias skills
-- O `/save` de `0.3.0` foi exercitado só no caminho do silêncio; o do alerta segue sem prova
+- O `/bks:save` de `0.3.0` foi exercitado só no caminho do silêncio; o do alerta segue sem prova
 - `skills/bks-sdd/SKILL.md` cita dois arquivos de um pipeline Node.js que não existe no repositório,
   marcados como exceção conhecida em `tests/test_structure.py`
 - A regra nova não tem guarda executável, e o kit exige que tenha. A guarda cairia no projeto
@@ -151,7 +151,7 @@ próprio contexto.
   morar deste lado
 - A detecção usa `mtime`, então spec mexida só na formatação acusa divergência. Escolha consciente,
   registrada no `ARCHITECTURE.md`: o falso positivo custa uma reconsolidação, o falso negativo
-  custa um canônico errado alimentando o `/prd`
+  custa um canônico errado alimentando o `/bks:prd`
 - Quinze commits sem push na `main`
 - Doze decisões fora do canônico em três projetos consumidores, achado desta sessão e não
   endereçado: `layan` v2 com sete ADRs posteriores, `nquantic` v6 com uma FEAT, um TEST e o

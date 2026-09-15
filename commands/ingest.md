@@ -8,15 +8,15 @@ os caminhos abaixo (`raw/`, `wiki/`, `tools/`) são relativos a `${BKS_VAULT}/kn
 
 Uso:
 ```
-/ingest raw/papers/nome.pdf         → ingere um PDF específico (fonte externa: livro, artigo, paper)
-/ingest raw/articles/nome.md        → ingere um artigo já salvo em Markdown
-/ingest raw/articles/nome.html      → ingere uma página web salva localmente
-/ingest raw/videos/nome-transcrição.md   → ingere uma transcrição de vídeo
-/ingest raw/notas-pessoais/nome.md  → arquiva uma nota pessoal (prospecção, linha de pensamento) — NÃO vira página wiki curada
-/ingest https://exemplo.com/artigo  → busca o link, salva cópia em raw/, ingere
-/ingest tools/batch-ingest.md       → processa a tabela de lote (várias fontes)
-/ingest raw/_inbox/                 → classifica e processa TUDO que estiver na pasta
-/ingest                             → sem argumento: assume raw/_inbox/
+/bks:ingest raw/papers/nome.pdf         → ingere um PDF específico (fonte externa: livro, artigo, paper)
+/bks:ingest raw/articles/nome.md        → ingere um artigo já salvo em Markdown
+/bks:ingest raw/articles/nome.html      → ingere uma página web salva localmente
+/bks:ingest raw/videos/nome-transcrição.md   → ingere uma transcrição de vídeo
+/bks:ingest raw/notas-pessoais/nome.md  → arquiva uma nota pessoal (prospecção, linha de pensamento) — NÃO vira página wiki curada
+/bks:ingest https://exemplo.com/artigo  → busca o link, salva cópia em raw/, ingere
+/bks:ingest tools/batch-ingest.md       → processa a tabela de lote (várias fontes)
+/bks:ingest raw/_inbox/                 → classifica e processa TUDO que estiver na pasta
+/bks:ingest                             → sem argumento: assume raw/_inbox/
 ```
 
 ## Duas naturezas de fonte — não confundir
@@ -24,14 +24,14 @@ Uso:
 Esta base guarda dois tipos de material, com destino diferente:
 
 1. **Fonte externa** (PDF de livro/paper/artigo, transcrição de vídeo, clipping web) — conhecimento
-   de terceiro. Vai para `raw/{papers,articles,videos,clippings,links}/`, e o `/ingest` CURA: lê,
+   de terceiro. Vai para `raw/{papers,articles,videos,clippings,links}/`, e o `/bks:ingest` CURA: lê,
    resume, extrai conceitos, gera/atualiza página em `wiki/` seguindo o schema de página (Concept,
    Architecture, Pattern, etc — ver `../CLAUDE.md` deste repositório). `raw/notes/` também é fonte
    já curada (guidelines prescritivos escritos formalmente) — segue a mesma regra de fonte externa,
    não a regra de nota pessoal abaixo, mesmo sendo autoria própria.
 2. **Nota pessoal / prospecção** (linha de pensamento ainda em aberto, ideia para projeto futuro,
    reflexão não fechada — o rascunho antes de virar guideline) — vai para `raw/notas-pessoais/`.
-   O `/ingest` NÃO resume nem reformula como se fosse fonte de terceiro: arquiva com frontmatter
+   O `/bks:ingest` NÃO resume nem reformula como se fosse fonte de terceiro: arquiva com frontmatter
    próprio (`type: "prospecção"` ou `type: "reflexao"`) em `wiki/prospecções/`, preservando a voz e
    a incerteza do autor. Nunca vira `## Definition` / `## Core principles` como se fosse conceito
    estabelecido — é pensamento em aberto, marcado como tal. Quando a ideia amadurecer e virar

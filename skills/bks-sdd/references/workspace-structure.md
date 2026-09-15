@@ -56,7 +56,7 @@ em uma sessão anterior, este é o lugar.
 ```
 
 **`cost-ledger.jsonl`** — ledger de consumo de tokens e custo estimado (Fase 7). Uma linha
-JSON por (sessão × fase), gravada automaticamente pela skill e pelo comando `/save`. Regravar
+JSON por (sessão × fase), gravada automaticamente pela skill e pelo comando `/bks:save`. Regravar
 a mesma sessão+fase substitui a entrada anterior, nunca soma — o total não infla.
 
 Cada entrada tem: `ts`, `session_id`, `phase`, `label`, `models` (uso e custo por modelo),

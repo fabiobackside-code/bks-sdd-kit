@@ -1923,7 +1923,7 @@ e o momento em que o usuário quer ver o que a sessão custou:
 |---------|----------------|----------|
 | `--tan` | fase corrente da sessão | tabela completa + acumulado |
 | `--clear` | fase corrente da sessão | tabela completa + acumulado |
-| `/save` | fase corrente da sessão | tabela completa + linha TOTAL GERAL |
+| `/bks:save` | fase corrente da sessão | tabela completa + linha TOTAL GERAL |
 
 Ou seja: **qualquer comando que salve e encerre uma sessão traz o resumo de consumo junto**,
 sem o usuário precisar pedir.

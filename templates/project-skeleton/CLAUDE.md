@@ -1,7 +1,7 @@
 # {{PROJETO}} (categoria: {{backside | w3 | private}})
 
 > **Esqueleto de exemplo.** Esta pasta mostra a estrutura canônica de um projeto real, mas está
-> vazia de propósito — sem escopo, sem stack, sem specs preenchidas. Use `/new-project` na raiz do
+> vazia de propósito — sem escopo, sem stack, sem specs preenchidas. Use `/bks:new-project` na raiz do
 > vault para gerar a sua versão com conteúdo real.
 
 ## O projeto é autossuficiente
@@ -28,7 +28,7 @@ este arquivo.
 |---|---|
 | Specs — fonte de verdade para implementar | `./specs/{features,tests,tasks}/` |
 | Decisões deste projeto | `./decisions/ADR-NNN.md` |
-| Contexto consolidado (após `/canonize`) | `./docs/canonical/` |
+| Contexto consolidado (após `/bks:canonize`) | `./docs/canonical/` |
 | Material bruto ainda não consolidado | `./docs/input/` |
 | Entregáveis gerados | `./outputs/` |
 | Código | `./app/` |

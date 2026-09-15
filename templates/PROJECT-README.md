@@ -14,9 +14,9 @@ docs/input/  →  docs/design/  →  /canonize  →  docs/canonical/CONTEXT.md  
 docs/canonical/PRD-{project}.md  →  /spec  →  specs/  →  /loop  →  app/
 ```
 
-Regra de ouro: **specs (`/spec`) só citam `docs/canonical/`** — nunca material bruto de
+Regra de ouro: **specs (`/bks:spec`) só citam `docs/canonical/`** — nunca material bruto de
 `docs/input/` ou rascunho de `docs/design/` diretamente. Se uma spec precisar de algo que só
-existe no material bruto, é sinal de que o canônico está incompleto: rode `/canonize` de novo
+existe no material bruto, é sinal de que o canônico está incompleto: rode `/bks:canonize` de novo
 antes de seguir.
 
 ## 1. Onde colocar material de apoio (fase de pesquisa)
@@ -91,30 +91,30 @@ skill de apresentação/documento disponível.)
 
 ## 5. Do PRD para o código (SDD)
 
-1. `/spec` (nesta raiz) — entrevista sobre UM bounded context por vez, gera
+1. `/bks:spec` (nesta raiz) — entrevista sobre UM bounded context por vez, gera
    `specs/features/FEAT-*.md` citando o PRD/CONTEXT.md; depois de aprovado, gera
    `specs/tests/TEST-*.md`. Nunca implementa aqui.
-2. `/arch` — gera visão C4 (Mermaid) em `outputs/ARCH-{project}.md` a partir das specs
+2. `/bks:arch` — gera visão C4 (Mermaid) em `outputs/ARCH-{project}.md` a partir das specs
    aprovadas.
-3. `/loop` — implementa via protocolo LOOP-4 (máx. 4 tentativas, goals verificáveis) em `app/`.
-4. `/save` — fecha a sessão: ADR em `decisions/`, estado no `STATUS.md`, marco no `JOURNAL.md`.
+3. `/bks:loop` — implementa via protocolo LOOP-4 (máx. 4 tentativas, goals verificáveis) em `app/`.
+4. `/bks:save` — fecha a sessão: ADR em `decisions/`, estado no `STATUS.md`, marco no `JOURNAL.md`.
 
 Projeto marcado Alto/Crítico no `STATUS.md` deste repo: mudança em área
-sensível exige `/review` (neste repo) antes de considerar a entrega pronta.
+sensível exige `/bks:review` (neste repo) antes de considerar a entrega pronta.
 
 ## 6. Todos os comandos, num lugar só
 
 | Comando | Onde rodar | Faz |
 |---|---|---|
-| `/brain` | raiz do vault (`${BKS_VAULT}`) | retoma a sessão |
-| `/new-project` | raiz do vault | cria um projeto novo |
-| `/canonize` | **este repo** | consolida `docs/input/`+`docs/design/` → `docs/canonical/CONTEXT.md` |
-| `/prd` | **este repo** | gera `docs/canonical/PRD-{project}.md` a partir do CONTEXT.md |
-| `/review` | **este repo** | revisão de segurança (projeto Alto/Crítico) |
-| `/spec` | **este repo** | gera FEAT/TEST a partir do canônico |
-| `/arch` | **este repo** | gera visão C4 (Mermaid) |
-| `/loop` | **este repo** | implementa via LOOP-4 |
-| `/save` | **este repo** | fecha a sessão: `STATUS.md`, `JOURNAL.md`, `decisions/` |
+| `/bks:brain` | raiz do vault (`${BKS_VAULT}`) | retoma a sessão |
+| `/bks:new-project` | raiz do vault | cria um projeto novo |
+| `/bks:canonize` | **este repo** | consolida `docs/input/`+`docs/design/` → `docs/canonical/CONTEXT.md` |
+| `/bks:prd` | **este repo** | gera `docs/canonical/PRD-{project}.md` a partir do CONTEXT.md |
+| `/bks:review` | **este repo** | revisão de segurança (projeto Alto/Crítico) |
+| `/bks:spec` | **este repo** | gera FEAT/TEST a partir do canônico |
+| `/bks:arch` | **este repo** | gera visão C4 (Mermaid) |
+| `/bks:loop` | **este repo** | implementa via LOOP-4 |
+| `/bks:save` | **este repo** | fecha a sessão: `STATUS.md`, `JOURNAL.md`, `decisions/` |
 
 Fluxo deste projeto: `WORKFLOW.md`, neste repo. Guia geral do vault: `docs/COMO-USAR.md`.
 Referência rápida de todo comando: `docs/MANUAL-COMANDOS.md`, no vault.

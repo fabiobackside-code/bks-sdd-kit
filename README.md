@@ -11,7 +11,7 @@ operam o workbench e agentes com papéis separados.
 
 ```
 /plugin marketplace add fabiobackside-code/bks-sdd-kit
-/plugin install bks-sdd-kit@bks-sdd-kit
+/plugin install bks@bks-sdd-kit
 ```
 
 ## O que vem no kit
@@ -40,17 +40,17 @@ operam o workbench e agentes com papéis separados.
 
 | Comando | O que faz |
 |---|---|
-| `/brain` | Retoma a sessão: quem você e, onde parou, próximo passo |
-| `/new-project` | Cria projeto novo com a estrutura canônica — único ponto de entrada |
-| `/note` | Escreve nota viva em `docs/input/notas/` do projeto |
-| `/ingest` | Ingere conhecimento para a base transversal em `knowledge/` do vault |
-| `/canonize` | Consolida pesquisa e design num contexto canônico único |
-| `/prd` | Gera o PRD a partir do contexto canônico |
-| `/spec` | Entrevista de bounded context e gera `FEAT` + `TEST` |
-| `/arch` | Gera `ARCH-[projeto].md` (C4 em Mermaid) e o README do repo |
-| `/loop` | LOOP-4: implementa task sob goals verificáveis, máximo 4 tentativas |
-| `/review` | Dispara revisão independente read-only |
-| `/save` | Roteia o resultado da sessão pela regra dos dois lugares |
+| `/bks:brain` | Retoma a sessão: quem você e, onde parou, próximo passo |
+| `/bks:new-project` | Cria projeto novo com a estrutura canônica — único ponto de entrada |
+| `/bks:note` | Escreve nota viva em `docs/input/notas/` do projeto |
+| `/bks:ingest` | Ingere conhecimento para a base transversal em `knowledge/` do vault |
+| `/bks:canonize` | Consolida pesquisa e design num contexto canônico único |
+| `/bks:prd` | Gera o PRD a partir do contexto canônico |
+| `/bks:spec` | Entrevista de bounded context e gera `FEAT` + `TEST` |
+| `/bks:arch` | Gera `ARCH-[projeto].md` (C4 em Mermaid) e o README do repo |
+| `/bks:loop` | LOOP-4: implementa task sob goals verificáveis, máximo 4 tentativas |
+| `/bks:review` | Dispara revisão independente read-only |
+| `/bks:save` | Roteia o resultado da sessão pela regra dos dois lugares |
 
 ### Agentes
 
@@ -81,7 +81,7 @@ documentação não recebe pergunta sobre banco de dados; uma biblioteca não pa
 Quatro eixos atravessam os perfis: formato de saída (`md`/`html`), renderer de arquitetura,
 alvo de frontend (`web`/`mobile`/`both`) e rigor (`produção`/`poc`).
 
-O `/new-project` grava a escolha em `.bks-profile.json`. Detalhes em
+O `/bks:new-project` grava a escolha em `.bks-profile.json`. Detalhes em
 [`profiles/`](profiles/README.md).
 
 ## Guardas
@@ -133,8 +133,8 @@ arquivo, a de eval pega o refactor que manteve o arquivo valido e perdeu a regra
 
 ## Configuração
 
-Os comandos de workbench (`/brain`, `/save`, `/new-project`, `/note`, `/canonize`, `/prd`,
-`/review`) operam sobre um vault de projetos. Aponte-o por variavel de ambiente:
+Os comandos de workbench (`/bks:brain`, `/bks:save`, `/bks:new-project`, `/bks:note`, `/bks:canonize`, `/bks:prd`,
+`/bks:review`) operam sobre um vault de projetos. Aponte-o por variavel de ambiente:
 
 | Variavel | Aponta para | Exemplo |
 |---|---|---|

@@ -81,7 +81,7 @@ Copie `${CLAUDE_PLUGIN_ROOT}/templates/project-skeleton/` para
 Acrescente `stack` e `architecture_template` quando a conversa os tiver definido.
 
 **`STATUS.md`** — o estado inicial. Fase: levantamento. Próximo passo: a primeira ação concreta do
-perfil escolhido, que costuma ser `/note` ou reunir o material de entrada. Não escreva "definir o
+perfil escolhido, que costuma ser `/bks:note` ou reunir o material de entrada. Não escreva "definir o
 projeto" — isso não é ação.
 
 **`WORKFLOW.md`** — a partir das fases do perfil. Remova as seções de fases que o perfil não usa.

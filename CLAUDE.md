@@ -20,7 +20,7 @@ este arquivo.
 
 ## Este repositório é a origem, não o que executa
 
-As skills rodam da cópia em `~/.claude/plugins/cache/bks-sdd-kit/bks-sdd-kit/<versão>/`;
+As skills rodam da cópia em `~/.claude/plugins/cache/bks-sdd-kit/bks/<versão>/`;
 `${CLAUDE_PLUGIN_ROOT}` aponta para lá. Editar aqui não muda o comportamento da sessão até o
 plugin ser reinstalado ou atualizado.
 

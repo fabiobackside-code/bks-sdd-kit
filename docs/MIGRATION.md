@@ -21,7 +21,7 @@ Tudo vem do plugin. As copias locais saem.
 
 ```
 /plugin marketplace add fabiobackside-code/bks-sdd-kit
-/plugin install bks-sdd-kit@bks-sdd-kit
+/plugin install bks@bks-sdd-kit
 ```
 
 ### 2. Configurar o vault
@@ -83,7 +83,7 @@ Os guardas exigem `python` no PATH.
 /plugin
 ```
 
-As quatro skills, dez comandos e quatro agentes devem aparecer sob `bks-sdd-kit`. Rode `/brain`
+As quatro skills, dez comandos e quatro agentes devem aparecer sob `bks`. Rode `/bks:brain`
 para confirmar que as variaveis do vault resolvem.
 
 ## Se algo quebrar
@@ -91,5 +91,5 @@ para confirmar que as variaveis do vault resolvem.
 O plugin e aditivo: desinstalar devolve o estado anterior, desde que o backup do passo 3 exista.
 
 ```
-/plugin uninstall bks-sdd-kit@bks-sdd-kit
+/plugin uninstall bks@bks-sdd-kit
 ```

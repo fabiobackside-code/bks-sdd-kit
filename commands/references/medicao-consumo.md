@@ -1,8 +1,8 @@
 # Medicao de consumo
 
-> Chamado pelo `/save` no passo final. Depende de `scripts/session_cost.py`, que o kit versiona.
+> Chamado pelo `/bks:save` no passo final. Depende de `scripts/session_cost.py`, que o kit versiona.
 > Se o Python ou o script nao estiverem disponiveis, informe em uma linha e siga - a falha da
-> medicao nunca bloqueia o `/save`.
+> medicao nunca bloqueia o `/bks:save`.
 
 ## Onde esta o script
 
@@ -10,7 +10,7 @@ O script vive em `${CLAUDE_PLUGIN_ROOT}/scripts/session_cost.py` e le o `pricing
 dele. Nao ha copia fora do plugin: a instalacao em `~/.claude/scripts/` foi removida em 2026-09-15.
 
 Se o script nao existir, ou o Python nao estiver disponivel, escreva "medicao pulada:
-session_cost.py nao encontrado" e encerre o `/save` normalmente. Nao instale nada, nao peca para
+session_cost.py nao encontrado" e encerre o `/bks:save` normalmente. Nao instale nada, nao peca para
 instalar.
 
 Depois de gravar tudo acima, meca o consumo desta sessao e mostre ao usuario.
@@ -47,7 +47,7 @@ atualize o arquivo que o Dataview le direto (`FROM "" WHERE tipo = "custo-tokens
 fixo).
 
 - **Onde:** `{repo do projeto}/.logs/custo-tokens.md` — por projeto. Cada projeto tem o seu; um
-  arquivo unico e compartilhado seria sobrescrito quando dois projetos rodassem `/save` no mesmo
+  arquivo unico e compartilhado seria sobrescrito quando dois projetos rodassem `/bks:save` no mesmo
   dia.
 - **Se nao existir:** crie com frontmatter e uma tabela de checkpoints:
   ```
@@ -71,11 +71,11 @@ fixo).
 
 **Passo 6 — registrar no `JOURNAL.md`.** Acrescente a tabela do passo 4 a entrada da sessao, sob o
 subtitulo `### Consumo da sessao`, junto com o acumulado do processo. Se a entrada do dia ja tiver
-essa secao (segundo `/save` no mesmo dia), **substitua** a tabela em vez de acrescentar outra — o
+essa secao (segundo `/bks:save` no mesmo dia), **substitua** a tabela em vez de acrescentar outra — o
 snapshot e cumulativo, duas tabelas confundiriam.
 
 **Se o script ou o passo 5 falharem** (Python ausente, transcript nao encontrado, `custo-tokens.md`
-ilegivel): informe o erro em uma linha e siga — a falha da medicao nunca bloqueia o `/save`.
+ilegivel): informe o erro em uma linha e siga — a falha da medicao nunca bloqueia o `/bks:save`.
 
 **Nunca** afirme que o valor e a fatura real. E estimativa por token contra a tabela local
 `pricing.json`, ao lado do script.

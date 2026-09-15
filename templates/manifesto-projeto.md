@@ -2,7 +2,7 @@
 
 Copie para `{repo}/.claude/multiagente.md` e preencha ao marcar um projeto como
 **Alto** ou **Crítico** (campo `criticidade` no `STATUS.md` do projeto).
-Sem manifesto preenchido, não paralelize — não delegue a `/review` obrigatória.
+Sem manifesto preenchido, não paralelize — não delegue a `/bks:review` obrigatória.
 Curto de propósito: é lido em toda delegação, cada linha inútil custa token em toda sessão futura.
 
 ---
@@ -28,7 +28,7 @@ Exclusivas do orquestrador — subagentes descrevem, não editam:
 | `db/migrations/NNN_*` | Numeração colide |
 | `decisions/ADR-NNN.md` | Numeração ADR-NNN colide |
 | `specs/tasks/` | Numeração TASK-NNN colide |
-| `STATUS.md` | Reescrito por inteiro pelo `/save` — dois agentes se sobrescrevem |
+| `STATUS.md` | Reescrito por inteiro pelo `/bks:save` — dois agentes se sobrescrevem |
 | mocks/fixtures compartilhados de teste | Dois agentes editando a mesma struct |
 
 ## Recursos numerados compartilhados
@@ -44,7 +44,7 @@ Dois agentes só ao mesmo tempo se cada um ficar inteiramente dentro de:
 - `Features/{ContextoA}/` vs `Features/{ContextoB}/` (bounded contexts distintos)
 - `FEAT-*.md`/`TEST-*.md` de features distintas em `specs/`
 
-## Áreas sensíveis — revisão independente obrigatória (`/review`)
+## Áreas sensíveis — revisão independente obrigatória (`/bks:review`)
 - Autenticação/autorização (`Identidade/`, JWT, RBAC)
 - Qualquer código que mova dinheiro, altere saldo ou grava contábil (TXC: `DataContabil`, `Nsu`)
 - Isolamento entre tenants/inquilinos (`InquilinoId` no TXC)
@@ -59,14 +59,14 @@ Dois agentes só ao mesmo tempo se cada um ficar inteiramente dentro de:
 - `<invariantes específicas deste projeto>`
 
 ## Perfis disponíveis
-Vêm do plugin `bks-sdd-kit`, invocados pelo nome:
+Vêm do plugin `bks`, invocados pelo nome:
 
 | Perfil | Invocação | Para que |
 |---|---|---|
-| builder | `bks-sdd-kit:builder` | implementa sob LOOP-4 |
-| reviewer | `bks-sdd-kit:reviewer` | revisão read-only, invocação separada |
-| planner | `bks-sdd-kit:planner` | escopo → FEAT/TEST/TASK, nunca código |
-| scribe | `bks-sdd-kit:scribe` | sincroniza doc de trabalho já verificado |
+| builder | `bks:builder` | implementa sob LOOP-4 |
+| reviewer | `bks:reviewer` | revisão read-only, invocação separada |
+| planner | `bks:planner` | escopo → FEAT/TEST/TASK, nunca código |
+| scribe | `bks:scribe` | sincroniza doc de trabalho já verificado |
 
 ## Convenções — aponte, não repita
 - Quem é o usuário: `workbench/profile.md`, no vault
