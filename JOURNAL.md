@@ -41,7 +41,19 @@ que fez a mudança seguiu com os comandos antigos.
 `python tests/test_structure.py` → `720 verificacoes, 3 falhas` — as mesmas três já conhecidas,
 nenhuma nova.
 
-Commits: `61802c6` (comandos e documentação), `5fda0fe` (merge), `74fc59b` (`0.2.1`).
+Commits: `61802c6` (comandos e documentação), `5fda0fe` (merge), `74fc59b` (`0.2.1`), `b302e24`
+(fechamento).
+
+### Consumo da sessao
+
+| Modelo | Input | Output | Cache write | Cache read | Total | Custo |
+|---|---:|---:|---:|---:|---:|---:|
+| claude-opus-5 | 110 | 26.608 | 262.623 | 5.349.637 | 5.638.978 | US$ 5,9668 |
+| **TOTAL** | **110** | **26.608** | **262.623** | **5.349.637** | **5.638.978** | **US$ 5,9668** |
+
+Acumulado do processo: **37.085.083 tokens — US$ 28,2992** em 3 sessoes.
+
+Estimativa por token contra a tabela local de precos, nao a fatura oficial.
 
 ---
 
