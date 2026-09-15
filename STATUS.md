@@ -83,7 +83,7 @@ escritos e não percorridos. Um worker ou CLI pequeno basta.
 Com crédito disponível, rodar um caso só antes de gastar a suíte:
 
 ```
-cd X:\2brains\repos\backside\prj-bks-kit
+cd ${BKS_VAULT}/repos/backside/prj-bks-kit
 claude plugin eval . --case dotnet-sem-dispatcher --runs 1
 ```
 

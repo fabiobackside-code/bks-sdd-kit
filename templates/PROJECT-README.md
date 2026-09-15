@@ -106,7 +106,7 @@ sensível exige `/review` (neste repo) antes de considerar a entrega pronta.
 
 | Comando | Onde rodar | Faz |
 |---|---|---|
-| `/brain` | raiz do vault (`X:\2brains`) | retoma a sessão |
+| `/brain` | raiz do vault (`${BKS_VAULT}`) | retoma a sessão |
 | `/new-project` | raiz do vault | cria um projeto novo |
 | `/canonize` | **este repo** | consolida `docs/input/`+`docs/design/` → `docs/canonical/CONTEXT.md` |
 | `/prd` | **este repo** | gera `docs/canonical/PRD-{project}.md` a partir do CONTEXT.md |

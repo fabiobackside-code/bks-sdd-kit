@@ -1,5 +1,5 @@
 # {ProjectName}
-Profile:   X:\2brains\workbench\profile.md (READ ALWAYS)
+Profile:   ${BKS_VAULT}\workbench\profile.md (READ ALWAYS)
 Ficha:     .\STATUS.md   (neste repo)
 Docs:      .\README.md (ciclo de vida + exemplos de prompt deste projeto — leia se precisar
            lembrar onde algo entra ou como consolidar contexto/PRD)
