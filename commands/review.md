@@ -16,7 +16,7 @@ Pré-requisitos:
    não gaste Opus revisando mudança de documentação.
 
 Contexto obrigatório para o reviewer:
-- `skills/bks-standards/references/checklist-revisão-crítica.md`
+- `skills/bks-standards/references/checklist-revisao-critica.md`
 - Seção "Invariantes do domínio" e "Áreas sensíveis" do manifesto do projeto
 - {repo}/decisions/ (não repetir achado já decidido/aceito NESTE projeto)
 - Diff ou arquivos específicos da entrega (não o repo inteiro)

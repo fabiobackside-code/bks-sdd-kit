@@ -193,6 +193,41 @@ A detecção por `mtime` é grosseira de propósito — acusa divergência quand
 formatação. O falso positivo custa uma reconsolidação; o falso negativo custa um canônico errado
 alimentando o próximo `/prd`.
 
+### Os comandos existem só no plugin
+
+`/brain`, `/save` e os outros nove viviam em duas cópias: `commands/` deste repositório e
+`~/.claude/commands/`, instalada à mão. A cópia global venceu a do plugin na resolução de nome, o
+que tornava o repositório origem de um comando que não era o executado.
+
+O custo apareceu quando a validação do `/save` 0.2.1 rodou contra a cópia errada: o comando
+exercitado não tinha a verificação do canônico que a sessão pretendia testar, e a prova registrada
+no `JOURNAL.md` não valia.
+
+As cópias divergiram em três eixos. Sete dos onze comandos diferiam só por acentuação. Quatro
+divergiam em conteúdo, e nenhum dos dois lados era completo: o `save` do kit tinha o ciclo do
+canônico, o global tinha a medição de consumo. O kit carregava dois ponteiros quebrados que a
+cópia global não tinha.
+
+A instalação global foi removida em 2026-09-15, depois de migrado o que ela tinha de melhor. Um
+comando do método passa a existir só onde o plugin está instalado. A alternativa — manter as duas
+com um script de sincronização — foi descartada: sincronizador é peça que alguém tem que lembrar
+de rodar, e a duplicação já tinha produzido defeito exatamente por ninguém lembrar.
+
+A medição de consumo saiu do corpo do `/save` para `commands/references/medicao-consumo.md`, e o
+`session_cost.py` resolve o `pricing.json` ao lado de si — validado rodando da cópia instalada
+depois de apagada a global.
+
+### Ponteiro para arquivo é verificado
+
+O `test_structure.py` casava referências com `[a-z0-9-]+\.md`, que não alcança nome acentuado.
+`checklist-revisão-crítica.md` citado contra `checklist-revisao-critica.md` em disco passava sem
+ser visto — o mesmo defeito que `607d5e1` já corrigira uma vez em `documentacao.md`.
+
+A suíte passou a verificar todo caminho entre crases que aponte para dentro do kit. Caminho do
+projeto consumidor (`docs/canonical/`, `decisions/`) e molde com placeholder ficam de fora: não
+existem neste repositório por definição. Seis ponteiros quebrados apareceram na primeira execução,
+incluindo uma das três falhas que a suíte já acusava sem diagnóstico.
+
 ## Consumidores
 
 O kit foi extraido de um vault em uso. Os projetos que o consomem continuam sendo a fonte de

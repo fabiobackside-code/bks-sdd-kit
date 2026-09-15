@@ -28,7 +28,7 @@ artefatos.
 
 ## Como aplicar a notação
 
-Declare as classes uma vez, no topo do diagrama, com a paleta de `skills/bks-arch/paleta.md`:
+Declare as classes uma vez, no topo do diagrama, com a paleta de `skills/bks-arch/references/paleta.md`:
 
 ```
 classDef backend    fill:#336698,stroke:#1F4266,color:#FFFFFF

@@ -143,6 +143,55 @@ def test_commands():
           % ', '.join(sorted(present - documented)))
 
 
+def test_pointers():
+    """Toda referencia a arquivo do repositorio citada em texto existe em disco.
+
+    O regex das outras suites so casa ASCII minusculo, entao um ponteiro
+    acentuado passava sem ser visto. Ver docs/ARCHITECTURE.md.
+    """
+    print('\nponteiros para arquivo')
+
+    # caminho dentro de crase, com ao menos uma barra, terminando em extensao
+    # pipeline Node.js externo citado no bks-sdd e nunca versionado aqui;
+    # ver ENTREVISTA-unificacao.md, pendencia fora do escopo
+    KNOWN_ABSENT = ('agents/INSTALL-AGENTS.md',
+                    'agents/USE-AGENTS-STEPBYSTEP.md')
+    KIT_DIRS = ('skills/', 'commands/', 'agents/', 'profiles/',
+                'hooks/', 'templates/', 'evals/', 'tests/', 'scripts/')
+    pattern = re.compile(r'`([^`\s]+/[^`\s]+\.(?:md|py|json|yaml|yml))`')
+    scanned = 0
+    broken = []
+
+    for sub in ('commands', 'skills', 'agents', 'profiles'):
+        base = os.path.join(ROOT, sub)
+        if not os.path.isdir(base):
+            continue
+        for dirpath, _, filenames in os.walk(base):
+            for fn in filenames:
+                if not fn.endswith('.md'):
+                    continue
+                full = os.path.join(dirpath, fn)
+                rel = os.path.relpath(full, ROOT).replace(BS, '/')
+                text = io.open(full, encoding='utf-8').read()
+                for raw in pattern.findall(text):
+                    # so ponteiros para dentro do kit; caminho do projeto
+                    # consumidor (docs/, decisions/, .logs/) nao existe aqui
+                    if not raw.startswith(KIT_DIRS):
+                        continue
+                    if '[' in raw or '{' in raw or '*' in raw or '<' in raw:
+                        continue
+                    if raw in KNOWN_ABSENT:
+                        continue
+                    scanned += 1
+                    if not os.path.exists(os.path.join(ROOT, raw)):
+                        broken.append('%s -> %s' % (rel, raw))
+
+    check('ha ponteiros para verificar', scanned > 0,
+          'nenhum caminho entre crases encontrado — regex quebrou?')
+    check('todo ponteiro para arquivo do repositorio existe', not broken,
+          '; '.join(sorted(set(broken))))
+
+
 def test_agents():
     print('\nagentes')
     files = [f for f in listdir('agents') if f.endswith('.md')]
@@ -267,7 +316,8 @@ def test_renderers():
         check('%s: diz quando e a escolha certa' % f,
               '## Quando e a escolha certa' in text)
         check('%s: declara o limite' % f, '## Limite honesto' in text)
-        if field(fm, 'padrao') == 'true':
+        # o frontmatter usa `padrao` ou `padrão`; ver ENTREVISTA-unificacao.md
+        if 'true' in (field(fm, 'padrao'), field(fm, 'padrão')):
             defaults.append(name)
 
     check('ha exatamente um renderer padrao', len(defaults) == 1,
@@ -388,7 +438,8 @@ def test_public_hygiene():
 
 def main():
     print('suite estrutural do bks-sdd-kit')
-    for fn in (test_manifests, test_skills, test_commands, test_agents,
+    for fn in (test_manifests, test_skills, test_commands, test_pointers,
+               test_agents,
                test_hooks, test_invariants, test_profiles, test_renderers,
                test_evals, test_public_hygiene):
         fn()

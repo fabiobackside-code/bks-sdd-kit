@@ -3,15 +3,16 @@
 > Ponto de entrada do projeto. Leia só este arquivo para saber onde as coisas estão e o que fazer
 > a seguir. Atualizado pelo `/save` ao fim de cada sessão; lido pelo `/brain`.
 >
-> Última atualização: 2026-09-14
+> Última atualização: 2026-09-15
 
 ---
 
 ## Em uma frase
 
-O fluxo documental deixou de ser de mão única — o `/canonize` lê spec e ADR, e o `/save` acusa o
-canônico defasado — e está instalado como `0.2.1`, mas o `/save` novo ainda não foi executado
-nenhuma vez. A medição segue parada esperando crédito.
+Os onze comandos deixaram de existir em duas cópias: a instalação global morreu e o plugin é a
+única origem. O `/save` unificado — ciclo do canônico mais medição de consumo — está escrito e não
+exercitado, e o plugin instalado ainda é o `0.2.1`, anterior a ele. A medição de eval segue parada
+esperando crédito.
 
 ---
 
@@ -27,16 +28,20 @@ casos com o delta `with` × `without` medido.
 
 | Bloqueio | Espera | Quem destrava |
 |---|---|---|
-| Testar o `/save` 0.2.1 no caminho do alerta | reinício de sessão e árvore limpa no projeto alvo | Fabio |
+| Testar o `/save` unificado, nos dois caminhos | reinstalar o plugin e árvore limpa no alvo | Fabio |
+| Publicar a versão nova do kit | revisão desta sessão | Fabio |
 | Baseline dos 18 casos de eval | saldo de crédito da conta | Fabio |
 | Caso de eval para Go | a baseline acima | — |
 | Adelgaçar o `bks-sdd` (2062 linhas) | a baseline acima | — |
 | Publicar o repositório | aval do Fabio | Fabio |
 
-O `/save` mudou, foi instalado e **nunca rodou na versão nova**. O `claude plugin update` avisou
-`Restart to apply changes`: a sessão que fez a mudança continuou com os comandos de `0.2.0`, e
-rodar ali teria testado o comando antigo. A detecção foi validada por fora, com o mesmo `find` que
-o comando executa — o que falta é o comando inteiro, do passo 4 ao relatório do passo 7.
+A validação registrada mais cedo nesta data não vale: rodou a cópia global do `/save`, que não tem
+a verificação do canônico. O silêncio observado não provava nada. O `JOURNAL.md` traz a retificação
+na entrada do dia.
+
+Os dois caminhos seguem sem teste, e agora o comando a testar é outro — o unificado, que junta o
+ciclo do canônico à medição de consumo. Testá-lo exige reinstalar o plugin: a cópia em cache é a
+`0.2.1`, anterior a estas mudanças.
 
 O alvo escolhido foi o `dash-scheduller`, e ele estava com dez arquivos modificados sem commit,
 incluindo o próprio `STATUS.md` e o `CONTEXT.md`. O `/save` reescreve o `STATUS.md` por inteiro —
@@ -57,12 +62,16 @@ validada em uso sem rede de teste é aposta.
 
 ## Próximo passo
 
-Rodar o `/save` numa sessão nova, aqui mesmo. Este repositório não tem `docs/canonical/CONTEXT.md`,
-então exercita o caminho do silêncio: a verificação do passo 4 não deve dizer nada. Projeto sem
-canônico que recebe alerta é o falso positivo mais caro, porque treina o leitor a ignorar o aviso.
+Subir a versão do kit e reinstalar o plugin — sem isso a sessão seguinte continua rodando o
+`0.2.1`, que é o erro que esta sessão diagnosticou.
 
-Depois, o caminho do alerta no `dash-scheduller`, com a árvore dele limpa antes. O esperado é uma
-linha na seção do que trava nomeando o `CONTEXT.md` v6 e os dois ADRs mais novos que ele.
+Depois, testar o `/save` unificado nos dois caminhos: aqui, onde não há canônico e ele deve calar;
+e no `dash-scheduller`, onde há defasagem e ele deve falar. A árvore do `dash-scheduller` precisa
+estar limpa antes — o `/save` reescreve o `STATUS.md` por inteiro.
+
+Decidir o que fazer com a citação a `agents/INSTALL-AGENTS.md` e `agents/USE-AGENTS-STEPBYSTEP.md`
+no `bks-sdd`: pipeline Node.js externo que nunca foi versionado aqui. Está marcado como exceção
+conhecida na suíte, o que é dívida, não solução.
 
 Segue valendo, e não espera crédito: exercitar a `bks-go-solutions` numa geração real. Ela nunca
 gerou projeto; a entrevista, o registro na base de aprendizado e a anonimização são caminhos
@@ -94,7 +103,7 @@ próprio contexto.
 | Guardas executáveis | 4, todos com teste em `hooks/tests/` |
 | Casos de eval | 18, com 85 graders |
 
-`python tests/test_structure.py` → 720 verificações, 3 falhas conhecidas (abaixo).
+`python tests/test_structure.py` → 722 verificações, 0 falhas.
 
 ---
 
@@ -114,14 +123,16 @@ próprio contexto.
 | 10 | Delta de linguagem vive em `bks-standards`, não na skill geradora | `docs/ARCHITECTURE.md` |
 | 11 | A skill de Go lê e alimenta base de aprendizado fora do projeto, anonimizada | `docs/ARCHITECTURE.md` |
 | 12 | O canônico é realimentado pela spec; o `/save` acusa, o `/canonize` corrige | `docs/ARCHITECTURE.md` |
+| 13 | Comando do método existe só no plugin; a instalação global morreu | `docs/ARCHITECTURE.md` |
+| 14 | Ponteiro para arquivo do kit é verificado pela suíte, acento incluído | `docs/ARCHITECTURE.md` |
 
 ---
 
 ## Aberto
 
-- Três falhas conhecidas no `test_structure.py`, não diagnosticadas: referência inalcançável pelo
-  `SKILL.md` em `bks-arch`, comando não documentado, e mais de um renderer marcado como padrão. A
-  quarta era acento — `documentação.md` citado, `documentacao.md` em disco (`607d5e1`)
+- O frontmatter dos renderers usa a chave `padrão`, com acento, contra a regra de que chave de
+  frontmatter segue ASCII. A suíte aceita as duas grafias; a decisão de padronizar a chave e migrar
+  os cinco arquivos está em aberto
 - Nenhum caso de eval cobre Go; os 18 existentes são de .NET, TypeScript e comandos
 - A base de aprendizado em `${BKS_KNOWLEDGE}/wiki/go/` está criada e vazia, e não é versionada:
   `knowledge/**` está no `.gitignore` do vault, logo ela existe só nesta máquina
@@ -129,7 +140,9 @@ próprio contexto.
 - `bks-sdd` com 2062 linhas num `SKILL.md` único — o adelgaçamento está planejado, não iniciado
 - O repositório não tem `brain/domain/` nem `brain/engineering/`; o conhecimento está todo em
   `docs/ARCHITECTURE.md` e nas próprias skills
-- O `/save` de `0.2.1` não foi executado nenhuma vez, em nenhum caminho
+- O `/save` unificado não foi exercitado em nenhum caminho; o plugin em cache é anterior a ele
+- `skills/bks-sdd/SKILL.md` cita dois arquivos de um pipeline Node.js que não existe no repositório,
+  marcados como exceção conhecida em `tests/test_structure.py`
 - A regra nova não tem guarda executável, e o kit exige que tenha. A guarda cairia no projeto
   consumidor, não aqui — é o primeiro caso em que a regra vale para fora e o teste não tem onde
   morar deste lado

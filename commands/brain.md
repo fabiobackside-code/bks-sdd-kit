@@ -40,6 +40,8 @@ Se não houver `STATUS.md`, ofereça criá-lo a partir do template do kit.
 
 ## Modo panorama
 
+Leia `workbench/profile.md` — quem é o usuário e como ele trabalha.
+
 Percorra `repos/*/*/` e, para cada projeto, leia:
 
 - `STATUS.md` — a frase de estado, a fase, e o que trava
@@ -71,9 +73,10 @@ com a data do último commit.
 Feche com uma linha de sugestão: qual projeto tem trabalho pronto para seguir, e qual está travado
 esperando algo. Baseie-se no que trava — projeto bloqueado por decisão externa não é candidato.
 
-Termine dizendo que, para trabalhar num projeto, o usuário abre uma sessão nova na pasta dele.
-Não ofereça continuar o trabalho do projeto a partir da raiz: os comandos de projeto precisam da
-sessão aberta no repositório.
+Cite o caminho do repositório (`${BKS_VAULT}/repos/{categoria}/{projeto}`) e termine dizendo que,
+para trabalhar num projeto, o usuário abre uma sessão nova na pasta dele. Não ofereça continuar o
+trabalho do projeto a partir da raiz: os comandos de projeto escrevem no repositório onde a sessão
+está aberta, e rodar da raiz gravaria no lugar errado.
 
 ---
 

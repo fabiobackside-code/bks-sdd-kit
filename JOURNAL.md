@@ -5,6 +5,53 @@
 
 ---
 
+## 2026-09-15 · Os comandos passam a existir só no plugin
+
+A entrada abaixo, desta mesma data, está errada no ponto que mais importa: o `/save` exercitado não
+foi o do kit. Havia duas cópias de cada comando — `commands/` deste repositório e
+`~/.claude/commands/` — e a global vencia na resolução de nome. O comando que rodou não tinha a
+verificação do canônico, então o silêncio observado não provava nada: aquela cópia nunca ia falar.
+
+O levantamento mostrou onze comandos duplicados, não dois. Sete diferiam só por acentuação. Quatro
+divergiam em conteúdo, e nenhum lado era completo: o `save` do kit tinha o ciclo do canônico, o
+global tinha a medição de consumo. O kit ainda carregava seis ponteiros para arquivos inexistentes,
+incluindo dois que a cópia global tinha corretos.
+
+A causa de os ponteiros passarem despercebidos era o regex da própria suíte, que só casava ASCII
+minúsculo e portanto não enxergava `checklist-revisão-crítica.md`. Com a verificação estendida,
+uma das três falhas antigas caiu junto — era o mesmo defeito, sob outro nome.
+
+A instalação global foi removida depois de migrado o que tinha de melhor, e a medição de consumo
+virou `commands/references/medicao-consumo.md`. O `session_cost.py` foi validado rodando da cópia
+do plugin com a global já apagada.
+
+O que isto trava: o `/save` unificado continua sem teste real. Esta sessão o escreveu, não o
+exercitou — e o plugin instalado ainda é o `0.2.1`, anterior a estas mudanças.
+
+## 2026-09-15 · O `/save` novo sabe calar
+
+Primeira execução do `/save` de `0.2.1`, neste repositório, em sessão nova — a condição que faltava
+desde ontem, quando o `claude plugin update` pediu reinício e a sessão anterior seguiu com os
+comandos de `0.2.0`.
+
+O caminho exercitado foi o do silêncio: não há `docs/canonical/`, `specs/` nem `decisions/` aqui, e
+a verificação de defasagem não acrescentou nada ao `STATUS.md`. Era o falso positivo mais caro
+previsto no desenho — alertar projeto sem canônico treina o leitor a ignorar o aviso — e está
+descartado por execução.
+
+Metade da prova. O caminho do alerta continua sem teste, e o alvo segue sendo o `dash-scheduller`,
+que precisa da árvore limpa antes.
+
+### Consumo da sessão
+
+| Modelo | Input | Output | Cache write | Cache read | Total | Custo |
+|---|---:|---:|---:|---:|---:|---:|
+| claude-opus-5 | 20 | 4.081 | 53.745 | 777.722 | 835.568 | US$ 1,0284 |
+| **TOTAL** | **20** | **4.081** | **53.745** | **777.722** | **835.568** | **US$ 1,0284** |
+
+Acumulado do processo: **37.920.651 tokens — US$ 29,3277**. Estimativa por token contra
+`~/.claude/scripts/pricing.json`, não fatura.
+
 ## 2026-09-14 · O canônico deixou de ser mão única
 
 O fluxo documental ia do `/canonize` ao `/spec` e nunca voltava. Depois da primeira entrega o
