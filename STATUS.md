@@ -3,15 +3,15 @@
 > Ponto de entrada do projeto. Leia só este arquivo para saber onde as coisas estão e o que fazer
 > a seguir. Atualizado pelo `/save` ao fim de cada sessão; lido pelo `/brain`.
 >
-> Última atualização: 2026-09-10
+> Última atualização: 2026-09-14
 
 ---
 
 ## Em uma frase
 
-O kit ganhou Go como terceira stack de backend e está instalado como `0.2.0` em uso diário, mas
-segue sem medição: a suíte de eval carrega e espera crédito para a primeira baseline — agora com
-uma lacuna a mais, porque Go entrou sem caso de eval.
+O fluxo documental deixou de ser de mão única — o `/canonize` lê spec e ADR, e o `/save` acusa o
+canônico defasado — e está instalado como `0.2.1`, mas o `/save` novo ainda não foi executado
+nenhuma vez. A medição segue parada esperando crédito.
 
 ---
 
@@ -27,10 +27,20 @@ casos com o delta `with` × `without` medido.
 
 | Bloqueio | Espera | Quem destrava |
 |---|---|---|
+| Testar o `/save` 0.2.1 no caminho do alerta | reinício de sessão e árvore limpa no projeto alvo | Fabio |
 | Baseline dos 18 casos de eval | saldo de crédito da conta | Fabio |
 | Caso de eval para Go | a baseline acima | — |
 | Adelgaçar o `bks-sdd` (2062 linhas) | a baseline acima | — |
 | Publicar o repositório | aval do Fabio | Fabio |
+
+O `/save` mudou, foi instalado e **nunca rodou na versão nova**. O `claude plugin update` avisou
+`Restart to apply changes`: a sessão que fez a mudança continuou com os comandos de `0.2.0`, e
+rodar ali teria testado o comando antigo. A detecção foi validada por fora, com o mesmo `find` que
+o comando executa — o que falta é o comando inteiro, do passo 4 ao relatório do passo 7.
+
+O alvo escolhido foi o `dash-scheduller`, e ele estava com dez arquivos modificados sem commit,
+incluindo o próprio `STATUS.md` e o `CONTEXT.md`. O `/save` reescreve o `STATUS.md` por inteiro —
+rodar sobre trabalho alheio inacabado misturaria a classificação dele com a do teste.
 
 O crédito segue sendo o bloqueio de cabeça, isolado e confirmado com casos válidos:
 `Ablation: 2 arms × 18 cases` carrega, e todo grader devolve
@@ -47,9 +57,16 @@ validada em uso sem rede de teste é aposta.
 
 ## Próximo passo
 
-Exercitar a `bks-go-solutions` numa geração real — é o único passo que não espera crédito. Ela
-está instalada (`0.2.0`) e nunca gerou projeto; a entrevista, o registro na base de aprendizado e
-a anonimização são caminhos escritos e não percorridos. Um worker ou CLI pequeno basta.
+Rodar o `/save` numa sessão nova, aqui mesmo. Este repositório não tem `docs/canonical/CONTEXT.md`,
+então exercita o caminho do silêncio: a verificação do passo 4 não deve dizer nada. Projeto sem
+canônico que recebe alerta é o falso positivo mais caro, porque treina o leitor a ignorar o aviso.
+
+Depois, o caminho do alerta no `dash-scheduller`, com a árvore dele limpa antes. O esperado é uma
+linha na seção do que trava nomeando o `CONTEXT.md` v6 e os dois ADRs mais novos que ele.
+
+Segue valendo, e não espera crédito: exercitar a `bks-go-solutions` numa geração real. Ela nunca
+gerou projeto; a entrevista, o registro na base de aprendizado e a anonimização são caminhos
+escritos e não percorridos. Um worker ou CLI pequeno basta.
 
 Com crédito disponível, rodar um caso só antes de gastar a suíte:
 
@@ -96,6 +113,7 @@ próprio contexto.
 | 9 | O kit é um projeto em `repos/`, não um caso à parte na raiz do vault | `JOURNAL.md`, 2026-09-10 |
 | 10 | Delta de linguagem vive em `bks-standards`, não na skill geradora | `docs/ARCHITECTURE.md` |
 | 11 | A skill de Go lê e alimenta base de aprendizado fora do projeto, anonimizada | `docs/ARCHITECTURE.md` |
+| 12 | O canônico é realimentado pela spec; o `/save` acusa, o `/canonize` corrige | `docs/ARCHITECTURE.md` |
 
 ---
 
@@ -111,6 +129,17 @@ próprio contexto.
 - `bks-sdd` com 2062 linhas num `SKILL.md` único — o adelgaçamento está planejado, não iniciado
 - O repositório não tem `brain/domain/` nem `brain/engineering/`; o conhecimento está todo em
   `docs/ARCHITECTURE.md` e nas próprias skills
+- O `/save` de `0.2.1` não foi executado nenhuma vez, em nenhum caminho
+- A regra nova não tem guarda executável, e o kit exige que tenha. A guarda cairia no projeto
+  consumidor, não aqui — é o primeiro caso em que a regra vale para fora e o teste não tem onde
+  morar deste lado
+- A detecção usa `mtime`, então spec mexida só na formatação acusa divergência. Escolha consciente,
+  registrada no `ARCHITECTURE.md`: o falso positivo custa uma reconsolidação, o falso negativo
+  custa um canônico errado alimentando o `/prd`
+- Treze commits sem push na `main`
+- Doze decisões fora do canônico em três projetos consumidores, achado desta sessão e não
+  endereçado: `layan` v2 com sete ADRs posteriores, `nquantic` v6 com uma FEAT, um TEST e o
+  ADR-024, `dash-scheduller` v6 com ADR-003 e ADR-004. O `layan` é o pior caso
 - Repositório ainda não publicado
 
 ---

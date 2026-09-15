@@ -5,6 +5,46 @@
 
 ---
 
+## 2026-09-14 · O canônico deixou de ser mão única
+
+O fluxo documental ia do `/canonize` ao `/spec` e nunca voltava. Depois da primeira entrega o
+sentido se inverte: a FEAT aprovada e o ADR fechado viram a verdade do projeto, e o
+`docs/canonical/CONTEXT.md` envelhece sem que nada sinalize — alimentando o `/prd` seguinte com
+informação vencida.
+
+A correção ficou em duas metades. O `/canonize` passou a ler `specs/` e `decisions/` como fonte
+citável, com precedência sobre `docs/input/` onde os dois se contradizem. O `/save` compara a data
+do `CONTEXT.md` com a desses diretórios e registra a defasagem na seção do que trava do
+`STATUS.md` — que é o que o `/brain` lê na sessão seguinte, e não some quando a sessão fecha.
+
+Duas alternativas foram descartadas e estão no `ARCHITECTURE.md`. A nota-ponte em `docs/input/`,
+porque síntese de segunda mão afasta a afirmação da fonte, e spec aprovada já é fonte com caminho
+e data. A detecção no `/review`, porque ele dispensa mudança que não toca área sensível —
+documentação, justamente — e o agente `reviewer` é read-only, sem o estado da sessão que aprovou a
+FEAT.
+
+A detecção foi validada por fora do comando, com o mesmo `find` que ele executa: sete projetos
+consumidores com canônico, quatro limpos e três divergentes, nenhum falso positivo. São doze
+decisões reais fora do canônico, e o `dash-scheduller` é o caso que fecha o argumento — o
+`CONTEXT.md` v6 não cita ADR-003 nem ADR-004 em lugar nenhum, enquanto o `STATUS.md` do projeto já
+lista quatro decisões cuja fonte são esses dois arquivos.
+
+Fica um débito que a regra do próprio kit cobra: guarda sem teste é intenção, e esta não tem
+guarda. É o primeiro caso em que a regra vale para o projeto consumidor e o teste não tem onde
+morar deste lado.
+
+O plugin subiu para `0.2.1` — sem o bump, a reinstalação sobre `0.2.0` não recopia o cache.
+`claude plugin update` confirmou `0.2.0 → 0.2.1` e o cache tem os comandos novos. O `/save` de
+`0.2.1`, porém, não rodou nenhuma vez: o próprio CLI avisou `Restart to apply changes`, e a sessão
+que fez a mudança seguiu com os comandos antigos.
+
+`python tests/test_structure.py` → `720 verificacoes, 3 falhas` — as mesmas três já conhecidas,
+nenhuma nova.
+
+Commits: `61802c6` (comandos e documentação), `5fda0fe` (merge), `74fc59b` (`0.2.1`).
+
+---
+
 ## 2026-09-10 · Go entrou como terceira stack de backend
 
 O kit gerava .NET e TypeScript. Go entrou com a skill `bks-go-solutions` — cinco tipos (API com
