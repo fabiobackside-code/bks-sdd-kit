@@ -410,7 +410,12 @@ def test_public_hygiene():
             re.compile(r'[A-Z]:' + BS + r'{1,2}[A-Za-z]|[A-Z]:/(?:Users|Fabio)'),
         'endereco de e-mail pessoal':
             re.compile(r'[\w.+-]+@(?:gmail|hotmail|outlook)\.com'),
+        # caminho do vault do autor; use ${BKS_VAULT}. README e JOURNAL sao
+        # isentos: um documenta o valor da variavel, o outro e historico
+        'caminho do vault em vez de BKS_VAULT':
+            re.compile('[A-Z]:[/' + BS + BS + ']{1,2}2brains'),
     }
+    exempt = {'caminho do vault em vez de BKS_VAULT': ('README.md', 'JOURNAL.md')}
     found = dict((k, []) for k in leaks)
 
     for base, dirs, files in os.walk(ROOT):
@@ -428,6 +433,8 @@ def test_public_hygiene():
             except Exception:
                 continue
             for label, rx in leaks.items():
+                if rel in exempt.get(label, ()):
+                    continue
                 if rx.search(text):
                     found[label].append(rel)
 
