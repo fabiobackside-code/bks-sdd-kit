@@ -246,6 +246,46 @@ os comandos respondem como `/bks:save`.
 O `name` do marketplace continua `bks-sdd-kit`, assim como o repositório — só o nome do plugin
 mudou, porque é dele que sai o prefixo. A instalação passa a ser `bks@bks-sdd-kit`.
 
+### O tier do modelo e visivel, e o subagente entra na conta
+
+Os quatro agentes ja escolhiam modelo por perfil no frontmatter, mas a escolha era invisivel em
+execucao: so quem abrisse o arquivo sabia que o `reviewer` custa Opus. O tier passou a ser
+anunciado na primeira linha de cada agente.
+
+A medicao tinha um buraco maior. O `session_cost.py` le o bloco `usage` do transcript, e o
+consumo de subagente nao esta la — o transcript do subagente e outro arquivo, sem `usage`. Numa
+sessao desta data, tres subagentes consumiram 278.890 tokens que nao entravam em relatorio nenhum.
+
+O dado existe na notificacao de conclusao (`<subagent_tokens>`), e o tipo do agente na chamada da
+tool `Agent`; os dois se ligam pelo `tool-use-id`. O script passou a correlacionar os dois e
+reportar uso por agente.
+
+O que essa tabela **nao** faz e somar ao custo. A notificacao traz tokens, nao tier — o modelo
+exibido e o que o agente declara. Multiplicar token por preco de um tier inferido produziria um
+numero com aparencia de medida e fundamento de suposicao.
+
+### Como comparar um tier contra outro
+
+O `planner` subiu para Opus em 2026-09-15, para medicao. A pergunta que isso abre — Opus paga o
+proprio preco na especificacao? — nao se responde lendo duas specs e escolhendo a que soa melhor.
+Isso e julgamento, nao medida, e e o mesmo vicio do eval sem delta.
+
+A spec nao e o produto; o produto e a implementacao que ela permitiu. Tres sinais ja existem no
+fluxo e sao contaveis:
+
+| Sinal | Onde | O que denuncia |
+|---|---|---|
+| Tentativas do LOOP-4 | o `/bks:loop` registra | spec ambigua faz o builder errar e repetir |
+| Achados do `reviewer` | `/bks:review` produz | spec que nao fechou invariante vira achado |
+| FEAT alterada apos aprovada | git | spec que nao aguentou o contato com o codigo |
+
+Compara-se um periodo, nao uma spec: dez FEATs num tier contra dez no outro. O custo aparece no
+ledger; o beneficio, nas tres colunas acima. Se o tier mais caro poupa uma rodada de LOOP-4 por
+spec, pagou — implementar errado e refazer custa mais que especificar bem.
+
+Isso e indicio, nao experimento: projeto, dominio e complexidade mudam no meio. Serve para
+decidir uma linha de frontmatter, nao para publicar conclusao.
+
 ## Consumidores
 
 O kit foi extraido de um vault em uso. Os projetos que o consomem continuam sendo a fonte de

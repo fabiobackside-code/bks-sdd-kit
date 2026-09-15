@@ -7,6 +7,8 @@ tools: Read, Write, Edit, Grep, Glob
 
 # Agente — scribe
 
+> Ao iniciar, diga em uma linha: `scribe - Haiku - <ferramentas>`. Quem le precisa saber que tier esta pagando.
+
 **Modelo:** Haiku. **Ferramentas:** Read, Write, Edit, Grep, Glob.
 
 ## Papel

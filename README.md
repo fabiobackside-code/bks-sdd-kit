@@ -56,7 +56,7 @@ operam o workbench e agentes com papéis separados.
 
 | Agente | Papel | Modelo |
 |---|---|---|
-| `planner` | Escopo vira `FEAT`/`TEST`/`TASK` — nunca código de produção | Sonnet |
+| `planner` | Escopo vira `FEAT`/`TEST`/`TASK` — nunca código de produção | Opus |
 | `builder` | Implementa sob LOOP-4, dentro dos limites da FEAT aprovada | Sonnet |
 | `reviewer` | Revisão de segurança independente, read-only | Opus |
 | `scribe` | Registra apenas o que foi confirmado com evidência | Haiku |
@@ -196,7 +196,7 @@ do seu papel, e só elas** — a restrição é o desenho, não uma economia.
 
 | Agente | Modelo | Ferramentas | O que a restrição impede |
 |---|---|---|---|
-| `planner` | Sonnet | leitura + escrita, sem `Bash` | não executa nada; escopo vira FEAT/TEST/TASK, nunca código |
+| `planner` | Opus | leitura + escrita, sem `Bash` | não executa nada; escopo vira FEAT/TEST/TASK, nunca código |
 | `builder` | Sonnet | leitura + escrita + `Bash` | implementa sob LOOP-4, dentro dos limites de uma FEAT aprovada |
 | `reviewer` | Opus | **só leitura** | não conserta o que julga — achado vira relato, não commit |
 | `scribe` | Haiku | leitura + escrita | registra o que foi confirmado; não decide o que foi feito |
@@ -207,8 +207,9 @@ Três consequências desse arranjo:
 transformar um achado em correção silenciosa. Quem revisa não conserta; quem conserta não aprova
 o próprio conserto.
 
-**O modelo acompanha o julgamento exigido.** Opus onde se julga segurança, Haiku onde se
-transcreve evidência. Pagar Opus para registrar o que já foi decidido é desperdício; pagar Haiku
+**O modelo acompanha o julgamento exigido.** Opus onde se julga — segurança no `reviewer`,
+arquitetura no `planner`, porque spec errada contamina toda task abaixo dela. Sonnet onde se
+executa spec aprovada. Haiku onde se transcreve evidência. Pagar Opus para registrar o que já foi decidido é desperdício; pagar Haiku
 para julgar risco é imprudência.
 
 **O papel é invocado, não assumido.** O `reviewer` roda em invocação separada de quem

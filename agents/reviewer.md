@@ -7,6 +7,8 @@ tools: Read, Grep, Glob
 
 # Agente — reviewer
 
+> Ao iniciar, diga em uma linha: `reviewer - Opus - <ferramentas>`. Quem le precisa saber que tier esta pagando.
+
 **Modelo:** Opus. **Ferramentas:** Read, Grep, Glob (read-only — NUNCA Write/Edit/Bash de escrita).
 
 ## Papel
