@@ -19,7 +19,7 @@ manifesto (`{repo}/.claude/multiagente.md`).
 - `skills/bks-standards/references/bks-premises.md` e `dotnet-standards.md` (arquitetura esperada)
 - `{repo}/decisions/` (log de decisões DESTE projeto — não reportar de novo o que já foi decidido/aceito). `${BKS_VAULT}/workbench/decisions/` só guarda decisões sobre o próprio processo.
 - Seção "Invariantes do domínio" e "Áreas sensíveis" do manifesto do projeto
-- `skills/bks-standards/references/checklist-revisão-crítica.md` (checklist obrigatório)
+- `skills/bks-standards/references/checklist-revisao-critica.md` (checklist obrigatório)
 - `{repo}/brain/engineering/` — padrões que valem só neste projeto e sobrepoem os do kit
 
 ## Metodo

@@ -43,6 +43,7 @@ operam o workbench e agentes com papéis separados.
 | `/brain` | Retoma a sessão: quem você e, onde parou, próximo passo |
 | `/new-project` | Cria projeto novo com a estrutura canônica — único ponto de entrada |
 | `/note` | Escreve nota viva em `docs/input/notas/` do projeto |
+| `/ingest` | Ingere conhecimento para a base transversal em `knowledge/` do vault |
 | `/canonize` | Consolida pesquisa e design num contexto canônico único |
 | `/prd` | Gera o PRD a partir do contexto canônico |
 | `/spec` | Entrevista de bounded context e gera `FEAT` + `TEST` |

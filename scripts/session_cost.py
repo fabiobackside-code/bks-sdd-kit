@@ -243,8 +243,9 @@ def fmt_usd(v):
 
 
 DISCLAIMER = ("_Custo estimado a partir dos tokens do transcript e da tabela de precos "
-              "local (`~/.claude/scripts/pricing.json`). Nao e a fatura oficial; "
-              "planos de assinatura com valor fixo nao cobram por token._")
+              "local (`%s`). Nao e a fatura oficial; "
+              "planos de assinatura com valor fixo nao cobram por token._"
+              % PRICING_PATH.name)
 
 
 def render_session(summary, meta, title="Consumo desta sessao"):
@@ -282,7 +283,7 @@ def render_session(summary, meta, title="Consumo desta sessao"):
         out.append("")
         out.append("(!) Modelo sem preco em `pricing.json` (custo contado como 0): "
                    + ", ".join(summary["unknown_models"])
-                   + ". Atualize `~/.claude/scripts/pricing.json`.")
+                   + ". Atualize `%s`." % PRICING_PATH)
     out.append("")
     out.append(DISCLAIMER)
     return "\n".join(out)

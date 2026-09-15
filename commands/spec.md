@@ -21,5 +21,5 @@ Vale para todo o corpo do documento: objetivo, regras, critérios de aceite, tab
 Se os arquivos já existentes do repositório estiverem sem acento, **não imite o defeito**: escreva
 correto e avise o usuário em uma linha que o material anterior diverge.
 
-Nome de arquivo, slug e chave de frontmatter seguem ASCII (`FEAT-transação-execute.md`). O conteúdo,
+Nome de arquivo, slug e chave de frontmatter seguem ASCII (`FEAT-transacao-execute.md`). O conteúdo,
 não.

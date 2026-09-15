@@ -73,7 +73,7 @@ Tokens completos, contraste e tema escuro em `references/paleta.md`.
 |---|---|
 | `references/paleta.md` | ao atribuir cor — tokens, contraste, tema |
 | `references/topologias.md` | ao escolher o tipo de diagrama |
-| `references/notação-bks.md` | ao decidir o que vira no, e o que fica de fora |
+| `references/notacao-bks.md` | ao decidir o que vira no, e o que fica de fora |
 | `references/emit-mermaid.md` | ao gerar em Mermaid |
 | `references/emit-archify.md` | ao gerar em archify |
 

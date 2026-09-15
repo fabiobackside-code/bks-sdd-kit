@@ -75,7 +75,11 @@ levanta.
 6. **Acrescente ao `JOURNAL.md`** uma entrada: data, título curto do marco, duas a quatro linhas
    do que mudou e do que isso libera ou trava.
 
-7. **Confirme em até cinco linhas** o que foi gravado e onde. Uma linha por arquivo. Não repita o
+7. **Meça o consumo da sessão.** Siga `references/medicao-consumo.md`: ledger, painel
+   `custo-tokens.md` e a tabela na entrada do `JOURNAL.md`. Se o script não existir, uma linha
+   dizendo que pulou — a medição nunca bloqueia o `/save`.
+
+8. **Confirme em até cinco linhas** o que foi gravado e onde. Uma linha por arquivo. Não repita o
    conteúdo que acabou de escrever. Se o canônico estiver defasado, feche com a instrução de rodar
    `/canonize`.
 

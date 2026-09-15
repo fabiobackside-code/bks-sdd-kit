@@ -39,7 +39,7 @@ própria. Copia-la aqui criaria um fork que precisaria de manutenção.
 
 ## Como aplicar a notação
 
-O `archify` aceita cor por no. Use os tokens de `skills/bks-arch/paleta.md` no lugar do padrão
+O `archify` aceita cor por no. Use os tokens de `skills/bks-arch/references/paleta.md` no lugar do padrão
 dele — sem isso, o diagrama sai no estilo da skill, não no seu.
 
 Ícones de infraestrutura: use os SVG genéricos de `skills/bks-arch/icons/`. O kit não distribui

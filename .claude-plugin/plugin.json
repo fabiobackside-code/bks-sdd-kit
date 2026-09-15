@@ -1,6 +1,6 @@
 {
   "name": "bks-sdd-kit",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Kit BKS de Spec-Driven Development para Claude Code: skills de SDD, arquitetura hexagonal .NET, TypeScript e Go, comandos de workbench e agentes especializados.",
   "author": {
     "name": "Fabio Magalhaes",
