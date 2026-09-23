@@ -18,7 +18,7 @@ O `/bks:new-project` grava `.bks-profile.json` na raiz do projeto:
     "output": "md",
     "architecture_renderer": "mermaid",
     "frontend_target": null,
-    "rigor": "produção"
+    "rigor": "producao"
   }
 }
 ```
@@ -82,7 +82,7 @@ Vale para `frontend` e `fullstack`.
 
 | Valor | Exige |
 |---|---|
-| `produção` | testes, documentação, ADRs — **padrão** |
+| `producao` | testes, documentação, ADRs — **padrão** |
 | `poc` | protótipo descartável: teste só no caminho crítico, documentação mínima |
 
 `rigor: poc` afrouxa a exigência; não a elimina. Um POC sem nenhum teste é um POC que ninguém

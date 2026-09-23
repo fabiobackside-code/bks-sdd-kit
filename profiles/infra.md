@@ -38,7 +38,7 @@ A topologia vem antes do código. IaC escrito sem topologia decidida vira recurs
 | `output` | sim | `md` |
 | `architecture_renderer` | sim | `mermaid` |
 | `frontend_target` | não | — |
-| `rigor` | sim | `produção` |
+| `rigor` | sim | `producao` |
 
 ## Skills
 
