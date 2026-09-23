@@ -79,7 +79,7 @@ documentação não recebe pergunta sobre banco de dados; uma biblioteca não pa
 | `reengineering` | documentar e reescrever um legado |
 
 Quatro eixos atravessam os perfis: formato de saída (`md`/`html`), renderer de arquitetura,
-alvo de frontend (`web`/`mobile`/`both`) e rigor (`produção`/`poc`).
+alvo de frontend (`web`/`mobile`/`both`) e rigor (`producao`/`poc`).
 
 O `/bks:new-project` grava a escolha em `.bks-profile.json`. Detalhes em
 [`profiles/`](profiles/README.md).

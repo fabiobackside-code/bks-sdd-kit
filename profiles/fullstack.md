@@ -19,7 +19,7 @@ escopo. Fase que não está no plano não entra sozinha.
 |---|---|
 | entrada | `docs/input/` |
 | consolidação | `docs/canonical/CONTEXT.md` |
-| produto | `outputs/PRD-{projeto}.md` |
+| produto | `docs/canonical/PRD-{projeto}.md` |
 | plano macro | `outputs/PLAN-{projeto}.md` — o faseamento |
 | arquitetura | `outputs/ARCH-{projeto}.md` |
 | modelagem | domínio, dados, DDL |
@@ -40,7 +40,7 @@ ordem, e a primeira fase nunca fecha.
 | `output` | sim | `md` |
 | `architecture_renderer` | sim | `mermaid` |
 | `frontend_target` | **sim** | `web` |
-| `rigor` | sim | `produção` |
+| `rigor` | sim | `producao` |
 
 ## Skills
 
