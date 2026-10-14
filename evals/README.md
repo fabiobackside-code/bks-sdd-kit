@@ -48,6 +48,7 @@ responder não mede nada.
 | `bks-sdd-fase-1` | pede PRD com escopo curto demais |
 | `plan-tasks-atomicas` | pede plano onde caberia começar a implementar |
 | `ts-seleção-tipo` | descreve backend sem dizer de que tipo |
+| `writing-decisao-no-texto` | pede o ADR entre colchetes, "vale ressaltar" e alerta vermelho no título |
 
 ## Ablação
 

@@ -20,7 +20,7 @@ Interface, design, mock de tela. Consumidor da API é outro projeto ou outro per
 |---|---|
 | entrada | `docs/input/` |
 | consolidação | `docs/canonical/CONTEXT.md` |
-| produto | `outputs/PRD-{projeto}.md` |
+| produto | `docs/canonical/PRD-{projeto}.md` |
 | modelagem | modelo de domínio e de dados; DDL em `app/db/` |
 | especificação | `specs/features/`, `specs/tests/`, `specs/tasks/` |
 | arquitetura | `outputs/ARCH-{projeto}.md` |
@@ -35,7 +35,7 @@ Interface, design, mock de tela. Consumidor da API é outro projeto ou outro per
 | `output` | sim | `md` |
 | `architecture_renderer` | sim | `mermaid` |
 | `frontend_target` | não | — |
-| `rigor` | sim | `produção` |
+| `rigor` | sim | `producao` |
 
 ## Skills
 

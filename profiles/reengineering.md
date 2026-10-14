@@ -50,7 +50,7 @@ escopo cortado.
 | `output` | sim | `md` |
 | `architecture_renderer` | sim | `mermaid` |
 | `frontend_target` | sim, se houver interface | `web` |
-| `rigor` | sim | `produção` |
+| `rigor` | sim | `producao` |
 
 ## Skills
 

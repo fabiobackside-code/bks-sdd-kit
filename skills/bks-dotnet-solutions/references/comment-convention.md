@@ -13,19 +13,20 @@ ninguém notar, porque nada o testa.
 | Categoria | No código? | Formato |
 |---|---|---|
 | **A · Contrato** | sim | `/// <summary>` de 1 linha em membro público — o **quê**, nunca o **como** |
-| **B · Guarda contra regressão** | sim, até 2 linhas | só quando editar aquela linha desfaz uma decisão. O quê + ponteiro |
+| **B · Guarda contra regressão** | sim, até 2 linhas | só quando editar aquela linha desfaz uma decisão. O que quebra, sem ponteiro |
 | **C · Decisão, trade-off, histórico** | **não** | vive no `ARCHITECTURE.md` |
 
 ### Por que B existe
 
 A guarda precisa ser lida **no ponto da edição**. Quem for "modernizar" um tipo para `record` não
 vai abrir outro arquivo antes de fazê-lo. Mover a guarda inteira para o `ARCHITECTURE.md` destrói a
-função dela; o **ponteiro** preserva as duas coisas.
+função dela. A guarda diz o que quebra; o porquê completo fica no `ARCHITECTURE.md`, que diz na
+abertura para que serve, e o comentário não aponta para ele.
 
 ```csharp
-// ✅ B correto — o quê + ponteiro, 2 linhas
+// ✅ B correto — o que quebra, 2 linhas
 /// <summary>Configuração da capacidade de segredos.</summary>
-/// <remarks>Não é record — ToString() gerado exporia a ApiKey. Ver ARCHITECTURE.md §4.2.</remarks>
+/// <remarks>Não é record — ToString() gerado exporia a ApiKey.</remarks>
 public sealed class NqSecretOptions
 
 // ❌ C — o raciocínio inteiro dentro do arquivo

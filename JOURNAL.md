@@ -5,6 +5,79 @@
 
 ---
 
+## 2026-10-14 · A escrita ganha skill, guarda e revisão
+
+O padrão de escrita que o NQuantic aplicou em quatro documentos de arquitetura e nos decks veio
+para o kit como `bks-writing`, sem nada do projeto. A decisão entra sintetizada no texto, e o
+número do ADR só no fim da nota de decisão. A guarda `writing_guard` roda depois da escrita, devolve
+os achados ao agente e lembra o usuário de rodar o `/bks:review`, que passou a conferir a escrita.
+Ela conta o mesmo que a guarda em PowerShell do NQuantic: 75 achados antes da reescrita, zero depois.
+
+As skills `writing-anti-ai` e `human-writing` ficaram em `third-party/` como consulta, com licença
+MIT e mapeamento do que vale, do que foi adaptado e do que conflita. O comentário de código perdeu
+o ponteiro para documento no `doc-writer`, no `bks-dotnet-solutions`, no `bks-sdd` e no
+`comment_budget`. Antes da branch, foi para `main` o confronto da skill com o projeto no
+`/bks:canonize`. Versão `0.6.0` instalada da branch `feat/skill-escrita`; o eval do caso novo não
+rodou.
+
+### Consumo da sessao
+
+| Modelo | Input | Output | Cache write | Cache read | Total | Custo |
+|---|---:|---:|---:|---:|---:|---:|
+| claude-opus-5-5 | 124 | 52.799 | 195.161 | 10.726.694 | 10.974.778 | US$ 8,6356 |
+| **TOTAL** | **124** | **52.799** | **195.161** | **10.726.694** | **10.974.778** | **US$ 8,6356** |
+
+**TOTAL GERAL: 126.542.188 tokens — US$ 83,2238**
+
+---
+
+## 2026-09-15 · O tier deixa de ser invisível, e o subagente entra na conta
+
+Os comandos passaram a responder como `/bks:*`: o namespace de plugin é obrigatório — a
+documentação do Claude Code diz que nenhuma chave de frontmatter o remove — então a decisão que
+restava era o comprimento dele, e `bks-sdd-kit` virou `bks`. As 330 ocorrências de documentação
+nos dois repositórios foram atrás.
+
+O `session_cost.py` media só o thread principal. Nesta sessão, três subagentes consumiram 278.890
+tokens que não entravam em relatório nenhum — inclusive nos números que esta própria sessão
+reportou mais cedo. O dado estava na notificação de conclusão, e o tipo do agente na chamada da
+tool `Agent`; o script passou a correlacionar pelo `tool-use-id`. A tabela não soma ao custo, e
+isso é deliberado: a notificação traz tokens, não tier.
+
+O `planner` subiu de Sonnet para Opus. É onde o erro custa mais caro — spec errada contamina toda
+task abaixo dela — e fica sob medição por dez FEATs, com o método de comparação escrito no
+`ARCHITECTURE.md`.
+
+A documentação do vault foi reescrita na mesma sessão: dois documentos que descreviam um hub
+central morto foram apagados depois de extraído o que valia, e o `CONHECIMENTO.md` passou a cobrir
+o que nenhum arquivo cobria — como o acervo cresce e o que merece virar página.
+
+O que isto trava: o caminho do alerta do `/bks:save` continua sem prova, e agora espera o
+`dash-scheduller` ter árvore limpa.
+
+### Consumo da sessão
+
+| Modelo | Input | Output | Cache write | Cache read | Total | Custo |
+|---|---:|---:|---:|---:|---:|---:|
+| claude-opus-5 | 718 | 162.676 | 322.005 | 77.996.928 | 78.482.327 | US$ 46,2890 |
+| **TOTAL** | **718** | **162.676** | **322.005** | **77.996.928** | **78.482.327** | **US$ 46,2890** |
+
+Acumulado do processo: **115.567.410 tokens — US$ 74,5883**. Estimativa por token contra o
+`pricing.json` do kit, não fatura.
+
+### Modelos usados
+
+| Agente | Modelo | Invocações | Tokens |
+|---|---|---:|---:|
+| `geral` | ? | 2 | 206.282 |
+| `claude-code-guide` | ? | 1 | 72.608 |
+| **TOTAL** | | **3** | **278.890** |
+
+Os três subagentes levantaram o comportamento do `name:` em comando de plugin, inventariaram a
+documentação do vault e analisaram o `bks-multiagent-skill`. Nenhum é agente do kit, por isso o
+tier aparece como `?` — o script não infere modelo de agente que não declara. Primeira sessão em
+que esses tokens aparecem em relatório: antes desta medição, eram invisíveis.
+
 ## 2026-09-15 · O `/save` certo, enfim, sabe calar
 
 O `claude plugin update` subiu o kit para `0.3.0` e a sessão reiniciou com o comando unificado. O
