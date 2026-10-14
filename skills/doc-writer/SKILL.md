@@ -32,11 +32,11 @@ This kit enforces two rules with a blocking guard on every `.cs` write. Comply, 
 refused.
 
 **Five lines per comment block, at most.** What signals padding is not the comment-to-code ratio —
-it is the long block. Decision, trade-off, and history belong in `ARCHITECTURE.md`; the comment
-points there.
+it is the long block. Decision, trade-off, and history belong in `ARCHITECTURE.md`, and the comment
+does not point there: the file says on its first line what it is for.
 
 Two things live in code: the contract (one line on a public member) and a regression guard (up to
-two lines — what it is, plus a pointer).
+two lines — what breaks if someone changes it, in plain words).
 
 **No severity marks in comments.** Not the red circle, not the warning triangle, not the check
 mark. Writing one is arguing, not describing.
@@ -60,3 +60,5 @@ The documentation itself, written directly into the target file/location — not
 - Read `references/examples.md` when writing contract-focused docstrings or useful inline comments.
 - Read `references/anti-patterns.md` before finalizing to remove stale, obvious, or duplicated docs.
 - Read the `bks-standards` skill for the full BKS documentation policy.
+- Use the `bks-writing` skill for prose — README, ARCHITECTURE, specs, training — and for the
+  tone of the contract line: decision summarized in the text, no ADR number mid-sentence.

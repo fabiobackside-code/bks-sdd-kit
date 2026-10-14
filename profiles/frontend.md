@@ -21,7 +21,7 @@ API, domínio, banco. Se a API ainda não existe, o projeto precisa de `fullstac
 |---|---|
 | entrada | `docs/input/` |
 | consolidação | `docs/canonical/CONTEXT.md` |
-| produto | `outputs/PRD-{projeto}.md` |
+| produto | `docs/canonical/PRD-{projeto}.md` |
 | design | telas, fluxos, sistema visual em `docs/design/` |
 | mocks | protótipo navegavel em `outputs/mocks/` |
 | especificação | `specs/features/`, `specs/tests/` |
@@ -38,7 +38,7 @@ O design vem antes do componente. Componente escrito antes do sistema visual vir
 | `output` | sim | `md` |
 | `architecture_renderer` | sim | `mermaid` |
 | `frontend_target` | **sim** | `web` |
-| `rigor` | sim | `produção` |
+| `rigor` | sim | `producao` |
 
 `frontend_target` decide o que se constrói: `web`, `mobile`, ou `both` com design compartilhado.
 

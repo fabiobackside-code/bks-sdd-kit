@@ -1037,6 +1037,7 @@ template canônico. Para cada task, preencher:
   público, função pública ou decisão estrutural:
   - `[ ] README.md e ARCHITECTURE.md atualizados com o que esta task produziu`
   - `[ ] Comentários seguem a convenção: contrato e guarda no código; decisão no ARCHITECTURE.md`
+  - `[ ] Documentação tocada segue a skill bks-writing — writing_guard.py sem achado nos arquivos`
 
   > **Por que na geração da task, e não só na conferência:** a regra de documentação já existia em
   > `memory/documentação.md` quando o `nq-sec-sdk` foi construído — e as 21 tasks nasceram sem o
@@ -1638,7 +1639,7 @@ automático [`memory/documentação.md`].
 **Verificar também a convenção de comentário** no código produzido:
 
 - **fica:** resumo de 1 linha em membro público (o **quê**) e guarda contra regressão de até 2
-  linhas (o quê + ponteiro para o `ARCHITECTURE.md`)
+  linhas (o que quebra, sem ponteiro para documento)
 - **sai:** decisão, trade-off, histórico, comparação com implementação anterior — vive no
   `ARCHITECTURE.md`
 - **proibido:** marca de severidade (🔴 ⚠️ 🟡) em comentário; **bloco acima de 5 linhas**

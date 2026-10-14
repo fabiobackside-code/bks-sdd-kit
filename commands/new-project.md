@@ -46,7 +46,7 @@ Pergunte apenas os eixos que o perfil usa:
 | `output` | `md`, `html` | `md` |
 | `architecture_renderer` | ver `profiles/architecture-renderers/` | `mermaid` |
 | `frontend_target` | `web`, `mobile`, `both` | `web` — só em `frontend` e `fullstack` |
-| `rigor` | `produção`, `poc` | `produção` |
+| `rigor` | `producao`, `poc` | `producao` |
 
 Mais as perguntas específicas que o arquivo do perfil lista em "O que perguntar na criação".
 
@@ -73,7 +73,7 @@ Copie `${CLAUDE_PLUGIN_ROOT}/templates/project-skeleton/` para
     "output": "md",
     "architecture_renderer": "mermaid",
     "frontend_target": null,
-    "rigor": "produção"
+    "rigor": "producao"
   }
 }
 ```

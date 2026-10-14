@@ -663,7 +663,7 @@ app.UseAPIExtensions();
     Solução sem os dois não está entregue.
 31. ❌ Decisão, trade-off, histórico ou comparação com implementação anterior em **comentário de
     código** — isso vive no `ARCHITECTURE.md`. No código ficam só **contrato** (resumo de 1 linha
-    em membro público) e **guarda contra regressão** (até 2 linhas, o quê + ponteiro).
+    em membro público) e **guarda contra regressão** (até 2 linhas, o que quebra, sem ponteiro).
 32. ❌ Marca de severidade (🔴 ⚠️ 🟡 ✅ 📌) em comentário — quem escreve 🔴 está argumentando,
     não descrevendo.
 33. ❌ Bloco de comentário acima de **5 linhas**. O teto é por bloco, não por proporção.
@@ -740,7 +740,7 @@ Quem desenhou o código o entende sem comentário; quem não desenhou lê o `ARC
 
 - [ ] **Contrato:** `/// <summary>` de 1 linha em membro público — o **quê**, nunca o **como**
 - [ ] **Guarda contra regressão:** até 2 linhas, só quando editar aquela linha desfaz uma decisão.
-      O quê + ponteiro (*"Não é record — ToString() exporia a ApiKey. Ver ARCHITECTURE.md §4.2"*)
+      O que quebra, sem ponteiro (*"Não é record — ToString() exporia a ApiKey."*)
 - [ ] **Nenhuma decisão, trade-off ou histórico em comentário** — vive no `ARCHITECTURE.md`
 - [ ] **Nenhuma marca de severidade** (🔴 ⚠️ 🟡 ✅ 📌) em comentário — quem escreve 🔴 está
       argumentando, não descrevendo

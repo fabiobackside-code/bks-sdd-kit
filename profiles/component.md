@@ -39,7 +39,7 @@ usa.
 | `output` | sim | `md` |
 | `architecture_renderer` | sim | `mermaid` |
 | `frontend_target` | não | — |
-| `rigor` | sim | `produção` |
+| `rigor` | sim | `producao` |
 
 ## Skills
 
