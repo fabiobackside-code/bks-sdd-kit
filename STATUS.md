@@ -3,23 +3,23 @@
 > Ponto de entrada do projeto. Leia só este arquivo para saber onde as coisas estão e o que fazer
 > a seguir. Atualizado pelo `/bks:save` ao fim de cada sessão; lido pelo `/bks:brain`.
 >
-> Última atualização: 2026-09-15
+> Última atualização: 2026-10-14
 
 ---
 
 ## Em uma frase
 
-O plugin é a única origem dos comandos, que agora respondem como `/bks:*`, e o tier de cada agente
-deixou de ser invisível: o `session_cost.py` passou a enxergar o consumo de subagente, que nenhum
-relatório via. Está publicado como `0.5.0`. Falta o caminho do alerta do `/bks:save` e a baseline
-de eval, parada por crédito.
+O kit ganhou a skill `bks-writing`, o padrão de escrita da documentação viva que nasceu no
+NQuantic, com a guarda `writing_guard` depois de cada escrita e o `/bks:review` conferindo a
+escrita. Está instalado localmente como `0.6.0`, na branch `feat/skill-escrita`, sem merge. Falta o
+eval do caso novo, o caminho do alerta do `/bks:save` e a baseline, parada por crédito.
 
 ---
 
 ## Fase atual
 
 **Manutenção com rede incompleta** — o conteúdo está escrito e validado pelo uso; o que falta é
-prova de que cada skill muda a decisão do agente. A fase termina quando houver baseline dos 18
+prova de que cada skill muda a decisão do agente. A fase termina quando houver baseline dos 19
 casos com o delta `with` × `without` medido.
 
 ---
@@ -28,9 +28,11 @@ casos com o delta `with` × `without` medido.
 
 | Bloqueio | Espera | Quem destrava |
 |---|---|---|
+| Merge de `feat/skill-escrita` em `main` | revisão da branch e uma sessão real com a `0.6.0` | Fabio |
+| Eval do caso `writing-decisao-no-texto` | saldo de crédito da conta | Fabio |
 | Testar o `/bks:save` no caminho do alerta | árvore limpa no `dash-scheduller` | Fabio |
 | Decidir se o `planner` fica em Opus | dez FEATs medidas contra as dez anteriores | Fabio |
-| Baseline dos 18 casos de eval | saldo de crédito da conta | Fabio |
+| Baseline dos 19 casos de eval | saldo de crédito da conta | Fabio |
 | Caso de eval para Go | a baseline acima | — |
 | Adelgaçar o `bks-sdd` (2062 linhas) | a baseline acima | — |
 
@@ -52,13 +54,27 @@ O crédito segue sendo o bloqueio de cabeça da eval, isolado e confirmado com c
 `Ablation: 2 arms × 18 cases` carrega, e todo grader devolve
 `judge call failed: Credit balance is too low`.
 
-Go entrou sem caso de eval — os 18 cobrem .NET, TypeScript e os comandos. Escrever caso de Go
+A `bks-writing` foi verificada sem modelo: a suíte estrutural passa, os 20 testes da guarda passam,
+e a guarda conta o mesmo que o `Conferir-Escrita.ps1` do NQuantic — 75 achados no `ARCHITECTURE.md`
+do motor antes da reescrita, nenhum depois. Se a skill muda a decisão do agente, só o eval diz, e
+ele não rodou. O hook novo só vale depois de reiniciar a sessão.
+
+Go entrou sem caso de eval — os 18 primeiros cobrem .NET, TypeScript e os comandos. Escrever caso de Go
 antes da baseline seria escrever no escuro. O adelgaçamento do `bks-sdd` depende da baseline pela
 mesma razão: refatorar skill validada em uso sem rede de teste é aposta.
 
 ---
 
 ## Próximo passo
+
+Abrir uma sessão nova em qualquer projeto, editar um `README.md` e conferir que o hook devolve os
+achados e mostra o lembrete do `/bks:review`. Se passar, revisar a branch e fazer o merge.
+
+Com crédito, o caso novo primeiro, antes da suíte:
+
+```
+claude plugin eval . --case writing-decisao-no-texto --runs 1
+```
 
 O caminho do alerta, no `dash-scheduller`. Commitar ou descartar os 17 arquivos dele primeiro — o
 `/bks:save` reescreve o `STATUS.md` por inteiro, e rodar sobre trabalho inacabado misturaria a
@@ -72,7 +88,7 @@ Segue valendo, e não espera crédito: exercitar a `bks-go-solutions` numa gera�
 gerou projeto; a entrevista, o registro na base de aprendizado e a anonimização são caminhos
 escritos e não percorridos.
 
-Com crédito disponível, rodar um caso só antes de gastar a suíte:
+Com crédito disponível, a suíte segue o mesmo caminho, um caso por vez:
 
 ```
 cd ${BKS_VAULT}/repos/backside/prj-bks-kit
@@ -88,15 +104,16 @@ Ao ler o resultado, o número que importa não é o score: é o **delta** entre 
 
 | Peça | Quantidade |
 |---|---|
-| Skills | 15 |
+| Skills | 16 |
 | Slash commands | 11 |
 | Subagentes | 5 |
 | Perfis de projeto | 9 |
-| Versão publicada | `0.5.0` |
-| Guardas executáveis | 4, todos com teste em `hooks/tests/` |
-| Casos de eval | 18, com 85 graders |
+| Versão instalada | `0.6.0`, branch `feat/skill-escrita` |
+| Guardas executáveis | 5, todos com teste em `hooks/tests/` |
+| Casos de eval | 19, com 91 graders |
 
-`python tests/test_structure.py` → 722 verificações, 0 falhas.
+`python tests/test_structure.py` → 763 verificações, 0 falhas.
+`bash hooks/tests/run.sh` → `falhas: 0` nas três suítes.
 
 ---
 
@@ -121,6 +138,11 @@ Ao ler o resultado, o número que importa não é o score: é o **delta** entre 
 | 15 | O namespace é `bks`; comando de plugin sempre tem prefixo | `docs/ARCHITECTURE.md` |
 | 16 | O tier do agente é anunciado, e o subagente entra na medição | `docs/ARCHITECTURE.md` |
 | 17 | `planner` em Opus: spec errada contamina toda task abaixo | `docs/ARCHITECTURE.md` |
+| 18 | A decisão entra no texto; o número do ADR fica só no fim da nota de decisão | `skills/bks-writing/SKILL.md` |
+| 19 | A guarda de escrita roda depois da escrita, devolve achados e lembra o `/bks:review` | `docs/ARCHITECTURE.md` |
+| 20 | Skill de terceiro é vendorizada como consulta, com licença e mapeamento, nunca instalada | `docs/ARCHITECTURE.md` |
+| 21 | Comentário de código não aponta para documento | `docs/ARCHITECTURE.md` |
+| 22 | `/bks:canonize` confronta a skill referenciada com o que o projeto concretizou | `docs/ARCHITECTURE.md` |
 
 ---
 
@@ -129,7 +151,11 @@ Ao ler o resultado, o número que importa não é o score: é o **delta** entre 
 - O frontmatter dos renderers usa a chave `padrão`, com acento, contra a regra de que chave de
   frontmatter segue ASCII. A suíte aceita as duas grafias; a decisão de padronizar a chave e migrar
   os cinco arquivos está em aberto
-- Nenhum caso de eval cobre Go; os 18 existentes são de .NET, TypeScript e comandos
+- Nenhum caso de eval cobre Go; os 19 existentes são de .NET, TypeScript, escrita e comandos
+- O `README.md` e o `docs/ARCHITECTURE.md` do kit têm 17 achados da guarda de escrita, todos em
+  texto anterior a esta sessão: siglas sem definição e três frases longas
+- O vínculo da spec com a decisão no frontmatter (`relacionada:`) entrou no template FEAT e no
+  `planner`; o NQuantic ainda o trata como proposta em aberto
 - A base de aprendizado em `${BKS_KNOWLEDGE}/wiki/go/` está criada e vazia, e não é versionada:
   `knowledge/**` está no `.gitignore` do vault, logo ela existe só nesta máquina
 - Ícones genéricos de infraestrutura declarados em `skills/bks-arch/icons/` mas não desenhados
