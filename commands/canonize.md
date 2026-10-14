@@ -37,6 +37,20 @@ Faça, nesta ordem:
    `> [!uncertain] <pergunta objetiva>` no lugar e liste todas essas perguntas no fim, sob
    "## Perguntas em aberto". Pergunte ao usuário antes de fechar o documento, se possível.
 
+3a. Se o projeto referencia uma skill — no CLAUDE.md, no STATUS.md, numa spec ou numa ADR —, leia
+   o SKILL.md dela e confronte com o que o projeto concretizou: conceito, definição, guarda,
+   fundamento, guideline. Skill escrita antes do código fica para trás; o projeto concreto é a
+   evidência mais nova. Divergência não se resolve em silêncio — cada uma é questionável e entra
+   em "## Divergências com skills", classificada:
+
+   - **Aprendizado** — a skill está desatualizada; o projeto acertou o que ela não previa. O
+     canônico segue o projeto, e a entrada diz o que muda na skill, com a fonte do projeto.
+   - **Exceção** — o projeto diverge de propósito e a skill segue valendo para os outros. Só é
+     exceção com ADR que a registre; sem ADR, é `> [!uncertain]`.
+
+   Na dúvida entre as duas, pergunte. Não edite a skill daqui: ela mora fora do repo do projeto.
+   Reporte o aprendizado para quem mantém a skill o aplicar.
+
 4. Se já existir um docs/canonical/CONTEXT.md anterior: NÃO sobrescreva sem arquivar — copie a
    versão atual para docs/history/CONTEXT-v{N}-{YYYY-MM-DD}.md primeiro, incremente a versão no
    frontmatter do novo (version: N+1) e resuma o que mudou sob "## O que mudou desde v{N}".
@@ -53,7 +67,8 @@ Faça, nesta ordem:
 6. Registre o critério usado nesta consolidação em docs/prompts/prompt-canonize-{YYYY-MM-DD}.md
    — é o que permite regerar ou auditar depois.
 
-7. Reporte: o que entrou no canônico, quantas perguntas ficaram em aberto, e o próximo passo
+7. Reporte: o que entrou no canônico, quantas perguntas ficaram em aberto, quantas divergências com
+   skills há e de que classe, e o próximo passo
    ("revise docs/canonical/CONTEXT.md, responda as perguntas em aberto se quiser fechar tudo, e
    rode /bks:prd quando o contexto estiver bom o suficiente para virar requisito").
 

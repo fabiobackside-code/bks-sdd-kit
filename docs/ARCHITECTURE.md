@@ -193,6 +193,23 @@ A detecção por `mtime` é grosseira de propósito — acusa divergência quand
 formatação. O falso positivo custa uma reconsolidação; o falso negativo custa um canônico errado
 alimentando o próximo `/bks:prd`.
 
+### O projeto concreto realimenta a skill que ele referencia
+
+Skill de componente — conceitos, guardas, fundamentos, guidelines — é escrita antes do código que
+ela descreve. Enquanto o componente está em construção, o código decide coisas que a skill não
+previa, e a skill envelhece em silêncio: quem a carrega numa sessão seguinte aplica a regra velha
+com a autoridade de uma regra vigente.
+
+O `/bks:canonize` confronta a skill referenciada pelo projeto com o que o projeto concretizou, e
+classifica cada divergência. **Aprendizado** é a skill desatualizada: o canônico segue o projeto e
+a entrada diz o que muda na skill. **Exceção** é o projeto divergindo de propósito, com a skill
+valendo para os outros — e só é exceção com ADR que a registre. Sem ADR, a divergência é pergunta:
+chamar de exceção o que ninguém decidiu é o mesmo que deixar a regra cair.
+
+O comando reporta e não edita a skill. A skill mora fora do repositório do projeto — no plugin ou
+em `~/.claude/skills/` —, e o `/bks:canonize` escreve só no repositório onde roda. A atualização é
+de quem mantém a skill, com a entrada do canônico como fonte.
+
 ### Os comandos existem só no plugin
 
 `/bks:brain`, `/bks:save` e os outros nove viviam em duas cópias: `commands/` deste repositório e
