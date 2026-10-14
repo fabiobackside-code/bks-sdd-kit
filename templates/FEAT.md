@@ -1,3 +1,6 @@
+---
+relacionada: []   # ADR-NNN que esta feature segue; o corpo não cita número de ADR
+---
 # FEAT-[nome]
 **Bounded Context:** | **Status:** Rascunho
 ## Objetivo

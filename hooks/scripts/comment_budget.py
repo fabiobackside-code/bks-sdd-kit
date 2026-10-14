@@ -10,8 +10,8 @@ Duas regras:
      esta argumentando, nao descrevendo.
 
 No codigo ficam duas coisas: contrato (uma linha em membro publico) e guarda
-contra regressao (ate duas linhas, o que e mais um ponteiro para o
-ARCHITECTURE.md).
+contra regressao (ate duas linhas, o que quebra se mudar). Sem ponteiro
+para documento.
 """
 import re
 import sys
@@ -90,9 +90,9 @@ def check(payload):
                 '(teto: {max}).\n\n'
                 '  {src}\n  ...\n\n'
                 'No codigo ficam duas coisas: contrato (uma linha em membro publico) e guarda '
-                'contra regressao (ate duas linhas — o que e, mais um ponteiro).\n\n'
-                'Decisao, trade-off e historico vao para o ARCHITECTURE.md, e o comentario '
-                'aponta para a secao.'.format(
+                'contra regressao (ate duas linhas — o que quebra se mudar).\n\n'
+                'Decisao, trade-off e historico vao para o ARCHITECTURE.md, sem ponteiro '
+                'no comentario.'.format(
                     size=size, f=name, n=start + 1, max=MAX_BLOCK_LINES,
                     src=lines[start].strip()[:120])
             )

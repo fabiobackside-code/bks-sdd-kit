@@ -168,6 +168,9 @@ def test_pointers():
         if not os.path.isdir(base):
             continue
         for dirpath, _, filenames in os.walk(base):
+            # texto de terceiro, copiado como esta; aponta para o repositorio de origem
+            if 'third-party' in dirpath.replace(BS, '/').split('/'):
+                continue
             for fn in filenames:
                 if not fn.endswith('.md'):
                     continue
