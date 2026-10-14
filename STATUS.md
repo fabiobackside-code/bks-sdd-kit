@@ -11,8 +11,8 @@
 
 O kit ganhou a skill `bks-writing`, o padrão de escrita da documentação viva que nasceu no
 NQuantic, com a guarda `writing_guard` depois de cada escrita e o `/bks:review` conferindo a
-escrita. Está instalado localmente como `0.6.0`, na branch `feat/skill-escrita`, sem merge. Falta o
-eval do caso novo, o caminho do alerta do `/bks:save` e a baseline, parada por crédito.
+escrita. A `0.6.0` está na `main` do GitHub, pelo PR #1, e instalada nesta máquina. Falta o eval do caso
+novo, o caminho do alerta do `/bks:save` e a baseline, parada por crédito.
 
 ---
 
@@ -28,7 +28,6 @@ casos com o delta `with` × `without` medido.
 
 | Bloqueio | Espera | Quem destrava |
 |---|---|---|
-| Merge de `feat/skill-escrita` em `main` | revisão da branch e uma sessão real com a `0.6.0` | Fabio |
 | Eval do caso `writing-decisao-no-texto` | saldo de crédito da conta | Fabio |
 | Testar o `/bks:save` no caminho do alerta | árvore limpa no `dash-scheduller` | Fabio |
 | Decidir se o `planner` fica em Opus | dez FEATs medidas contra as dez anteriores | Fabio |
@@ -68,7 +67,8 @@ mesma razão: refatorar skill validada em uso sem rede de teste é aposta.
 ## Próximo passo
 
 Abrir uma sessão nova em qualquer projeto, editar um `README.md` e conferir que o hook devolve os
-achados e mostra o lembrete do `/bks:review`. Se passar, revisar a branch e fazer o merge.
+achados e mostra o lembrete do `/bks:review`. O merge já aconteceu, então falha aqui vira correção
+na `main`.
 
 Com crédito, o caso novo primeiro, antes da suíte:
 
@@ -108,7 +108,7 @@ Ao ler o resultado, o número que importa não é o score: é o **delta** entre 
 | Slash commands | 11 |
 | Subagentes | 5 |
 | Perfis de projeto | 9 |
-| Versão instalada | `0.6.0`, branch `feat/skill-escrita` |
+| Versão publicada | `0.6.0`, na `main` |
 | Guardas executáveis | 5, todos com teste em `hooks/tests/` |
 | Casos de eval | 19, com 91 graders |
 
