@@ -5,6 +5,32 @@
 
 ---
 
+## 2026-10-14 · A escrita ganha skill, guarda e revisão
+
+O padrão de escrita que o NQuantic aplicou em quatro documentos de arquitetura e nos decks veio
+para o kit como `bks-writing`, sem nada do projeto. A decisão entra sintetizada no texto, e o
+número do ADR só no fim da nota de decisão. A guarda `writing_guard` roda depois da escrita, devolve
+os achados ao agente e lembra o usuário de rodar o `/bks:review`, que passou a conferir a escrita.
+Ela conta o mesmo que a guarda em PowerShell do NQuantic: 75 achados antes da reescrita, zero depois.
+
+As skills `writing-anti-ai` e `human-writing` ficaram em `third-party/` como consulta, com licença
+MIT e mapeamento do que vale, do que foi adaptado e do que conflita. O comentário de código perdeu
+o ponteiro para documento no `doc-writer`, no `bks-dotnet-solutions`, no `bks-sdd` e no
+`comment_budget`. Antes da branch, foi para `main` o confronto da skill com o projeto no
+`/bks:canonize`. Versão `0.6.0` instalada da branch `feat/skill-escrita`; o eval do caso novo não
+rodou.
+
+### Consumo da sessao
+
+| Modelo | Input | Output | Cache write | Cache read | Total | Custo |
+|---|---:|---:|---:|---:|---:|---:|
+| claude-opus-5-5 | 124 | 52.799 | 195.161 | 10.726.694 | 10.974.778 | US$ 8,6356 |
+| **TOTAL** | **124** | **52.799** | **195.161** | **10.726.694** | **10.974.778** | **US$ 8,6356** |
+
+**TOTAL GERAL: 126.542.188 tokens — US$ 83,2238**
+
+---
+
 ## 2026-09-15 · O tier deixa de ser invisível, e o subagente entra na conta
 
 Os comandos passaram a responder como `/bks:*`: o namespace de plugin é obrigatório — a
