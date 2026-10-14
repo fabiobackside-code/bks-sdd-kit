@@ -303,6 +303,39 @@ spec, pagou — implementar errado e refazer custa mais que especificar bem.
 Isso e indicio, nao experimento: projeto, dominio e complexidade mudam no meio. Serve para
 decidir uma linha de frontmatter, nao para publicar conclusao.
 
+### A escrita da documentação tem skill e guarda próprias
+
+A documentação viva dos projetos tropeçava no número do ADR no meio da frase: o leitor tinha de
+abrir a decisão para entender o parágrafo. A skill `bks-writing` fixa a regra central, que é
+sintetizar a decisão no próprio texto. Quando a decisão ajuda, ela entra numa nota de fim de
+parágrafo, com o número só no fim, como rastreio. A skill nasceu do padrão aplicado num projeto
+consumidor, sobre quatro documentos de arquitetura e os decks de treinamento, e chegou aqui sem
+nome, caminho ou exemplo daquele projeto.
+
+Duas skills públicas sob licença MIT deram insumo: `writing-anti-ai` e `human-writing`. O texto
+original de cada uma está em `skills/bks-writing/third-party/`, com a licença e o commit de origem,
+e não é instalado como skill. Instaladas, as duas disputariam o gatilho com a `bks-writing` e
+aplicariam regras que conflitam com o português técnico, como proibir o travessão. Por isso o
+`references/fontes-externas.md` classifica cada regra delas: vale, foi adaptada ou foi descartada.
+A suíte estrutural não verifica ponteiro dentro de `third-party/`, que é texto de terceiro sem
+edição.
+
+A guarda `writing_guard.py` roda depois da escrita, e não antes, ao contrário das guardas de
+código. Frase longa e sigla sem definição têm falso positivo, e um bloqueio antes da escrita
+travaria a edição de documento legado. Depois da escrita, o hook devolve ao agente os achados do
+trecho escrito e não do arquivo inteiro, e mostra ao usuário o lembrete de rodar o `/bks:review`.
+O `/bks:review` passou a conferir a escrita sempre que a mudança toca documentação viva, sem o
+agente `reviewer`: roda a guarda nos arquivos tocados e dá a nota por dimensão da skill.
+
+O mesmo script roda como linha de comando sobre o arquivo inteiro, e é assim que entra na DoD. A
+contagem bate com a da guarda em PowerShell do projeto de origem: 75 achados no documento antes da
+reescrita e nenhum depois, com a lista de siglas do projeto em `.bks/siglas-conhecidas.txt`.
+
+Junto com a skill, o comentário de código perdeu o ponteiro para documento. A guarda contra
+regressão diz o que quebra se alguém mudar a linha; o `ARCHITECTURE.md` diz na abertura para que
+serve, e o comentário não precisa apontar para ele. O `doc-writer`, o `bks-dotnet-solutions`, o
+`bks-sdd` e a mensagem do `comment_budget` seguem essa regra.
+
 ## Consumidores
 
 O kit foi extraido de um vault em uso. Os projetos que o consomem continuam sendo a fonte de

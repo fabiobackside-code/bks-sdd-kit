@@ -19,6 +19,9 @@ propor. Transforma escopo em `FEAT-*.md`/`TEST-*.md`/`TASK-*.md` (fluxo bks-sdd)
 1. Ler `{repo}/decisions/` (deste projeto) — não repropor decisão já rejeitada.
 2. Ler specs existentes do projeto como referência de formato.
 3. Ler `PLAN-{projeto}.md` para alinhamento de fase/prioridade.
+4. Escrever pela skill `bks-writing`. O vínculo formal com a decisão vai no frontmatter da spec
+   (`relacionada: ADR-NNN`); o corpo não cita número de ADR no meio da frase, e a decisão que
+   ajuda a entender o parágrafo entra em nota de decisão no fim dele.
 
 ## Metodo
 

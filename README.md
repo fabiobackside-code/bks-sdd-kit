@@ -34,6 +34,7 @@ operam o workbench e agentes com papéis separados.
 | `debug-assistant` | Do sintoma a causa: reproduzir, capturar em teste, isolar a camada |
 | `refactor-guide` | Mudar estrutura sem mudar comportamento, com rede de teste antes |
 | `doc-writer` | Docstring, README e comentario — sob o teto de comentario do kit |
+| `bks-writing` | Padrão de escrita da documentação viva em PT-BR: decisão sintetizada no texto, abertura pela informação, frase curta, termo definido, lista de muletas |
 | `pr-writer` | Titulo e descrição de PR a partir do diff real, não da memória da conversa |
 
 ### Comandos
@@ -86,18 +87,23 @@ O `/bks:new-project` grava a escolha em `.bks-profile.json`. Detalhes em
 
 ## Guardas
 
-O kit instala quatro hooks. Os três primeiros **recusam a escrita** quando a regra e violada — a
-razão volta no próprio bloqueio, para corrigir e repetir.
+O kit instala cinco hooks. Os três primeiros **recusam a escrita** quando a regra e violada — a
+razão volta no próprio bloqueio, para corrigir e repetir. O `writing_guard` não recusa: a escrita
+acontece, e os achados voltam ao agente para correção na mesma passada.
 
 | Guarda | Quando dispara | O que recusa |
 |---|---|---|
 | `no_dispatcher` | escrita em `.cs` | `MediatR`, `IMediator`, `ISender`, `IRequestHandler<>`, `AddMediatR` e equivalentes — a orquestração BKS e explicita, via `PipelineOrchestrator` |
 | `comment_budget` | escrita em `.cs` | bloco de comentario acima de 5 linhas, e marca de severidade em comentario |
 | `dod_docs` | escrita em `.cs` que declara tipo público | a escrita, enquanto `README.md` e `ARCHITECTURE.md` não tiverem sido tocados na mesma leva |
+| `writing_guard` | depois da escrita em `.md` de documentação viva | nada — devolve ao agente ADR fora da nota de decisão, frase acima de 40 palavras, sigla sem definição, muleta e emoji do trecho escrito, e lembra o usuário de rodar o `/bks:review` |
 | `session_memory` | inicio de sessão | nada — carrega o `STATUS.md` do projeto, ou o perfil do usuário na raiz do vault |
 
-Os guardas ignoram arquivo de teste, arquivo fora de repositório git e qualquer coisa que não
-seja `.cs`. Falha interna de um guarda libera a escrita: regra que quebra o fluxo por bug próprio
+Os guardas de código ignoram arquivo de teste, arquivo fora de repositório git e qualquer coisa
+que não seja `.cs`. O `writing_guard` ignora `STATUS.md`, `JOURNAL.md`, `CLAUDE.md`, ADR,
+`CONTEXT*.md`, `docs/prompts/`, `docs/history/`, `docs/input/` e instrução de agente (`skills/`,
+`commands/`, `agents/`). Ele também roda como linha de comando sobre arquivos inteiros:
+`python hooks/scripts/writing_guard.py <arquivo.md>`, com saída 1 quando há achado. Falha interna de um guarda libera a escrita: regra que quebra o fluxo por bug próprio
 deixa de ser usada em uma semana.
 
 Rodar os testes dos guardas:
