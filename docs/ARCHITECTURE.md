@@ -336,6 +336,33 @@ regressão diz o que quebra se alguém mudar a linha; o `ARCHITECTURE.md` diz na
 serve, e o comentário não precisa apontar para ele. O `doc-writer`, o `bks-dotnet-solutions`, o
 `bks-sdd` e a mensagem do `comment_budget` seguem essa regra.
 
+### A manutenibilidade é um comando próprio, separado do `/bks:review`
+
+O `/bks:maintainability` avalia cada aplicação de `app/` e gera o documento de fundamentação do
+projeto, pela skill `bks-maintainability-review`. Ele não entrou no `/bks:review` por três
+diferenças. O agente `reviewer` só lê, e o parecer grava HTML. A revisão olha o diff de uma entrega
+que toca área sensível, e a manutenibilidade olha o `app/` inteiro. Achado crítico da revisão
+bloqueia a entrega, e a nota de manutenibilidade orienta a evolução sem bloquear nada.
+
+A saída fica em `outputs/maintainability/` e `outputs/references/`, na raiz do projeto. A skill de
+origem gravava ao lado do `.sln`, o que no kit poria relatório dentro de `app/`, no meio do código.
+
+A persona é um desenvolvedor pleno. Quando `BKS_VAULT` está definido, o comando lê o perfil e a
+wiki do vault para calibrar o repertório e citar as referências do time. Isso é a única leitura de
+vault fora dos comandos de workbench, e é opcional: sem vault, o comando roda com a persona do kit
+e diz isso no parecer. A regra de autossuficiência continua valendo, porque o vault melhora o
+resultado sem ser condição para ele.
+
+O núcleo da skill não conhece linguagem. Detecção, repertório e critérios de cada stack moram em
+`skills/bks-maintainability-review/stacks/`, hoje com .NET e SQL. Java, Node, Go, PHP e Python
+entram como arquivo novo, com as mesmas três seções, que a suíte estrutural exige. Aplicação de
+stack sem arquivo não é pontuada em silêncio: o comando pergunta se pula ou se avalia só com a
+rubrica, com confiança baixa. Cofre de credenciais e OpenShift saíram do núcleo para
+`references/criterios-condicionais.md`, que só se aplica quando o código mostra a tecnologia.
+
+O `/bks:canonize` sugere o comando no fim quando `app/` tem código. Antes disso, não há aplicação
+para avaliar, e a sugestão seria ruído.
+
 ## Consumidores
 
 O kit foi extraido de um vault em uso. Os projetos que o consomem continuam sendo a fonte de
