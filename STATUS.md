@@ -3,23 +3,23 @@
 > Ponto de entrada do projeto. Leia só este arquivo para saber onde as coisas estão e o que fazer
 > a seguir. Atualizado pelo `/bks:save` ao fim de cada sessão; lido pelo `/bks:brain`.
 >
-> Última atualização: 2026-10-14
+> Última atualização: 2026-10-15
 
 ---
 
 ## Em uma frase
 
-O kit ganhou a skill `bks-writing`, o padrão de escrita da documentação viva que nasceu no
-NQuantic, com a guarda `writing_guard` depois de cada escrita e o `/bks:review` conferindo a
-escrita. A `0.6.0` está na `main` do GitHub, pelo PR #1, e instalada nesta máquina. Falta o eval do caso
-novo, o caminho do alerta do `/bks:save` e a baseline, parada por crédito.
+O kit ganhou o comando `/bks:maintainability` e a skill `bks-maintainability-review`: um parecer de
+manutenibilidade por aplicação de `app/` e a fundamentação teórica do projeto, com critérios por
+stack (hoje .NET e SQL). A `0.7.0` está na branch `feat/maintainability`, publicada no GitHub sem
+PR, e instalada nesta máquina. Falta testar o comando num projeto real e rodar o eval do caso novo.
 
 ---
 
 ## Fase atual
 
 **Manutenção com rede incompleta** — o conteúdo está escrito e validado pelo uso; o que falta é
-prova de que cada skill muda a decisão do agente. A fase termina quando houver baseline dos 19
+prova de que cada skill muda a decisão do agente. A fase termina quando houver baseline dos 20
 casos com o delta `with` × `without` medido.
 
 ---
@@ -28,14 +28,22 @@ casos com o delta `with` × `without` medido.
 
 | Bloqueio | Espera | Quem destrava |
 |---|---|---|
+| Teste do `/bks:maintainability` num projeto com `app/` | sessão nova no outro repositório | Fabio |
+| PR da `feat/maintainability` para a `main` | o teste acima | Fabio |
+| Eval do caso `maintainability-inventario-pergunta` | saldo de crédito da conta | Fabio |
 | Eval do caso `writing-decisao-no-texto` | saldo de crédito da conta | Fabio |
 | Testar o `/bks:save` no caminho do alerta | árvore limpa no `dash-scheduller` | Fabio |
 | Decidir se o `planner` fica em Opus | dez FEATs medidas contra as dez anteriores | Fabio |
-| Baseline dos 19 casos de eval | saldo de crédito da conta | Fabio |
+| Baseline dos 20 casos de eval | saldo de crédito da conta | Fabio |
 | Caso de eval para Go | a baseline acima | — |
 | Adelgaçar o `bks-sdd` (2062 linhas) | a baseline acima | — |
 
-O `/bks:save` rodou duas vezes nesta data pelo caminho do silêncio, e a segunda valeu: o prompt
+O `/bks:maintainability` foi verificado só sem modelo: a suíte estrutural passa com as cinco
+checagens novas, e a cópia instalada em `0.7.0` tem o comando e as duas stacks. Nunca rodou sobre
+um `app/` real. A branch `feat/maintainability` leva também o commit `458dd75`, que ficou fora da
+`main` depois do PR #1.
+
+O `/bks:save` rodou duas vezes em 2026-10-14 pelo caminho do silêncio, e a segunda valeu: o prompt
 trouxe os passos 4 e 7, que só a versão unificada tem. O falso positivo mais caro — alertar
 projeto sem canônico — está descartado por execução.
 
@@ -66,13 +74,19 @@ mesma razão: refatorar skill validada em uso sem rede de teste é aposta.
 
 ## Próximo passo
 
-Abrir uma sessão nova em qualquer projeto, editar um `README.md` e conferir que o hook devolve os
-achados e mostra o lembrete do `/bks:review`. O merge já aconteceu, então falha aqui vira correção
-na `main`.
+Reiniciar o Claude Code, abrir uma sessão num projeto com código em `app/` e rodar
+`/bks:maintainability`. O esperado: o inventário aparece antes de qualquer nota, a aplicação de
+stack sem critérios gera pergunta, os pareceres caem em `outputs/maintainability/` e a fundamentação
+em `outputs/references/`. Passou, abrir o PR da `feat/maintainability` para a `main`; falhou, a
+correção entra na mesma branch.
 
-Com crédito, o caso novo primeiro, antes da suíte:
+Na mesma sessão nova, editar um `README.md` e conferir que o hook de escrita devolve os achados e
+mostra o lembrete do `/bks:review`.
+
+Com crédito, os dois casos novos primeiro, antes da suíte:
 
 ```
+claude plugin eval . --case maintainability-inventario-pergunta --runs 1
 claude plugin eval . --case writing-decisao-no-texto --runs 1
 ```
 
@@ -104,15 +118,15 @@ Ao ler o resultado, o número que importa não é o score: é o **delta** entre 
 
 | Peça | Quantidade |
 |---|---|
-| Skills | 16 |
-| Slash commands | 11 |
+| Skills | 17 |
+| Slash commands | 12 |
 | Subagentes | 5 |
 | Perfis de projeto | 9 |
-| Versão publicada | `0.6.0`, na `main` |
+| Versão publicada | `0.6.0` na `main`; `0.7.0` na branch `feat/maintainability`, instalada |
 | Guardas executáveis | 5, todos com teste em `hooks/tests/` |
-| Casos de eval | 19, com 91 graders |
+| Casos de eval | 20, com 96 graders |
 
-`python tests/test_structure.py` → 763 verificações, 0 falhas.
+`python tests/test_structure.py` → 806 verificações, 0 falhas.
 `bash hooks/tests/run.sh` → `falhas: 0` nas três suítes.
 
 ---
@@ -143,6 +157,9 @@ Ao ler o resultado, o número que importa não é o score: é o **delta** entre 
 | 20 | Skill de terceiro é vendorizada como consulta, com licença e mapeamento, nunca instalada | `docs/ARCHITECTURE.md` |
 | 21 | Comentário de código não aponta para documento | `docs/ARCHITECTURE.md` |
 | 22 | `/bks:canonize` confronta a skill referenciada com o que o projeto concretizou | `docs/ARCHITECTURE.md` |
+| 23 | Manutenibilidade é comando próprio, separado do `/bks:review`, com saída em `outputs/` | `docs/ARCHITECTURE.md` |
+| 24 | O vault calibra a persona do parecer quando existe, sem ser requisito | `docs/ARCHITECTURE.md` |
+| 25 | Critério de linguagem mora em `stacks/`; stack sem arquivo é perguntada, não pontuada | `docs/ARCHITECTURE.md` |
 
 ---
 
@@ -151,7 +168,7 @@ Ao ler o resultado, o número que importa não é o score: é o **delta** entre 
 - O frontmatter dos renderers usa a chave `padrão`, com acento, contra a regra de que chave de
   frontmatter segue ASCII. A suíte aceita as duas grafias; a decisão de padronizar a chave e migrar
   os cinco arquivos está em aberto
-- Nenhum caso de eval cobre Go; os 19 existentes são de .NET, TypeScript, escrita e comandos
+- Nenhum caso de eval cobre Go; os 20 existentes são de .NET, TypeScript, escrita e comandos
 - O `README.md` e o `docs/ARCHITECTURE.md` do kit têm 17 achados da guarda de escrita, todos em
   texto anterior a esta sessão: siglas sem definição e três frases longas
 - O vínculo da spec com a decisão no frontmatter (`relacionada:`) entrou no template FEAT e no
@@ -174,7 +191,11 @@ Ao ler o resultado, o número que importa não é o score: é o **delta** entre 
 - Doze decisões fora do canônico em três projetos consumidores, achado desta sessão e não
   endereçado: `layan` v2 com sete ADRs posteriores, `nquantic` v6 com uma FEAT, um TEST e o
   ADR-024, `dash-scheduller` v6 com ADR-003 e ADR-004. O `layan` é o pior caso
-- Repositório ainda não publicado
+- A `bks-maintainability-review` só tem critérios de .NET e SQL; Java, Node, Go, PHP e Python
+  entram como `stacks/<linguagem>.md`
+- Os arquivos de referência da `bks-maintainability-review` usam IDs de eixo e premissa (`A1`,
+  `P01`) que a guarda de escrita lê como sigla sem definição; ela não roda sobre skill, então não
+  bloqueia, mas o `/bks:review` de escrita acusaria
 
 ---
 
