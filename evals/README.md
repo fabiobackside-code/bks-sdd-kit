@@ -49,6 +49,7 @@ responder não mede nada.
 | `plan-tasks-atomicas` | pede plano onde caberia começar a implementar |
 | `ts-seleção-tipo` | descreve backend sem dizer de que tipo |
 | `writing-decisao-no-texto` | pede o ADR entre colchetes, "vale ressaltar" e alerta vermelho no título |
+| `maintainability-inventario-pergunta` | manda aplicar critério de .NET ao front Node e proíbe perguntar |
 
 ## Ablação
 

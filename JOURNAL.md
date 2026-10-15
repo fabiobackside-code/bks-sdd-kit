@@ -5,6 +5,39 @@
 
 ---
 
+## 2026-10-15 · Manutenibilidade e fundamentação viram comando
+
+A skill `bks-maintainability-review`, trazida como pacote `.skill`, virou pasta do kit e ganhou o
+comando `/bks:maintainability`. Ele inventaria `app/`, gera um parecer por aplicação em
+`outputs/maintainability/` e a fundamentação do projeto em `outputs/references/`. A persona passou
+a pleno, calibrada pelo vault quando ele existe. O critério de linguagem foi para `stacks/` (.NET e
+SQL), Web Service e Scripts SQL ganharam pesos, e cofre e OpenShift viraram critério condicional.
+O `/bks:canonize` sugere o comando quando há código.
+
+A `0.7.0` está instalada e na branch `feat/maintainability`, sem PR. A suíte estrutural passou com
+806 verificações e 0 falhas, e os hooks com `falhas: 0`. O comando não rodou sobre projeto real, e o
+eval do caso novo espera crédito.
+
+### Consumo da sessao
+
+| Modelo | Input | Output | Cache write | Cache read | Total | Custo |
+|---|---:|---:|---:|---:|---:|---:|
+| claude-opus-5-5 | 104 | 51.958 | 161.609 | 7.367.066 | 7.580.737 | US$ 6,5991 |
+| **TOTAL** | **104** | **51.958** | **161.609** | **7.367.066** | **7.580.737** | **US$ 6,5991** |
+
+**TOTAL GERAL: 139.268.636 tokens — US$ 92,9059**
+
+---
+
+## 2026-10-14 · A `0.6.0` chega à `main`
+
+A branch foi publicada como `dev` e entrou na `main` pelo PR #1, junto com os commits locais que
+ainda não tinham ido ao remoto. Quem instala pelo GitHub passa a receber a `bks-writing`. O plano
+de humanização do NQuantic marca K-001 a K-005 como concluídas, sem commit naquele repositório. O
+consumo desta sessão está na entrada abaixo, que é da mesma sessão.
+
+---
+
 ## 2026-10-14 · A escrita ganha skill, guarda e revisão
 
 O padrão de escrita que o NQuantic aplicou em quatro documentos de arquitetura e nos decks veio
@@ -24,10 +57,10 @@ rodou.
 
 | Modelo | Input | Output | Cache write | Cache read | Total | Custo |
 |---|---:|---:|---:|---:|---:|---:|
-| claude-opus-5-5 | 124 | 52.799 | 195.161 | 10.726.694 | 10.974.778 | US$ 8,6356 |
-| **TOTAL** | **124** | **52.799** | **195.161** | **10.726.694** | **10.974.778** | **US$ 8,6356** |
+| claude-opus-5-5 | 166 | 65.599 | 215.832 | 15.838.892 | 16.120.489 | US$ 11,7186 |
+| **TOTAL** | **166** | **65.599** | **215.832** | **15.838.892** | **16.120.489** | **US$ 11,7186** |
 
-**TOTAL GERAL: 126.542.188 tokens — US$ 83,2238**
+**TOTAL GERAL: 131.687.899 tokens — US$ 86,3068**
 
 ---
 

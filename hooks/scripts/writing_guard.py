@@ -1,7 +1,7 @@
-"""Guarda: padrao de escrita da skill bks-writing em documentacao viva.
+"""Guarda: padrão de escrita da skill bks-writing em documentação viva.
 
-Como hook PostToolUse, devolve ao agente os achados do trecho escrito e lembra o usuario de rodar
-o /bks:review. Como CLI, confere arquivos inteiros e sai com 1 se houver achado:
+Como hook PostToolUse, devolve ao agente os achados do trecho escrito e lembra o usuário de rodar
+o /bks:review. Como linha de comando, confere arquivos inteiros e sai com 1 se houver achado:
     python writing_guard.py [--max-palavras 40] [--resumo] arquivo.md [...]
 """
 import io
@@ -94,7 +94,7 @@ def read_acronyms(path):
 
 
 def known_acronyms(doc_path):
-    """Lista do kit mais a do repositorio do documento, em .bks/siglas-conhecidas.txt."""
+    """Lista do kit mais a do repositório do documento, em .bks/siglas-conhecidas.txt."""
     known = read_acronyms(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                        'siglas-conhecidas.txt'))
     d = os.path.dirname(os.path.abspath(doc_path))
@@ -110,7 +110,7 @@ def known_acronyms(doc_path):
 
 
 def prose_lines(lines):
-    """(numero, texto) das linhas fora de frontmatter, codigo cercado e regiao ignorada."""
+    """(número, texto) das linhas fora de frontmatter, código cercado e região ignorada."""
     in_code = in_front = ignoring = False
     for i, line in enumerate(lines):
         if i == 0 and line.strip() == '---':
@@ -198,7 +198,7 @@ def analyze(text, known, max_words=MAX_WORDS):
 
 
 def written_ranges(payload, text):
-    """Faixas de linha (inicio, fim) que este tool call escreveu; None quando foi o arquivo todo."""
+    """Faixas de linha (início, fim) que este tool call escreveu; None quando foi o arquivo todo."""
     ti = tool_input(payload)
     if 'content' in ti:
         return None

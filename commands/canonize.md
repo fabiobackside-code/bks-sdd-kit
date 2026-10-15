@@ -72,5 +72,9 @@ Faça, nesta ordem:
    ("revise docs/canonical/CONTEXT.md, responda as perguntas em aberto se quiser fechar tudo, e
    rode /bks:prd quando o contexto estiver bom o suficiente para virar requisito").
 
+8. Se `app/` tiver código, acrescente uma linha ao reporte sugerindo `/bks:maintainability` para
+   gerar o parecer de manutenibilidade de cada aplicação e a fundamentação do projeto. Com `app/`
+   vazio, não sugira nada: não há o que avaliar.
+
 Nunca promova para canônico algo que você mesmo inventou para preencher lacuna — isso é
 alucinação disfarçada de síntese. Marque como incerto e pergunte.
