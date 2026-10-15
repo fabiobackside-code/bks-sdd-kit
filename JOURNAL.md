@@ -5,6 +5,30 @@
 
 ---
 
+## 2026-10-15 · Manutenibilidade e fundamentação viram comando
+
+A skill `bks-maintainability-review`, trazida como pacote `.skill`, virou pasta do kit e ganhou o
+comando `/bks:maintainability`. Ele inventaria `app/`, gera um parecer por aplicação em
+`outputs/maintainability/` e a fundamentação do projeto em `outputs/references/`. A persona passou
+a pleno, calibrada pelo vault quando ele existe. O critério de linguagem foi para `stacks/` (.NET e
+SQL), Web Service e Scripts SQL ganharam pesos, e cofre e OpenShift viraram critério condicional.
+O `/bks:canonize` sugere o comando quando há código.
+
+A `0.7.0` está instalada e na branch `feat/maintainability`, sem PR. A suíte estrutural passou com
+806 verificações e 0 falhas, e os hooks com `falhas: 0`. O comando não rodou sobre projeto real, e o
+eval do caso novo espera crédito.
+
+### Consumo da sessao
+
+| Modelo | Input | Output | Cache write | Cache read | Total | Custo |
+|---|---:|---:|---:|---:|---:|---:|
+| claude-opus-5-5 | 104 | 51.958 | 161.609 | 7.367.066 | 7.580.737 | US$ 6,5991 |
+| **TOTAL** | **104** | **51.958** | **161.609** | **7.367.066** | **7.580.737** | **US$ 6,5991** |
+
+**TOTAL GERAL: 139.268.636 tokens — US$ 92,9059**
+
+---
+
 ## 2026-10-14 · A `0.6.0` chega à `main`
 
 A branch foi publicada como `dev` e entrou na `main` pelo PR #1, junto com os commits locais que
