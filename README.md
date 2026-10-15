@@ -35,6 +35,7 @@ operam o workbench e agentes com papéis separados.
 | `refactor-guide` | Mudar estrutura sem mudar comportamento, com rede de teste antes |
 | `doc-writer` | Docstring, README e comentario — sob o teto de comentario do kit |
 | `bks-writing` | Padrão de escrita da documentação viva em PT-BR: decisão sintetizada no texto, abertura pela informação, frase curta, termo definido, lista de muletas |
+| `bks-maintainability-review` | Parecer de manutenibilidade por aplicação, nota de 0 a 100 para um dev pleno, e a fundamentação teórica e técnica do projeto; critérios por stack, hoje .NET e SQL |
 | `pr-writer` | Titulo e descrição de PR a partir do diff real, não da memória da conversa |
 
 ### Comandos
@@ -51,6 +52,7 @@ operam o workbench e agentes com papéis separados.
 | `/bks:arch` | Gera `ARCH-[projeto].md` (C4 em Mermaid) e o README do repo |
 | `/bks:loop` | LOOP-4: implementa task sob goals verificáveis, máximo 4 tentativas |
 | `/bks:review` | Dispara revisão independente read-only |
+| `/bks:maintainability` | Inventaria `app/`, gera um parecer de manutenibilidade por aplicação em `outputs/maintainability/` e a fundamentação do projeto em `outputs/references/` |
 | `/bks:save` | Roteia o resultado da sessão pela regra dos dois lugares |
 
 ### Agentes
@@ -166,6 +168,7 @@ trabalho atual.
                    (ou a skill bks-sdd, para o ciclo com workspace e plano macro)
 /bks:loop          implementa task sob goals
 /bks:review        revisão independente
+/bks:maintainability  parecer por aplicação e fundamentação
 /bks:arch          consolida a visão de arquitetura
 /bks:save          registra decisões e progresso
 ```

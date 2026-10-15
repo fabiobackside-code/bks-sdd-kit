@@ -83,6 +83,11 @@ def test_skills():
               if os.path.isdir(os.path.join(ROOT, 'skills', d))]
     check('ha skills no repositorio', bool(skills))
 
+    loose = [f for f in listdir('skills')
+             if not os.path.isdir(os.path.join(ROOT, 'skills', f))]
+    check('skills/ só contém pastas', not loose,
+          'arquivo solto ou pacote .skill: %s' % ', '.join(loose))
+
     for skill in skills:
         text = read('skills', skill, 'SKILL.md')
         fm = frontmatter(text)
@@ -272,6 +277,27 @@ def test_invariants():
     guard = read('hooks', 'scripts', 'no_dispatcher.py')
     check('o guarda de dispatcher cobre MediatR e IMediator',
           'MediatR' in guard and 'IMediator' in guard)
+
+    maint = ('skills', 'bks-maintainability-review')
+    stacks = [f for f in listdir(*(maint + ('stacks',))) if f.endswith('.md')]
+    check('bks-maintainability-review tem a stack .NET', 'dotnet.md' in stacks)
+    for f in stacks:
+        text = read(*(maint + ('stacks', f)))
+        check('stack %s declara Detecção, Repertório e Critérios' % f,
+              all(s in text for s in ('## Detecção', '## Repertório', '## Critérios')))
+
+    # cofre específico só no critério condicional, para o núcleo valer em qualquer projeto
+    neutral = [read(*(maint + ('SKILL.md',)))] + [
+        read(*(maint + ('references', f)))
+        for f in ('persona-e-premissas.md', 'criterios-comuns.md', 'rubrica.md')]
+    check('núcleo da bks-maintainability-review não cita CyberArk',
+          not any('CyberArk' in t for t in neutral))
+
+    command = read('commands', 'maintainability.md')
+    check('/bks:maintainability grava fora do app/',
+          'outputs/maintainability/' in command and 'outputs/references/' in command)
+    check('/bks:canonize sugere o /bks:maintainability',
+          '/bks:maintainability' in read('commands', 'canonize.md'))
 
 
 def test_profiles():
