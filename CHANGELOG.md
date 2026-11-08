@@ -4,6 +4,30 @@ Mudanças relevantes do `bks-sdd-kit`, da mais recente para a mais antiga. Forma
 [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões seguem
 [SemVer](https://semver.org/lang/pt-BR/).
 
+## [1.0.0] — 2026-11-08
+
+Primeira versão estável. A partir dela, o kit segue SemVer sobre o contrato público descrito no
+README: mudança incompatível em comando, skill, agente, schema de perfil, esqueleto de projeto,
+guarda ou local de saída só entra em versão major.
+
+### Adicionado
+- README em inglês (`README.md`) e em português (`README.pt-BR.md`), com a seção de contrato público
+  e versionamento.
+- Guardas na suíte estrutural: sem marca de severidade nas instruções, sem marca em comentário de
+  exemplo de código e sem nome de projeto interno no repositório.
+- `bks-maintainability-review` ganhou as regras que a primeira execução real mostrou faltar:
+  decisão registrada no eixo, critério de severidade, achado Média que impede a nota 5, limiar de
+  âncora sem quantidade, script de medição guardado, teste de integração só contra recurso local ou
+  autorizado, reuso de medição por hash de árvore, numeração de achados, identificação do avaliador
+  e casos de fronteira da fundamentação. O cabeçalho do parecer ganhou persona, base de comparação e
+  limiares.
+
+### Alterado
+- Callouts de severidade saíram das skills; ✅ e ❌ ficaram só como ícone de estado e par didático.
+
+### Limitação conhecida
+- A baseline dos casos de eval (delta entre os braços `with` e `without`) ainda não foi medida.
+
 ## [0.9.0] — 2026-11-08
 ### Adicionado
 - `/bks:maintainability` oferece a `bks-daiwl` como lente pessoal opcional, quando ela já está

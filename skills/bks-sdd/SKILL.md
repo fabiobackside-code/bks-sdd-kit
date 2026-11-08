@@ -13,7 +13,7 @@ description: >
 
 **Idioma:** Todo output desta skill — perguntas, respostas, documentos gerados — deve estar em **Português do Brasil (PT-BR)**, independente do idioma em que o usuário escrever o comando.
 
-## 🔴 Conduta — vale em todas as fases
+## Conduta — vale em todas as fases
 
 **Entregue o que foi pedido, nada além.** O escopo da resposta é o escopo do pedido. Um pedido de
 correção pontual não vira reescrita de seção; um comando pedido não vira guia com variantes e
@@ -27,7 +27,7 @@ que já está em outro documento · recapitular o que já é visível. Achado re
 entra como **uma linha**, não como implementação.
 
 **Em dúvida de contexto, pergunte antes de responder** — escopo, destino do artefato, ou
-alternativas mutuamente exclusivas. 🔴 **Pergunta *ou/ou* respondida com "sim" não decidiu nada:**
+alternativas mutuamente exclusivas. **Pergunta *ou/ou* respondida com "sim" não decidiu nada:**
 pergunte de novo nomeando as opções, em vez de escolher por suposição. Não pergunte o que dá para
 verificar lendo o repositório ou executando.
 
@@ -843,7 +843,7 @@ F4  | [nome]               | F2   | P2     | ⏳ Pendente | ⛔ Não aplicável 
 ```
 
 Legenda de ícones:
-- ✅ Aprovada — artefato existe e aprovado pelo usuário
+- Faça: Aprovada — artefato existe e aprovado pelo usuário
 - 📝 Draft — artefato criado mas ainda não aprovado
 - ⛔ Não criado — FEAT aprovado mas TEST ainda não foi gerado (próxima ação necessária)
 - ⛔ Não aplicável — FEAT não aprovado; TEST não pode ser criado ainda
@@ -1033,7 +1033,7 @@ template canônico. Para cada task, preencher:
 - Campo `**Padrão:**` com o padrão herdado do FEAT
 - Campo `**Método semântico alvo:**` conforme regras acima
 - Checklist "Definição de pronto" — se TXC, incluir item "Estado intermediário do Transaction verificado"
-- 🔴 Checklist "Definição de pronto" — **sempre** incluir, em toda task que cria ou altera tipo
+- Checklist "Definição de pronto" — **sempre** incluir, em toda task que cria ou altera tipo
   público, função pública ou decisão estrutural:
   - `[ ] README.md e ARCHITECTURE.md atualizados com o que esta task produziu`
   - `[ ] Comentários seguem a convenção: contrato e guarda no código; decisão no ARCHITECTURE.md`
@@ -1140,7 +1140,7 @@ F5  | [nome]                     | ⏳ Pendente  | ⛔ Não aplicável  | —
 ```
 
 Legenda:
-- ✅ Aprovada — artefato existe e foi aprovado pelo usuário
+- Faça: Aprovada — artefato existe e foi aprovado pelo usuário
 - 📝 Draft — artefato existe mas ainda não aprovado
 - ⛔ Não criado — FEAT aprovado mas TEST ainda não foi gerado (ação necessária)
 - ⛔ Não aplicável — FEAT não aprovado; TEST não pode ser criado ainda
@@ -1592,7 +1592,7 @@ Se E2B MCP estiver disponível no ambiente:
      **E2B Sandbox:** pass | fail — [output resumido em 1-2 linhas]
      ```
    - Se resultado = `fail`:
-     > *"⚠️ Sandbox E2B retornou falha. Corrija o código antes de prosseguir.*
+     > *"Sandbox E2B retornou falha. Corrija o código antes de prosseguir.*
      > *Output: [output resumido]*
      > *Execute `/bks-sdd --task-done TASK-[id]` novamente após a correção."*
      - Interromper o fluxo (não apresentar checklist de TCs).
@@ -1617,7 +1617,7 @@ no `--task-run`:
   (by naming, structure, or logic match)
 - Construir internamente a lista: `cenários cobertos` vs `cenários ausentes ou incompletos`
 
-**Passo 6D.3B — Verificar a documentação de entrega** 🔴 *obrigatório, os dois modos*
+**Passo 6D.3B — Verificar a documentação de entrega** *obrigatório, os dois modos*
 
 **Task sem `README.md` e `ARCHITECTURE.md` atualizados não está concluída** — mesmo peso do build
 e dos testes. Executar **antes** de marcar a task como concluída, em qualquer modo.
@@ -1642,9 +1642,9 @@ automático [`memory/documentação.md`].
   linhas (o que quebra, sem ponteiro para documento)
 - **sai:** decisão, trade-off, histórico, comparação com implementação anterior — vive no
   `ARCHITECTURE.md`
-- **proibido:** marca de severidade (🔴 ⚠️ 🟡) em comentário; **bloco acima de 5 linhas**
+- **proibido:** marca de severidade () em comentário; **bloco acima de 5 linhas**
 
-> 🔴 **Regra sem guarda executável é intenção.** Onde a stack permitir, a verificação de comentário
+> **Regra sem guarda executável é intenção.** Onde a stack permitir, a verificação de comentário
 > deve virar **teste de arquitetura** no projeto — não checagem manual a cada task. Referência:
 > `CommentBudgetTests`, de um SDK de segurança deste método (dois testes: bloco acima do teto, marca de severidade).
 
@@ -1669,7 +1669,7 @@ automático [`memory/documentação.md`].
 3. Tentar autocorreção: se o gap for localizado (um arquivo ou função ausente), gerar a correção
    em `spec/output/code/[feature]/` e repetir o passo 6D.3A
 4. Se após autocorreção o cenário ainda falhar, **interromper e informar o usuário**:
-   > *"⚠️ TASK-[id] — gap não resolvido automaticamente.*
+   > *"TASK-[id] — gap não resolvido automaticamente.*
    > *Cenário: [nome do cenário]*
    > *Gap: [descrição precisa do que está faltando]*
    > *Arquivos gerados estão em `spec/output/code/[feature]/`. Corrija e execute*
@@ -1751,7 +1751,7 @@ workspace-[nome]
 ```
 
 Ícones de status de feature:
-- ✅ Concluída — todas as tasks concluídas
+- Faça: Concluída — todas as tasks concluídas
 - 🔄 Em andamento — pelo menos uma task Em execução ou Concluída
 - ⏳ Pendente — nenhuma task iniciada ainda
 - 📝 Sem tasks — feature com FEAT/TEST aprovados mas tasks não geradas ainda

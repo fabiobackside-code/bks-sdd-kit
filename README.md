@@ -1,301 +1,338 @@
 # bks-sdd-kit
 
-Plugin do Claude Code com o kit BKS de **Spec-Driven Development** — o processo que leva uma ideia
-de produto até código implementado, passando por PRD, planos, especificações de feature, cenários
-de teste e tasks executáveis.
+🇧🇷 [Leia em português](README.pt-BR.md)
 
-Não é um framework de código. É o processo de trabalho: skills que conduzem o ciclo, comandos que
-operam o workbench e agentes com papéis separados.
+Skills, commands and the artifacts they generate are written in Brazilian Portuguese; code and
+identifiers are in English.
 
-**Por que existe.** O padrão nasceu de projetos reais — um motor de transações bancárias, um SDK de
-segurança, plataformas de produto e provas de conceito — e de um problema recorrente: o agente de
-código escreve rápido, mas sem contrato, sem prova e sem memória entre sessões. O kit impõe as três
-coisas. A spec vem antes do código, a guarda recusa a escrita fora do padrão em vez de avisar, e
-cada skill tem um caso de eval que mede se ela muda a decisão do agente.
+A Claude Code plugin with the BKS (Backside) kit for **Spec-Driven Development** (SDD). SDD is
+the process that takes a product idea all the way to implemented code, by way of the PRD (product
+requirements document), plans, feature specifications, test scenarios and executable tasks.
 
-## Instalação
+It is not a code framework. It is the working process: skills that drive the cycle, commands that
+operate the workbench, and agents with separate roles.
+
+**Why it exists.** The pattern was born from real projects — a banking transaction engine, a
+security SDK, product platforms and proofs of concept. It also came from a recurring problem:
+the coding agent writes fast, but without a contract, without proof and without memory between
+sessions. The kit enforces all three. The spec comes before the code, the guard refuses an
+off-pattern write instead of warning about it, and every skill has an eval case that measures
+whether it changes the agent's decision.
+
+## Installation
 
 ```
 /plugin marketplace add fabiobackside-code/bks-sdd-kit
 /plugin install bks@bks-sdd-kit
 ```
 
-## O que vem no kit
+## What's in the kit
 
 ### Skills
 
-| Skill | Para que serve |
+| Skill | What it is for |
 |---|---|
-| `bks-sdd` | Ciclo SDD completo: workspace, PRD, projetos, plano macro, feature specs, cenários de teste, tasks e execução |
-| `bks-dotnet-solutions` | Geração de soluções .NET com Arquitetura Hexagonal e o padrão TXC (Transaction Context) |
-| `bks-typescript-solutions` | Backends Node.js + TypeScript: API REST, agente LangGraph, worker e consumer, também sob TXC |
-| `bks-go-solutions` | Soluções Go: API REST, worker, consumer, CLI e SDK — TXC na forma que Go admite, erro idiomático no lugar de `Result[T]` |
-| `bks-create-plan-tasks` | Decomposição de qualquer trabalho em tasks atomicas otimizadas para consumo de tokens |
-| `bks-tests` | Cobertura de testes em solution .NET: projeto xUnit único em `src/`, 90%+ em linhas, branches e métodos, conformidade SonarQube |
-| `bks-standards` | Padrões de engenharia BKS: premissas de codificação, dependências .NET e Go, calisthenics, politica de comentario, SEDA e TCP |
-| `bks-arch` | Notação BKS de diagramas: paleta da marca, semantica de cor por tipo de no, convenção de linha — emite para Mermaid, archify, C4 ou TOGAF |
-| `api-design` | Contrato de endpoint: semantica HTTP, versionamento, erro, paginação, idempotência |
-| `frontend-design` | Interface com identidade própria — estrutura de componente, hierarquia visual, consistência |
-| `security-audit` | Revisão de segurança: entrada, autorização, segredo, dado sensivel |
-| `debug-assistant` | Do sintoma a causa: reproduzir, capturar em teste, isolar a camada |
-| `refactor-guide` | Mudar estrutura sem mudar comportamento, com rede de teste antes |
-| `doc-writer` | Docstring, README e comentario — sob o teto de comentario do kit |
-| `bks-writing` | Padrão de escrita da documentação viva em PT-BR: decisão sintetizada no texto, abertura pela informação, frase curta, termo definido, lista de muletas |
-| `bks-maintainability-review` | Parecer de manutenibilidade por aplicação, nota de 0 a 100 para um dev pleno, e a fundamentação teórica e técnica do projeto; critérios por stack, hoje .NET e SQL |
-| `pr-writer` | Título e descrição de PR a partir do diff real, não da memória da conversa |
-| `bks-daiwl` | *Don't Accept It Without Learning*: mede o quanto **você** consegue manter o código que a IA gerou, comparando os fundamentos aplicados com o seu vault, e ensina a diferença. Cópia fixada do [repositório próprio](https://github.com/fabiobackside-code/bks-daiwl) |
+| `bks-sdd` | Full SDD cycle: workspace, PRD, projects, macro plan, feature specs, test scenarios, tasks and execution |
+| `bks-dotnet-solutions` | Generates .NET solutions with Hexagonal Architecture and the TXC (Transaction Context) pattern |
+| `bks-typescript-solutions` | Node.js + TypeScript backends: REST API, LangGraph agent, worker and consumer, also under TXC |
+| `bks-go-solutions` | Go solutions: REST API, worker, consumer, CLI and SDK — TXC in the shape Go allows, idiomatic errors instead of `Result[T]` |
+| `bks-create-plan-tasks` | Breaks any piece of work into atomic tasks optimized for token consumption |
+| `bks-tests` | Test coverage in a .NET solution: a single xUnit project under `src/`, 90%+ line, branch and method coverage, SonarQube compliance |
+| `bks-standards` | BKS engineering standards: coding premises, .NET and Go dependencies, calisthenics, comment policy, SEDA (staged event-driven architecture) and TCP |
+| `bks-arch` | BKS diagram notation: brand palette, color semantics by node type, line convention — emits Mermaid, archify, C4 (Context, Containers, Components, Code) or TOGAF (The Open Group Architecture Framework) |
+| `api-design` | Endpoint contract: HTTP semantics, versioning, errors, pagination, idempotency |
+| `frontend-design` | Interfaces with their own identity — component structure, visual hierarchy, consistency |
+| `security-audit` | Security review: input, authorization, secrets, sensitive data |
+| `debug-assistant` | From symptom to cause: reproduce, capture in a test, isolate the layer |
+| `refactor-guide` | Change structure without changing behavior, with a test safety net first |
+| `doc-writer` | Docstrings, README and comments — under the kit's comment ceiling |
+| `bks-writing` | Writing standard for living documentation in PT-BR: the decision synthesized in the text, opening with the information, short sentences, defined terms, a list of crutch phrases |
+| `bks-maintainability-review` | Maintainability assessment per application, a 0–100 score from a mid-level developer's standpoint, and the project's theoretical and technical foundations; criteria per stack, currently .NET and SQL |
+| `pr-writer` | PR title and description from the actual diff, not from the conversation's memory |
+| `bks-daiwl` | *Don't Accept It Without Learning*: measures how well **you** can maintain the code the AI (artificial intelligence) generated, comparing the fundamentals applied against your vault, and teaches the difference. Pinned copy of its [own repository](https://github.com/fabiobackside-code/bks-daiwl) |
 
-### Comandos
+### Commands
 
-| Comando | O que faz |
+| Command | What it does |
 |---|---|
-| `/bks:brain` | Retoma a sessão: quem você e, onde parou, próximo passo |
-| `/bks:new-project` | Cria projeto novo com a estrutura canônica — único ponto de entrada |
-| `/bks:note` | Escreve nota viva em `docs/input/notas/` do projeto |
-| `/bks:ingest` | Ingere conhecimento para a base transversal em `knowledge/` do vault |
-| `/bks:canonize` | Consolida pesquisa e design num contexto canônico único |
-| `/bks:prd` | Gera o PRD a partir do contexto canônico |
-| `/bks:spec` | Entrevista de bounded context e gera `FEAT` + `TEST` |
-| `/bks:arch` | Gera `ARCH-[projeto].md` (C4 em Mermaid) e o README do repo |
-| `/bks:loop` | LOOP-4: implementa task sob goals verificáveis, máximo 4 tentativas |
-| `/bks:review` | Dispara revisão independente read-only |
-| `/bks:maintainability` | Inventaria `app/`, gera um parecer de manutenibilidade por aplicação em `outputs/maintainability/` e a fundamentação do projeto em `outputs/references/` |
-| `/bks:save` | Roteia o resultado da sessão pela regra dos dois lugares |
+| `/bks:brain` | Resumes the session: who you are, where you stopped, next step |
+| `/bks:new-project` | Creates a new project with the canonical structure — the single entry point |
+| `/bks:note` | Writes a living note in the project's `docs/input/notas/` |
+| `/bks:ingest` | Ingests knowledge into the cross-project base in the vault's `knowledge/` |
+| `/bks:canonize` | Consolidates research and design into a single canonical context |
+| `/bks:prd` | Generates the PRD from the canonical context |
+| `/bks:spec` | Bounded-context interview that generates `FEAT` + `TEST` |
+| `/bks:arch` | Generates `ARCH-[project].md` (C4 in Mermaid) and the repo README |
+| `/bks:loop` | LOOP-4: implements a task under verifiable goals, at most 4 attempts |
+| `/bks:review` | Triggers an independent, read-only review |
+| `/bks:maintainability` | Inventories `app/`, generates a maintainability assessment per application in `outputs/maintainability/` and the project's foundations in `outputs/references/` |
+| `/bks:save` | Routes the session's outcome by the two-places rule |
 
-### Agentes
+### Agents
 
-| Agente | Papel | Modelo |
+| Agent | Role | Model |
 |---|---|---|
-| `planner` | Escopo vira `FEAT`/`TEST`/`TASK` — nunca código de produção | Opus |
-| `builder` | Implementa sob LOOP-4, dentro dos limites da FEAT aprovada | Sonnet |
-| `reviewer` | Revisão de segurança independente, read-only | Opus |
-| `scribe` | Registra apenas o que foi confirmado com evidência | Haiku |
+| `planner` | Turns scope into `FEAT`/`TEST`/`TASK` — never production code | Opus |
+| `builder` | Implements under LOOP-4, within the limits of the approved FEAT (feature specification) | Sonnet |
+| `reviewer` | Independent, read-only security review | Opus |
+| `scribe` | Records only what has been confirmed with evidence | Haiku |
 
-## Perfis de projeto
+## Project profiles
 
-Um projeto declara **o que gera**, e o perfil determina quais fases se aplicam. Um projeto de
-documentação não recebe pergunta sobre banco de dados; uma biblioteca não passa por design de tela.
+A project declares **what it produces**, and the profile determines which phases apply. A
+documentation project gets no questions about databases; a library does not go through screen
+design.
 
-| Perfil | Para |
+| Profile | For |
 |---|---|
-| `docs` | entrega documental — escopo, arquitetura, apresentação |
-| `fullstack` | projeto completo faseado |
-| `frontend` | design, mocks, componentes |
-| `backend` | API, domínio, persistência |
-| `component` | biblioteca, SDK, pacote |
-| `infra` | IaC, pipeline, observabilidade |
-| `data` | ETL, modelagem, BI |
-| `legacy-docs` | entender um legado sem altera-lo |
-| `reengineering` | documentar e reescrever um legado |
+| `docs` | documentation deliverable — scope, architecture, presentation |
+| `fullstack` | full phased project |
+| `frontend` | design, mocks, components |
+| `backend` | API, domain, persistence |
+| `component` | library, SDK, package |
+| `infra` | IaC, pipeline, observability |
+| `data` | ETL (extract, transform, load), modeling, BI (business intelligence) |
+| `legacy-docs` | understanding a legacy system without changing it |
+| `reengineering` | documenting and rewriting a legacy system |
 
-Quatro eixos atravessam os perfis: formato de saída (`md`/`html`), renderer de arquitetura,
-alvo de frontend (`web`/`mobile`/`both`) e rigor (`producao`/`poc`).
+Four axes cut across the profiles: output format (`md`/`html`), architecture renderer, frontend
+target (`web`/`mobile`/`both`) and rigor (`producao`/`poc`).
 
-O `/bks:new-project` grava a escolha em `.bks-profile.json`. Detalhes em
+`/bks:new-project` records the choice in `.bks-profile.json`. Details in
 [`profiles/`](profiles/README.md).
 
-## Guardas
+## Guards
 
-O kit instala cinco hooks. Os três primeiros **recusam a escrita** quando a regra e violada — a
-razão volta no próprio bloqueio, para corrigir e repetir. O `writing_guard` não recusa: a escrita
-acontece, e os achados voltam ao agente para correção na mesma passada.
+The kit installs five hooks. The first three **refuse the write** when the rule is violated — the
+reason comes back in the block itself, so you can fix it and retry. `writing_guard` does not
+refuse: the write goes through, and the findings return to the agent to be fixed in the same pass.
 
-| Guarda | Quando dispara | O que recusa |
+| Guard | When it fires | What it refuses |
 |---|---|---|
-| `no_dispatcher` | escrita em `.cs` | `MediatR`, `IMediator`, `ISender`, `IRequestHandler<>`, `AddMediatR` e equivalentes — a orquestração BKS e explicita, via `PipelineOrchestrator` |
-| `comment_budget` | escrita em `.cs` | bloco de comentario acima de 5 linhas, e marca de severidade em comentario |
-| `dod_docs` | escrita em `.cs` que declara tipo público | a escrita, enquanto `README.md` e `ARCHITECTURE.md` não tiverem sido tocados na mesma leva |
-| `writing_guard` | depois da escrita em `.md` de documentação viva | nada — devolve ao agente ADR fora da nota de decisão, frase acima de 40 palavras, sigla sem definição, muleta e emoji do trecho escrito, e lembra o usuário de rodar o `/bks:review` |
-| `session_memory` | inicio de sessão | nada — carrega o `STATUS.md` do projeto, ou o perfil do usuário na raiz do vault |
+| `no_dispatcher` | write to `.cs` | `MediatR`, `IMediator`, `ISender`, `IRequestHandler<>`, `AddMediatR` and equivalents — BKS orchestration is explicit, via `PipelineOrchestrator` |
+| `comment_budget` | write to `.cs` | a comment block over 5 lines, and severity markers in comments |
+| `dod_docs` | write to `.cs` that declares a public type | the write, as long as `README.md` and `ARCHITECTURE.md` have not been touched in the same batch |
+| `writing_guard` | after a write to a living-documentation `.md` | nothing — returns to the agent any ADR outside the decision note, sentences over 40 words, undefined acronyms, crutch phrases and emoji in the written passage, and reminds the user to run `/bks:review` |
+| `session_memory` | session start | nothing — loads the project's `STATUS.md`, or the user profile at the vault root |
 
-Os guardas de código ignoram arquivo de teste, arquivo fora de repositório git e qualquer coisa
-que não seja `.cs`. O `writing_guard` ignora `STATUS.md`, `JOURNAL.md`, `CLAUDE.md`, ADR,
-`CONTEXT*.md`, `docs/prompts/`, `docs/history/`, `docs/input/` e instrução de agente (`skills/`,
-`commands/`, `agents/`). Ele também roda como linha de comando sobre arquivos inteiros:
-`python hooks/scripts/writing_guard.py <arquivo.md>`, com saída 1 quando há achado. Falha interna de um guarda libera a escrita: regra que quebra o fluxo por bug próprio
-deixa de ser usada em uma semana.
+The code guards ignore test files, files outside a git repository and anything that is not `.cs`.
+`writing_guard` ignores `STATUS.md`, `JOURNAL.md`, `CLAUDE.md`, ADRs, `CONTEXT*.md`,
+`docs/prompts/`, `docs/history/`, `docs/input/` and agent instructions (`skills/`, `commands/`,
+`agents/`). It also runs as a command line over whole files:
+`python hooks/scripts/writing_guard.py <file.md>`, exiting with 1 when there are findings. An
+internal failure in a guard lets the write through: a rule that breaks the flow because of its own
+bug stops being used within a week.
 
-Rodar os testes dos guardas:
+Running the guard tests:
 
 ```
 bash hooks/tests/run.sh
 ```
 
-Os guardas exigem `python` no PATH.
+The guards require `python` on the `PATH`.
 
-## Verificação
+## Verification
 
-Duas suites, que respondem a perguntas diferentes.
+Two suites, answering different questions.
 
-**Estrutural** — o arquivo continua integro depois que mexeram nele? Frontmatter, referência que
-resolve, comando documentado que existe, guarda declarado que compila. Roda sem modelo:
+**Structural** — is the file still intact after someone touched it? Frontmatter, references that
+resolve, documented commands that exist, declared guards that compile. Runs without a model:
 
 ```
 python tests/test_structure.py
 bash hooks/tests/run.sh
 ```
 
-**Comportamental** — a skill ainda decide certo? Recusa MediatR, mantém o projeto de testes em
-`src/`, pergunta antes de assumir. Roda o agente de verdade, com braco baseline sem o plugin para
-medir o delta:
+**Behavioral** — does the skill still decide correctly? Refuses MediatR, keeps the test project in
+`src/`, asks before assuming. Runs the real agent, with a baseline arm without the plugin to
+measure the delta:
 
 ```
 claude plugin eval .
 ```
 
-Os casos estão em `evals/`. As duas se complementam: a estrutural pega o refactor que quebrou o
-arquivo, a de eval pega o refactor que manteve o arquivo valido e perdeu a regra.
+The cases live in `evals/`. The two complement each other: the structural suite catches the
+refactor that broke the file, the eval suite catches the refactor that kept the file valid and
+lost the rule.
 
-## Configuração
+## Configuration
 
-Os comandos de workbench (`/bks:brain`, `/bks:save`, `/bks:new-project`, `/bks:note`, `/bks:canonize`, `/bks:prd`,
-`/bks:review`) operam sobre um vault de projetos. Aponte-o por variavel de ambiente:
+The workbench commands (`/bks:brain`, `/bks:save`, `/bks:new-project`, `/bks:note`, `/bks:canonize`, `/bks:prd`,
+`/bks:review`) operate on a project vault. Point to it with environment variables:
 
-| Variavel | Aponta para | Exemplo |
+| Variable | Points to | Example |
 |---|---|---|
-| `BKS_VAULT` | Raiz do vault | `D:/caminho/do/vault` |
-| `BKS_KNOWLEDGE` | Base de conhecimento transversal | `${BKS_VAULT}/knowledge` |
+| `BKS_VAULT` | Vault root | `D:/path/to/vault` |
+| `BKS_KNOWLEDGE` | Cross-project knowledge base | `${BKS_VAULT}/knowledge` |
 
-São duas. Cada projeto guarda sua própria memória, decisão e domínio — não há hub central a
-apontar.
+That's two. Each project keeps its own memory, decisions and domain — there is no central hub to
+point to.
 
-As skills (`bks-sdd`, `bks-dotnet-solutions`, `bks-typescript-solutions`, `bks-go-solutions`,
-`bks-create-plan-tasks`, `bks-tests`, `bks-standards`, `bks-arch`, e as sete importadas)
-funcionam sem nenhuma configuração — operam sobre o diretório de
-trabalho atual.
+The skills (`bks-sdd`, `bks-dotnet-solutions`, `bks-typescript-solutions`, `bks-go-solutions`,
+`bks-create-plan-tasks`, `bks-tests`, `bks-standards`, `bks-arch`, `bks-writing`, `bks-maintainability-review`, `bks-daiwl`, and the support skills)
+work without any configuration — they operate on the current working directory.
 
-## O ciclo, em uma passada
+## The cycle, in one pass
 
 ```
-/bks:new-project   cria a estrutura
-/bks:note          material bruto entra
-/bks:canonize      vira contexto canônico
-/bks:prd           vira PRD
-/bks:spec          vira FEAT + TEST
-                   (ou a skill bks-sdd, para o ciclo com workspace e plano macro)
-/bks:loop          implementa task sob goals
-/bks:review        revisão independente
-/bks:maintainability  parecer por aplicação e fundamentação
-/bks:arch          consolida a visão de arquitetura
-/bks:save          registra decisões e progresso
+/bks:new-project   creates the structure
+/bks:note          raw material comes in
+/bks:canonize      becomes canonical context
+/bks:prd           becomes a PRD
+/bks:spec          becomes FEAT + TEST
+                   (or the bks-sdd skill, for the cycle with workspace and macro plan)
+/bks:loop          implements a task under goals
+/bks:review        independent review
+/bks:maintainability  per-application assessment and foundations
+/bks:arch          consolidates the architecture view
+/bks:save          records decisions and progress
 ```
 
-## `/bks:spec` ou a skill `bks-sdd`?
+## `/bks:spec` or the `bks-sdd` skill?
 
-Os dois especificam, em escalas diferentes.
+Both specify, at different scales.
 
-**`/bks:spec`** vai direto ao FEAT e ao TEST, dentro do repositório. É o caminho padrão para uma
-feature que você já entende, num projeto que já existe.
+**`/bks:spec`** goes straight to FEAT and TEST (test scenarios), inside the repository. It is the default path for a
+feature you already understand, in a project that already exists.
 
-**A skill `bks-sdd`** é o ciclo completo, com PRD, plano macro e decomposição em tasks, mantendo
-estado entre sessões num `workspace-*/`. Vale quando o produto é novo e grande, ou quando o
-escopo é incerto e precisa de decomposição formal.
+**The `bks-sdd` skill** is the full cycle, with PRD, macro plan and task breakdown, keeping state
+across sessions in a `workspace-*/`. It pays off when the product is new and large, or when the
+scope is uncertain and needs formal decomposition.
 
-| Flag | Para que |
+| Flag | What for |
 |---|---|
-| `/bks-sdd` | cria o `workspace-[nome]/` |
-| `--prd` | gera o PRD a partir do que está em `research/` |
-| `--project` / `--project-prd` / `--project-plan` | projeto interno, seu PRD e seu plano de fases |
-| `--feature` / `--feature-tests` / `--feature-task` | FEAT, depois TEST, depois as tasks |
-| `--feature-list` / `--task-list` / `--status` | o que existe e onde parou |
-| `--impl-init` / `--task-done` | executa e fecha task |
-| `--continue` / `--tan` / `--clear` | retoma, ou encerra salvando o estado |
-| `--cost` / `--cost-report` | consumo da sessão e do ciclo |
+| `/bks-sdd` | creates the `workspace-[name]/` |
+| `--prd` | generates the PRD from what is in `research/` |
+| `--project` / `--project-prd` / `--project-plan` | internal project, its PRD and its phase plan |
+| `--feature` / `--feature-tests` / `--feature-task` | FEAT, then TEST, then the tasks |
+| `--feature-list` / `--task-list` / `--status` | what exists and where it stopped |
+| `--impl-init` / `--task-done` | executes and closes a task |
+| `--continue` / `--tan` / `--clear` | resumes, or ends while saving state |
+| `--cost` / `--cost-report` | session and cycle consumption |
 
-As etapas não se pulam: `--feature-tests` só roda com FEAT aprovado, `--feature-task` só com TEST
-aprovado. É a mesma regra do `/bks:spec`, aplicada a um ciclo maior.
+Steps cannot be skipped: `--feature-tests` only runs with an approved FEAT, `--feature-task` only
+with an approved TEST. It is the same rule as `/bks:spec`, applied to a larger cycle.
 
-## Arquitetura de agentes
+## Agent architecture
 
-Os quatro agentes não são o mesmo trabalhador com nomes diferentes. Cada um tem **as ferramentas
-do seu papel, e só elas** — a restrição é o desenho, não uma economia.
+The four agents are not the same worker under different names. Each one has **the tools of its
+role, and only those** — the restriction is the design, not a cost saving.
 
-| Agente | Modelo | Ferramentas | O que a restrição impede |
+| Agent | Model | Tools | What the restriction prevents |
 |---|---|---|---|
-| `planner` | Opus | leitura + escrita, sem `Bash` | não executa nada; escopo vira FEAT/TEST/TASK, nunca código |
-| `builder` | Sonnet | leitura + escrita + `Bash` | implementa sob LOOP-4, dentro dos limites de uma FEAT aprovada |
-| `reviewer` | Opus | **só leitura** | não conserta o que julga — achado vira relato, não commit |
-| `scribe` | Haiku | leitura + escrita | registra o que foi confirmado; não decide o que foi feito |
+| `planner` | Opus | read + write, no `Bash` | executes nothing; scope becomes FEAT, TEST and TASK (executable task), never code |
+| `builder` | Sonnet | read + write + `Bash` | implements under LOOP-4, within the limits of an approved FEAT |
+| `reviewer` | Opus | **read only** | does not fix what it judges — a finding becomes a report, not a commit |
+| `scribe` | Haiku | read + write | records what has been confirmed; does not decide what was done |
 
-Três consequências desse arranjo:
+Three consequences of this arrangement:
 
-**A revisão é independente porque não pode agir.** O `reviewer` sem `Write` não tem como
-transformar um achado em correção silenciosa. Quem revisa não conserta; quem conserta não aprova
-o próprio conserto.
+**The review is independent because it cannot act.** A `reviewer` without `Write` has no way to
+turn a finding into a silent fix. Whoever reviews does not fix; whoever fixes does not approve
+their own fix.
 
-**O modelo acompanha o julgamento exigido.** Opus onde se julga — segurança no `reviewer`,
-arquitetura no `planner`, porque spec errada contamina toda task abaixo dela. Sonnet onde se
-executa spec aprovada. Haiku onde se transcreve evidência. Pagar Opus para registrar o que já foi decidido é desperdício; pagar Haiku
-para julgar risco é imprudência.
+**The model matches the judgment required.** Opus where judgment happens — security in the
+`reviewer`, architecture in the `planner`, because a wrong spec contaminates every task below it.
+Sonnet where an approved spec is executed. Haiku where evidence is transcribed. Paying for Opus to
+record what has already been decided is waste; paying for Haiku to judge risk is recklessness.
 
-**O papel é invocado, não assumido.** O `reviewer` roda em invocação separada de quem
-implementou, sem o estado da sessão que produziu o código. Um agente que revisa o próprio
-trabalho na mesma sessão carrega as premissas que o levaram ao defeito.
+**The role is invoked, not assumed.** The `reviewer` runs in a separate invocation from whoever
+implemented, without the state of the session that produced the code. An agent that reviews its
+own work in the same session carries the assumptions that led it to the defect.
 
-Invoque pelo nome: `bks:reviewer`, `bks:planner`, `bks:builder`, `bks:scribe`. O `/bks:review`
-dispara o `reviewer` com o contexto certo.
+Invoke by name: `bks:reviewer`, `bks:planner`, `bks:builder`, `bks:scribe`. `/bks:review` triggers
+the `reviewer` with the right context.
 
-## Kit e vault, juntos
+## Kit and vault, together
 
-O kit funciona sozinho — skills, comandos e guardas não leem nada de fora. O que o
-[vault](https://github.com/fabiobackside-code/bks-2brains) acrescenta é **memória entre
-projetos**, e é daí que vem o ganho maior.
+The kit works on its own — skills, commands and guards read nothing from outside. What the
+[vault](https://github.com/fabiobackside-code/bks-2brains) adds is **memory across projects**, and
+that is where the bigger gain comes from.
 
-| | Sem vault | Com vault |
+| | Without vault | With vault |
 |---|---|---|
-| Padrão de código | o que o modelo lembra do treinamento | `workbench/` diz como *você* trabalha |
-| Decisão técnica | recomeça a cada projeto | `knowledge/wiki/` guarda o que você já concluiu |
-| Erro conhecido | repete até doer de novo | registrado, com o sinal que teria avisado |
-| Contexto de sessão | o que couber no prompt | `STATUS.md` do projeto, lido pelo `/bks:brain` |
+| Coding standard | whatever the model remembers from training | `workbench/` says how *you* work |
+| Technical decision | starts over in every project | `knowledge/wiki/` keeps what you have already concluded |
+| Known mistake | repeats until it hurts again | recorded, with the signal that would have warned you |
+| Session context | whatever fits in the prompt | the project's `STATUS.md`, read by `/bks:brain` |
 
-### Por que consome menos
+### Why it consumes less
 
-Não é promessa, é mecânica — e é medível no próprio kit:
+It is not a promise, it is mechanics — and it can be measured in the kit itself:
 
-**Progressive disclosure.** As skills somam 4.584 linhas de entrada e 12.455 em `references/` —
-razão de 2,7×. A referência só entra no contexto quando a tarefa a exige. A `bks-tests` carrega
-93 linhas e mantém 1.847 disponíveis.
+**Progressive disclosure.** The skills add up to 4,584 lines of entry point and 12,455 in
+`references/` — a 2.7× ratio. A reference only enters the context when the task requires it.
+`bks-tests` loads 93 lines and keeps 1,847 available.
 
-**Estado fora da sessão.** `STATUS.md` e `JOURNAL.md` guardam onde o projeto parou. Retomar custa
-a leitura de um arquivo, não a reconstrução do histórico a cada abertura.
+**State outside the session.** `STATUS.md` and `JOURNAL.md` keep track of where the project
+stopped. Resuming costs reading one file, not rebuilding the history at every opening.
 
-**Conhecimento sob demanda.** O acervo do vault é consultado quando a pergunta o exige. Cinquenta
-páginas curadas custam menos que quinhentas linhas de instrução carregadas sempre.
+**Knowledge on demand.** The vault's collection is consulted when the question calls for it. Fifty
+curated pages cost less than five hundred lines of instructions loaded every time.
 
-### Por que alucina menos
+### Why it hallucinates less
 
-**A resposta cita fonte que existe.** Quando o agente consulta `knowledge/wiki/`, a afirmação tem
-origem conferível em `knowledge/raw/`. O que ele "lembra" do treinamento não tem.
+**The answer cites a source that exists.** When the agent consults `knowledge/wiki/`, the claim
+has a verifiable origin in `knowledge/raw/`. What it "remembers" from training does not.
 
-**Os guardas recusam, não avisam.** Um hook que bloqueia a escrita errada não depende de o agente
-ter lido a regra. Aviso é sugestão; recusa é garantia.
+**The guards refuse, they don't warn.** A hook that blocks the wrong write does not depend on the
+agent having read the rule. A warning is a suggestion; a refusal is a guarantee.
 
-**A spec precede o código.** FEAT e TEST aprovados antes de implementar dão critério de aceite
-verificável. Sem isso, "pronto" é opinião.
+**The spec precedes the code.** FEAT and TEST approved before implementation give verifiable
+acceptance criteria. Without that, "done" is an opinion.
 
-O que isto **não** resolve: se a sua wiki estiver errada, o agente erra com confiança e com
-citação. Por isso `raw/` é imutável e a página curada tem estado — para dar como conferir de onde
-a conclusão veio.
+What this does **not** solve: if your wiki is wrong, the agent is wrong with confidence and with
+a citation. That is why `raw/` is immutable and a curated page has a status — so you can check
+where the conclusion came from.
 
-> Os 18 casos de eval do kit medem se cada skill muda a decisão do agente. A baseline com o delta
-> entre os braços `with` e `without` ainda não rodou; até lá, o que está escrito aqui é mecanismo,
-> não número medido.
+> The kit's 20 eval cases measure whether each skill changes the agent's decision. The baseline
+> with the delta between the `with` and `without` arms has not run yet; until then, what is
+> written here is mechanism, not a measured number.
 
-## Idioma
+## Language
 
-Documentação e artefatos gerados em **PT-BR**. Código, nomes de tipo, método e variavel em
-**inglês**.
+Documentation and generated artifacts in **PT-BR**. Code, type, method and variable names in
+**English**.
 
-## Contribuir
+## Public contract and versioning
 
-Issues e pull requests são bem-vindos. Ver [CONTRIBUTING.md](CONTRIBUTING.md); falha de segurança,
-[SECURITY.md](SECURITY.md). O histórico de versões está no [CHANGELOG.md](CHANGELOG.md).
+The kit follows semantic versioning (SemVer) starting at 1.0.0. The contract below states what a
+consuming project can rely on as stable.
 
-## Créditos
+**Covered by the contract** — an incompatible change only ships in a major version:
 
-O que veio de terceiros, sob que licença, e o que foi só inspiração está em
+- the names of the `/bks:*` slash commands and their arguments;
+- the names of the skills and agents;
+- the `.bks-profile.json` schema ([`profiles/bks-profile.schema.json`](profiles/bks-profile.schema.json))
+  and the profile names;
+- the folder structure of the project skeleton ([`templates/project-skeleton/`](templates/project-skeleton/));
+- the names of the guards in `hooks/` and the refusal behavior of each one;
+- the commands' output locations, such as `outputs/maintainability/` and `outputs/references/`.
+
+**Outside the contract** — may change in a minor or patch release:
+
+- the internal wording of the skills and of `references/`;
+- rubric criteria and weights;
+- eval cases;
+- template texts.
+
+A minor version brings a new skill, command, profile or stack. A patch version brings fixes and
+wording adjustments.
+
+**Known limitation.** The eval baseline, the delta between the `with` and `without` arms, has not
+been measured yet.
+
+## Contributing
+
+Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md); for security
+vulnerabilities, [SECURITY.md](SECURITY.md). The version history is in the
+[CHANGELOG.md](CHANGELOG.md).
+
+## Credits
+
+What came from third parties, under which license, and what was only inspiration is in
 [THIRD_PARTY.md](THIRD_PARTY.md).
 
-## Licença
+## License
 
-MIT — veja [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).

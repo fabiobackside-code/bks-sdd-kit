@@ -28,7 +28,7 @@ ls -la src/
 **SE existem MÚLTIPLOS projetos de teste:**
 
 ```markdown
-⚠️ **ATENÇÃO:** Existem múltiplos projetos de teste separados.
+**ATENÇÃO:** Existem múltiplos projetos de teste separados.
 
 Ação recomendada:
 1. Criar NOVO projeto consolidado [SolutionName].Tests DENTRO de src/
@@ -44,7 +44,7 @@ Deseja prosseguir com a consolidação? [aguardar confirmação]
 ```bash
 # VERIFICAR se existe pasta tests/ separada
 if [ -d "tests/" ]; then
-    echo "⚠️ ATENÇÃO: Encontrada pasta tests/ separada!"
+    echo "ATENÇÃO: Encontrada pasta tests/ separada!"
     echo "O projeto de testes DEVE estar em src/ junto com os outros projetos."
     echo ""
     echo "Ações necessárias:"
@@ -80,7 +80,7 @@ fi
 **SE existe mas NÃO é xUnit:**
 
 ```markdown
-⚠️ **ATENÇÃO:** Projeto de testes usa [NUnit/MSTest].
+**ATENÇÃO:** Projeto de testes usa [NUnit/MSTest].
 
 Opções:
 1. Migrar para xUnit (recomendado)

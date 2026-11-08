@@ -21,13 +21,13 @@ echo "🔍 Verificando localização de projetos de teste..."
 
 # Verificar pasta tests/ separada (ERRADO)
 if [ -d "tests/" ]; then
-    echo "⚠️ ATENÇÃO: Encontrada pasta tests/ - Projetos devem estar em src/!"
+    echo "ATENÇÃO: Encontrada pasta tests/ - Projetos devem estar em src/!"
     ls -la tests/
 fi
 
 # Verificar pasta test/ separada (ERRADO)
 if [ -d "test/" ]; then
-    echo "⚠️ ATENÇÃO: Encontrada pasta test/ - Projetos devem estar em src/!"
+    echo "ATENÇÃO: Encontrada pasta test/ - Projetos devem estar em src/!"
     ls -la test/
 fi
 

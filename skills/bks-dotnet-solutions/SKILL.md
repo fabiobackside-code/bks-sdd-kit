@@ -319,7 +319,7 @@ src/
     └── Endpoints/{Contexto}/{Entidade}Endpoints.cs
 ```
 
-> 📌 **Formato da solution:** toda solution .NET 10 é **`.slnx`** — formato XML padrão do SDK 10,
+> **Formato da solution:** toda solution .NET 10 é **`.slnx`** — formato XML padrão do SDK 10,
 > mais enxuto e sem os GUIDs duplicados do formato clássico. `dotnet new sln` sob o SDK 10 já gera
 > `.slnx` por padrão. O `.sln` clássico fica reservado a solution que precise abrir em ferramenta
 > sem suporte ao novo formato.
@@ -618,56 +618,56 @@ app.UseAPIExtensions();
 > **Violação de qualquer item abaixo invalida a geração e exige reescrita.**
 
 ### Arquiteturais
-1. ❌ MediatR, BSMediator ou qualquer dispatcher de mensagens internas.
-2. ❌ `record` para Entities/Aggregates (semântica de identidade exige `class`).
-3. ❌ `IQueryable<T>` exposto por Secondary Port — vaza ORM para o domínio.
-4. ❌ EF Core annotations no Domain layer.
-5. ❌ Repositórios genéricos `IRepository<T>` "catchall".
-6. ❌ Domain referenciando Application, Adapters ou frameworks externos.
-7. ❌ Application referenciando Adapters concretos (apenas Ports).
-8. ❌ Aggregate ou Domain Service recebendo `{Entidade}Transaction` como parâmetro.
+1. Proibido: MediatR, BSMediator ou qualquer dispatcher de mensagens internas.
+2. Proibido: `record` para Entities/Aggregates (semântica de identidade exige `class`).
+3. Proibido: `IQueryable<T>` exposto por Secondary Port — vaza ORM para o domínio.
+4. Proibido: EF Core annotations no Domain layer.
+5. Proibido: Repositórios genéricos `IRepository<T>` "catchall".
+6. Proibido: Domain referenciando Application, Adapters ou frameworks externos.
+7. Proibido: Application referenciando Adapters concretos (apenas Ports).
+8. Proibido: Aggregate ou Domain Service recebendo `{Entidade}Transaction` como parâmetro.
 
 ### Performance
-9. ❌ `.Result` ou `.Wait()` em código async.
-10. ✅ `ValueTask<T>` em todas as Primary Ports e operações de hot-path.
-11. ✅ `ConfigureAwait(false)` em todo `await` de library/infrastructure.
-12. ✅ Logging estruturado (sem string interpolation em hot path).
-13. ✅ `StringComparison.Ordinal` em comparações que não são linguísticas.
+9. Proibido: `.Result` ou `.Wait()` em código async.
+10. Obrigatório: `ValueTask<T>` em todas as Primary Ports e operações de hot-path.
+11. Obrigatório: `ConfigureAwait(false)` em todo `await` de library/infrastructure.
+12. Obrigatório: Logging estruturado (sem string interpolation em hot path).
+13. Obrigatório: `StringComparison.Ordinal` em comparações que não são linguísticas.
 
 ### Segurança (Minimal API)
-14. ✅ JWT Bearer obrigatório: `AddAuthentication() + AddJwtBearer() + AddAuthorization()`.
-15. ✅ `RequireAuthorization()` em **TODOS** os `MapGroup` e endpoints (exceto health/swagger explicitamente liberados).
-16. ✅ `UseAuthentication()` + `UseAuthorization()` no pipeline após `RequestTracingMiddleware`.
+14. Obrigatório: JWT Bearer obrigatório: `AddAuthentication() + AddJwtBearer() + AddAuthorization()`.
+15. Obrigatório: `RequireAuthorization()` em **TODOS** os `MapGroup` e endpoints (exceto health/swagger explicitamente liberados).
+16. Obrigatório: `UseAuthentication()` + `UseAuthorization()` no pipeline após `RequestTracingMiddleware`.
 
 ### Result Pattern
-17. ❌ `throw` para erros de negócio (entidade não encontrada, regra violada, validação). Use `PipelineResult<T>.Failure(...)`.
-18. ✅ `throw` apenas para: dependência nula, configuração inválida, estado irrecuperável.
-19. ❌ `PipelineResult<T>` declarado como nullable (`PipelineResult<T>?`).
+17. Proibido: `throw` para erros de negócio (entidade não encontrada, regra violada, validação). Use `PipelineResult<T>.Failure(...)`.
+18. Obrigatório: `throw` apenas para: dependência nula, configuração inválida, estado irrecuperável.
+19. Proibido: `PipelineResult<T>` declarado como nullable (`PipelineResult<T>?`).
 
 ### TXC específico
-20. ❌ Transaction sem campos de estado intermediário (apenas Input + Output) — use ALT-1.
-21. ❌ Métodos do Transaction com nomes técnicos (`SetData`, `LoadResult`) — use nomes do negócio.
-22. ❌ Transaction com mais de 7 campos de estado — decompor a feature.
-23. ❌ Domain conhecendo o tipo Transaction.
-24. ❌ Pular a árvore de decisão da Fase 5.2 — declaração de padrão é obrigatória.
+20. Proibido: Transaction sem campos de estado intermediário (apenas Input + Output) — use ALT-1.
+21. Proibido: Métodos do Transaction com nomes técnicos (`SetData`, `LoadResult`) — use nomes do negócio.
+22. Proibido: Transaction com mais de 7 campos de estado — decompor a feature.
+23. Proibido: Domain conhecendo o tipo Transaction.
+24. Proibido: Pular a árvore de decisão da Fase 5.2 — declaração de padrão é obrigatória.
 
 ### Convenções de nomenclatura
-25. ✅ `{Entidade}Response` único por entidade, vive em `Application/` (não em `Create/`).
-26. ✅ Namespace de entidade contém `{Contexto}Context` para evitar colisão.
-27. ✅ Métodos async sufixados com `Async`.
-28. ✅ Interfaces prefixadas com `I`.
-29. ✅ `Configure{Camada}()` para registro DI; `Use{Camada}Extensions()` para middleware.
+25. Obrigatório: `{Entidade}Response` único por entidade, vive em `Application/` (não em `Create/`).
+26. Obrigatório: Namespace de entidade contém `{Contexto}Context` para evitar colisão.
+27. Obrigatório: Métodos async sufixados com `Async`.
+28. Obrigatório: Interfaces prefixadas com `I`.
+29. Obrigatório: `Configure{Camada}()` para registro DI; `Use{Camada}Extensions()` para middleware.
 
 ### Documentação e comentário
-30. ✅ `README.md` e `ARCHITECTURE.md` na raiz — **entregues junto com o código, nunca depois**.
+30. Obrigatório: `README.md` e `ARCHITECTURE.md` na raiz — **entregues junto com o código, nunca depois**.
     Solução sem os dois não está entregue.
-31. ❌ Decisão, trade-off, histórico ou comparação com implementação anterior em **comentário de
+31. Proibido: Decisão, trade-off, histórico ou comparação com implementação anterior em **comentário de
     código** — isso vive no `ARCHITECTURE.md`. No código ficam só **contrato** (resumo de 1 linha
     em membro público) e **guarda contra regressão** (até 2 linhas, o que quebra, sem ponteiro).
-32. ❌ Marca de severidade (🔴 ⚠️ 🟡 ✅ 📌) em comentário — quem escreve 🔴 está argumentando,
+32. Proibido: marca de severidade (🔴 ⚠️ 🟡 ✅ 📌) em comentário — quem escreve 🔴 está argumentando,
     não descrevendo.
-33. ❌ Bloco de comentário acima de **5 linhas**. O teto é por bloco, não por proporção.
-34. ✅ **Teste de arquitetura guardando 31–33**, gerado junto com o código. Regra sem guarda
+33. Proibido: Bloco de comentário acima de **5 linhas**. O teto é por bloco, não por proporção.
+34. Obrigatório: **Teste de arquitetura guardando 31–33**, gerado junto com o código. Regra sem guarda
     executável é intenção, e intenção não sobrevive à pressa.
 
 ---
@@ -720,7 +720,7 @@ Antes de entregar a solução, confirme:
 - [ ] Integration tests com Testcontainers para Secondary Adapters
 - [ ] Para TXC: testes asseguram estado intermediário do Transaction
 
-### 🔴 Documentação — parte da entrega, não etapa posterior
+### Documentação — parte da entrega, não etapa posterior
 
 **Solução sem `README.md` e `ARCHITECTURE.md` não está entregue.** Mesmo peso do build e dos
 testes. Vale também para alteração: toda task que cria ou altera tipo público, função pública ou
@@ -734,7 +734,7 @@ decisão estrutural os atualiza **antes de fechar**.
       `appsettings`/ConfigMap e o que vai para o cofre/Secret. Matriz por ambiente (Local ·
       Desenvolvimento · Produção) com o `Environment` padrão do .NET
 
-### 🔴 Comentário no código — o quê fica, o porquê sai
+### Comentário no código — o quê fica, o porquê sai
 
 Quem desenhou o código o entende sem comentário; quem não desenhou lê o `ARCHITECTURE.md`.
 
@@ -749,7 +749,7 @@ Quem desenhou o código o entende sem comentário; quem não desenhou lê o `ARC
 - [ ] **Teste de arquitetura guardando as duas regras acima** — em `tests/.../Architecture/`, no
       mesmo lugar dos demais guardas estruturais
 
-> 🔴 **Regra sem guarda executável é intenção, e intenção não sobrevive à pressa.** Gerar o teste
+> **Regra sem guarda executável é intenção, e intenção não sobrevive à pressa.** Gerar o teste
 > junto com o código, não depois. Referência: `CommentBudgetTests`, de um SDK de segurança deste método — dois testes,
 > um recusa bloco acima do teto, outro recusa marca de severidade.
 
@@ -834,10 +834,10 @@ GERAÇÃO DE CÓDIGO
 9. **Gere testes unitários** para todos os Handlers (TXC e ALT-1/2/3).
 10. **Se houver ambiguidade**, liste antes de gerar e proponha decisões.
 11. **Após geração**, apresente o **checklist** preenchido para conferência do usuário.
-12. 🔴 **Gere o que foi pedido — nada além.** Pedido de um endpoint devolve o endpoint, não o CRUD
+12. **Gere o que foi pedido — nada além.** Pedido de um endpoint devolve o endpoint, não o CRUD
     completo "já que estamos aqui". Não acrescente variante, alternativa ou caminho preventivo que
     ninguém pediu. Achado relevante fora do escopo: **cite em uma linha e siga**, não implemente.
-13. 🔴 **Pergunta *ou/ou* exige resposta que decide.** Se você ofereceu duas opções mutuamente
+13. **Pergunta *ou/ou* exige resposta que decide.** Se você ofereceu duas opções mutuamente
     exclusivas e a resposta foi "sim", isso **não escolheu nada** — pergunte de novo, nomeando as
     opções. Prosseguir por suposição custa mais que a segunda pergunta.
 

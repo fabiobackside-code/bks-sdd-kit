@@ -33,10 +33,10 @@ class PedidoTransaction {
 
 ### O que NÃO é TXC
 
-- ❌ **NÃO é DTO de request** — não viaja da API para o Handler como input HTTP
-- ❌ **NÃO é DTO de response** — não é retornado diretamente para o cliente
-- ❌ **NÃO é Command/Query do CQRS** — não é o parâmetro da Primary Port
-- ❌ **NÃO substitui o Aggregate** — não contém lógica de domínio
+- Evite: **NÃO é DTO de request** — não viaja da API para o Handler como input HTTP
+- Evite: **NÃO é DTO de response** — não é retornado diretamente para o cliente
+- Evite: **NÃO é Command/Query do CQRS** — não é o parâmetro da Primary Port
+- Evite: **NÃO substitui o Aggregate** — não contém lógica de domínio
 
 ### Ciclo de vida obrigatório
 
@@ -120,13 +120,13 @@ Nunca uma Primary Port por operação CRUD.
 ### Formato canônico de Primary Port TXC
 
 ```csharp
-// ✅ TXC v2 — Primary Port de Command (agrupa operações que transformam estado)
+// TXC v2 — Primary Port de Command (agrupa operações que transformam estado)
 interface IPedidoHandler {
     Task<PipelineResult<PedidoResponse>> CreateAsync(PedidoTransaction tx, CancellationToken ct)
     Task<PipelineResult<PedidoResponse>> CancelAsync(CancelPedidoTransaction tx, CancellationToken ct)
 }
 
-// ✅ TXC v2 — Primary Port de Query (ALT-1, sem Transaction)
+// TXC v2 — Primary Port de Query (ALT-1, sem Transaction)
 interface IPedidoQuery {
     Task<PipelineResult<PedidoResponse>> GetByIdAsync(Guid id, CancellationToken ct)
     Task<PipelineResult<IReadOnlyList<PedidoResponse>>> ListAllAsync(CancellationToken ct)
@@ -170,14 +170,14 @@ Nunca uma Secondary Port genérica que serve múltiplos aggregates.
 ### Formato canônico de Secondary Port
 
 ```csharp
-// ✅ TXC v2 — Secondary Port específica do aggregate
+// TXC v2 — Secondary Port específica do aggregate
 interface IPedidoRepository {
     Task<Pedido?> GetByIdAsync(Guid id, CancellationToken ct)
     Task<IReadOnlyList<Pedido>> GetAllAsync(CancellationToken ct)
     Task SaveAsync(Pedido pedido, CancellationToken ct)
 }
 
-// ✅ TXC v2 — Secondary Port específica do serviço externo
+// TXC v2 — Secondary Port específica do serviço externo
 interface INotificacaoService {
     Task NotificarPedidoCriadoAsync(Guid pedidoId, string email, CancellationToken ct)
     Task NotificarPedidoCanceladoAsync(Guid pedidoId, CancellationToken ct)
