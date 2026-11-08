@@ -148,12 +148,12 @@ Cada teste DEVE seguir:
 
 ✅ **Cobertura de Cenários**
 Para cada método, testar:
-1. ✅ Caminho feliz (happy path)
-2. ✅ Validações de entrada (null, vazio, inválido)
-3. ✅ Edge cases (limites, valores extremos)
-4. ✅ Exceções esperadas
-5. ✅ Interações com dependências
-6. ✅ Diferentes branches (if/else, switch)
+1. Obrigatório: Caminho feliz (happy path)
+2. Obrigatório: Validações de entrada (null, vazio, inválido)
+3. Obrigatório: Edge cases (limites, valores extremos)
+4. Obrigatório: Exceções esperadas
+5. Obrigatório: Interações com dependências
+6. Obrigatório: Diferentes branches (if/else, switch)
 
 ---
 

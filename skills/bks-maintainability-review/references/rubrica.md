@@ -146,3 +146,38 @@ Base = Σ peso_i × (nota_i − 1) / 4
 ## 5. Ganho por ação
 
 Cada nível em um eixo vale `peso ÷ 4` pontos. Use isso para estimar o ganho de cada ação do plano de melhoria.
+
+## 6. Regras de aplicação
+
+Valem para todo eixo e todo tipo. Existem para que dois avaliadores cheguem à mesma nota.
+
+**Decisão registrada.** Escolha justificada em ADR, `decisions/` ou `brain/engineering/` não tira
+nível do eixo nem viola premissa: a premissa fica "Atende (decisão registrada)", com o ADR citado.
+A escolha pode ir para "Decisões que merecem revisão". A mesma decisão recebe o mesmo tratamento em
+todas as aplicações do projeto.
+
+**Achado e nível 5.** Achado de severidade Média ou Alta aberto no eixo impede a nota 5. Achados
+Baixa, sozinhos, não impedem.
+
+**Severidade.**
+
+| Severidade | Quando |
+| --- | --- |
+| Alta | Impede mudança segura, ou quebra quem consome a aplicação |
+| Média | Aumenta o custo ou o risco de uma mudança recorrente |
+| Baixa | Atrito localizado, sem risco de regressão |
+
+A severidade sai do impacto, não da posição na nota: achado não sobe de severidade por ser o único
+motivo de o eixo não ter nota 5.
+
+**O eixo mede o que a âncora diz.** O A3 conta saltos no código. Documentação que encurta a leitura
+vale no A10, não no A3.
+
+**Âncora sem quantidade.** Quando a âncora não diz quantos (por exemplo, quantos métodos precisam
+caber em 15 linhas), registre no parecer o limiar adotado e repita o mesmo na execução seguinte.
+Trocar o limiar é mudar a régua.
+
+**Repertório do time.** Nome ou estrutura que vem de template ou skill do próprio time (por exemplo,
+o que a `bks-dotnet-solutions` gera) é repertório e não conta contra o A1 nem contra o A4.
+
+**Nota final** com uma casa decimal, sem arredondar para inteiro.

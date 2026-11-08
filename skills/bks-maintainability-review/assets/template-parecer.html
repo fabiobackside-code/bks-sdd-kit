@@ -76,11 +76,16 @@
 <header>
   <h1>Parecer de Manutenibilidade — {{NOME_DO_PROJETO}}</h1>
   <div class="meta">
-    Tipo: <strong>{{API | Worker | Biblioteca/SDK/componente}}</strong> ·
+    Tipo: <strong>{{API | Worker | Web Service | Biblioteca/SDK/componente | Scripts SQL}}</strong> ·
     Data: <strong>{{AAAA-MM-DD}}</strong> ·
     Versão analisada: <code>{{tag, commit ou pasta}}</code> ·
-    Modelo: {{modelo usado}} ·
+    Avaliador: {{modelo, ou "avaliador automatizado" quando o projeto proíbe nomear a IA}} ·
     Unidade analisada: {{fatia vertical / ciclo / superfície pública}}
+  </div>
+  <div class="meta">
+    Persona: {{calibrada pelo vault | base, sem vault}} ·
+    Base de comparação: {{parecer anterior com data, ou "primeira análise"}} ·
+    Limiares adotados: {{limiar de âncora sem quantidade, ou "os da rubrica"}}
   </div>
   <div class="meta">Código ignorado: {{obj/, bin/, migrations, clients gerados…}}</div>
 </header>

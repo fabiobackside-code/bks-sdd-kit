@@ -453,8 +453,12 @@ def test_public_hygiene():
         # isentos: um documenta o valor da variavel, o outro e historico
         'caminho do vault em vez de BKS_VAULT':
             re.compile('[A-Z]:[/' + BS + BS + ']{1,2}2brains'),
+        'nome de projeto interno':
+            re.compile(r'(?i)nquantic|nq-sec-sdk|layan|dash-scheduller'),
     }
-    exempt = {'caminho do vault em vez de BKS_VAULT': ('README.md', 'JOURNAL.md')}
+    local = ('JOURNAL.md', 'STATUS.md')
+    exempt = {'caminho do vault em vez de BKS_VAULT': ('README.md', 'README.pt-BR.md') + local,
+              'nome de projeto interno': local}
     found = dict((k, []) for k in leaks)
 
     for base, dirs, files in os.walk(ROOT):
@@ -482,12 +486,45 @@ def test_public_hygiene():
         check('sem %s' % label, not hits, 'em: %s' % ', '.join(sorted(hits)))
 
 
+SEVERITY = ('🔴', '⚠️', '🟡', '📌')
+ANY_MARK = SEVERITY + ('✅', '❌')
+RULE_LINE = re.compile(r'(?i)marca(s)? de severidade|ForbiddenMarkers')
+COMMENT = re.compile(r'^\s*(//|#(?!!)|--|/\*|\*)')
+
+
+def test_severity_marks():
+    print('\nmarca de severidade')
+    callouts, in_comments = [], []
+    for top in ('skills', 'agents', 'commands', 'templates', 'profiles'):
+        for base, dirs, files in os.walk(os.path.join(ROOT, top)):
+            dirs[:] = [d for d in dirs if d != 'third-party']
+            for f in files:
+                if not f.endswith('.md'):
+                    continue
+                path = os.path.join(base, f)
+                rel = os.path.relpath(path, ROOT).replace(BS, '/')
+                fenced = False
+                with io.open(path, encoding='utf-8') as fh:
+                    for n, line in enumerate(fh, 1):
+                        if line.lstrip().startswith('```'):
+                            fenced = not fenced
+                            continue
+                        if RULE_LINE.search(line):
+                            continue
+                        if any(m in line for m in SEVERITY):
+                            callouts.append('%s:%d' % (rel, n))
+                        elif fenced and COMMENT.match(line) and any(m in line for m in ANY_MARK):
+                            in_comments.append('%s:%d' % (rel, n))
+    check('sem callout de severidade nas instrucoes', not callouts, ', '.join(callouts[:10]))
+    check('sem marca em comentario de exemplo de codigo', not in_comments, ', '.join(in_comments[:10]))
+
+
 def main():
     print('suite estrutural do bks-sdd-kit')
     for fn in (test_manifests, test_skills, test_commands, test_pointers,
                test_agents,
                test_hooks, test_invariants, test_profiles, test_renderers,
-               test_evals, test_public_hygiene):
+               test_evals, test_public_hygiene, test_severity_marks):
         fn()
 
     print('\n%d verificacoes, %d falhas' % (checks, len(failures)))

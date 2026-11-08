@@ -284,7 +284,7 @@ if command -v jq &> /dev/null; then
 
     echo ""
 else
-    echo -e "${YELLOW}⚠️  jq não instalado. Instale para visualizar métricas detalhadas.${NC}"
+    echo -e "${YELLOW}jq não instalado. Instale para visualizar métricas detalhadas.${NC}"
     THRESHOLD_PASS=true  # Assumir passou se não conseguir verificar
 fi
 
@@ -301,7 +301,7 @@ echo "   file://$(pwd)/TestResults/CoverageReport/index.html"
 echo ""
 
 if [ "$THRESHOLD_PASS" = false ]; then
-    echo -e "${RED}⚠️  ATENÇÃO: Cobertura abaixo do threshold de ${THRESHOLD}%${NC}"
+    echo -e "${RED}ATENÇÃO: Cobertura abaixo do threshold de ${THRESHOLD}%${NC}"
     echo "Consulte ./TestResults/CoverageReport/index.html para detalhes"
     echo "Revise GAPS_COBERTURA.md para plano de ação"
     exit 1
@@ -430,7 +430,7 @@ jobs:
           | Branches | ${summary.summary.branchcoverage}% | 90% | ${branchStatus} |
           | Methods | ${summary.summary.methodcoverage}% | 90% | ${methodStatus} |
           
-          ${lineCoverage >= threshold && branchCoverage >= threshold && methodCoverage >= threshold ? '🎉 **All coverage targets met!**' : '⚠️ **Coverage below 90% threshold**'}
+          ${lineCoverage >= threshold && branchCoverage >= threshold && methodCoverage >= threshold ? '🎉 **All coverage targets met!**' : '**Coverage below 90% threshold**'}
           
           **Project Organization:**
           - 📁 Unit Tests: \`src/[Project].Tests/Unit/\`

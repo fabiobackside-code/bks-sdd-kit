@@ -41,6 +41,22 @@ Um único documento por **projeto** do kit, cobrindo todas as aplicações do `a
 4. Se houver qualquer alteração, gere `v<N+1>` e atualize o catálogo.
 5. Se não houver alteração, **não** gere nova versão. Informe ao usuário: "Fundamentação sem alterações; versão atual vN".
 
+Casos de fronteira:
+
+- **ADR que formaliza o que já estava descrito.** A decisão entra como nova, mesmo sem mudança no
+  código: a fundamentação passa a ter o porquê registrado, e isso conta como alteração.
+- **ADR que não vira decisão.** Só vira decisão (Dxx) o ADR técnico ou arquitetural com evidência no
+  código. Regra de negócio e detalhe de um conceito já catalogado ficam de fora, sem penalidade.
+- **Só a evidência mudou.** Se a decisão é a mesma e só a evidência foi atualizada (outro arquivo,
+  outra linha), registre como "alterada (evidência)". Sozinha, essa mudança não gera versão.
+- **Aplicação fora desta versão.** Aplicação de `app/` que não foi analisada e não tem estado em
+  versão anterior entra no campo `fora_desta_versao` do catálogo e é citada na visão geral. A
+  aplicação que já tinha estado mantém o estado anterior.
+- **Onde ficam as versões antigas.** Se o projeto já tem convenção para isso (por exemplo,
+  `docs/history/`), siga a convenção; se não, as versões ficam em `outputs/references/`.
+- **Marcas de versão nos cards.** "novo na vN" fica para sempre; "alterado na vN" é trocado pela
+  versão da alteração mais recente.
+
 ## Fontes a examinar
 
 Na ordem:

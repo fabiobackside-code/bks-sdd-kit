@@ -390,6 +390,27 @@ para `skills/bks-standards/references/metodo/`. O histórico do repositório foi
 remover o material. A regra que fica: terceiro entra só em pasta `third-party/`, com `LICENSE` e
 linha no `THIRD_PARTY.md`.
 
+### A `1.0.0` congela um contrato público, não o texto das skills
+
+O que a versão protege está no README: nomes de comandos, skills e agentes, o schema de perfil, o
+esqueleto de projeto, as guardas e os locais de saída. Mudança incompatível nisso só entra em
+versão major. A redação das skills, os critérios de rubrica e os casos de eval ficam fora do
+contrato. Congelar o texto travaria a correção que o uso real pede, como a desta versão.
+
+### Marca de severidade: o que a guarda recusa e o que ela deixa
+
+A guarda recusa os callouts 🔴 ⚠️ 🟡 📌 nas instruções e qualquer marca dentro de comentário de
+exemplo de código, porque a skill que mostra comentário com marca ensina o agente a escrevê-lo. O
+✅ e o ❌ continuam como ícone de estado (fase ativa, spec aprovada) e como par didático de certo e
+errado: ali eles descrevem, não argumentam. As linhas que enunciam a própria regra são isentas.
+
+### A régua do parecer é escrita onde o avaliador decidiria sozinho
+
+A primeira execução real do `/bks:maintainability` teve três avaliadores em paralelo, e eles
+tomaram umas vinte decisões que a skill não fixava, divergindo entre si na mesma decisão
+registrada. Cada uma virou regra em `references/rubrica.md`, no `SKILL.md` ou em
+`references/fundamentacao.md`. Nota que depende de quem avalia não compara versões.
+
 ## Consumidores
 
 O kit foi extraido de um vault em uso. Os projetos que o consomem continuam sendo a fonte de

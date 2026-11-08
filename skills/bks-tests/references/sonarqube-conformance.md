@@ -1,4 +1,4 @@
-## 🔴 CONFORMIDADE SONARQUBE - LEIA ANTES DE GERAR QUALQUER TESTE
+## CONFORMIDADE SONARQUBE - LEIA ANTES DE GERAR QUALQUER TESTE
 
 ### **Exclusão de projetos de infraestrutura**
 
@@ -29,32 +29,32 @@ A exclusão equivalente no `.csproj` do projeto de testes está em
 
 Os seguintes problemas foram identificados anteriormente e **NUNCA devem aparecer** nos testes que você gerar:
 
-#### ❌ ISSUE 1: CS8625 - Null literal para tipo não-nullable
+#### errado: ISSUE 1: CS8625 - Null literal para tipo não-nullable
 **Problema:** `Cannot convert null literal to non-nullable reference type`
 ```csharp
-// ❌ ERRADO - causa CS8625
+// errado: ERRADO - causa CS8625
 string valor = null;
 Activity activity = null;
 
-// ✅ CORRETO - declarar como nullable
+// CORRETO - declarar como nullable
 string? valor = null;
 Activity? activity = null;
 
-// ✅ CORRETO - usar null-forgiving só quando necessário (mockar returns obrigatórios)
+// CORRETO - usar null-forgiving só quando necessário (mockar returns obrigatórios)
 _mockService.Setup(x => x.Get()).Returns(null!);  // Usar null! com moderação e justificativa
 ```
 
-#### ❌ ISSUE 2: CS8618 - Campo não-nullable não inicializado no construtor
+#### errado: ISSUE 2: CS8618 - Campo não-nullable não inicializado no construtor
 **Problema:** `Non-nullable field must contain a non-null value when exiting constructor`
 ```csharp
-// ❌ ERRADO - campo Mock não inicializado
+// errado: ERRADO - campo Mock não inicializado
 public class MinhaClasseTests
 {
     private Mock<IServico> _mockServico;  // CS8618!
     private MinhaClasse _sut;             // CS8618!
 }
 
-// ✅ CORRETO - inicializar TODOS os campos no construtor
+// CORRETO - inicializar TODOS os campos no construtor
 public class MinhaClasseTests
 {
     private readonly Mock<IServico> _mockServico;
@@ -68,17 +68,17 @@ public class MinhaClasseTests
 }
 ```
 
-#### ❌ ISSUE 3: xUnit2002 - Assert.NotNull em tipo value type (struct)
+#### errado: ISSUE 3: xUnit2002 - Assert.NotNull em tipo value type (struct)
 **Problema:** `Do not use Assert.NotNull() on value type. Remove this assert.`
 
 **ATENÇÃO CRÍTICA:** `BaseReturn`, `SPAError` e outros tipos de retorno podem ser **structs (value types)**. Value types NUNCA são null, então `Assert.NotNull()` é inválido.
 
 ```csharp
-// ❌ ERRADO - BaseReturn é struct, nunca será null
+// errado: ERRADO - BaseReturn é struct, nunca será null
 var result = _sut.Execute(input);
 Assert.NotNull(result);                      // xUnit2002!
 
-// ✅ CORRETO - verificar propriedades do resultado
+// CORRETO - verificar propriedades do resultado
 var result = _sut.Execute(input);
 Assert.True(result.IsSuccess);               // OK para struct
 Assert.Equal(esperado, result.Value);        // OK para struct
@@ -95,37 +95,37 @@ grep -r "struct BaseReturn\|struct SPAError\|struct.*Return" src/ | head -10
 grep -r "class BaseReturn\|class SPAError\|class.*Return" src/ | head -10
 ```
 
-#### ❌ ISSUE 4: CS0105 - Using directive duplicado
+#### errado: ISSUE 4: CS0105 - Using directive duplicado
 **Problema:** `Using directive appeared previously in this namespace`
 ```csharp
-// ❌ ERRADO - using duplicado
+// errado: ERRADO - using duplicado
 using Domain.Core.Base;
 using Domain.Core.Base;  // CS0105!
 
-// ✅ CORRETO - apenas uma vez cada using
+// CORRETO - apenas uma vez cada using
 using Domain.Core.Base;
 ```
 **REGRA:** Sempre revisar usings antes de finalizar um arquivo de teste. Nunca adicionar duplicados.
 
-#### ❌ ISSUE 5: CS0618 - SqlException obsoleto
+#### errado: ISSUE 5: CS0618 - SqlException obsoleto
 **Problema:** `'SqlException' is obsolete: 'Use the Microsoft.Data.SqlClient package instead.'`
 ```csharp
-// ❌ ERRADO - namespace obsoleto
+// errado: ERRADO - namespace obsoleto
 using System.Data.SqlClient;
 var ex = new System.Data.SqlClient.SqlException();
 
-// ✅ CORRETO - usar Microsoft.Data.SqlClient
+// CORRETO - usar Microsoft.Data.SqlClient
 using Microsoft.Data.SqlClient;
 // SqlException do Microsoft.Data.SqlClient é o correto
 ```
 
-#### ❌ ISSUE 6: Possível null reference em parâmetros de mock Returns()
+#### errado: ISSUE 6: Possível null reference em parâmetros de mock Returns()
 **Problema:** `Possible null reference argument for parameter 'value' in Returns(Activity value)`
 ```csharp
-// ❌ ERRADO - passar null onde não esperado
+// errado: ERRADO - passar null onde não esperado
 _mockService.Setup(x => x.GetActivity()).Returns((Activity)null);
 
-// ✅ CORRETO - retornar objeto válido ou usar ReturnsAsync com nullable
+// CORRETO - retornar objeto válido ou usar ReturnsAsync com nullable
 Activity? activity = null;
 _mockService.Setup(x => x.GetActivity()).Returns(activity!);  // null-forgiving se necessário
 
@@ -160,7 +160,7 @@ Antes de salvar qualquer arquivo `.cs` de teste, verificar:
 // PADRÃO OBRIGATÓRIO para campos de teste:
 public class ExemploTests
 {
-    // ✅ SEMPRE inicializar no construtor (não deixar como null implícito)
+    // SEMPRE inicializar no construtor (não deixar como null implícito)
     private readonly Mock<IServico> _mockServico;
     private readonly ExemploClasse _sut;
 
@@ -175,8 +175,8 @@ public class ExemploTests
     public async Task Metodo_Cenario_Resultado()
     {
         // Arrange - nunca atribuir null a tipos não-nullable
-        string? valorNulo = null;           // ✅ nullable quando null for possível
-        var dadosValidos = "valor válido";  // ✅ inicializado
+        string? valorNulo = null;           // nullable quando null for possível
+        var dadosValidos = "valor válido";  // inicializado
 
         // Se precisar testar com null, usar tipo nullable:
         await Assert.ThrowsAsync<ArgumentNullException>(
@@ -198,12 +198,12 @@ public void Execute_ComDadosValidos_DeveRetornarSucesso()
 {
     var result = _sut.Execute(input);
 
-    // ✅ CORRETO para value types (structs)
+    // CORRETO para value types (structs)
     Assert.True(result.IsSuccess);
     Assert.Equal(valorEsperado, result.Value);
     Assert.True(string.IsNullOrEmpty(result.Error));
 
-    // ❌ NUNCA para value types:
+    // errado: NUNCA para value types:
     // Assert.NotNull(result);           <- xUnit2002
 }
 
@@ -213,7 +213,7 @@ public void Execute_ComDadosValidos_DeveRetornarSucesso()
 {
     var result = _sut.Execute(input);
 
-    // ✅ Para reference types, Assert.NotNull() é válido
+    // Para reference types, Assert.NotNull() é válido
     Assert.NotNull(result);
     Assert.True(result!.IsSuccess);
 }
@@ -229,7 +229,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 // Grupo 2: Microsoft
-using Microsoft.Data.SqlClient;           // ✅ CORRETO (não System.Data.SqlClient)
+using Microsoft.Data.SqlClient;           // CORRETO (não System.Data.SqlClient)
 using Microsoft.Extensions.Logging;
 
 // Grupo 3: Terceiros (xUnit, Moq, Bogus)
@@ -249,7 +249,7 @@ using [SolutionName].Tests.Shared.Builders;
 #### Regra 4 - SqlException com namespace correto (CS0618)
 
 ```csharp
-// ✅ CORRETO - Microsoft.Data.SqlClient
+// CORRETO - Microsoft.Data.SqlClient
 using Microsoft.Data.SqlClient;
 
 // Para criar SqlException em testes (via reflection, pois é sealed):
@@ -267,14 +267,14 @@ private static SqlException CreateSqlException(int errorNumber = 547)
     return exception;
 }
 
-// ❌ NUNCA usar:
+// errado: NUNCA usar:
 // using System.Data.SqlClient;  <- CS0618 obsoleto
 ```
 
 #### Regra 5 - Mock Returns com tipos nullable (CS8604 / null reference)
 
 ```csharp
-// ✅ CORRETO - usar objeto real ou nullable explícito
+// CORRETO - usar objeto real ou nullable explícito
 _mockService
     .Setup(x => x.BuscarActivity(It.IsAny<string>()))
     .ReturnsAsync(new Activity("operação-teste"));   // Objeto válido - preferível
@@ -283,9 +283,9 @@ _mockService
 Activity? activityNula = null;
 _mockService
     .Setup(x => x.BuscarActivity(It.IsAny<string>()))
-    .ReturnsAsync(activityNula);   // ✅ usar variável nullable tipada
+    .ReturnsAsync(activityNula);   // usar variável nullable tipada
 
-// ❌ NUNCA:
+// errado: NUNCA:
 // .Returns(null)     <- CS8625 para non-nullable
 // .Returns((Activity)null)  <- possível null reference warning
 ```

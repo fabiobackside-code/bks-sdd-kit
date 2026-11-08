@@ -116,15 +116,15 @@ Incluir apenas o contexto necessário para executar a task corretamente.
 Não copiar o contexto geral do projeto em cada prompt — referenciar o arquivo.
 
 ```
-✅ Bom: "Leia src/Application/UseCases/CreateOrderUseCase.cs antes de iniciar."
-❌ Ruim: [colar 300 linhas do arquivo diretamente no prompt]
+Bom: "Leia src/Application/UseCases/CreateOrderUseCase.cs antes de iniciar."
+Ruim: [colar 300 linhas do arquivo diretamente no prompt]
 ```
 
 ### 2. Instruções negativas antes de positivas
 Listar o que NÃO fazer primeiro evita que o modelo inicie na direção errada e precise corrigir.
 
 ```
-✅ Bom:
+Bom:
 NÃO faça:
 - Altere migrations existentes
 - Adicione dependências sem confirmação
@@ -132,7 +132,7 @@ NÃO faça:
 Produza:
 - Novo endpoint POST /orders em OrderEndpoints.cs
 
-❌ Ruim:
+Ruim:
 Produza um novo endpoint POST /orders. Não altere migrations. Não adicione pacotes.
 ```
 
@@ -140,8 +140,8 @@ Produza um novo endpoint POST /orders. Não altere migrations. Não adicione pac
 Especificar o formato do artefato esperado reduz iterações de correção.
 
 ```
-✅ Bom: "Produza o arquivo OrderEndpoints.cs completo, pronto para substituir o existente."
-❌ Ruim: "Atualize o endpoint conforme necessário."
+Bom: "Produza o arquivo OrderEndpoints.cs completo, pronto para substituir o existente."
+Ruim: "Atualize o endpoint conforme necessário."
 ```
 
 ### 4. Sem contexto repetido entre tasks

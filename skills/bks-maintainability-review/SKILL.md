@@ -119,6 +119,18 @@ contagem de linhas por método, número de parâmetros, profundidade de chamadas
 projetos, tipos públicos. Registre o comando usado. O que não for medido é marcado como
 **estimado**.
 
+Regras da medição:
+
+- **Script guardado.** Script escrito para medir vai para `docs/prompts/maintainability-tools/`
+  do projeto e é citado no registro da execução. Script em pasta temporária some, e a régua muda
+  sem aviso na execução seguinte.
+- **Teste que grava fora da máquina.** Rode teste de integração só contra recurso local
+  (Testcontainers, banco em container) ou quando o projeto autoriza por escrito o ambiente
+  compartilhado. Sem isso, não rode: marque o eixo A7 como medido em parte e diga o que faltou.
+- **Código inalterado.** Se a árvore da aplicação tem o mesmo hash do parecer anterior, reaproveite
+  as medições como "medido (árvore `<hash>`)": contam como medidas para a confiança. Achado novo
+  em código inalterado é achado, marcado "novo em código inalterado", e não mudança de régua.
+
 ### Passo 3 — Verificar premissas
 
 Percorra P01–P14 (todos os tipos) e P15–P18 (só componentes) de
@@ -179,7 +191,11 @@ Regras de conteúdo:
 - Sem evidência, não é achado.
 - Aponte os pontos fortes, para que não sejam alterados numa nova versão.
 - O plano de melhoria é ordenado por ganho estimado de pontos ÷ esforço, com a nota projetada após
-  cada bloco de ações.
+  cada bloco de ações. A ação projeta ganho no eixo do achado que ela resolve, e só nele.
+- IDs de achado continuam a numeração do parecer anterior da mesma aplicação. ID fechado não volta;
+  o que sobra de um achado fechado ganha ID novo, que cita o antigo.
+- A comparação entre aplicações do mesmo tipo (Passo 8) vai em cada parecer, não em documento à
+  parte.
 - Escreva para o arquiteto que vai decidir a evolução, em português, direto e com números.
 
 ### Passo 8 — Comparação
@@ -191,8 +207,11 @@ Regras de conteúdo:
   causa sistêmica: prompt de geração, template ou convenção).
 
 Para que a comparação entre versões seja válida, registre no cabeçalho: data, identificação da
-versão (tag, commit ou branch), tipo, modelo usado, fatia analisada e se a persona foi calibrada
-pelo vault. Mudar qualquer desses itens muda a régua; aponte isso se acontecer.
+versão (tag, commit ou branch), tipo, avaliador, fatia analisada, base de comparação e se a persona
+foi calibrada pelo vault. Mudar qualquer desses itens muda a régua; aponte isso se acontecer.
+
+Se o projeto proíbe nomear a IA em entregável, o cabeçalho diz "avaliador automatizado" e o modelo
+exato vai para o registro da execução em `docs/prompts/`, que é a trilha de auditoria.
 
 ### Passo 9 — Atualizar a fundamentação
 
