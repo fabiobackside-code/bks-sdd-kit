@@ -1,6 +1,6 @@
 # WORKFLOW — prj-bks-kit
 
-> O fluxo de trabalho deste projeto. Para saber **onde ele está**, leia `STATUS.md`.
+> O fluxo de trabalho deste projeto. Para saber **onde ele está**, leia `STATUS.md` (local do mantenedor, fora do git; o histórico público está no `CHANGELOG.md`).
 >
 > Todos os comandos rodam com a sessão aberta na **raiz deste repositório**.
 

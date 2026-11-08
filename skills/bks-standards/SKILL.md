@@ -32,6 +32,13 @@ Abra a que a tarefa exige, não todas.
 | `references/documentacao.md` | ao escrever comentario, README ou ARCHITECTURE |
 | `references/seda-tcp.md` | pipeline por estagios, socket, backpressure |
 | `references/checklist-revisao-critica.md` | ao revisar código de area sensivel |
+| `references/metodo/revisao-codigo.md` | ao revisar código: o que olhar, em que ordem, formato do achado |
+| `references/metodo/revisao-codigo-armadilhas.md` | antes de fechar uma revisão |
+| `references/metodo/planejamento.md` | ao escrever FEAT, TEST ou TASK |
+| `references/metodo/planejamento-armadilhas.md` | antes de entregar um plano |
+
+Os quatro guias de `references/metodo/` são o método dos agentes `reviewer` e `planner`. Ficam
+aqui, e não em `agents/`, porque todo `.md` dentro de `agents/` é carregado como agente.
 
 ## As três que não se negociam
 

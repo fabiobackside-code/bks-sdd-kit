@@ -750,7 +750,7 @@ Quem desenhou o código o entende sem comentário; quem não desenhou lê o `ARC
       mesmo lugar dos demais guardas estruturais
 
 > 🔴 **Regra sem guarda executável é intenção, e intenção não sobrevive à pressa.** Gerar o teste
-> junto com o código, não depois. Referência: `CommentBudgetTests` no `nq-sec-sdk` — dois testes,
+> junto com o código, não depois. Referência: `CommentBudgetTests`, de um SDK de segurança deste método — dois testes,
 > um recusa bloco acima do teto, outro recusa marca de severidade.
 
 ---

@@ -27,7 +27,7 @@ abertura para que serve, e o comentário não aponta para ele.
 // ✅ B correto — o que quebra, 2 linhas
 /// <summary>Configuração da capacidade de segredos.</summary>
 /// <remarks>Não é record — ToString() gerado exporia a ApiKey.</remarks>
-public sealed class NqSecretOptions
+public sealed class SecretOptions
 
 // ❌ C — o raciocínio inteiro dentro do arquivo
 /// <remarks>
@@ -196,6 +196,6 @@ Nunca o repo inteiro de uma vez — o diff fica inviável de revisar.
 3. Escrever o teste **antes** do retrofit: dá alvo objetivo, em vez de julgar arquivo a arquivo
 4. Revisar o diff a cada pasta
 
-> ⚠️ **Um teste de arquitetura pode depender de texto no comentário.** No `nq-sec-sdk`, dois testes
+> ⚠️ **Um teste de arquitetura pode depender de texto no comentário.** Num SDK de segurança construído com este método, dois testes
 > exigiam a marcação `PRESUMIDO`/`RK-E` no código do adaptador HSM — e o retrofit a apagou. Rodar a
 > suíte completa a cada pasta, não só no fim.

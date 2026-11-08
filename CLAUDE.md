@@ -11,7 +11,7 @@ Tudo que uma sessão precisa está neste repositório. Nenhum comando lê o vaul
 
 | # | Arquivo | Para que |
 |---|---|---|
-| 1 | `./STATUS.md` | onde o projeto parou, o que trava, próximo passo |
+| 1 | `./STATUS.md` | onde o projeto parou, o que trava, próximo passo — arquivo local do mantenedor, fora do git |
 | 2 | `./WORKFLOW.md` | o ciclo mudar → provar → medir |
 | 3 | `./docs/ARCHITECTURE.md` | as decisões estruturais e o porquê de cada uma |
 

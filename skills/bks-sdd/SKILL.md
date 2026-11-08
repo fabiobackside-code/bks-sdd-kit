@@ -1040,7 +1040,7 @@ template canônico. Para cada task, preencher:
   - `[ ] Documentação tocada segue a skill bks-writing — writing_guard.py sem achado nos arquivos`
 
   > **Por que na geração da task, e não só na conferência:** a regra de documentação já existia em
-  > `memory/documentação.md` quando o `nq-sec-sdk` foi construído — e as 21 tasks nasceram sem o
+  > `memory/documentação.md` quando um SDK de segurança foi construído com este método — e as 21 tasks nasceram sem o
   > item, então nenhuma o cobrou. **Regra que não entra na DoD não é executada.**
 - Campo `**Agente:**` com o valor derivado do tipo de task:
   - Tasks de tipo `Teste` (RED) → `implementador`
@@ -1646,7 +1646,7 @@ automático [`memory/documentação.md`].
 
 > 🔴 **Regra sem guarda executável é intenção.** Onde a stack permitir, a verificação de comentário
 > deve virar **teste de arquitetura** no projeto — não checagem manual a cada task. Referência:
-> `CommentBudgetTests` no `nq-sec-sdk` (dois testes: bloco acima do teto, marca de severidade).
+> `CommentBudgetTests`, de um SDK de segurança deste método (dois testes: bloco acima do teto, marca de severidade).
 
 ---
 

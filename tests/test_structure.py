@@ -106,15 +106,24 @@ def test_skills():
                   'description com %d chars — curta demais para o agente '
                   'decidir quando usar a skill' % len(desc))
 
-        refs_dir = set(listdir('skills', skill, 'references'))
+        # recursivo: references/metodo/ guarda os guias dos agentes
+        refs_root = os.path.join(ROOT, 'skills', skill, 'references')
+        refs_dir = set()
+        for dirpath, dirnames, filenames in os.walk(refs_root):
+            dirnames[:] = [d for d in dirnames if d != '__pycache__']
+            for fn in filenames:
+                refs_dir.add(os.path.relpath(os.path.join(dirpath, fn),
+                                             refs_root).replace(BS, '/'))
 
-        declared = set(re.findall(r'references/([a-z0-9-]+\.md)', text))
+        declared = set(re.findall(
+            r'references/((?:[a-z0-9-]+/)*[a-z0-9-]+\.md)', text))
         missing = declared - refs_dir
         check('%s: toda referencia citada com caminho existe' % skill, not missing,
               'citadas e ausentes: %s' % ', '.join(sorted(missing)))
 
         if refs_dir:
-            mentioned = set(re.findall(r'([a-z0-9][a-z0-9-]*\.md)', text))
+            mentioned = set(r for r in refs_dir if re.search(
+                r'(?<![a-z0-9-])' + re.escape(r), text))
             orphans = refs_dir - mentioned
             check('%s: toda referencia e alcancavel pelo SKILL.md' % skill,
                   not orphans,

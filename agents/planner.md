@@ -25,13 +25,14 @@ propor. Transforma escopo em `FEAT-*.md`/`TEST-*.md`/`TASK-*.md` (fluxo bks-sdd)
 
 ## Metodo
 
-Leia `references/planning-checklist.md` antes de escrever a primeira spec. Ele cobre o que precisa
-estar decidido antes de haver escopo: quem usa, o que muda para essa pessoa, o que fica de fora, e
-como se sabe que ficou pronto.
+Leia `${CLAUDE_PLUGIN_ROOT}/skills/bks-standards/references/metodo/planejamento.md` antes de
+escrever a primeira spec. Ele cobre o que precisa estar decidido antes de haver escopo: quem usa, o
+que muda para essa pessoa, o que fica de fora, e como se sabe que ficou pronto.
 
-Antes de entregar o plano, passe por `references/planning-anti-patterns.md` — plano que lista
-tarefa sem ordem, task que depende de contexto que ninguém tem, critério que ninguém consegue
-testar.
+Antes de entregar o plano, passe por
+`${CLAUDE_PLUGIN_ROOT}/skills/bks-standards/references/metodo/planejamento-armadilhas.md` — plano
+que lista tarefa sem ordem, task que depende de contexto que ninguém tem, critério que ninguém
+consegue testar.
 
 ## Regra de critério de aceite
 Verificável por teste real. "Deve ser rápido" não vale; "responde em 300ms no p95 com 1000

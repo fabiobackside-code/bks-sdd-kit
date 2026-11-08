@@ -9,8 +9,8 @@ Autoridade, nesta ordem:
    `bks-c4-diagrams`, `bks-typescript-backend` (prescritivas, conduzem entrevista
    antes de gerar).
 2. Exemplares reais de aplicação — cada projeto guarda os seus em
-   `repos/{cat}/{proj}/brain/methodology/` (ex.: `repos/w3/nquantic/brain/methodology/`
-   tem as skills de domínio bancário aplicadas). Consulte o do projeto atual.
+   `brain/methodology/` do próprio repositório (ex.: um motor de transações guarda ali as
+   skills de domínio bancário aplicadas). Consulte o do projeto atual.
 3. Wiki de conhecimento em `../../knowledge/wiki/` (fundamentos e trade-offs,
    sempre agnóstica de projeto).
 
@@ -31,7 +31,7 @@ barato que navegar abstração que tentou adivinhar o futuro (YAGNI).
 - **Pipeline explícito:** Validação → Idempotência → Enriquecimento →
   Processamento → PósProcessamento. **NUNCA MediatR** — orquestração explícita.
 - **Result Pattern:** operações retornam um tipo `Result<T>` (ou o equivalente
-  que o projeto definir — ex.: `NqResultado<T>` no NQuantic); exceptions de
+  que o projeto definir — ex.: `OperationResult<T>`); exceptions de
   negócio não escapam da pipeline.
 - Observabilidade embutida nos estágios (spans automáticos, sem `Activity` à mão).
 
@@ -89,8 +89,8 @@ continua valendo (Hexagonal, TXC, Pipeline, Result) — muda só a tecnologia de
 > não de projeto novo.
 
 ## Idioma do código
-Inglês por padrão. **Exceção por projeto quando o repo definir** (ex.: NQuantic
-usa pt-BR sem acentos). O `REPO-CLAUDE.md` de cada projeto manda.
+Inglês por padrão. **Exceção por projeto quando o repo definir** (ex.: um projeto
+pode adotar pt-BR sem acentos). O `REPO-CLAUDE.md` de cada projeto manda.
 
 ## Comentário e documentação externa
 Comentário no código é exceção, não regra: resumo de 1 linha em classe/método público

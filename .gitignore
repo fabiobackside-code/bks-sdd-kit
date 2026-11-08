@@ -46,3 +46,11 @@ desktop.ini
 *~
 __pycache__/
 *.pyc
+
+# pacote de skill gerado para release
+*.skill
+.claude/*.local.*
+
+# registro de sessão do mantenedor, só local
+/JOURNAL.md
+/STATUS.md

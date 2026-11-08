@@ -4,8 +4,14 @@ Plugin do Claude Code com o kit BKS de **Spec-Driven Development** — o process
 de produto até código implementado, passando por PRD, planos, especificações de feature, cenários
 de teste e tasks executáveis.
 
-Não e um framework de código. É o processo de trabalho: skills que conduzem o ciclo, comandos que
+Não é um framework de código. É o processo de trabalho: skills que conduzem o ciclo, comandos que
 operam o workbench e agentes com papéis separados.
+
+**Por que existe.** O padrão nasceu de projetos reais — um motor de transações bancárias, um SDK de
+segurança, plataformas de produto e provas de conceito — e de um problema recorrente: o agente de
+código escreve rápido, mas sem contrato, sem prova e sem memória entre sessões. O kit impõe as três
+coisas. A spec vem antes do código, a guarda recusa a escrita fora do padrão em vez de avisar, e
+cada skill tem um caso de eval que mede se ela muda a decisão do agente.
 
 ## Instalação
 
@@ -36,7 +42,8 @@ operam o workbench e agentes com papéis separados.
 | `doc-writer` | Docstring, README e comentario — sob o teto de comentario do kit |
 | `bks-writing` | Padrão de escrita da documentação viva em PT-BR: decisão sintetizada no texto, abertura pela informação, frase curta, termo definido, lista de muletas |
 | `bks-maintainability-review` | Parecer de manutenibilidade por aplicação, nota de 0 a 100 para um dev pleno, e a fundamentação teórica e técnica do projeto; critérios por stack, hoje .NET e SQL |
-| `pr-writer` | Titulo e descrição de PR a partir do diff real, não da memória da conversa |
+| `pr-writer` | Título e descrição de PR a partir do diff real, não da memória da conversa |
+| `bks-daiwl` | *Don't Accept It Without Learning*: mede o quanto **você** consegue manter o código que a IA gerou, comparando os fundamentos aplicados com o seu vault, e ensina a diferença. Cópia fixada do [repositório próprio](https://github.com/fabiobackside-code/bks-daiwl) |
 
 ### Comandos
 
@@ -146,7 +153,7 @@ Os comandos de workbench (`/bks:brain`, `/bks:save`, `/bks:new-project`, `/bks:n
 
 | Variavel | Aponta para | Exemplo |
 |---|---|---|
-| `BKS_VAULT` | Raiz do vault | `X:/2brains` |
+| `BKS_VAULT` | Raiz do vault | `D:/caminho/do/vault` |
 | `BKS_KNOWLEDGE` | Base de conhecimento transversal | `${BKS_VAULT}/knowledge` |
 
 São duas. Cada projeto guarda sua própria memória, decisão e domínio — não há hub central a
@@ -279,6 +286,16 @@ a conclusão veio.
 Documentação e artefatos gerados em **PT-BR**. Código, nomes de tipo, método e variavel em
 **inglês**.
 
-## Licenca
+## Contribuir
+
+Issues e pull requests são bem-vindos. Ver [CONTRIBUTING.md](CONTRIBUTING.md); falha de segurança,
+[SECURITY.md](SECURITY.md). O histórico de versões está no [CHANGELOG.md](CHANGELOG.md).
+
+## Créditos
+
+O que veio de terceiros, sob que licença, e o que foi só inspiração está em
+[THIRD_PARTY.md](THIRD_PARTY.md).
+
+## Licença
 
 MIT — veja [LICENSE](LICENSE).

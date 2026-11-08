@@ -1,0 +1,8 @@
+---
+description: BKS-DAIWL — Don't Accept It Without Learning. Compares AI-generated code with the user's vault and produces a personal maintainability score; records learnings and experiences. Também em português.
+globs:
+alwaysApply: false
+---
+When the user asks to set up DAIWL, index their knowledge, analyze AI-generated code against their canon,
+mark concepts as learned, or record an experience that challenges the AI (in English or Portuguese),
+follow `.bks-daiwl/SKILL.md` and `.bks-daiwl/references/`. Answer in the user's language.

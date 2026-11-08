@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BKS-DAIWL — {{TITLE}}</title>
+<style>
+:root{--bg:#faf8f4;--fg:#1f1d1a;--muted:#6b655c;--accent:#8a3b12;--code:#efeae1;--line:#ddd5c8;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#17161a;--fg:#ece8e1;--muted:#a39d93;--accent:#e08a5a;--code:#24222a;--line:#34313a;color-scheme:dark}}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 Georgia,"Iowan Old Style",serif;max-width:860px;margin:0 auto;padding:2rem 1.25rem}
+h1{font-size:1.9rem;border-bottom:2px solid var(--accent);padding-bottom:.4rem}
+h2{color:var(--accent);margin-top:2.2rem;font-size:1.3rem}
+code{background:var(--code);padding:.1rem .35rem;border-radius:4px;font:.88em ui-monospace,Menlo,monospace}
+pre{background:var(--code);padding:1rem;border-radius:6px;overflow-x:auto}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;width:100%}
+td{border-bottom:1px solid var(--line);padding:.35rem .5rem}
+.li{margin:.2rem 0 .2rem 1rem}
+em{color:var(--muted)}
+</style>
+</head>
+<body>
+{{BODY}}
+</body>
+</html>

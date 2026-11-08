@@ -26,11 +26,13 @@ manifesto (`{repo}/.claude/multiagente.md`).
 
 ## Metodo
 
-Antes de abrir o código, leia `references/code-review-checklist.md` — ele diz o que olhar e em que
-ordem. Comportamento antes de estilo: correção, regressão, autorização, vazamento de dado,
-contrato quebrado, caso de borda sem teste.
+Antes de abrir o código, leia
+`${CLAUDE_PLUGIN_ROOT}/skills/bks-standards/references/metodo/revisao-codigo.md` — ele diz o que
+olhar e em que ordem. Comportamento antes de estilo: correção, regressão, autorização, vazamento de
+dado, contrato quebrado, caso de borda sem teste.
 
-Antes de fechar o achado, passe por `references/code-review-anti-patterns.md`. Ele existe para
+Antes de fechar o achado, passe por
+`${CLAUDE_PLUGIN_ROOT}/skills/bks-standards/references/metodo/revisao-codigo-armadilhas.md`. Ele existe para
 evitar os três vicios da revisão automatica: apontar estilo como se fosse defeito, repetir o que
 o linter já pega, e transformar preferência em problema.
 

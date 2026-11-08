@@ -363,6 +363,28 @@ rubrica, com confiança baixa. Cofre de credenciais e OpenShift saíram do núcl
 O `/bks:canonize` sugere o comando no fim quando `app/` tem código. Antes disso, não há aplicação
 para avaliar, e a sugestão seria ruído.
 
+### A `bks-daiwl` tem repositório próprio, e o kit carrega uma cópia fixada
+
+A `bks-daiwl` evoluiu do `/bks:maintainability`, mas mede outra coisa. O `/bks:maintainability`
+compara o código com uma régua fixa, a de um desenvolvedor pleno, com critérios por stack. A
+`bks-daiwl` compara o código com o que o próprio desenvolvedor domina, a partir do vault, dos
+repositórios e dos papers dele, e ensina a diferença. As duas compartilham a nota de 0 a 100, o
+catálogo de fundamentos com fonte primária e o relatório em HTML.
+
+Ela serve fora do kit — em Copilot, em Cursor, em Claude Code sem o plugin —, então a fonte da
+verdade é o repositório `bks-daiwl`. O kit carrega uma cópia fixada numa versão, registrada no
+`THIRD_PARTY.md`. A referência sem cópia faria o kit depender de instalação à parte, e o submodule
+quebraria a instalação pelo marketplace.
+
+### Conteúdo de terceiros só entra com licença, e inspiração não vira cópia
+
+Sete skills de apoio e os guias de método dos agentes chegaram à `0.1.0` copiados de um produto
+comercial sem licença de redistribuição. Na `0.8.0` elas foram reescritas do zero, sem consulta ao
+original, e os guias saíram de `agents/references/`, onde o Claude Code os carregava como agentes,
+para `skills/bks-standards/references/metodo/`. O histórico do repositório foi reescrito para
+remover o material. A regra que fica: terceiro entra só em pasta `third-party/`, com `LICENSE` e
+linha no `THIRD_PARTY.md`.
+
 ## Consumidores
 
 O kit foi extraido de um vault em uso. Os projetos que o consomem continuam sendo a fonte de
