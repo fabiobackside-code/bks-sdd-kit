@@ -4,6 +4,14 @@ Mudanças relevantes do `bks-sdd-kit`, da mais recente para a mais antiga. Forma
 [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões seguem
 [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.9.0] — 2026-11-08
+### Adicionado
+- `/bks:maintainability` oferece a `bks-daiwl` como lente pessoal opcional, quando ela já está
+  configurada; a nota pessoal sai ao lado do parecer, sem se fundir a ele.
+
+### Alterado
+- `bks-daiwl` atualizada para a `1.0.1`.
+
 ## [0.8.0] — 2026-11-08
 
 Versão de abertura para uso externo.

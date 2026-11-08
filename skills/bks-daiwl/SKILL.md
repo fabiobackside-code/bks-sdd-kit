@@ -2,14 +2,14 @@
 name: bks-daiwl
 description: "BKS-DAIWL (Don't Accept It Without Learning). Scores how well AI-generated code (Claude Code, Copilot, Cursor, MCP agents) matches how the developer works — vault, notes, own repos, papers, links — and explains every fundamental the AI used with snippets from the generated code and study paths. Records what the user learned and experiences that challenge the AI, so the score improves. Bilingual (English/Portuguese). Use ALWAYS when the user wants to compare AI-generated or vibecoded code with their own way of programming, check if they can maintain AI-written code, find which patterns the AI applied, index their vault, mark concepts as learned, or record a decision against the AI. Also trigger on bks-daiwl, daiwl, não aceitar sem aprender, score de aderência, manutenibilidade do código da IA, fundamentos usados pela IA, comparar código gerado com meu vault, aprendi."
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   author: "Fabio (BKS)"
   languages: "en, pt-BR"
 ---
 
 # BKS-DAIWL — Don't Accept It Without Learning
 
-**Version 1.0.0** · see `CHANGELOG.md`.
+**Version 1.0.1** · see `CHANGELOG.md`.
 
 Principle: **never accept code without understanding the fundamentals it relies on.**
 The score does not say whether the code is "good". It says how well *this person* can maintain

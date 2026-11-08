@@ -17,7 +17,7 @@ Portuguese aliases: fontes, inventario, versao; --criar, --fonte; repositorio, n
 import argparse, fnmatch, html, json, math, os, re, sys
 from pathlib import Path
 
-SKILL_VERSION = "1.0.0"
+SKILL_VERSION = "1.0.1"
 FORMULA_VERSION = "1.0"
 
 # ------------------------------------------------------------------ normalization (0.x pt-BR -> 1.x en)

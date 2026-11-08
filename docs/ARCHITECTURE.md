@@ -371,6 +371,11 @@ compara o código com uma régua fixa, a de um desenvolvedor pleno, com critéri
 repositórios e dos papers dele, e ensina a diferença. As duas compartilham a nota de 0 a 100, o
 catálogo de fundamentos com fonte primária e o relatório em HTML.
 
+As réguas não se fundem. O `/bks:maintainability` oferece a `bks-daiwl` como passo opcional, só
+quando ela já está configurada, e a nota pessoal sai no histórico dela, ao lado do parecer. Fundir
+as duas notas numa só misturaria duas perguntas: se o código é manutenível e se este desenvolvedor
+o mantém.
+
 Ela serve fora do kit — em Copilot, em Cursor, em Claude Code sem o plugin —, então a fonte da
 verdade é o repositório `bks-daiwl`. O kit carrega uma cópia fixada numa versão, registrada no
 `THIRD_PARTY.md`. A referência sem cópia faria o kit depender de instalação à parte, e o submodule

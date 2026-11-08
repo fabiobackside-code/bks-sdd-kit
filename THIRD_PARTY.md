@@ -14,7 +14,7 @@ Cada item abaixo está no repositório sob a licença original, que é compatív
 | `writing-anti-ai` | Gaorui Zhang | [Galaxy-Dawn/claude-scholar](https://github.com/Galaxy-Dawn/claude-scholar), commit `903787345d6a` | MIT | `skills/bks-writing/third-party/writing-anti-ai/` | `SKILL.md` renomeado para `SKILL.original.md`; catálogo e exemplos em chinês ficaram de fora |
 | `human-writing` | PRPM (Prompt Package Manager) | [pr-pm/prpm](https://github.com/pr-pm/prpm), commit `d6b1b17b4818` | MIT | `skills/bks-writing/third-party/human-writing/` | `SKILL.md` renomeado para `SKILL.original.md` |
 | Checklist de revisão crítica | Diego Amorim | [DiegoAmorimDev/bks-multiagent-skill](https://github.com/DiegoAmorimDev/bks-multiagent-skill) | MIT | `skills/bks-standards/references/checklist-revisao-critica.md` | adaptado ao vocabulário BKS |
-| `bks-daiwl` | Fabio Magalhaes | [fabiobackside-code/bks-daiwl](https://github.com/fabiobackside-code/bks-daiwl), versão `1.0.0` | MIT | `skills/bks-daiwl/` | cópia fixada; a fonte da verdade é o repositório próprio |
+| `bks-daiwl` | Fabio Magalhaes | [fabiobackside-code/bks-daiwl](https://github.com/fabiobackside-code/bks-daiwl), versão `1.0.1` | MIT | `skills/bks-daiwl/` | cópia fixada; a fonte da verdade é o repositório próprio |
 
 As duas skills de escrita partem do guia da Wikipedia sobre sinais de texto escrito por
 inteligência artificial (AI, na sigla em inglês),

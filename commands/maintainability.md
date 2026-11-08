@@ -46,12 +46,20 @@ Faça, nesta ordem:
 5. **Fundamentação**, uma por projeto, pelo modo Fundamentação da skill, em
    `outputs/references/`. Gere versão nova só se algum conceito ou decisão entrou, mudou ou saiu.
 
-6. **Registro.** Grave o critério desta execução em
+6. **Lente pessoal, opcional.** O parecer mede contra um dev pleno; a skill `bks-daiwl` mede
+   contra o que o próprio desenvolvedor domina. Se houver configuração dela (`.daiwl/config.md`
+   no repositório, `~/.daiwl/config.md` ou `DAIWL_VAULT`), ofereça rodar o `analyze` dela em cada
+   aplicação avaliada, seguindo `${CLAUDE_PLUGIN_ROOT}/skills/bks-daiwl/SKILL.md`. A saída fica no
+   histórico da `bks-daiwl`, não em `outputs/`. Sem configuração, não ofereça `init`: siga.
+
+7. **Registro.** Grave o critério desta execução em
    `docs/prompts/prompt-maintainability-{YYYY-MM-DD}.md`: aplicações avaliadas e puladas, stack e
    tipo de cada uma, persona usada (com ou sem vault), perguntas feitas e respostas. É o que permite
-   comparar duas execuções com a mesma régua.
+   comparar duas execuções com a mesma régua. Se o passo 6 rodou, registre também a nota pessoal
+   de cada aplicação.
 
-7. **Reporte**, uma linha por aplicação: nome, nota, faixa, confiança e caminho do parecer. Depois,
-   uma linha com a versão da fundamentação, ou "fundamentação sem alterações; versão atual vN".
+8. **Reporte**, uma linha por aplicação: nome, nota, faixa, confiança e caminho do parecer, mais a
+   nota pessoal da `bks-daiwl` quando o passo 6 rodou. Depois, uma linha com a versão da
+   fundamentação, ou "fundamentação sem alterações; versão atual vN".
 
 Nunca pontue sem evidência e nunca aplique critério de uma stack a outra. Na dúvida, pergunte.
