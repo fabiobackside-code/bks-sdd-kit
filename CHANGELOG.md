@@ -4,6 +4,12 @@ Mudanças relevantes do `bks-sdd-kit`, da mais recente para a mais antiga. Forma
 [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões seguem
 [SemVer](https://semver.org/lang/pt-BR/).
 
+## [1.0.1] — 2026-11-16
+
+### Corrigido
+- `bks-sdd`: o `test-spec-structure.md` removia o próprio bloqueio do `--feature-task` ao sugerir
+  pular a Fase 6. Agora o TEST aprovado é exigido sem exceção, como o `SKILL.md` já dizia.
+
 ## [1.0.0] — 2026-11-08
 
 Primeira versão estável. A partir dela, o kit segue SemVer sobre o contrato público descrito no

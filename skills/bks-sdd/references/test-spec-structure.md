@@ -190,8 +190,7 @@ TASK-[id]-[descrição].md (Fase 5, gerada após aprovação do TEST)
 
 3. **Bloqueio estrito do `--feature-task`:** O comando não gera tasks de implementação
    sem TEST aprovado. Não é configurável por projeto — é uma garantia estrutural do fluxo
-   BKS-SDD. Projetos que não querem testes simplesmente não executam a Fase 6 e usam
-   `--feature-task` diretamente a partir da Fase 5.
+   BKS-SDD.
 
 4. **Seção "Fora de Escopo" obrigatória:** Previne que o agente implemente testes de
    responsabilidade alheia, mantendo os limites da feature bem definidos e o acoplamento
