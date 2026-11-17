@@ -4,6 +4,29 @@ Mudanças relevantes do `bks-sdd-kit`, da mais recente para a mais antiga. Forma
 [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões seguem
 [SemVer](https://semver.org/lang/pt-BR/).
 
+## [1.1.0] — 2026-11-17
+
+### Adicionado
+- Campo opcional `txc` no `.bks-profile.json`: `none` (padrão direto), `base` ou `motor`. Sem o
+  campo, a skill de geração pergunta a forma e grava a resposta.
+- `bks-dotnet-solutions` 3.0: entrevista em nove fases, com a forma do projeto (TXC ou padrão
+  direto) e as portas de entrada e de saída declaradas uma a uma. Toda lista tem "outro", que vira
+  Port. Referências novas: `ports-catalog.md` e `txc-base.md`.
+- `bks-go-solutions` 2.0, com `go-txc.md`: TXC opcional por executor tipado.
+- Casos de eval `dotnet-portas-worker`, `dotnet-stack-outro` e `go-txc`.
+
+### Alterado
+- `txc-guidelines.md` 2.2: sessão que cria o contexto somente leitura, pipeline `[10]` `[20]`
+  `[40]` `[50]`, executor transacional e executor de consulta (`BksQueryExecutor`), dado entre
+  passos por retorno tipado. Sai o objeto de transação mutável com `Hydrate`.
+- `bks-typescript-solutions` 3.0, `bks-sdd`, `bks-standards` e o manifesto multiagente alinhados ao
+  mesmo modelo.
+
+### Limitação conhecida
+- O delta entre os braços `with` e `without` dos casos `dotnet-txc`, `dotnet-portas-worker`,
+  `dotnet-stack-outro` e `go-txc` não foi medido. A suíte estrutural confere a integridade dos
+  arquivos; se o agente segue a entrevista nova, só o eval mostra.
+
 ## [1.0.1] — 2026-11-16
 
 ### Corrigido

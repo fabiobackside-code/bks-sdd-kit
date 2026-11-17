@@ -76,20 +76,18 @@ public sealed record PedidoConfirmado(PedidoId PedidoId, ClienteId ClienteId)
 }
 ```
 
-## Application Service (Orquestração via Pipeline)
+## Quem chama a regra do aggregate
 
-Application Services não contêm regra de negócio. Orquestram via PipelineOrchestrator.
+O aggregate guarda a regra (`Pedido.Criar`, `pedido.Cancelar`); quem o chama depende da forma do
+projeto, declarada na fase 2 da entrevista:
 
-```csharp
-public sealed class CreatePedidoUseCase(
-    PipelineOrchestrator<TransactionCreatePedido, PedidoResponse> pipeline)
-    : ICreatePedidoUseCase
-{
-    public ValueTask<PipelineResult<PedidoResponse>> ExecuteAsync(
-        TransactionCreatePedido transaction, CancellationToken ct = default)
-        => pipeline.ExecuteAsync(transaction, ct);
-}
-```
+| Forma | Quem chama | Onde |
+|---|---|---|
+| Padrão direto | `{Entidade}Service`, implementação de `I{Entidade}Service` | `Domain/Services/` |
+| TXC (Transaction Context) | `ApplyRule` do executor transacional | `Application/{Contexto}/{Operacao}/` |
+
+Nos dois, quem chama não repete a regra: lê o que ela precisa, entrega ao aggregate e grava o
+resultado pela Port. Não há `I{Entidade}Handler` nem orquestrador.
 
 ## Repositório (Port no Domain)
 

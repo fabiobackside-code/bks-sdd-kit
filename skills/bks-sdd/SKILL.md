@@ -593,11 +593,11 @@ Antes de escrever o §8 (Architecture), ler as guidelines arquiteturais disponí
 - `references/ddd-bounded-contexts-guidelines.md` — para identificar Bounded Contexts, mapear o domínio estratégico, classificar subdomínios (Core/Supporting/Generic) e criar o Context Map
 - `references/ddd-tactic-guidelines.md` — para modelar Entidades, Value Objects, Aggregates, Domain Events e Repositories dentro de cada contexto
 - `references/hexagonal-arch-guidelines.md` — para estruturar Ports & Adapters, separar domínio de infraestrutura e definir adaptadores primários/secundários
-- `references/txc-guidelines.md` — **OBRIGATÓRIO se o projeto for .NET ou TypeScript**; usar para preencher §8 com o template TXC-aware (§8a–§8d) em vez do template genérico; Primary Ports agrupadas por BoundedContext (não por operação CRUD — nunca `ICreateXxxUseCase` por operação); Secondary Ports por aggregate (não `IDBRepositoryPort` genérico); Transaction Map na tabela §8b
+- `references/txc-guidelines.md` — **OBRIGATÓRIO quando o `.bks-profile.json` declara `txc`**, em qualquer stack (.NET, TypeScript ou Go); usar para preencher §8 com o template TXC-aware (§8a–§8d) em vez do template genérico; a Primary Port é a sessão, e o contrato é o catálogo de códigos de transação por BoundedContext na tabela §8b (nunca `I{Entidade}Handler` nem `ICreateXxxUseCase`); Secondary Ports por aggregate (não `IDBRepositoryPort` genérico)
 
 Usar essas guidelines para preencher o §8 com: identificação dos Bounded Contexts, decisões de build vs. buy por subdomínio, estrutura de portas e adaptadores, e regras de comunicação entre contextos. Registrar as decisões como assunções explícitas se ainda não estiverem validadas.
 
-Para projetos .NET ou TypeScript: preencher §8 usando o template TXC-aware (§8a Internal Architecture, §8b Bounded Contexts e Aggregates, §8c Secondary Ports, §8d External Integrations e ACL) conforme definido em `references/prd-structure.md` e detalhado em `references/txc-guidelines.md`.
+Para projetos com `txc` declarado: preencher §8 usando o template TXC-aware (§8a Internal Architecture, §8b Bounded Contexts e catálogo de transações, §8c Secondary Ports, §8d External Integrations e ACL) conforme definido em `references/prd-structure.md` e detalhado em `references/txc-guidelines.md`.
 
 Salvar como `workspace-[nome]/projects/project-[nome-do-projeto]/research/PRD-[nome-do-projeto].md`.
 
@@ -880,26 +880,22 @@ Se a feature escolhida tem dependência de outra feature ainda sem spec:
 - Avisar: *"Atenção: F[N] depende de F[M] que ainda não foi especificada. Posso gerar mesmo assim em modo Draft, com a dependência registrada."*
 - Aguardar confirmação do usuário antes de prosseguir.
 
-**Passo 5F.4 — Decidir padrão de implementação (TXC vs ALT)**
+**Passo 5F.4 — Ler o padrão de implementação do projeto**
 
-> **Obrigatório para projetos .NET ou TypeScript. Execute antes de gerar o FEAT.**
+> **Obrigatório para projetos .NET, TypeScript ou Go. Execute antes de gerar o FEAT.**
 
-Para a operação principal da feature, percorrer a árvore abaixo e declarar o padrão:
+O padrão é do projeto, não da feature: TXC e padrão direto não se misturam.
+Ler o campo `txc` do `.bks-profile.json`:
 
-```
-A feature tem regras de negócio que TRANSFORMAM ESTADO entre etapas distintas?
-│
-├── NÃO ──→ É leitura?
-│           ├── 1 fonte simples ──→ [ALT-1] QueryHandler
-│           └── 2+ fontes / filtros complexos ──→ [ALT-2] QueryComposer
-│           NÃO, é batch/coleção ──→ [ALT-3] BatchProcessor
-│               é técnica/utilitário ──→ [ALT-4] UtilityScript
-└── SIM ──→ Estado entre 2+ etapas, cruzando Entry+Domain+Infra? ──→ ✅ TXC
-            1 etapa só ──→ [ALT-1] SimpleCommandHandler
-```
+| `txc` | Padrão da feature | O que cada operação vira |
+|---|---|---|
+| `"base"` ou `"motor"` | TXC | uma transação por código: escrita → executor transacional; leitura → executor de consulta (`txc-guidelines.md`, Seção 3) |
+| `"none"` | padrão direto | serviço da aplicação com contrato Input/Output, sem sessão nem executores |
 
-O campo `**Padrão de implementação:**` do FEAT será preenchido com o resultado desta decisão.
-A ausência deste campo é proibida — o agente executor depende dele.
+Campo ausente ou sem o `.bks-profile.json`: perguntar ao usuário antes de gerar o FEAT e gravar a
+resposta no perfil. O campo
+`**Padrão de implementação:**` do FEAT recebe o resultado; a ausência dele é proibida, porque o
+agente executor depende dele.
 
 **Passo 5F.5 — Gerar o FEAT-[nome].md**
 
@@ -911,15 +907,15 @@ Ler:
 **Se o projeto adotar DDD ou Arquitetura Hexagonal**, ler também:
 4. `references/ddd-tactic-guidelines.md` — para identificar Aggregates afetados pela feature, nomear Domain Events gerados, verificar que as restrições técnicas (§4 do FEAT) proíbem lógica de negócio fora do domínio
 5. `references/hexagonal-arch-guidelines.md` — para mapear quais Ports e Adapters precisam existir ou ser criados para esta feature (incluir em §4 Restrições Técnicas)
-6. `references/txc-guidelines.md` — **OBRIGATÓRIO para features TXC em projetos .NET ou TypeScript**; ler antes de escrever §5 Contratos de Dados; usar Seção 2 (árvore de decisão) para confirmar o padrão e Seção 5 (Transaction Map) para preencher a tabela de fases e métodos semânticos
+6. `references/txc-guidelines.md` — **OBRIGATÓRIO para features TXC, em qualquer stack**; ler antes de escrever §5 Contratos de Dados; usar a Seção 3 (executores) para escolher transacional ou consulta e a Seção 6 para preencher uma ficha da transação por código
 
 O resultado esperado é que a seção §4 (Restrições Técnicas) do FEAT já contenha as decisões arquiteturais relevantes — qual aggregate é a root, quais eventos são publicados, quais portas são necessárias — poupando o agente executor de ter que descobrir isso durante a implementação.
 
 Gerar o arquivo `spec/features/FEAT-[nome-kebab-case].md` com status `Draft` seguindo o
 template canônico (v2). Preencher automaticamente:
 - ID, projeto, plano de referência, fase de execução, prioridade (do PLAN)
-- **Campo `Padrão de implementação:`** com resultado da árvore de decisão do Passo 5F.4
-- **Seção §5 Contratos de Dados**: se TXC, tabela Transaction Map com fases e métodos semânticos; se ALT, contrato simplificado (Input/Output)
+- **Campo `Padrão de implementação:`** com o padrão lido no Passo 5F.4
+- **Seção §5 Contratos de Dados**: se TXC, uma ficha da transação por código; se padrão direto, contrato simplificado (Input/Output)
 - Rastreabilidade §7 com referências ao PLAN e PRD
 - Seção §6 Tasks vazia (a ser preenchida por `--feature-task`)
 
@@ -931,7 +927,7 @@ Apresentar o arquivo gerado ao usuário para revisão.
 > *- §2 Critérios de Aceite — cada item deve ser binário e verificável*
 > *- §3 Comportamentos de Borda — adicione casos específicos do seu domínio*
 > *- §4 Restrições Técnicas — inclua limites arquiteturais relevantes*
-> *- §5 Contratos de Dados — se TXC, verifique os métodos semânticos e estados intermediários*
+> *- §5 Contratos de Dados — se TXC, verifique em cada ficha o que o `ValidateAsync` lê, a regra e a compensação*
 >
 > *Quando aprovado, me diga 'aprovado' e eu atualizo o status.*
 > *Próximo passo após aprovação: `/bks-sdd --feature-tests` para criar os cenários de teste*
@@ -996,7 +992,7 @@ Se não houver FEATs nessas condições, orientar:
 **Passo 5T.4 — Ler o FEAT e o TEST aprovados**
 
 Ler:
-1. `spec/features/FEAT-[nome].md` — §2 Critérios de Aceite, §3 Comportamentos de Borda, §4 Restrições Técnicas, **§5 Contratos de Dados (Transaction Map)**, **campo `Padrão de implementação`**
+1. `spec/features/FEAT-[nome].md` — §2 Critérios de Aceite, §3 Comportamentos de Borda, §4 Restrições Técnicas, **§5 Contratos de Dados (fichas da transação)**, **campo `Padrão de implementação`**
 2. `spec/tests/TEST-[nome].md` — §2 Cenários Principais, §3 Cenários de Borda
 3. `references/task-spec-structure.md` — template canônico da TASK (v2 TXC-aware)
 
@@ -1004,21 +1000,25 @@ O TEST aprovado é a fonte de verdade para o "Definição de pronto" de cada tas
 ser decompostas de forma que, ao final, todos os cenários do TEST estejam cobertos.
 
 O campo `**Padrão de implementação:**` do FEAT determina a granularidade das tasks:
-- **TXC**: uma task por método semântico do Transaction (granularidade por fase do handler)
-- **ALT-1/2/3/4**: decomposição convencional (setup → testes RED → implementação GREEN)
+- **TXC**: uma task por peça da ficha da transação (granularidade por peça do executor)
+- **Padrão direto**: decomposição convencional (setup → testes RED → implementação GREEN)
 
 **Passo 5T.5 — Decompor em tasks atômicas**
 
-Regras de decomposição **quando padrão = TXC:**
-- Uma task por método semântico do Transaction é a granularidade ideal:
-  - TASK-00A (Teste) + TASK-00B (Impl): método Fase 1 — EntryHandler (`Hydrate{X}`)
-  - TASK-00C (Teste) + TASK-00D (Impl): método Fase 2 — DomainService (`Apply{Regra}`)
-  - TASK-00E (Teste) + TASK-00F (Impl): Fase 3 — InfraAdapter (`FinalizeWith` + persistência)
-- Cada task declara no campo `**Método semântico alvo:**` qual método do Transaction implementa
-- Sinal de alerta: Transaction com apenas Input+Output sem estado intermediário → reclassificar para ALT-1
+Regras de decomposição **quando padrão = TXC**, para cada ficha:
+- Uma task por peça é a granularidade ideal, nesta ordem:
+  - TASK-00A (Teste) + TASK-00B (Impl): `[10]` — validação da entrada, sem I/O (se a ficha tiver)
+  - TASK-00C (Teste) + TASK-00D (Impl): `ValidateAsync` — leitura pelas Secondary Ports, devolve `TValidation`
+  - TASK-00E (Teste) + TASK-00F (Impl): `ApplyRule` — a regra de negócio, devolve `TDecision`
+  - TASK-00G (Teste) + TASK-00H (Impl): `ExecuteAsync` — gravação pela Port, e `CancelAsync` se a ficha declara compensação
+  - TASK-00I (Teste) + TASK-00J (Impl): `[50]`, se a ficha tiver
+  - TASK-00K (Teste) + TASK-00L (Impl): registro do código e adapter de entrada chamando a sessão, com o replay da `[20]` coberto
+- Executor de consulta: um par só para o `ExecuteAsync`, mais o par do registro e do adapter
+- Cada task declara no campo `**Peça TXC alvo:**` qual peça implementa
+- Sinal de alerta: `ValidateAsync` que não lê nada e `ApplyRule` que só repassa a entrada → a operação provavelmente é consulta, não transacional
 
-Regras de decomposição **quando padrão = ALT-1/2/3/4:**
-- Campo `**Método semântico alvo:**` = "n/a"
+Regras de decomposição **quando padrão = padrão direto:**
+- Campo `**Peça TXC alvo:**` = "n/a"
 - Decomposição convencional: setup → testes RED → implementação GREEN → integração
 
 Regras comuns (todos os padrões):
@@ -1031,8 +1031,8 @@ template canônico. Para cada task, preencher:
 - Campo `**Test Spec:**` com `spec/tests/TEST-[nome].md`
 - Campo `**Feature:**` com `F[N] — [nome da feature]`
 - Campo `**Padrão:**` com o padrão herdado do FEAT
-- Campo `**Método semântico alvo:**` conforme regras acima
-- Checklist "Definição de pronto" — se TXC, incluir item "Estado intermediário do Transaction verificado"
+- Campo `**Peça TXC alvo:**` conforme regras acima
+- Checklist "Definição de pronto" — se TXC, incluir item "Dado entre passos por retorno tipado; TXC e envelope sem mutação"
 - Checklist "Definição de pronto" — **sempre** incluir, em toda task que cria ou altera tipo
   público, função pública ou decisão estrutural:
   - `[ ] README.md e ARCHITECTURE.md atualizados com o que esta task produziu`
@@ -1057,12 +1057,12 @@ Após criar todas as tasks, atualizar a seção §6 do `FEAT-[nome].md` com a ta
 ```markdown
 ## 6. Tasks desta Feature
 
-| ID | Descrição | Método semântico (se TXC) | Tipo | Dependência |
-|----|-----------|--------------------------|------|-------------|
-| TASK-001 | [descrição curta] | HydrateCliente (Fase 1) | Teste | nenhuma |
-| TASK-002 | [descrição curta] | HydrateCliente (Fase 1) | Implementação | TASK-001 |
-| TASK-003 | [descrição curta] | ApplyPricing (Fase 2) | Teste | TASK-002 |
-| TASK-004 | [descrição curta] | ApplyPricing (Fase 2) | Implementação | TASK-003 |
+| ID | Descrição | Peça TXC (se TXC) | Tipo | Dependência |
+|----|-----------|-------------------|------|-------------|
+| TASK-001 | [descrição curta] | `PEDIDO.CRIAR` · `ValidateAsync` | Teste | nenhuma |
+| TASK-002 | [descrição curta] | `PEDIDO.CRIAR` · `ValidateAsync` | Implementação | TASK-001 |
+| TASK-003 | [descrição curta] | `PEDIDO.CRIAR` · `ApplyRule` | Teste | TASK-002 |
+| TASK-004 | [descrição curta] | `PEDIDO.CRIAR` · `ApplyRule` | Implementação | TASK-003 |
 ```
 
 Atualizar também o campo `**Status:**` do FEAT para `Em execução`.

@@ -33,8 +33,8 @@ whether it changes the agent's decision.
 | Skill | What it is for |
 |---|---|
 | `bks-sdd` | Full SDD cycle: workspace, PRD, projects, macro plan, feature specs, test scenarios, tasks and execution |
-| `bks-dotnet-solutions` | Generates .NET solutions with Hexagonal Architecture and the TXC (Transaction Context) pattern |
-| `bks-typescript-solutions` | Node.js + TypeScript backends: REST API, LangGraph agent, worker and consumer, also under TXC |
+| `bks-dotnet-solutions` | Generates .NET solutions with Hexagonal Architecture, from the declared ports, in the direct pattern or under TXC (Transaction Context) |
+| `bks-typescript-solutions` | Node.js + TypeScript backends: REST API, LangGraph agent, worker and consumer, in the direct pattern or under TXC |
 | `bks-go-solutions` | Go solutions: REST API, worker, consumer, CLI and SDK — TXC in the shape Go allows, idiomatic errors instead of `Result[T]` |
 | `bks-create-plan-tasks` | Breaks any piece of work into atomic tasks optimized for token consumption |
 | `bks-tests` | Test coverage in a .NET solution: a single xUnit project under `src/`, 90%+ line, branch and method coverage, SonarQube compliance |

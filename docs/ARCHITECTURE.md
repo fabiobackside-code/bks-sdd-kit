@@ -404,6 +404,24 @@ exemplo de código, porque a skill que mostra comentário com marca ensina o age
 ✅ e o ❌ continuam como ícone de estado (fase ativa, spec aprovada) e como par didático de certo e
 errado: ali eles descrevem, não argumentam. As linhas que enunciam a própria regra são isentas.
 
+### O TXC é opcional por projeto, e o perfil diz qual forma o código toma
+
+O TXC (Transaction Context, o contexto somente leitura de cada execução) vale para o projeto
+inteiro ou para nada dele. O campo `txc` do `.bks-profile.json` decide: `"base"` gera sessão,
+pipeline e executores dentro do projeto; `"none"` gera o padrão direto, em que a entrada chama um
+serviço e o serviço chama a porta de saída. As skills de .NET, TypeScript e Go leem o campo antes
+de gerar. As duas formas devolvem `PipelineResult<T>`, e por isso migrar do direto para o TXC não
+troca assinatura.
+
+Com o campo ausente, a skill pergunta a forma e grava a resposta no perfil. Todo projeto criado
+antes da `1.1.0` gerava TXC sem declarar, e assumir o padrão direto mudaria o código desses
+projetos sem aviso.
+
+O modelo do TXC vem de um motor de transações em produção. O dado entre passos é retorno tipado,
+e nenhum objeto muda ao longo do pipeline. O texto das skills tem origem no harness, que evolui o
+método em repositório próprio e não escreve neste. Cada transporte é manual: entram os commits do
+TXC, e o processo do harness, como o portão de arquitetura e a equipe de agentes, fica de fora.
+
 ### A régua do parecer é escrita onde o avaliador decidiria sozinho
 
 A primeira execução real do `/bks:maintainability` teve três avaliadores em paralelo, e eles
