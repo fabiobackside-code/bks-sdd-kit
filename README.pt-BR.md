@@ -29,8 +29,8 @@ cada skill tem um caso de eval que mede se ela muda a decisão do agente.
 | Skill | Para que serve |
 |---|---|
 | `bks-sdd` | Ciclo SDD completo: workspace, PRD, projetos, plano macro, feature specs, cenários de teste, tasks e execução |
-| `bks-dotnet-solutions` | Geração de soluções .NET com Arquitetura Hexagonal e o padrão TXC (Transaction Context) |
-| `bks-typescript-solutions` | Backends Node.js + TypeScript: API REST, agente LangGraph, worker e consumer, também sob TXC |
+| `bks-dotnet-solutions` | Geração de soluções .NET com Arquitetura Hexagonal a partir das portas declaradas, no padrão direto ou sob TXC (Transaction Context) |
+| `bks-typescript-solutions` | Backends Node.js + TypeScript: API REST, agente LangGraph, worker e consumer, no padrão direto ou sob TXC |
 | `bks-go-solutions` | Soluções Go: API REST, worker, consumer, CLI e SDK — TXC na forma que Go admite, erro idiomático no lugar de `Result[T]` |
 | `bks-create-plan-tasks` | Decomposição de qualquer trabalho em tasks atômicas otimizadas para consumo de tokens |
 | `bks-tests` | Cobertura de testes em solution .NET: projeto xUnit único em `src/`, 90%+ em linhas, branches e métodos, conformidade SonarQube |

@@ -63,6 +63,10 @@
         "messaging": { "type": "string" }
       }
     },
+    "txc": {
+      "description": "Opcional. Forma do projeto backend: none é o padrão direto (entrada, serviço, porta); base gera o Transaction Context no próprio projeto; motor usa o pacote .NET do motor de transações. Ausente, a skill de geração pergunta e grava a resposta.",
+      "enum": ["none", "base", "motor"]
+    },
     "architecture_template": {
       "description": "Opcional. Template documental de arquitetura, quando o perfil gera documento formal.",
       "enum": ["togaf", "c4", "proprio", null],

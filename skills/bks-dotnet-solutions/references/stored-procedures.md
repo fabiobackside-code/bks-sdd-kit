@@ -107,11 +107,11 @@ public sealed class PostgreSqlConnectionFactory : IDbConnectionFactory
 
 | Elemento | Padrão | Exemplo |
 |---|---|---|
-| Transaction | `Transaction{NomeSP}` | `TransactionBloqueioSaldo` |
-| UseCase Port | `I{NomeSP}UseCase` | `IBloqueioSaldoUseCase` |
-| UseCase impl | `{NomeSP}UseCase` | `BloqueioSaldoUseCase` |
-| Validation Step | `{NomeSP}ValidationStep` | `BloqueioSaldoValidationStep` |
-| Processing Step | `{NomeSP}ProcessingStep` | `BloqueioSaldoProcessingStep` |
+| Serviço (padrão direto) | `{Grupo}Service` | `SaldoService` |
+| Código da transação (TXC) | `{Contexto}Codes.{NomeSP}` | `SaldoCodes.BloqueioSaldo = "SALDO.BLOQUEIO"` |
+| Envelope (TXC) | `{NomeSP}Envelope` | `BloqueioSaldoEnvelope` |
+| Validação `[10]` (TXC) | `{NomeSP}Validation` | `BloqueioSaldoValidation` |
+| Executor (TXC) | `{NomeSP}Executor` | `BloqueioSaldoExecutor` |
 | Repository Port | `I{Grupo}Repository` | `IBloqueioSaldoRepository` |
 | Repository impl | `{DB}{Grupo}Repository` | `SqlServerBloqueioSaldoRepository` |
 | SP Result record | `{NomeSP}Result` | `BloqueioSaldoResult` |

@@ -838,52 +838,55 @@ SKILLS INTEGRATION:
 
 ## SEÇÃO 13 — TXC SOBRE PORTS & ADAPTERS
 
-> Para regras completas do padrão TXC (Primary Ports por BC, Transaction Map, anti-padrões), ver `references/txc-guidelines.md`.
+> Para o modelo completo (sessão, executores, ficha da transação, anti-padrões), ver
+> `references/txc-guidelines.md`. Esta seção só posiciona as peças no hexágono.
 
-### Posicionamento do Handler TXC na estrutura hexagonal
+### Posição das peças do TXC na estrutura hexagonal
 
-O **Handler TXC** vive **dentro do hexágono**, na **Application layer**, e implementa a **Primary Port** de Command do BoundedContext.
+A **Primary Port é a sessão** (`IBksSession`). Cada operação é uma transação registrada por
+código; o envelope e o executor de cada uma vivem **dentro do hexágono**, na Application layer.
 
 ```
 DENTRO DO HEXÁGONO
 ├── Domain/
-│   ├── {Entidade}.cs           (Aggregate Root)
-│   └── I{Entidade}Repository.cs ← Secondary Port (necessidade do domínio)
+│   ├── {Entidade}.cs                ← Aggregate Root
+│   └── I{Entidade}Repository.cs     ← Secondary Port (necessidade do domínio)
 │
 └── Application/
-    ├── Ports/
-    │   └── Primary/
-    │       ├── I{Entidade}Handler.cs  ← Primary Port (Command) — 1 por BC
-    │       └── I{Entidade}Query.cs    ← Primary Port (Query)  — 1 por BC
-    ├── {Entidade}Transaction.cs       ← Parameter Object TXC (não é DTO)
-    └── {Entidade}Handler.cs           ← Implementa I{Entidade}Handler
+    ├── Pipeline/                    ← base do TXC: sessão, etapas, executores, registro
+    └── {Entidade}/
+        ├── {Entidade}Codes.cs       ← catálogo de códigos do BC (PEDIDO.CRIAR, PEDIDO.OBTER)
+        ├── Criar{Entidade}Envelope.cs   ← seed + input, criado por fábrica pura
+        ├── Criar{Entidade}Executor.cs   ← executor transacional
+        └── Obter{Entidade}Executor.cs   ← executor de consulta
 ```
 
 ### Fluxo TXC dentro da estrutura hexagonal
 
 ```
-[Primary Adapter: HTTP Controller]          ← FORA do hexágono
-  │ cria Transaction, chama Primary Port
+[Primary Adapter: HTTP, fila, TCP]            ← FORA do hexágono
+  │ preenche o contexto da chamada; traduz o DTO em input
   ▼
-[Primary Port: I{Entidade}Handler]          ← contrato DENTRO do hexágono
-  ▼
-[Handler: {Entidade}Handler]                ← implementação DENTRO do hexágono
-  ├── tx.HydrateXxx(input)                 → Fase 1: popula Transaction
-  ├── Aggregate.Create/Apply(...)          → Fase 2: chama domínio
-  ├── tx.HydrateXxxCriado(aggregate)       → Fase 2: captura estado
-  ├── IXxxRepository.SaveAsync(aggregate)  → Fase 3: via Secondary Port
-  └── tx.FinalizeWith(aggregate)           → Fase 3: retorna PipelineResult
+[Primary Port: IBksSession.ExecuteAsync(code, input)]   ← contrato DENTRO do hexágono
+  │ cria o TXC somente leitura e o envelope
+  ├── [10] Validation  → só a entrada
+  ├── [20] Idempotency → replay devolve o primeiro resultado
+  ├── [40] executor    → ValidateAsync lê pelas Secondary Ports → TValidation
+  │                      ApplyRule chama o aggregate            → TDecision
+  │                      ExecuteAsync grava pela Secondary Port → TOut
+  └── [50] PostProcessing → conclusão ou difusão
   ▼
 [Secondary Adapter: {DB}{Entidade}Repository] ← FORA do hexágono
 ```
 
-### Regra de agrupamento de Primary Ports em projetos TXC
+### Regra de agrupamento em projetos TXC
 
-Uma Primary Port de Command por BoundedContext — não uma por operação CRUD:
+O que a aplicação oferece é o catálogo de códigos do BoundedContext, não uma interface por
+operação:
 
 ```
-✅ I{Entidade}Handler  → agrupa: CreateAsync, CancelAsync, ApproveAsync (mesmo BC)
-✅ I{Entidade}Query    → agrupa: GetByIdAsync, ListAllAsync (queries do BC)
+✅ PedidoCodes.Criar, PedidoCodes.Cancelar, PedidoCodes.Obter → um executor por código
+❌ I{Entidade}Handler, I{Entidade}Query como Primary Port
 ❌ ICreate{Entidade}UseCase + ICancel{Entidade}UseCase + IList{Entidade}UseCase
 ```
 
