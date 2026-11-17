@@ -4,7 +4,7 @@ Mudanças relevantes do `bks-sdd-kit`, da mais recente para a mais antiga. Forma
 [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões seguem
 [SemVer](https://semver.org/lang/pt-BR/).
 
-## [1.1.0] — 2026-11-17
+## [1.1.1] — 2026-11-17
 
 ### Adicionado
 - Campo opcional `txc` no `.bks-profile.json`: `none` (padrão direto), `base` ou `motor`. Sem o

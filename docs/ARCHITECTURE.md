@@ -414,7 +414,7 @@ de gerar. As duas formas devolvem `PipelineResult<T>`, e por isso migrar do dire
 troca assinatura.
 
 Com o campo ausente, a skill pergunta a forma e grava a resposta no perfil. Todo projeto criado
-antes da `1.1.0` gerava TXC sem declarar, e assumir o padrão direto mudaria o código desses
+antes da `1.1.1` gerava TXC sem declarar, e assumir o padrão direto mudaria o código desses
 projetos sem aviso.
 
 O modelo do TXC vem de um motor de transações em produção. O dado entre passos é retorno tipado,
