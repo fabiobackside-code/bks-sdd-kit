@@ -28,6 +28,7 @@ Abra a que a tarefa exige, não todas.
 | `references/dotnet-standards.md` | projeto .NET: camadas, dependências, composition root |
 | `references/go-standards.md` | projeto Go: onde a linguagem contradiz o padrão-base |
 | `references/go-review-checklist.md` | ao revisar código Go — erro, concorrência, interface |
+| `references/sql-standards.md` | ao escrever ou revisar procedure e function SQL Server: formato do texto, `EXEC` nomeado, variáveis, `e` e as guardas em `tools/sql/` |
 | `references/calisthenics.md` | ao decidir forma de classe e método |
 | `references/documentacao.md` | ao escrever comentario, README ou ARCHITECTURE |
 | `references/seda-tcp.md` | pipeline por estagios, socket, backpressure |

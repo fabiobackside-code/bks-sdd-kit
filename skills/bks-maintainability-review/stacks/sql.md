@@ -43,6 +43,7 @@ execução. Para scripts de deploy, o conjunto que leva o banco de uma versão �
 - Convenção única de nome para tabela, coluna, constraint e procedure.
 - Um objeto por arquivo, com o nome do arquivo igual ao do objeto.
 - Ordem de execução explícita: prefixo numérico, manifesto ou ferramenta de migration.
+- Formato do texto do módulo (um item por linha, `EXEC` nomeado, variáveis no início, CRLF): o padrão está em `bks-standards/references/sql-standards.md`; a guarda `Conferir-Formato.ps1` sem achado conta a favor.
 
 ### Complexidade (A2, A3, A4)
 

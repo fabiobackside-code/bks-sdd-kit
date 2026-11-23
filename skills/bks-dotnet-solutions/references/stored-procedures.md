@@ -117,3 +117,11 @@ public sealed class PostgreSqlConnectionFactory : IDbConnectionFactory
 | SP Result record | `{NomeSP}Result` | `BloqueioSaldoResult` |
 | SP Input record | `{NomeSP}Input` | `BloqueioSaldoInput` |
 | Response DTO | `{NomeSP}Response` | `BloqueioSaldoResponse` |
+
+---
+
+## Formato do texto da SP
+
+O texto da procedure segue `bks-standards/references/sql-standards.md`: um item por linha com a
+vírgula à esquerda, `EXEC` nomeado, variáveis no início e CRLF. As ferramentas `e.sql`,
+`Conferir-Formato.ps1` e `Comparar-Layout.ps1` ficam em `bks-standards/tools/sql/`.
