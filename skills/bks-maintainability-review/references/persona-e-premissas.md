@@ -5,6 +5,10 @@
 O parecer mede o custo de manutenção para um desenvolvedor **pleno** do time. A persona tem uma
 base neutra de linguagem, aqui, e um repertório por stack, em `stacks/<linguagem>.md`.
 
+Soma-se a elas o repertório BKS (o cânone de engenharia do time), em
+`references/repertorio-bks.md`. São as práticas que o cânone espera do pleno, cada uma com o nível
+em que ele a domina.
+
 | Atributo | Definição |
 | --- | --- |
 | Experiência | 3 a 5 anos, pleno: entrega sozinho dentro de padrões conhecidos, pede revisão em decisão estrutural |
@@ -16,6 +20,7 @@ base neutra de linguagem, aqui, e um repertório por stack, em `stacks/<linguage
 | Plataforma | Docker e Kubernetes |
 
 O repertório da stack diz o que a persona domina na linguagem e o que fica **fora do repertório**.
+O repertório BKS se soma a ele e, no mesmo assunto, prevalece.
 Usar o que está fora não é proibido. O critério é: **se usado, está isolado, nomeado com clareza e
 com o porquê documentado?**
 
@@ -29,7 +34,18 @@ Se `BKS_VAULT` estiver definido e acessível, leia antes de pontuar:
   de conceito quando se aplicarem, com o caminho relativo ao vault.
 
 O vault calibra, não substitui: a persona continua pleno, e a rubrica não muda. Sem vault, use só
-esta base e registre no cabeçalho do parecer "persona: base do kit, sem calibração do vault".
+esta base, o `repertorio-bks.md` e a stack, e registre no cabeçalho do parecer "persona: base do
+kit, sem calibração do vault".
+
+A aplicação avaliada não é fonte de calibração: nem o código dela, nem as decisões e as notas do
+próprio projeto entram no repertório. As decisões do projeto valem como premissas do projeto
+(seção 4) e como decisão registrada (`rubrica.md` §6), não como régua.
+
+### Lente pessoal
+
+O parecer mede contra o pleno. A medida contra o que o próprio desenvolvedor domina é da skill
+`bks-daiwl`, que lê o vault e os repositórios dele inteiros. As duas notas ficam separadas: fundidas,
+não se sabe se o problema é o código ou a régua.
 
 ## 2. Premissas para todos os tipos (P01–P14)
 

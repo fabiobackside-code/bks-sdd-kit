@@ -2,27 +2,28 @@
 
 ### **Passo 2.1: Decisão - Criar Novo ou Melhorar Existente**
 
-**IMPORTANTE:** O projeto de testes DEVE ser criado DENTRO da pasta `src/` junto com os outros projetos da solution.
+**IMPORTANTE:** O projeto de testes fica em `tests/[SolutionName].Tests/`, ao lado de `src/`, e
+entra na mesma solution. A suíte de arquitetura fica dentro dele, em `Architecture/`.
 
 **SE não existe projeto de testes COM xUnit:**
 
 ```bash
-# CRIAR projeto de testes DENTRO de src/ (NUNCA em tests/)
-dotnet new xunit -n [SolutionName].Tests -o src/[SolutionName].Tests
+# CRIAR projeto de testes em tests/
+dotnet new xunit -n [SolutionName].Tests -o tests/[SolutionName].Tests
 
 # Adicionar projeto à solution
-dotnet sln add src/[SolutionName].Tests/[SolutionName].Tests.csproj
+dotnet sln add tests/[SolutionName].Tests/[SolutionName].Tests.csproj
 
 # Adicionar referências a TODOS os projetos principais que estão em src/
-cd src/[SolutionName].Tests
-dotnet add reference ../[ProjectName1]/[ProjectName1].csproj
-dotnet add reference ../[ProjectName2]/[ProjectName2].csproj
+cd tests/[SolutionName].Tests
+dotnet add reference ../../src/[ProjectName1]/[ProjectName1].csproj
+dotnet add reference ../../src/[ProjectName2]/[ProjectName2].csproj
 # ... adicionar todos os projetos em src/ que serão testados
 cd ../..
 
 # Verificar estrutura criada
-ls -la src/
-# Deve mostrar: [ProjectName1]/, [ProjectName2]/, [SolutionName].Tests/
+ls -la src/ tests/
+# Deve mostrar: src/[ProjectName1]/, src/[ProjectName2]/, tests/[SolutionName].Tests/
 ```
 
 **SE existem MÚLTIPLOS projetos de teste:**
@@ -31,49 +32,37 @@ ls -la src/
 **ATENÇÃO:** Existem múltiplos projetos de teste separados.
 
 Ação recomendada:
-1. Criar NOVO projeto consolidado [SolutionName].Tests DENTRO de src/
+1. Criar NOVO projeto consolidado em tests/[SolutionName].Tests/
 2. Migrar testes existentes para estrutura unificada
-3. Organizar em pastas Unit/ e Integration/
+3. Organizar em pastas Unit/, Integration/, Shared/ e Architecture/
 4. Remover projetos antigos após migração
 
 Deseja prosseguir com a consolidação? [aguardar confirmação]
 ```
 
-**SE projeto de testes existe FORA de src/ (ex: pasta tests/ separada):**
+**SE o projeto de testes existe dentro de src/:**
 
 ```bash
-# VERIFICAR se existe pasta tests/ separada
-if [ -d "tests/" ]; then
-    echo "ATENÇÃO: Encontrada pasta tests/ separada!"
-    echo "O projeto de testes DEVE estar em src/ junto com os outros projetos."
-    echo ""
-    echo "Ações necessárias:"
-    echo "1. Mover conteúdo de tests/[ProjectName].Tests/ para src/[SolutionName].Tests/"
-    echo "2. Atualizar a solution (.slnx no .NET 10; .sln em legado) para apontar para src/[SolutionName].Tests/"
-    echo "3. Atualizar referências entre projetos (usar ../ em vez de ../../)"
-    echo "4. Remover pasta tests/ vazia após migração"
-    echo ""
-    
+# VERIFICAR se o projeto de testes está em src/
+if [ -d "src/[SolutionName].Tests" ]; then
+    echo "ATENÇÃO: projeto de testes em src/; o lugar dele é tests/[SolutionName].Tests/."
+    echo "Confirme com o usuário antes de mover."
+
     # MOVER projeto existente
-    mv tests/[ProjectName].Tests src/[SolutionName].Tests
-    
-    # ATUALIZAR referências na solution
-    dotnet sln remove tests/[ProjectName].Tests/[ProjectName].Tests.csproj
-    dotnet sln add src/[SolutionName].Tests/[SolutionName].Tests.csproj
-    
-    # ATUALIZAR referências entre projetos (de ../../src/ para ../)
-    cd src/[SolutionName].Tests
-    # Remover referências antigas
-    dotnet remove reference ../../src/[ProjectName1]/[ProjectName1].csproj
-    # Adicionar referências corretas
-    dotnet add reference ../[ProjectName1]/[ProjectName1].csproj
-    dotnet add reference ../[ProjectName2]/[ProjectName2].csproj
+    mkdir -p tests
+    git mv src/[SolutionName].Tests tests/[SolutionName].Tests
+
+    # ATUALIZAR a solution
+    dotnet sln remove src/[SolutionName].Tests/[SolutionName].Tests.csproj
+    dotnet sln add tests/[SolutionName].Tests/[SolutionName].Tests.csproj
+
+    # ATUALIZAR referências entre projetos (de ../ para ../../src/)
+    cd tests/[SolutionName].Tests
+    dotnet remove reference ../[ProjectName1]/[ProjectName1].csproj
+    dotnet add reference ../../src/[ProjectName1]/[ProjectName1].csproj
     cd ../..
-    
-    # REMOVER pasta tests/ vazia
-    rmdir tests/
-    
-    echo "✅ Projeto movido de tests/ para src/"
+
+    echo "✅ Projeto movido de src/ para tests/"
 fi
 ```
 
@@ -94,7 +83,7 @@ Decisão: [aguardar input do usuário]
 Criar estrutura de pastas DENTRO do projeto único em src/:
 
 ```bash
-cd src/[SolutionName].Tests
+cd tests/[SolutionName].Tests
 
 # Criar estrutura organizada internamente
 mkdir -p Unit
@@ -128,7 +117,8 @@ cd ../..
 ```
 src/
 ├── [ProjectName1]/
-├── [ProjectName2]/
+└── [ProjectName2]/
+tests/
 └── [SolutionName].Tests/          ← PROJETO DE TESTES AQUI
     ├── Unit/                       # TESTES UNITÁRIOS
     │   ├── Domain/
@@ -156,6 +146,7 @@ src/
     │       ├── Cache/
     │       └── MessageBus/
     │
+    ├── Architecture/               # REGRAS DE ARQUITETURA COMO TESTE
     └── Shared/                     # RECURSOS COMPARTILHADOS
         ├── Builders/               # Test Data Builders
         ├── Fixtures/               # xUnit Fixtures
@@ -168,7 +159,7 @@ src/
 Para o projeto de teste ÚNICO em src/, garantir que tenha:
 
 ```bash
-cd src/[SolutionName].Tests
+cd tests/[SolutionName].Tests
 
 # Pacotes base xUnit
 dotnet add package xunit --version 2.6.6
@@ -195,7 +186,7 @@ cd ../..
 
 ### **Passo 2.4: Configurar Coverage no .csproj**
 
-Adicionar ao arquivo `src/[SolutionName].Tests/[SolutionName].Tests.csproj`:
+Adicionar ao arquivo `tests/[SolutionName].Tests/[SolutionName].Tests.csproj`:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -228,7 +219,7 @@ Adicionar ao arquivo `src/[SolutionName].Tests/[SolutionName].Tests.csproj`:
 
 ### **Passo 2.5: Criar Arquivo de Configuração de Testes**
 
-**Criar arquivo:** `src/[SolutionName].Tests/xunit.runner.json`
+**Criar arquivo:** `tests/[SolutionName].Tests/xunit.runner.json`
 
 ```json
 {

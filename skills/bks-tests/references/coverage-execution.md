@@ -4,7 +4,7 @@
 
 ```bash
 # Navegar para pasta de testes em src/
-cd src/[SolutionName].Tests
+cd tests/[SolutionName].Tests
 
 # Executar TODOS os testes (Unit + Integration) com cobertura
 dotnet test \
@@ -79,19 +79,19 @@ fi
 
 ## Localização do Projeto de Testes
 
-**Path:** `src/[SolutionName].Tests/`
+**Path:** `tests/[SolutionName].Tests/`
 
 ## Distribuição de Testes
 
 ### Testes Unitários (Unit/)
 - **Total:** [N] testes
-- **Localização:** src/[SolutionName].Tests/Unit/
+- **Localização:** tests/[SolutionName].Tests/Unit/
 - **Cobertura Média:** [X]%
 - **Tempo de Execução:** [T]s
 
 ### Testes de Integração (Integration/)
 - **Total:** [M] testes
-- **Localização:** src/[SolutionName].Tests/Integration/
+- **Localização:** tests/[SolutionName].Tests/Integration/
 - **Cobertura Média:** [Y]%
 - **Tempo de Execução:** [T]s
 
@@ -119,16 +119,16 @@ fi
 ## Plano de Ação
 
 ### Prioridade 1 - Crítico
-- [ ] Adicionar testes em `src/[SolutionName].Tests/Unit/[Path]/[ClassName]Tests.cs`
+- [ ] Adicionar testes em `tests/[SolutionName].Tests/Unit/[Path]/[ClassName]Tests.cs`
 - [ ] Cobrir branches não testados em [ClassName]
 
 ### Prioridade 2 - Importante
 - [ ] Melhorar cobertura de [ClassName] de 85% para 90%+
-- [ ] Adicionar testes de integração em `src/[SolutionName].Tests/Integration/[Path]/`
+- [ ] Adicionar testes de integração em `tests/[SolutionName].Tests/Integration/[Path]/`
 
 ### Prioridade 3 - Nice to Have
 - [ ] Refatorar testes de [ClassName] para melhor legibilidade
-- [ ] Consolidar builders comuns em `src/[SolutionName].Tests/Shared/Builders/`
+- [ ] Consolidar builders comuns em `tests/[SolutionName].Tests/Shared/Builders/`
 ```
 
 ---
@@ -158,13 +158,13 @@ NC='\033[0m' # No Color
 
 # Configurações
 THRESHOLD=90
-TEST_PROJECT="src/*.Tests/*.csproj"
+TEST_PROJECT="tests/*.Tests/*.csproj"
 MODE=${1:-all}  # all, unit, integration
 
 echo -e "${BLUE}🧪 Iniciando execução de testes com análise de cobertura...${NC}"
 echo -e "${BLUE}📊 Meta de cobertura: ${THRESHOLD}%${NC}"
 echo -e "${BLUE}🎯 Modo: ${MODE}${NC}"
-echo -e "${BLUE}📁 Projeto de testes: src/[SolutionName].Tests/${NC}"
+echo -e "${BLUE}📁 Projeto de testes: tests/[SolutionName].Tests/${NC}"
 echo ""
 
 # Limpar resultados anteriores
@@ -290,10 +290,10 @@ fi
 
 # Informações do projeto
 echo -e "${BLUE}📁 Estrutura do Projeto de Testes:${NC}"
-echo "   Projeto: src/[SolutionName].Tests/"
-echo "   Unit Tests: src/[SolutionName].Tests/Unit/"
-echo "   Integration Tests: src/[SolutionName].Tests/Integration/"
-echo "   Shared: src/[SolutionName].Tests/Shared/"
+echo "   Projeto: tests/[SolutionName].Tests/"
+echo "   Unit Tests: tests/[SolutionName].Tests/Unit/"
+echo "   Integration Tests: tests/[SolutionName].Tests/Integration/"
+echo "   Shared: tests/[SolutionName].Tests/Shared/"
 echo ""
 
 echo -e "${BLUE}📁 Relatório HTML disponível em:${NC}"
@@ -360,7 +360,7 @@ jobs:
     
     - name: Run ALL Tests with Coverage (Unit + Integration)
       run: |
-        dotnet test ./src/*.Tests/*.csproj \
+        dotnet test ./tests/*.Tests/*.csproj \
           --no-build \
           --configuration Release \
           --logger "trx;LogFileName=test-results.trx" \
@@ -374,7 +374,7 @@ jobs:
     - name: Run Unit Tests Only (for metrics)
       continue-on-error: true
       run: |
-        dotnet test ./src/*.Tests/*.csproj \
+        dotnet test ./tests/*.Tests/*.csproj \
           --no-build \
           --configuration Release \
           --filter "FullyQualifiedName~.Unit." \
@@ -383,7 +383,7 @@ jobs:
     - name: Run Integration Tests Only (for metrics)
       continue-on-error: true
       run: |
-        dotnet test ./src/*.Tests/*.csproj \
+        dotnet test ./tests/*.Tests/*.csproj \
           --no-build \
           --configuration Release \
           --filter "FullyQualifiedName~.Integration." \
@@ -422,7 +422,7 @@ jobs:
           
           const comment = `## 📊 Test Coverage Report
           
-          **Project Structure:** Tests in \`src/[SolutionName].Tests/\`
+          **Project Structure:** Tests in \`tests/[SolutionName].Tests/\`
           
           | Metric | Coverage | Target | Status |
           |--------|----------|--------|--------|
@@ -433,9 +433,9 @@ jobs:
           ${lineCoverage >= threshold && branchCoverage >= threshold && methodCoverage >= threshold ? '🎉 **All coverage targets met!**' : '**Coverage below 90% threshold**'}
           
           **Project Organization:**
-          - 📁 Unit Tests: \`src/[Project].Tests/Unit/\`
-          - 📁 Integration Tests: \`src/[Project].Tests/Integration/\`
-          - 📁 Shared Resources: \`src/[Project].Tests/Shared/\`
+          - 📁 Unit Tests: \`tests/[Project].Tests/Unit/\`
+          - 📁 Integration Tests: \`tests/[Project].Tests/Integration/\`
+          - 📁 Shared Resources: \`tests/[Project].Tests/Shared/\`
           `;
           
           github.rest.issues.createComment({

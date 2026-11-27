@@ -5,7 +5,7 @@ complementam estes. Ao registrar um achado, indique o eixo.
 
 ## APIs (A1, A3, A8)
 
-- Endpoints finos: recebem, validam, chamam um caso de uso e mapeiam a resposta.
+- Endpoints finos: recebem, validam, chamam o serviço ou a sessão e mapeiam a resposta.
 - Validação de entrada num ponto único e previsível.
 - Erros convertidos num formato único de resposta por um mecanismo central.
 - Contrato publicado (OpenAPI ou equivalente) gerado a partir do código.
@@ -13,7 +13,7 @@ complementam estes. Ao registrar um achado, indique o eixo.
 ## Workers e serviços (A6, A8, A9)
 
 - O laço principal legível em uma tela: obter trabalho, processar, registrar, aguardar.
-- Processamento do item extraído para um caso de uso testável fora do host.
+- Processamento do item extraído para o serviço ou a sessão, testável fora do host.
 - Idempotência explícita quando o item pode ser reprocessado.
 - Política de retry e de mensagens com falha (dead letter) explícita.
 - Falha de um item não derruba o laço; encerramento gracioso respeitado.

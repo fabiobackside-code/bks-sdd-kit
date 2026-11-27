@@ -429,6 +429,23 @@ tomaram umas vinte decisões que a skill não fixava, divergindo entre si na mes
 registrada. Cada uma virou regra em `references/rubrica.md`, no `SKILL.md` ou em
 `references/fundamentacao.md`. Nota que depende de quem avalia não compara versões.
 
+### O pleno é medido contra o cânone do time, e o código avaliado nunca é fonte
+
+A régua do parecer é um desenvolvedor pleno formado no cânone BKS (o cânone de engenharia do time),
+não um pleno genérico. O
+`references/repertorio-bks.md` lista as práticas que esse pleno aplica, reconhece ou deixa para o
+sênior, cada uma com o sinal no código e o eixo que alimenta. Os itens vieram da wiki, das skills
+do kit e das decisões dos projetos do time, e foram aprovados um a um pelo mantenedor.
+
+O repertório tem versão própria, registrada em cada parecer, porque trocar um nível muda a nota.
+A aplicação avaliada fica fora das fontes: um item que só existisse nela mediria o código contra
+ele mesmo. A medida contra o que o próprio desenvolvedor domina é da `bks-daiwl`, em nota separada,
+para que uma nota baixa diga se o problema é o código ou a régua.
+
+O nível existe porque o repertório inteiro de quem orienta o time não é o do pleno. Uma prática
+que o mantenedor domina, como concorrência manual ou base genérica de pipeline, conta contra
+em código de negócio e é neutra quando isolada e documentada.
+
 ## Consumidores
 
 O kit foi extraido de um vault em uso. Os projetos que o consomem continuam sendo a fonte de

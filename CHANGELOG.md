@@ -4,6 +4,30 @@ Mudanças relevantes do `bks-sdd-kit`, da mais recente para a mais antiga. Forma
 [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/); versões seguem
 [SemVer](https://semver.org/lang/pt-BR/).
 
+## [1.2.0] — 2026-11-27
+
+### Adicionado
+- `bks-maintainability-review/references/repertorio-bks.md` 1.0.0: cem práticas do cânone BKS (o cânone de engenharia do time), cada
+  uma com nível (DEVE APLICAR, RECONHECE ou SÊNIOR), sinal no código e eixo. O parecer registra a
+  versão do repertório no cabeçalho.
+
+### Alterado
+- `bks-maintainability-review`: a persona soma o repertório BKS ao repertório da stack; a aplicação
+  avaliada não é fonte de calibração; a lente pessoal é a `bks-daiwl`, em nota separada.
+- Rubrica: o eixo A4 (aderência ao repertório) pontua pelo nível de cada item do repertório. A âncora
+  5 do A10 (documentação do porquê) pede o porquê no `ARCHITECTURE.md` e, no código, só contrato e
+  guarda contra regressão. A âncora 5 do A11 (duplicação e abstração) extrai função privada no
+  segundo uso e abstrai a partir do terceiro.
+- `stacks/dotnet.md`: `[LoggerMessage]` é repertório; base genérica com vários parâmetros é
+  RECONHECE para herdar e SÊNIOR para escrever; concorrência manual e pooling são RECONHECE
+  isolados em adapter, com a carga medida, e SÊNIOR em código de negócio.
+- `criterios-comuns.md`: o endpoint e o worker chamam o serviço ou a sessão.
+- `/bks:maintainability`: carrega o repertório e registra a versão; avisa em uma linha quando a
+  `bks-daiwl` não tem configuração.
+- `bks-tests`: o projeto de testes fica em `tests/[SolutionName].Tests/`, com `Architecture/`
+  dentro; os templates sem `#region` e com nomes `Method_Condition_Result` em inglês.
+- `bks-dotnet-solutions/references/stored-procedures.md`: o repositório não abre `Activity` à mão.
+
 ## [1.1.1] — 2026-11-17
 
 ### Adicionado

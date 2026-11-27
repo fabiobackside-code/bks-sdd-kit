@@ -7,7 +7,6 @@ Cada SP tem seus parâmetros explicitamente declarados via `DynamicParameters`. 
 ```csharp
 public async Task<SpResult> ExecuteAsync(SpInput input, CancellationToken ct)
 {
-    using var activity = Activity.Current?.Source.StartActivity("Repository - sp_nome");
     using var conn = _connectionFactory.CreateConnection();
 
     var p = new DynamicParameters();
@@ -29,6 +28,7 @@ public async Task<SpResult> ExecuteAsync(SpInput input, CancellationToken ct)
 ```
 
 **Regras:**
+- Sem `Activity` aberta à mão no repositório: o span vem da etapa do pipeline que chama o repositório
 - `ParameterDirection.Output` com `size` explícito em todos os parâmetros de saída
 - Para `varchar(max)` de saída: `size: -1`
 - Nunca omitir o `commandType: CommandType.StoredProcedure`
@@ -42,7 +42,6 @@ A SP recebe um único `varchar` com JSON serializado (`mensagem_in`) e retorna u
 ```csharp
 public async Task<TResponse> ExecuteAsync(TInput input, CancellationToken ct)
 {
-    using var activity = Activity.Current?.Source.StartActivity("Repository - sp_nome");
     using var conn = _connectionFactory.CreateConnection();
 
     var p = new DynamicParameters();

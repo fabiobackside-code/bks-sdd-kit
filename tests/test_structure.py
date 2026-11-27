@@ -271,8 +271,8 @@ def test_invariants():
     tests_skill = read('skills', 'bks-tests', 'SKILL.md')
     check('bks-tests proibe FluentAssertions',
           'FluentAssertions' in tests_skill and 'Assert` nativo' in tests_skill)
-    check('bks-tests fixa o projeto de testes em src/',
-          'src/' in tests_skill and 'Nunca em `tests/`' in tests_skill)
+    check('bks-tests fixa o projeto de testes em tests/',
+          'tests/' in tests_skill and 'Nunca dentro de `src/`' in tests_skill)
 
     dotnet = read('skills', 'bks-dotnet-solutions', 'SKILL.md')
     check('bks-dotnet-solutions cita o padrao TXC', 'TXC' in dotnet)

@@ -172,7 +172,7 @@ public class ExemploTests
     }
 
     [Fact]
-    public async Task Metodo_Cenario_Resultado()
+    public async Task Method_Condition_Result()
     {
         // Arrange - nunca atribuir null a tipos não-nullable
         string? valorNulo = null;           // nullable quando null for possível
@@ -194,7 +194,7 @@ public class ExemploTests
 
 // SE BaseReturn for STRUCT (value type):
 [Fact]
-public void Execute_ComDadosValidos_DeveRetornarSucesso()
+public void Execute_WithValidData_ReturnsSuccess()
 {
     var result = _sut.Execute(input);
 
@@ -209,7 +209,7 @@ public void Execute_ComDadosValidos_DeveRetornarSucesso()
 
 // SE BaseReturn for CLASS (reference type):
 [Fact]
-public void Execute_ComDadosValidos_DeveRetornarSucesso()
+public void Execute_WithValidData_ReturnsSuccess()
 {
     var result = _sut.Execute(input);
 
