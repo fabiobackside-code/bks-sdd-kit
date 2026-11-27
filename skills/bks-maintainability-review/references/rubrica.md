@@ -11,6 +11,8 @@ Nota de 1 a 5 por eixo. Âncoras definidas para 1, 3 e 5; 2 e 4 são intermediá
 - **3:** maioria dos nomes de domínio; alguns genéricos na camada de aplicação.
 - **5:** classes, métodos e tabelas usam os termos do negócio; o fluxo é entendido só pelos nomes.
 
+Os itens de nome e idioma do `repertorio-bks.md` (K-17, K-80 a K-82) entram neste eixo.
+
 ### A2. Tamanho e complexidade (Analisabilidade)
 - **1:** métodos com complexidade cognitiva > 25 ou com mais de 60 linhas, de forma recorrente.
 - **3:** maioria dos métodos com complexidade cognitiva ≤ 15 e ≤ 30 linhas.
@@ -24,9 +26,14 @@ Limites baseados em Visser et al. (SIG) e no limiar padrão de complexidade cogn
 - **5:** até 4–5 saltos; cada camada agrega comportamento (módulos profundos).
 
 ### A4. Aderência ao repertório (Analisabilidade)
-- **1:** construções fora do repertório espalhadas pelo código de negócio.
-- **3:** poucas, isoladas, sem explicação.
-- **5:** ausentes, ou isoladas em componente nomeado com o porquê documentado.
+- **1:** construções fora do repertório espalhadas pelo código de negócio; práticas `DEVE APLICAR` do repertório BKS (o cânone de engenharia do time) ausentes onde cabiam, de forma recorrente.
+- **3:** poucas construções fora do repertório, isoladas, sem explicação; uma ou outra prática `DEVE APLICAR` ausente.
+- **5:** as práticas `DEVE APLICAR` presentes onde cabem; o que é `RECONHECE` documentado; o que é `SÊNIOR` ou fora do repertório, ausente ou isolado em componente nomeado com o porquê documentado.
+
+O repertório é o da stack (`stacks/<linguagem>.md`) somado ao `repertorio-bks.md`. Pela regra de
+cada nível: `DEVE APLICAR` presente conta a favor e ausente onde cabia conta contra; `RECONHECE` é
+neutro se documentado; `SÊNIOR` conta contra em código de negócio, salvo isolado em componente nomeado e
+documentado. Cada achado do eixo cita o id do item (K-nn).
 
 ### A5. Fronteiras (Modularidade)
 - **1:** domínio referencia infraestrutura; adapters contêm regra de negócio.
@@ -56,12 +63,15 @@ Limites baseados em Visser et al. (SIG) e no limiar padrão de complexidade cogn
 ### A10. Documentação do porquê (Analisabilidade)
 - **1:** sem README ou ADR; comentários repetem o código.
 - **3:** README de execução; decisões implícitas.
-- **5:** README, ADRs das decisões não óbvias e comentários de intenção onde o código surpreende.
+- **5:** README de uso e configuração; `ARCHITECTURE.md` com o porquê das decisões não óbvias; ADRs; no código, só contrato (resumo de uma linha em membro público) e guarda contra regressão (até duas linhas, o quê).
+
+Comentário de trade-off, de histórico ou que repete o nome do membro conta contra (K-75 e K-76 do
+`repertorio-bks.md`).
 
 ### A11. Duplicação vs. abstração (Reusabilidade)
 - **1:** regra de negócio duplicada, ou abstrações genéricas criadas para 1–2 usos.
 - **3:** duplicação baixa; uma ou outra abstração prematura.
-- **5:** regra de negócio única; abstração só onde há 3+ usos reais.
+- **5:** regra de negócio única; no segundo uso, extração para função privada; tipo, interface ou base genérica só a partir do terceiro uso real.
 
 Atenção: código gerado por IA tende a aplicar DRY e Object Calisthenics além do ponto em que reduzem custo de manutenção. Penalize o excesso tanto quanto a falta.
 
@@ -179,5 +189,9 @@ Trocar o limiar é mudar a régua.
 
 **Repertório do time.** Nome ou estrutura que vem de template ou skill do próprio time (por exemplo,
 o que a `bks-dotnet-solutions` gera) é repertório e não conta contra o A1 nem contra o A4.
+
+**Repertório BKS.** O nível de cada item do `repertorio-bks.md` decide como ele pontua, nos eixos que
+o item indica. Item com condição só pontua onde a condição existe. A versão do repertório usada vai
+no cabeçalho do parecer.
 
 **Nota final** com uma casa decimal, sem arredondar para inteiro.

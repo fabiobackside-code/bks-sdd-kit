@@ -35,9 +35,10 @@ Faça, nesta ordem:
    Sem dúvida e com até três aplicações, siga direto. Acima de três, confirme a lista antes: cada
    parecer lê muito código.
 
-3. **Contexto.** Leia `CLAUDE.md`, `specs/`, `decisions/` e `brain/engineering/` do projeto. Se
-   `BKS_VAULT` estiver definido, calibre a persona pelo vault como a skill descreve; sem vault,
-   siga com a persona base e registre isso em cada parecer.
+3. **Contexto.** Leia `CLAUDE.md`, `specs/`, `decisions/` e `brain/engineering/` do projeto.
+   Carregue o repertório BKS (`references/repertorio-bks.md` da skill) e anote a versão dele, que
+   vai no cabeçalho de cada parecer. Se `BKS_VAULT` estiver definido, calibre a persona pelo vault
+   como a skill descreve; sem vault, siga com a persona base e registre isso em cada parecer.
 
 4. **Parecer por aplicação**, pelo modo Análise da skill, em
    `outputs/maintainability/<app>_<tipo>_<AAAA-MM-DD>.html`. Nunca sobrescreva: nome repetido ganha
@@ -50,11 +51,13 @@ Faça, nesta ordem:
    contra o que o próprio desenvolvedor domina. Se houver configuração dela (`.daiwl/config.md`
    no repositório, `~/.daiwl/config.md` ou `DAIWL_VAULT`), ofereça rodar o `analyze` dela em cada
    aplicação avaliada, seguindo `${CLAUDE_PLUGIN_ROOT}/skills/bks-daiwl/SKILL.md`. A saída fica no
-   histórico da `bks-daiwl`, não em `outputs/`. Sem configuração, não ofereça `init`: siga.
+   histórico da `bks-daiwl`, não em `outputs/`. Sem configuração, diga em uma linha que a lente
+   pessoal não rodou por falta de configuração da `bks-daiwl`, sem oferecer `init`, e siga.
 
 7. **Registro.** Grave o critério desta execução em
    `docs/prompts/prompt-maintainability-{YYYY-MM-DD}.md`: aplicações avaliadas e puladas, stack e
-   tipo de cada uma, persona usada (com ou sem vault), perguntas feitas e respostas. É o que permite
+   tipo de cada uma, persona usada (com ou sem vault), versão do repertório BKS, perguntas feitas e
+   respostas. É o que permite
    comparar duas execuções com a mesma régua. Se o passo 6 rodou, registre também a nota pessoal
    de cada aplicação.
 

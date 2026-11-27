@@ -31,16 +31,22 @@ Medições úteis: `dotnet list reference` para referências entre projetos, bus
 | Testes | xUnit com `Assert` nativo, fakes manuais, Testcontainers |
 | Observabilidade | `ActivitySource`, `Meter`, `ILogger` estruturado |
 
+O que o cânone BKS (o cânone de engenharia do time) espera do pleno nesta stack está no
+`references/repertorio-bks.md`, que se soma a esta tabela.
+
 ### Fora do repertório (cada uso conta como custo cognitivo)
 
-- Reflection, expression trees, source generators, `dynamic`, emissão de IL.
-- Generics com múltiplas restrições aninhadas; covariância e contravariância explícitas.
+- Reflection, expression trees, source generators, `dynamic`, emissão de IL. Exceção nominal: o
+  `[LoggerMessage]` é repertório. O pleno lê o atributo como declaração e não mantém o código gerado.
+- Generics com múltiplas restrições aninhadas; covariância e contravariância explícitas. Herdar uma
+  base genérica com vários parâmetros de tipo e preencher os tipos é RECONHECE; escrever a base é
+  SÊNIOR, aceito só no componente que a publica.
 - Programação funcional avançada: mônadas, railway-oriented encadeado, combinadores.
 - Metaprogramação por convenção: auto-registro de DI por varredura de assembly, interceptors,
   decorators gerados.
-- `Span<T>`, `Memory<T>`, pooling manual e otimização de alocação sem medição que a justifique.
-- Concorrência manual (`SemaphoreSlim`, `Channel<T>`, locks) fora de um componente nomeado e
-  documentado.
+- `Span<T>`, `Memory<T>`, pooling manual e concorrência manual (`SemaphoreSlim`, `Channel<T>`,
+  locks). São RECONHECE quando isolados num adapter nomeado, com a capacidade em `IOptions<T>` e a
+  carga medida no `ARCHITECTURE.md`; em código de negócio, SÊNIOR.
 
 ## Critérios
 

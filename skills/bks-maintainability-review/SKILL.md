@@ -41,6 +41,7 @@ IA, e é exatamente o que esta análise precisa revelar.
 | Arquivo | Quando ler |
 | --- | --- |
 | `references/persona-e-premissas.md` | Sempre, no início. Persona pleno, calibração pelo vault, premissas P01–P18 |
+| `references/repertorio-bks.md` | Sempre, antes de pontuar. As práticas que o cânone BKS espera do pleno, com nível, sinal no código e eixo |
 | `references/rubrica.md` | Sempre, antes de pontuar. Eixos A1–A12, âncoras, pesos por tipo e cálculo |
 | `references/criterios-comuns.md` | Sempre. Critérios que valem para qualquer stack |
 | `references/criterios-condicionais.md` | Só se o código mostrar cofre de credenciais ou manifests de OpenShift/Kubernetes |
@@ -98,8 +99,9 @@ Antes de pontuar, colete:
    eles.
 2. **Decisões registradas**: `decisions/`, `specs/`, `brain/engineering/`, README, `CLAUDE.md`.
    Escolhas justificadas ali **não** são penalizadas; podem ser questionadas em seção separada.
-3. **Calibração da persona**: se `BKS_VAULT` estiver definido, siga a seção "Calibração pelo
-   vault" de `references/persona-e-premissas.md`. Sem vault, registre isso no cabeçalho.
+3. **Calibração da persona**: carregue o `references/repertorio-bks.md` e anote a versão dele. Se
+   `BKS_VAULT` estiver definido, siga também a seção "Calibração pelo vault" de
+   `references/persona-e-premissas.md`. Sem vault, registre isso no cabeçalho.
 4. **Métricas medidas** (saída de SonarQube, NDepend, analisadores da stack). Números medidos
    substituem estimativas.
 5. **Código pela unidade de análise do tipo** (Passo 1), mais os componentes transversais: ponto
@@ -207,8 +209,8 @@ Regras de conteúdo:
   causa sistêmica: prompt de geração, template ou convenção).
 
 Para que a comparação entre versões seja válida, registre no cabeçalho: data, identificação da
-versão (tag, commit ou branch), tipo, avaliador, fatia analisada, base de comparação e se a persona
-foi calibrada pelo vault. Mudar qualquer desses itens muda a régua; aponte isso se acontecer.
+versão (tag, commit ou branch), tipo, avaliador, fatia analisada, base de comparação, a versão do
+repertório BKS e se a persona foi calibrada pelo vault. Mudar qualquer desses itens muda a régua; aponte isso se acontecer.
 
 Se o projeto proíbe nomear a IA em entregável, o cabeçalho diz "avaliador automatizado" e o modelo
 exato vai para o registro da execução em `docs/prompts/`, que é a trilha de auditoria.

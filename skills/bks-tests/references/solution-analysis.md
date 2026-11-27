@@ -19,25 +19,25 @@ ls -la src/ 2>/dev/null || ls -la
 echo ""
 echo "🔍 Verificando localização de projetos de teste..."
 
-# Verificar pasta tests/ separada (ERRADO)
-if [ -d "tests/" ]; then
-    echo "ATENÇÃO: Encontrada pasta tests/ - Projetos devem estar em src/!"
-    ls -la tests/
+# Verificar projeto de testes dentro de src/ (ERRADO)
+if find src/ -name "*Tests*.csproj" 2>/dev/null | grep -q .; then
+    echo "ATENÇÃO: projeto de testes em src/ - o lugar dele é tests/!"
+    find src/ -name "*Tests*.csproj"
 fi
 
-# Verificar pasta test/ separada (ERRADO)
+# Verificar pasta test/ no singular (ERRADO)
 if [ -d "test/" ]; then
-    echo "ATENÇÃO: Encontrada pasta test/ - Projetos devem estar em src/!"
+    echo "ATENÇÃO: Encontrada pasta test/ - o projeto de testes fica em tests/!"
     ls -la test/
 fi
 
-# Verificar se já existe projeto de testes em src/ (CORRETO)
+# Verificar se já existe projeto de testes em tests/ (CORRETO)
 echo ""
-echo "✅ Verificando src/ (localização correta):"
-find src/ -name "*Tests*.csproj" -o -name "*Test.csproj" 2>/dev/null || echo "Nenhum projeto de testes encontrado em src/"
+echo "✅ Verificando tests/ (localização correta):"
+find tests/ -name "*Tests*.csproj" 2>/dev/null || echo "Nenhum projeto de testes encontrado em tests/"
 
 echo ""
-echo "📋 REGRA: Projeto de testes DEVE estar em src/[SolutionName].Tests/"
+echo "📋 REGRA: Projeto de testes DEVE estar em tests/[SolutionName].Tests/"
 ```
 
 ### **Passo 1.1b: Marcar projetos de infraestrutura para exclusão**
@@ -90,7 +90,8 @@ Para cada projeto principal identificado, analise:
 ```
 src/
 ├── [ProjectName1]/          ← Projeto principal 1
-├── [ProjectName2]/          ← Projeto principal 2
+└── [ProjectName2]/          ← Projeto principal 2
+tests/
 └── [SolutionName].Tests/    ← Projeto de testes (se existe)
 ```
 
@@ -118,7 +119,7 @@ src/
 ## Projetos de Teste Existentes
 
 ### Projeto Teste: [Nome]
-- **Path:** src/[SolutionName].Tests/ (ou outra localização)
+- **Path:** tests/[SolutionName].Tests/ (ou outra localização)
 - **Framework de Teste:** [xUnit/NUnit/MSTest]
 - **Estrutura:** [Único projeto / Múltiplos projetos]
 - **Organização Interna:**

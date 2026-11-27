@@ -10,10 +10,12 @@
 ```
 src/
 ├── [ProjectName1]/              ← Código de produção
-├── [ProjectName2]/              ← Código de produção
+└── [ProjectName2]/              ← Código de produção
+tests/
 └── [SolutionName].Tests/        ← PROJETO DE TESTES
     ├── Unit/                    ← Testes unitários
     ├── Integration/             ← Testes de integração
+    ├── Architecture/            ← Regras de arquitetura como teste
     └── Shared/                  ← Recursos compartilhados
 ```
 
@@ -47,7 +49,7 @@ src/
 ### Via dotnet
 ```bash
 # Todos
-cd src/[SolutionName].Tests
+cd tests/[SolutionName].Tests
 dotnet test
 
 # Unitários
@@ -93,12 +95,12 @@ xdg-open TestResults/CoverageReport/index.html
 
 ### Nomenclatura
 ```
-[MetodoTestado]_[Cenário]_[ResultadoEsperado]
+[Method]_[Condition]_[Result]
 ```
 
 Exemplo:
 ```csharp
-CalcularDesconto_ComValorNegativo_DeveLancarException
+CalculateDiscount_WithNegativeValue_ThrowsException
 ```
 
 ### Estrutura (AAA Pattern)
@@ -121,14 +123,14 @@ public async Task Exemplo()
 
 ### 1. Para Testes Unitários
 ```bash
-# Criar em src/[SolutionName].Tests/Unit/[Camada]/
-touch src/[SolutionName].Tests/Unit/Domain/MinhaClasseTests.cs
+# Criar em tests/[SolutionName].Tests/Unit/[Camada]/
+touch tests/[SolutionName].Tests/Unit/Domain/MinhaClasseTests.cs
 ```
 
 ### 2. Para Testes de Integração
 ```bash
-# Criar em src/[SolutionName].Tests/Integration/
-touch src/[SolutionName].Tests/Integration/API/MeuEndpointTests.cs
+# Criar em tests/[SolutionName].Tests/Integration/
+touch tests/[SolutionName].Tests/Integration/API/MeuEndpointTests.cs
 ```
 
 ### 3. Usar Builders do Shared/
@@ -170,7 +172,7 @@ open TestResults/CoverageReport/index.html
 
 ---
 
-**Localização do Projeto de Testes:** `src/[SolutionName].Tests/`  
+**Localização do Projeto de Testes:** `tests/[SolutionName].Tests/`  
 **Threshold de Cobertura:** 90%
 ```
 

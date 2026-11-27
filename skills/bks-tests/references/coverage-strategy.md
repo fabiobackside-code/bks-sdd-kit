@@ -9,20 +9,21 @@
 
 ## Estrutura do Projeto
 
-**Localização dos Testes:** `src/[SolutionName].Tests/`
+**Localização dos Testes:** `tests/[SolutionName].Tests/`
 
 ```
 src/
 ├── [ProjectName1]/         ← Código de produção
-├── [ProjectName2]/         ← Código de produção
-└── [SolutionName].Tests/   ← TESTES (Unit/, Integration/, Shared/)
+└── [ProjectName2]/         ← Código de produção
+tests/
+└── [SolutionName].Tests/   ← TESTES (Unit/, Integration/, Shared/, Architecture/)
 ```
 
 ## Prioridade CRÍTICA (95%+ obrigatório)
 
 ### 1. Domain/Core Layer
 **Meta:** 98%+ de cobertura
-**Localização no projeto de testes:** `src/[SolutionName].Tests/Unit/Domain/`
+**Localização no projeto de testes:** `tests/[SolutionName].Tests/Unit/Domain/`
 
 - [ ] Entidades de domínio
 - [ ] Value Objects
@@ -33,7 +34,7 @@ src/
 
 ### 2. Application Layer
 **Meta:** 95%+ de cobertura
-**Localização no projeto de testes:** `src/[SolutionName].Tests/Unit/Application/`
+**Localização no projeto de testes:** `tests/[SolutionName].Tests/Unit/Application/`
 
 - [ ] Use Cases
 - [ ] Services
@@ -44,7 +45,7 @@ src/
 
 ### 3. Adapters/Infrastructure
 **Meta:** 90%+ de cobertura
-**Localização no projeto de testes:** `src/[SolutionName].Tests/Unit/Adapters/` e `Integration/`
+**Localização no projeto de testes:** `tests/[SolutionName].Tests/Unit/Adapters/` e `Integration/`
 
 - [ ] Repositories (lógica, não apenas CRUD)
 - [ ] External Service Clients
@@ -56,7 +57,7 @@ src/
 
 ### 4. Controllers/API Endpoints
 **Meta:** 90%+ de cobertura
-**Localização no projeto de testes:** `src/[SolutionName].Tests/Integration/API/`
+**Localização no projeto de testes:** `tests/[SolutionName].Tests/Integration/API/`
 
 - [ ] Validação de requests
 - [ ] Mapeamento de responses
@@ -64,7 +65,7 @@ src/
 
 ### 5. Utilities/Helpers
 **Meta:** 85%+ de cobertura
-**Localização no projeto de testes:** `src/[SolutionName].Tests/Unit/Utilities/`
+**Localização no projeto de testes:** `tests/[SolutionName].Tests/Unit/Utilities/`
 
 - [ ] Extensions methods
 - [ ] Helper classes
@@ -72,7 +73,7 @@ src/
 ## Prioridade MÉDIA (pode ficar 75-85%)
 
 ### 6. Configuration/Startup
-**Localização no projeto de testes:** `src/[SolutionName].Tests/Integration/Configuration/`
+**Localização no projeto de testes:** `tests/[SolutionName].Tests/Integration/Configuration/`
 
 - [ ] DI Configuration
 - [ ] Middleware setup
@@ -90,10 +91,10 @@ src/
 
 ---
 
-## Organização no Projeto Único (src/)
+## Organização no Projeto Único (tests/)
 
 ```
-src/[SolutionName].Tests/
+tests/[SolutionName].Tests/
 ├── Unit/              ← Testes Unitários (isolados, rápidos, < 100ms)
 │   └── [Espelha estrutura dos projetos em src/]
 │
@@ -120,8 +121,8 @@ Cada teste DEVE seguir:
 - Assert: Verificar resultado
 
 ✅ **Nomenclatura Clara**
-- Formato: `[MetodoTestado]_[Cenário]_[ResultadoEsperado]`
-- Exemplo: `CalcularDesconto_ComValorNegativo_DeveLancarException`
+- Formato: `[Method]_[Condition]_[Result]`, em inglês
+- Exemplo: `CalculateDiscount_WithNegativeValue_ThrowsException`
 
 ✅ **Um Assert por Conceito**
 - Pode ter múltiplos asserts, mas testando o MESMO conceito

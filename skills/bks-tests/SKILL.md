@@ -1,7 +1,7 @@
 ---
 name: bks-tests
 description: >
-  Analisa uma solution .NET, cria ou melhora um projeto único de testes xUnit dentro de src/
+  Analisa uma solution .NET, cria ou melhora um projeto único de testes xUnit em tests/
   e leva a cobertura a 90%+ em linhas, branches e métodos, com conformidade SonarQube.
   Use sempre que o usuário quiser criar testes para uma solution .NET, subir a cobertura,
   montar projeto de testes, gerar relatorio de cobertura, corrigir issues do SonarQube em
@@ -18,8 +18,8 @@ variavel em **inglês**.
 ## O que esta skill entrega
 
 1. Analise da estrutura da solution e do que já existe de teste
-2. Um projeto único de testes xUnit, dentro de `src/`, organizado em `Unit/`, `Integration/` e
-   `Shared/`
+2. Um projeto único de testes xUnit, em `tests/`, organizado em `Unit/`, `Integration/`,
+   `Architecture/` e `Shared/`
 3. Cobertura de 90%+ em linhas, branches e métodos
 4. Relatorio HTML navegavel
 5. Scripts de execução e integração com CI/CD
@@ -29,17 +29,19 @@ variavel em **inglês**.
 
 ### Localização do projeto de testes
 
-O projeto de testes fica em `src/`, junto dos projetos de produção:
+O projeto de testes fica em `tests/`, ao lado de `src/`, e entra na mesma solution:
 
 ```
 src/
 ├── [ProjectName1]/
-├── [ProjectName2]/
+└── [ProjectName2]/
+tests/
 └── [SolutionName].Tests/     <- aqui
+    └── Architecture/         <- as regras de arquitetura como teste
 ```
 
-Nunca em `tests/`, `test/` ou na raiz. A solution inteira vive em `src/`; separar os testes
-quebra a consistência, alonga os caminhos relativos entre projetos e complica build e deploy.
+Nunca dentro de `src/`, em `test/` no singular ou fora da solution. Teste fora da solution não roda
+no `dotnet test` de quem clona o repositório, e quebra sem ninguém notar.
 
 Um projeto só. Unitario e integração convivem nele, separados por diretório — não por projeto.
 

@@ -4,7 +4,7 @@ Para CADA classe no projeto principal, seguir este processo:
 
 #### **Template para Testes Unitários**
 
-**Localização:** `src/[SolutionName].Tests/Unit/[Namespace]/[ClassName]Tests.cs`
+**Localização:** `tests/[SolutionName].Tests/Unit/[Namespace]/[ClassName]Tests.cs`
 
 ```csharp
 using Moq;
@@ -38,10 +38,8 @@ public class [ClassName]Tests
         );
     }
 
-    #region [NomeDoMetodo1] Tests
-
     [Fact]
-    public async Task [NomeDoMetodo1]_ComParametrosValidos_DeveRetornarSucesso()
+    public async Task [MethodName1]_WithValidParameters_ReturnsSuccess()
     {
         // Arrange
         var input = [ClassName]Builder.CreateValid(); // Usando builder do Shared/
@@ -50,7 +48,7 @@ public class [ClassName]Tests
             .ReturnsAsync(valorEsperado);
 
         // Act
-        var result = await _sut.[NomeDoMetodo1](input);
+        var result = await _sut.[MethodName1](input);
 
         // Assert
         Assert.NotNull(result);
@@ -64,13 +62,13 @@ public class [ClassName]Tests
     }
 
     [Fact]
-    public async Task [NomeDoMetodo1]_ComParametroNulo_DeveLancarArgumentNullException()
+    public async Task [MethodName1]_WithNullParameter_ThrowsArgumentNullException()
     {
         // Arrange
-        object? inputNulo = null;
+        object? nullInput = null;
 
         // Act
-        Func<Task> act = async () => await _sut.[NomeDoMetodo1](inputNulo!);
+        Func<Task> act = async () => await _sut.[MethodName1](nullInput!);
 
         // Assert
         var ex = await Assert.ThrowsAsync<ArgumentNullException>(act);
@@ -81,10 +79,10 @@ public class [ClassName]Tests
     [InlineData("")]
     [InlineData("   ")]
     [InlineData(null)]
-    public async Task [NomeDoMetodo1]_ComStringInvalida_DeveRetornarFalha(string stringInvalida)
+    public async Task [MethodName1]_WithInvalidString_ReturnsFailure(string invalidString)
     {
         // Arrange & Act
-        var result = await _sut.[NomeDoMetodo1](stringInvalida);
+        var result = await _sut.[MethodName1](invalidString);
 
         // Assert
         Assert.NotNull(result);
@@ -93,7 +91,7 @@ public class [ClassName]Tests
     }
 
     [Fact]
-    public async Task [NomeDoMetodo1]_QuandoDependenciaFalha_DevePropagar()
+    public async Task [MethodName1]_WhenDependencyFails_Propagates()
     {
         // Arrange
         var exception = new Exception("Erro na dependência");
@@ -103,20 +101,19 @@ public class [ClassName]Tests
         var input = [ClassName]Builder.CreateValid();
 
         // Act
-        Func<Task> act = async () => await _sut.[NomeDoMetodo1](input);
+        Func<Task> act = async () => await _sut.[MethodName1](input);
 
         // Assert
         var ex = await Assert.ThrowsAsync<Exception>(act);
         Assert.Equal("Erro na dependência", ex.Message);
     }
 
-    #endregion
 }
 ```
 
 #### **Template para Testes de Integração**
 
-**Localização:** `src/[SolutionName].Tests/Integration/API/[Feature]IntegrationTests.cs`
+**Localização:** `tests/[SolutionName].Tests/Integration/API/[Feature]IntegrationTests.cs`
 
 ```csharp
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -146,7 +143,7 @@ public class [Feature]IntegrationTests : IClassFixture<CustomWebApplicationFacto
     }
 
     [Fact]
-    public async Task Post_[Endpoint]_ComDadosValidos_DeveRetornar201Created()
+    public async Task Post_[Endpoint]_WithValidData_Returns201Created()
     {
         // Arrange
         var requestData = new RequestDto
@@ -167,7 +164,7 @@ public class [Feature]IntegrationTests : IClassFixture<CustomWebApplicationFacto
     }
 
     [Fact]
-    public async Task Get_[Endpoint]_DeveRetornar200ComLista()
+    public async Task Get_[Endpoint]_WithExistingItems_Returns200WithList()
     {
         // Arrange - Seed data
         await _factory.SeedDatabaseAsync();
@@ -184,7 +181,7 @@ public class [Feature]IntegrationTests : IClassFixture<CustomWebApplicationFacto
     }
 
     [Fact]
-    public async Task Put_[Endpoint]_ComIdInexistente_DeveRetornar404()
+    public async Task Put_[Endpoint]_WithUnknownId_Returns404()
     {
         // Arrange
         var idInexistente = 99999;
@@ -204,7 +201,7 @@ public class [Feature]IntegrationTests : IClassFixture<CustomWebApplicationFacto
 
 #### **Template para Shared Builder**
 
-**Localização:** `src/[SolutionName].Tests/Shared/Builders/[ClassName]Builder.cs`
+**Localização:** `tests/[SolutionName].Tests/Shared/Builders/[ClassName]Builder.cs`
 
 ```csharp
 using Bogus;
@@ -250,7 +247,7 @@ public static class [ClassName]Builder
 
 #### **Template para Shared Fixture**
 
-**Localização:** `src/[SolutionName].Tests/Shared/Fixtures/CustomWebApplicationFactory.cs`
+**Localização:** `tests/[SolutionName].Tests/Shared/Fixtures/CustomWebApplicationFactory.cs`
 
 ```csharp
 using Microsoft.AspNetCore.Hosting;
